@@ -1,7 +1,8 @@
 [![sasap_logo](https://alaskasalmonandpeople.org/wp-content/uploads/2016/06/banner_test.jpg)](https://alaskasalmonandpeople.org)
 <br>
 
-# Practical open science approaches to salmon data management, analysis, and synthesis
+# Open science for salmon
+## Practical open science approaches to salmon data management, analysis, and synthesis
 
 - November 28-29, 2017
 - Juneau, AK
