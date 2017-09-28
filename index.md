@@ -30,7 +30,7 @@ output:
 
 ## Registration instructions
 
-- Information survey to scope training -- to be developed
+- [Register online](https://goo.gl/forms/NwklSzIOjX59sKgx1)
 - Space is limited to 20-25 people, so higher priority to earlier registrants
 - If interest exceeds capacity, we waitlist and add to next workshop
 
