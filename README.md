@@ -18,7 +18,7 @@ output:
 - Practical open science skills for salmon management
 
 - Series of open science training workshops targeting:
-    - [First workshop](index.html): Biostatisticians and modelers (this workshop, Juneau)
+    - [First workshop](https://nceas.github.io/sasap-training/): Biostatisticians and modelers (this workshop, Juneau)
     - Second workshop: Field biologists (Anchorage)
     - Third workshop: TBD
     
