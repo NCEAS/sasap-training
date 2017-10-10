@@ -1,0 +1,20 @@
+--- 
+title: "Open Science for Salmon"
+author: "Authors Go Here"
+date: "November 28-29, 2017"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Practical open science approaches to salmon data management, analysis, and synthesis"
+---
+
+# Prerequisites
+
+- R
+- RStudio
+- git
+- Web browser

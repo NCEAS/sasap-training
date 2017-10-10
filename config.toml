@@ -1,0 +1,42 @@
+baseurl = "/multi-bookdown-site"
+languageCode = "en-us"
+title = "SASAP Training"
+theme = "hugo-lithium-theme"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+# canonifyURLs
+# keep this true when deployed but false when developing locally
+canonifyURLs = true 
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Trainings"
+    url = "/trainings"
+    weight = 2
+[[menu.main]]
+    name = "Materials"
+    url = "/materials"
+    weight = 5
+    
+
+[params]
+    description = "Training website for SASAP"
+
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.11.0"
+    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+    MathJaxCDN = "//cdn.bootcss.com"
+    MathJaxVersion = "2.7.1"
+
+    [params.logo]
+    url = "logo.png"
+    width = 50
+    height = 50
+    alt = "Logo"
+

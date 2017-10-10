@@ -1,0 +1,23 @@
+# Data Cleaning and Manipulation
+
+## Outline (TBD)
+
+Packages:
+
+- `dplyr`
+- `tidyr`
+
+Functions to demo:
+
+- `dplyr`
+    - `mutate()`
+    - `select()`
+    - `filter()`
+    - `summarise()`
+    - `arrange()`
+    - `*_join()` (at least one, perhaps `left_join()`)
+- `tidyr`
+    - `gather()`
+    - `spread()`
+    - `extract()`
+    - `separate()`

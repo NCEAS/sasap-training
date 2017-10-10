@@ -1,0 +1,12 @@
+[
+["index.html", "Open Science for Salmon 1 Prerequisites", " Open Science for Salmon Authors Go Here November 28-29, 2017 1 Prerequisites R RStudio git Web browser "],
+["literate-analysis-with-rmarkdown.html", "2 Literate Analysis with RMarkdown", " 2 Literate Analysis with RMarkdown "],
+["rstudio-and-gitgithub-setup.html", "3 RStudio and Git/GitHub Setup", " 3 RStudio and Git/GitHub Setup "],
+["version-control-with-git-and-github.html", "4 Version Control With Git and GitHub", " 4 Version Control With Git and GitHub "],
+["data-modeling-tidy-data.html", "5 Data Modeling &amp; Tidy Data", " 5 Data Modeling &amp; Tidy Data "],
+["data-cleaning-and-manipulation.html", "6 Data Cleaning and Manipulation 6.1 Outline (TBD)", " 6 Data Cleaning and Manipulation 6.1 Outline (TBD) Packages: dplyr tidyr Functions to demo: dplyr mutate() select() filter() summarise() arrange() *_join() (at least one, perhaps left_join()) tidyr gather() spread() extract() separate() "],
+["hands-on-clean-and-integrate-datasets.html", "7 Hands On: Clean and Integrate Datasets", " 7 Hands On: Clean and Integrate Datasets "],
+["publication-graphics-with-ggplot2.html", "8 Publication Graphics with ggplot2", " 8 Publication Graphics with ggplot2 "],
+["data-documentation-and-publishing.html", "9 Data Documentation and Publishing", " 9 Data Documentation and Publishing "],
+["publishing-analyses-to-the-web.html", "10 Publishing Analyses to the Web", " 10 Publishing Analyses to the Web "]
+]
