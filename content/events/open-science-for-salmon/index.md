@@ -1,36 +1,24 @@
 ---
-title: "Open science for salmon"
+title: "Nov. 2017: Practical open science approaches to salmon data management, analysis, and synthesis"
 ---
 
-[![sasap_logo](/images/banner_test.jpg)](https://alaskasalmonandpeople.org)
-<br>
+[![sasap_banner](/images/banner_test.jpg)](https://alaskasalmonandpeople.org)
 
-# Open science for salmon
-## Practical open science approaches to salmon data management, analysis, and synthesis
+__Dates__: November 28-29, 2017<br>
+__Location__: Juneau, AK<br>
+__Venue__: UAF Fisheries Department
 
-- November 28-29, 2017
-- Juneau, AK
+Topics:
 
 - Open Science Tools to support synthesis of salmon data and management
 - Effective data management for salmon data management, analysis, and synthesis
 - Practical open science skills for salmon management
 
-- Series of open science training workshops targeting:
-    - First workshop: Biostatisticians and modelers (this workshop, Juneau)
-    - Second workshop: Field biologists (Anchorage)
-    - Third workshop: TBD
-    
-## Audience and background
-
-- Fish and Game
-- UAF
-- NOAA Fisheries
-
 ## Registration instructions
 
 - [Register online](https://goo.gl/forms/NwklSzIOjX59sKgx1)
 - Space is limited to 20-25 people, so higher priority to earlier registrants
-- If interest exceeds capacity, we waitlist and add to next workshop
+- If interest exceeds capacity, we will create a waitlist
 
 ## Agenda (draft)
 
@@ -57,14 +45,20 @@ title: "Open science for salmon"
     - Publishing analyses to the web (mbj bdm)
         - Rmd, leaflet, and github.io
 
+## Organizers
+
+- Matthew Jones
+- Jeanette Clark
+- Bryce Mecum
+- Jorge Cornejo
+- Madeline Jovanovich
 
 ### Acknowledgements
-Work on this package was supported by:
+These training events were supported by:
 
-The Gordon and Betty Moore Foundation, __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
-
-[<img src="/images/moore-logo-color.jpg" width="200px" />](https://www.moore.org)
+The [Gordon and Betty Moore Foundation](https://www.moore.org), __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
+<img src="/images/moore-logo-color.jpg" id="moorelogo"/>
+<img src="/images/nceas.png" id="nceaslogo"/>
 
 Additional support was provided for collaboration by the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu), a Center funded by the University of California, Santa Barbara, and the State of California.
 
-[![nceas_footer](/images/nceas.png)](http://www.nceas.ucsb.edu)
