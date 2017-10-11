@@ -17,9 +17,10 @@
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     {{ end }}
 
-    <link href='{{ "dist/main.css" | absURL }}' rel='stylesheet' type="text/css" />
+    <link href='{{ "dist/main.css" | relURL }}' rel='stylesheet' type="text/css" />
+    
     {{ range .Site.Params.custom_css -}}
-    <link rel="stylesheet" href="{{ . | absURL }}">
+    <link rel="stylesheet" href="{{ . | relURL }}">
     {{- end }}
     {{ block "favicon" . }}
       {{ partial "site-favicon.html" . }}
