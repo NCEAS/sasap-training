@@ -71,4 +71,3 @@ The [Gordon and Betty Moore Foundation](https://www.moore.org), __Salmon Data Ta
 <img src="/images/nceas.png" id="nceaslogo"/>
 
 Additional support was provided for collaboration by the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu), a Center funded by the University of California, Santa Barbara, and the State of California.
-
