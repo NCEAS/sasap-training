@@ -1,4 +1,4 @@
-baseurl = "https://nceas.github.io/sasap-training/"
+baseURL = "/sasap-training"
 languageCode = "en-us"
 title = "State of Alaska's Salmon and People"
 theme = "gohugo-theme-ananke"
@@ -24,7 +24,7 @@ canonifyURLs = true
 
 [params]
     description = "Tools and techniques for salmon data management and analysis"
-    custom_css = ["/sasap-training/css/sasap.css"]
+    custom_css = ["css/sasap.css"]
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
