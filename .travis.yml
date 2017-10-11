@@ -1,0 +1,20 @@
+language: r
+cache: packages
+branches:
+  only:
+  - master
+r_github_packages:
+    - rstudio/blogdown
+before_script:
+    - Rscript -e 'blogdown::install_hugo(version = "0.20.7")'
+script:
+    - Rscript -e 'blogdown::build_site()'
+    - sh _build_and_merge.sh
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  on:
+    branch: master
+  local_dir: public
+  target_branch: gh-pages
