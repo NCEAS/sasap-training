@@ -15,7 +15,7 @@ fi
 for book in ./materials/*
 do
     echo "Building Bookdown book in directory '$book'"
-    cd "$TOP/materials/$book"
+    cd "$TOP/$book"
     Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
     cp -r _book "$TOP/public/materials/$book"
 done
