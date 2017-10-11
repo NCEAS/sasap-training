@@ -2,20 +2,21 @@
 
 set -e
 
-export TOP=$(pwd)
+export TOP
+TOP=$(pwd)
 
-echo "Building books..."
+echo "Building materials..."
 
-if [ ! -d public/books ]; then
-    mkdir -p public/books
+if [ ! -d public/materials ]; then
+    mkdir -p public/materials
 fi
 
-# Build all books in the books subdir
-for book in $(ls books)
+# Build all materials in the materials subdir
+for book in ./materials/*
 do
-    echo "Building book in '$book'"
-    cd "books/$book"
+    echo "Building Bookdown book in directory '$book'"
+    cd "materials/$book"
     Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
-    cp -r _book "$TOP/public/books/$book"
+    cp -r _book "$TOP/public/materials/$book"
     cd "$TOP"
 done
