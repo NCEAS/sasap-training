@@ -1,5 +1,5 @@
 ---
-title: "Nov. 2017: Practical open science approaches to salmon data management, analysis, and synthesis"
+title: "Nov. 2017: Reproducible analysis with R"
 ---
 
 [![sasap_banner](/images/banner_test.jpg)](https://alaskasalmonandpeople.org)
@@ -8,8 +8,18 @@ __Dates__: November 28-29, 2017<br>
 __Location__: Juneau, AK<br>
 __Venue__: UAF Fisheries Department
 
-Topics:
+This event will cover techniques for building reproducible analysis workflows using
+the R programming language through a series of hands-on coding sessions.  We will
+use examples from integrating salmon brood data across the state of Alaska to show 
+how heterogeneous data can be cleaned, integrated, and documented through workflows
+written in RMarkdown.  After an overview of the use of RMarkdown for literate
+analysis, we will dive into critical topics in data science, including version 
+control, data modleing, cleaning, and integration, and then data visualization
+both for publications and the web.
 
+## Prerequisites and Topics:
+
+- __Prerequisite__: familiarity with R and statistical analysis
 - Open Science Tools to support synthesis of salmon data and management
 - Effective data management for salmon data management, analysis, and synthesis
 - Practical open science skills for salmon management
@@ -24,32 +34,32 @@ Topics:
 
 ### Day 1, November 28, 2017
 
-- Welcome and introductions [30 mins] (mbj)
+- Welcome and introductions [30 mins]
 - Block 1
     - Literate analysis with R Markdown [1hr]
-    - RStudio and Git/GitHub setup [30 mins] (sjc)
+    - RStudio and Git/GitHub setup [30 mins]
     - Version control with Git and GitHub [1hr]
         
 - Block 2
-    - Data cleaning and integration (mbj bdm)
-        - Data modeling (tidy data) [30 minutes] (mbj)
-        - Cleaning and manipulating data with dplyr [1.5 hr] (bdm)
-        - Hands on: Clean and integrate 2 data sets in Rmd w/ dplyr [1 hr] (mbj)
+    - Data cleaning and integration
+        - Data modeling (tidy data) [30 minutes]
+        - Cleaning and manipulating data with dplyr [1.5 hr]
+        - Hands on: Clean and integrate 2 data sets in Rmd w/ dplyr [1 hr]
 
 ### Day 2, November 29, 2017
 
 - Block 3
-    - Publication graphics with ggplot [2 hr] (bdm)
-    - Data documentation and publishing [1 hr] (sjc)
+    - Publication graphics with ggplot [2 hr]
+    - Data documentation and publishing [1 hr]
 - Block 4
-    - Publishing analyses to the web (mbj bdm)
+    - Publishing analyses to the web
         - Rmd, leaflet, and github.io
 
 ## Organizers
 
 - Matthew Jones
-- Jeanette Clark
 - Bryce Mecum
+- Jeanette Clark
 - Jorge Cornejo
 - Madeline Jovanovich
 
