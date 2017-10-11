@@ -2,7 +2,7 @@
 
 This series of three training events in Alaska will present open and practical approaches
 for using open science to advance understanding and management of salmon
-in Alaska.  Workshops will focus on open daata science techniques, and will cover
+in Alaska.  Workshops will focus on open data science techniques, and will cover
 topics in data management, data modeling, data sharing and preservation, reproducible 
 analysis and synthesis, and visualization, among others.
 

@@ -14,7 +14,7 @@ use examples from integrating salmon brood data across the state of Alaska to sh
 how heterogeneous data can be cleaned, integrated, and documented through workflows
 written in RMarkdown.  After an overview of the use of RMarkdown for literate
 analysis, we will dive into critical topics in data science, including version 
-control, data modleing, cleaning, and integration, and then data visualization
+control, data modeleing, cleaning, and integration, and then data visualization
 both for publications and the web.
 
 ## Prerequisites and Topics:
