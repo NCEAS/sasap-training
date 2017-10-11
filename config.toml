@@ -1,4 +1,4 @@
-baseURL = "/sasap-training"
+baseURL = "https://nceas.github.io/sasap-training"
 languageCode = "en-us"
 title = "State of Alaska's Salmon and People"
 theme = "gohugo-theme-ananke"
