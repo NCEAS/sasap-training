@@ -26,7 +26,7 @@ both for publications and the web.
 
 ## Registration instructions
 
-- [Register online](https://goo.gl/forms/NwklSzIOjX59sKgx1)
+- [Register online](https://docs.google.com/forms/d/e/1FAIpQLSeGIlXEkt5mLLYRLivWq4oxHzY0_7hi_9rMZyKg_3JIqB13_Q/viewform)
 - Space is limited to 20-25 people, so higher priority to earlier registrants
 - If interest exceeds capacity, we will create a waitlist
 
