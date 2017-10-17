@@ -1,0 +1,197 @@
+---
+title: "Data Integration Module"
+author: "Jeanette Clark"
+date: "10/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to determine the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
+
+These data can come in a number of different formats, but generally have rows of individual years, and columns with the total escapement and age classes, such as this:
+
+![](GoodnewsHeader.png)
+
+
+
+Sometimes other columns are included, such as return years in this example:
+
+![](CoghillHeader.png)
+
+
+
+If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented creates a formatting challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape these brood tables.
+
+
+## Reformatting
+
+First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:
+
+
+```
+'Stock.ID', 'Species', 'Stock','Region','Sub.Region','UseFlag',
+'BroodYear','TotalEscapement',
+'R0.1','R0.2', 'R0.3','R0.4',	'R0.5',
+'R1.1','R1.2','R1.3','R1.4','R1.5', 
+'R2.1','R2.2','R2.3','R2.4','R2.5',
+'R3.1','R3.2','R3.3','R3.4',
+'R4.1','R4.2' ,'R4.3'
+```
+
+First we need to load any packages. 
+```{r package loading}
+library(readxl)
+library(plyr)
+```
+
+Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
+
+```{r read}
+b <- read_excel('/home/sjclark/Brood Tables/Original_excels/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+colnames(b)
+```
+
+There are definitely some redundant and confusing columns here that we need to remove, and some we need to add according to the list above. First we remove the columns we don't want - namely all of the return years, the total return, and recruits/spawner. Note that we can always calculate these columns again later from the rest of the data.
+
+```{r clean up columns}
+#delete columns by column name
+b$Year__1 <- NULL
+b$Year__2 <- NULL
+b$Year__3 <- NULL
+b$Year__4 <- NULL
+b$Year__5 <- NULL
+b$Year__6 <- NULL
+b$Return <- NULL
+b$Return__1 <- NULL
+b$`Return/spawner` <- NULL
+```
+
+Now we need to fill in the information that is missing by adding columns:
+```'Stock.ID', 'Species', 'Stock','Region','Sub.Region','UseFlag'```
+
+```{r add columns}
+#add stock information columns
+b$Stock.ID <- 139 #preassigned Stock.ID
+b$Species <- 'Sockeye'
+b$Stock <- 'Coghill'
+b$Region <- 'PWS'
+b$Sub.Region <- 'PWS'
+b$UseFlag <- 1
+```
+
+Note that since we have no reason to suspect any data are not up to quality standards yet, we fill the `UseFlag` columns with 1s.
+
+Let's do another check on column names now.
+
+```{r colnames check}
+colnames(b)
+```
+
+Getting close, but these are not quite in the format that we decided on so we will rename them.
+
+```{r rename columns}
+colnames(b) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",  
+"R1.4","R2.3","R2.4","Stock.ID","Species",'Stock',"Region","Sub.Region","UseFlag")
+```
+
+Finally, you may want to reorder the columns into something more intuitive.
+```{r reorder columns}
+b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
+           'BroodYear','TotalEscapement','R0.2', 'R0.3',
+           'R1.1','R1.2','R1.3','R1.4', 
+           'R2.1','R2.2','R2.3','R2.4')]
+```
+
+And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.
+
+```{r write file, eval = F}
+write.csv(b, '/home/sjclark/Brood Tables/Reformatted/Coghill_sockeye.csv', row.names = F)
+```
+
+#Batch Reformatting
+
+Once a reformatting script has been written for all of the data files that are going to be incorporated, we can write another script that will run all of those scripts at once. In this case, I use a nicely written function from [stack overflow](https://stackoverflow.com/a/20083589)
+
+```{r source folder}
+sourceEntireFolder <- function(folderName, verbose=FALSE, showWarnings=TRUE) { 
+    files <- list.files(folderName, full.names=TRUE)
+    
+    # Grab only R files
+    files <- files[ grepl("\\.[rR]$", files) ]
+    
+    if (!length(files) && showWarnings)
+        warning("No R files in ", folderName)
+    
+    for (f in files) {
+        if (verbose)
+            cat("sourcing: ", f, "\n")
+        try(source(f, local=FALSE, echo=FALSE), silent=!verbose)
+    }
+    return(invisible(NULL))
+}
+```
+
+
+```{r run sourcefolder, eval = F}
+t <- sourceEntireFolder('/home/sjclark/sasap-data/data-processing/broodTables/formatting', verbose = T)
+```
+
+##Merging
+
+Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function `rbind.fill` here to merge the files together since some of these files have age classes that others don't. The `rbind.fill` function adds in all columns that exist, filling in the columns that don't have values for a particular stock with `NA`.
+
+```{r merge}
+readmerge <- function(path1){
+    files <- dir(path1, include.dirs = FALSE)
+    files <- files[ grepl(".csv", files) ]
+    a <- do.call(rbind.fill,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
+    return(a)
+}
+
+path1 <- '/home/sjclark/Brood Tables/Reformatted/'
+b <- readmerge(path1)
+```
+
+Using `rbind.fill` made the column order a little strange, so we'll rearrange again.
+
+```{r rearrange again}
+#rearrange columns
+b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag','BroodYear',
+                'TotalEscapement','R0.1','R0.2', 'R0.3','R0.4',	'R0.5',
+                'R1.1','R1.2','R1.3','R1.4','R1.5', 
+                'R2.1','R2.2','R2.3','R2.4','R2.5',
+                'R3.1','R3.2','R3.3','R3.4',
+                'R4.1','R4.2' ,'R4.3')]
+```
+
+
+##Quality Assurance
+
+Now we should do some checks to make sure that the data are up to standards and the reformatting was done correctly.
+
+First, for character columns, check that unique values are as expected.
+
+```{r unique character columns}
+charCol <- which(lapply(b, class) == 'character') #use lapply and which to find index of columns that are of class "character"
+
+for (i in 1:length(charCol)){
+    print(colnames(b)[charCol[i]]) #print column name
+   print(unique(b[, charCol[i]])) #display unique values for that column
+}
+
+```
+
+For numeric/integer columns, the `summary` function gives a nice overview of the range, distribution, and number of `NA` values.
+
+```{r summary of numeric columns}
+numCol <- which(lapply(b, class) != 'character') #use lapply and which to find index of columns that are of class "character"
+summary(b[, numCol])
+```
+
+
+From here, I can go into writing more QA functions or we can go ahead and melt the dataframe. Open to suggestions from you Bryce
