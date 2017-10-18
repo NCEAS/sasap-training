@@ -1,13 +1,4 @@
----
-title: "Data Integration Module"
-author: "Jeanette Clark"
-date: "10/11/2017"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Example: Brood Table Analysis
 
 ## Introduction
 
@@ -15,13 +6,13 @@ Brood tables, also called run reconstructions, utilize annual estimates of the t
 
 These data can come in a number of different formats, but generally have rows of individual years, and columns with the total escapement and age classes, such as this:
 
-![](GoodnewsHeader.png)
+![](images/GoodnewsHeader.png)
 
 
 
 Sometimes other columns are included, such as return years in this example:
 
-![](CoghillHeader.png)
+![](images/CoghillHeader.png)
 
 
 
@@ -52,7 +43,7 @@ library(plyr)
 Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
 
 ```{r read}
-b <- read_excel('/home/sjclark/Brood Tables/Original_excels/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+b <- read_excel('data/112_COGHILL_BROOD_TABLE.xls', skip = 6)
 colnames(b)
 ```
 
@@ -110,10 +101,10 @@ b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
 And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.
 
 ```{r write file, eval = F}
-write.csv(b, '/home/sjclark/Brood Tables/Reformatted/Coghill_sockeye.csv', row.names = F)
+write.csv(b, 'Coghill_sockeye.csv', row.names = F)
 ```
 
-#Batch Reformatting
+## Batch Reformatting
 
 Once a reformatting script has been written for all of the data files that are going to be incorporated, we can write another script that will run all of those scripts at once. In this case, I use a nicely written function from [stack overflow](https://stackoverflow.com/a/20083589)
 
@@ -138,10 +129,10 @@ sourceEntireFolder <- function(folderName, verbose=FALSE, showWarnings=TRUE) {
 
 
 ```{r run sourcefolder, eval = F}
-t <- sourceEntireFolder('/home/sjclark/sasap-data/data-processing/broodTables/formatting', verbose = T)
+t <- sourceEntireFolder('data/data_formatting_scripts/', verbose = T)
 ```
 
-##Merging
+## Merging
 
 Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function `rbind.fill` here to merge the files together since some of these files have age classes that others don't. The `rbind.fill` function adds in all columns that exist, filling in the columns that don't have values for a particular stock with `NA`.
 
@@ -153,7 +144,7 @@ readmerge <- function(path1){
     return(a)
 }
 
-path1 <- '/home/sjclark/Brood Tables/Reformatted/'
+path1 <- 'data/reformatted/'
 b <- readmerge(path1)
 ```
 
@@ -170,7 +161,7 @@ b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag','Broo
 ```
 
 
-##Quality Assurance
+## Quality Assurance
 
 Now we should do some checks to make sure that the data are up to standards and the reformatting was done correctly.
 
