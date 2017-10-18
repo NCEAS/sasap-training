@@ -141,6 +141,7 @@ readmerge <- function(path1){
     files <- dir(path1, include.dirs = FALSE)
     files <- files[ grepl(".csv", files) ]
     a <- do.call(rbind.fill,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
+    #NEED TO FIGURE OUT HOW TO USE RBIND.FILL TO FILL WITH ZEROS HERE
     return(a)
 }
 
