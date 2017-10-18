@@ -52,7 +52,7 @@ library(plyr)
 Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
 
 ```{r read}
-b <- read_excel('/home/sjclark/Brood Tables/Original_excels/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+b <- read_excel('/home/sjclark/BroodTables/Original_excels/112_COGHILL_BROOD_TABLE.xls', skip = 6)
 colnames(b)
 ```
 
@@ -110,7 +110,7 @@ b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
 And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.
 
 ```{r write file, eval = F}
-write.csv(b, '/home/sjclark/Brood Tables/Reformatted/Coghill_sockeye.csv', row.names = F)
+write.csv(b, '/home/sjclark/BroodTables/Reformatted/Coghill_sockeye.csv', row.names = F)
 ```
 
 #Batch Reformatting
@@ -154,7 +154,7 @@ readmerge <- function(path1){
     return(a)
 }
 
-path1 <- '/home/sjclark/Brood Tables/Reformatted/'
+path1 <- '/home/sjclark/BroodTables/Reformatted/'
 b <- readmerge(path1)
 ```
 
