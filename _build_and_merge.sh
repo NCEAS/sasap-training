@@ -16,6 +16,8 @@ for book in $(ls materials)
 do
     echo "Building book in '$book'"
     cd "materials/$book"
+    Rscript -e "devtools::install_deps('.')" # Installs book-specific R deps 
+                                             # defined in DESCRIPTION file
     Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
     cp -r _book "$TOP/public/materials/$book"
     cd "$TOP"
