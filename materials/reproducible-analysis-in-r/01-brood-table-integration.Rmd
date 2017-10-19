@@ -147,6 +147,7 @@ readmerge <- function(path1){
 
 path1 <- 'data/reformatted/'
 b <- readmerge(path1)
+b[is.na(b)] <- 0 # Zero out all NAs in all columns
 ```
 
 Using `rbind.fill` made the column order a little strange, so we'll rearrange again.
