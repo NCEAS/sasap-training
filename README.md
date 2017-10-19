@@ -44,19 +44,22 @@ Some amount of wrangling was required to get all of this set up and not everythi
 ### How this works
 
 Not everything is integrated nicely together so there are some folder organization conventions that need to be maintained for things to work.
-Changes to these conventions will require updating multiple pieces.
+Changes to these conventions will require updating multiple pieces and will be error-prone.
 
 - The root of the repository is a pretty standard [Blogdown](https://github.com/rstudio/blogdown) (See: Hugo) site.
 - It's served using GitHub Pages but Travis CI does the task of pushing the prepared site content from the `master` to `gh-pages` branch.
+
+    The reasonfor this is because each course's material are a Bookdown book and Blogdown doesn't know how to render Bookdown books *and* we wanted Travis CI to build everything so we could ensure our own work was reproducible
 - A root-level `DESCRIPTION` file is present to trick Travis CI into running
-- [Bookdown](https://bookdown.org) books are stored in `/books` as subfolders within
+- [Bookdown](https://bookdown.org) books are stored in `/materials` as subfolders within
 - The books are built on Travis CI and moved into the site's `public` directory by Travis CI running `./build_and_merge.sh` during the job.
 
-### Adding a new Workshop
+### Adding a new Event
 
-Add a new subfolder into `./content/trainings/{your-training-name}`, replacing `{your-training-name}` with a short title for the training and place an `index.md` in that folder with the content that should appear.
+Add a new subfolder at `./content/events/{your-training-name}`, replacing `{your-training-name}` with a short title for the training and write up an `index.md` in that folder with your content. I'd suggest just copying an existing event and modifying it for your needs.
 
 ### Adding a new Book (Material)
 
-- Add a new Bookdown book into `./books/`.
-- Manually add a link to `./content/materials.md`
+- Add a new Bookdown book into `./materials/`. I'd suggest copying an existing book and modifying it to your needs.
+    Make sure the DESCRIPTION file in the root of your book (not the root of this repo) contains the necessary `Imports` to load all of the packages required by your book. Travis CI installs each book's dependencies just prior to building the book by running `devtools::install_deps('.')` in the book's top level directory.
+- Manually add a link in `./content/materials.md`
