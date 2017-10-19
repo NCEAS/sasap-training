@@ -1,6 +1,8 @@
 [![sasap_logo](https://alaskasalmonandpeople.org/wp-content/uploads/2016/06/banner_test.jpg)](https://alaskasalmonandpeople.org)
 <br>
+
 # Open science for salmon
+
 ## Practical open science approaches to salmon data management, analysis, and synthesis
 
 - November 28-29, 2017
@@ -11,12 +13,12 @@
 - Practical open science skills for salmon management
 
 - Series of open science training workshops targeting:
-    - [First workshop](https://nceas.github.io/sasap-training/): Biostatisticians and modelers (this workshop, Juneau)
-    - Second workshop: Field biologists (Anchorage)
-    - Third workshop: TBD
-
+  - [First workshop](https://nceas.github.io/sasap-training/): Biostatisticians and modelers (this workshop, Juneau)
+  - Second workshop: Field biologists (Anchorage)
+  - Third workshop: TBD
 
 ### Acknowledgements
+
 Work on this package was supported by:
 
 The Gordon and Betty Moore Foundation, __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
@@ -31,6 +33,7 @@ Additional support was provided for collaboration by the [National Center for Ec
 
 This repository is an integration of [Blogdown](https://github.com/rstudio/blogdown) and [Bookdown](https://bookdown.org).
 Some amount of wrangling was required to get all of this set up and not everything may be obvious to all viewers.
+
 ### Oustanding Issues
 
 - Books don't link back to main site
@@ -48,7 +51,6 @@ Changes to these conventions will require updating multiple pieces.
 - A root-level `DESCRIPTION` file is present to trick Travis CI into running
 - [Bookdown](https://bookdown.org) books are stored in `/books` as subfolders within
 - The books are built on Travis CI and moved into the site's `public` directory by Travis CI running `./build_and_merge.sh` during the job.
-
 
 ### Adding a new Workshop
 
