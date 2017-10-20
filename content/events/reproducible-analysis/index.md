@@ -36,24 +36,24 @@ both for publications and the web.
 
 - Welcome and introductions [30 mins]
 - Block 1
-    - Literate analysis with R Markdown [1hr]
-    - RStudio and Git/GitHub setup [30 mins]
-    - Version control with Git and GitHub [1hr]
+    - Literate analysis with RMarkdown [1hr]
+    - RStudio and git/GitHub setup [30 mins]
+    - Version control with git and GitHub [1hr]
         
 - Block 2
     - Data cleaning and integration
         - Data modeling (tidy data) [30 minutes]
-        - Cleaning and manipulating data with dplyr [1.5 hr]
+        - Cleaning and manipulating data with dplyr & tidyr [1.5 hr]
         - Hands on: Clean and integrate 2 data sets in Rmd w/ dplyr [1 hr]
 
 ### Day 2, November 29, 2017
 
 - Block 3
-    - Publication graphics with ggplot [2 hr]
+    - Publication graphics with ggplot2 [2 hr]
     - Data documentation and publishing [1 hr]
 - Block 4
     - Publishing analyses to the web
-        - Rmd, leaflet, and github.io
+        - RMarkdown, Leaflet, and GitHub Pages
 
 ## Organizers
 
