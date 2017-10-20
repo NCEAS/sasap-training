@@ -38,6 +38,7 @@ First we need to load any packages.
 ```{r package loading}
 library(readxl)
 library(plyr)
+library(ggplot2) # For making plots at the end
 ```
 
 Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
@@ -187,3 +188,43 @@ summary(b[, numCol])
 
 
 From here, I can go into writing more QA functions or we can go ahead and melt the dataframe. Open to suggestions from you Bryce
+
+### Analysis
+
+Now that we've done all of the work to clean and integrate all of the individual brood tables into a single `data.frame`, we're ready to start exploring how the regions, sub-regions, and individual stocks might differ.
+A very common use of brood table data is to produce run size forecasts using the information we obtained by splitting returns into individual age classes.
+This approach revolves around the idea that productivity ($R/S$) for each age class is likely to be relatively more correlated within brood years than across brood years and that adults of some species of salmon (e.g., sockeye) have multiple return years for a given brood year.
+This lets us borrow information from the absolute number of earlier-returning (e.g., 1.2) individuals to make a guess about how many older individuals from that same brood year will return.
+
+Below, I show two sets of scatterplots of the number of age 1.3 fish against the number of age 1.2 fish. Each panel is overlaid with regressions about the origin.
+
+#### Relationship between 1.2s and 1.3s by Region
+
+```{r, warning=FALSE}
+ggplot(b, aes(R1.2, R1.3)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", 
+              formula = "y ~ 0 + x", 
+              se = FALSE) + 
+  facet_wrap(~ Region,
+             scales = "free")
+```
+
+Note that the scales are not fixed so comparing slopes across panels does not make sense.
+Because we're using R, we could easily extract such information.
+
+#### Relationship between 1.2s and 1.3s by Stock
+
+The same type of plot can easily be produced for a different grouping level, such as stock:
+
+```{r, warning=FALSE}
+ggplot(b, aes(R1.2, R1.3)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", 
+              formula = "y ~ 0 + x", 
+              se = FALSE) + 
+  facet_wrap(~ Stock,
+             scales = "free")
+```
+
+Note that the scales are not fixed so comparing slopes across panels does not make sense.
