@@ -34,13 +34,6 @@ Additional support was provided for collaboration by the [National Center for Ec
 This repository is an integration of [Blogdown](https://github.com/rstudio/blogdown) and [Bookdown](https://bookdown.org).
 Some amount of wrangling was required to get all of this set up and not everything may be obvious to all viewers.
 
-### Oustanding Issues
-
-- Books don't link back to main site
-- Header in nav bar isn't quite in vertical alignment with the nav links
-- Site isn't fully responsive but it works well enough
-- Consider putting the configuration of Bookdown books into the root `config.toml`
-
 ### How this works
 
 Not everything is integrated nicely together so there are some folder organization conventions that need to be maintained for things to work.
