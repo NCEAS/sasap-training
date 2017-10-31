@@ -3,6 +3,8 @@
 
 # Open science for salmon
 
+[![Build Status](https://travis-ci.org/NCEAS/sasap-training.svg?branch=master)](https://travis-ci.org/NCEAS/sasap-training)
+
 ## Practical open science approaches to salmon data management, analysis, and synthesis
 
 - November 28-29, 2017
