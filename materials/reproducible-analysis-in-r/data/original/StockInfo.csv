@@ -16,7 +16,7 @@ Stock.ID,Species,Stock,Ocean Region,Region,Sub.Region,Jurisdiction,Lat,Lon,Sourc
 115,Sockeye,Birkenhead,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
 116,Sockeye,Cultus,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
 117,Sockeye,Harrison,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
-118,Sockeye,Late Shuswap,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
+118,Sockeye,L.Shuswap,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
 119,Sockeye,Portage,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
 120,Sockeye,Weaver,WC,Fraser River,Fraser Late,BC,49.12,123.06,4
 121,Sockeye,Great Central,WC,BC South,Barkley Sound,BC,49.24,124.82,9
@@ -53,4 +53,3 @@ Stock.ID,Species,Stock,Ocean Region,Region,Sub.Region,Jurisdiction,Lat,Lon,Sourc
 163,Sockeye,Togiak,BS,Bristol Bay,Bristol Bay North,AK,58.95,160.45,11
 164,Sockeye,Goodnews,BS,AYK,AYK,AK,59.11,161.62,7
 165,Sockeye,Early Russian River,GOA,Cook Inlet,Upper Cook Inlet,AK,60.54,151.28,5
-221,Sockeye,L.Shuswap,WC,Fraser River,Fraser Early Summer,BC,49.12,123.06,4
