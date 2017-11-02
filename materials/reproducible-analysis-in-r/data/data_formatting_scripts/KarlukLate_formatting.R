@@ -18,7 +18,7 @@ b$Use <- 1
 b$return <- NULL;
 b$`8yo` <- NULL; b$`9yo` <- NULL
 
-colnames(b) <- c("BroodYear", "Escapement","R0.1",'R0.2',"R1.1","R0.3","R1.2","R2.1", 'R0.4', "R1.3","R2.2",'R3.1',
+colnames(b) <- c("BroodYear", "TotalEscapement","R0.1",'R0.2',"R1.1","R0.3","R1.2","R2.1", 'R0.4', "R1.3","R2.2",'R3.1',
                  "R1.4","R2.3","R3.2",'R4.1',"R2.4", "R3.3",'R4.2',"Stock.ID","Species",'Stock',"Region","Sub.Region","UseFlag")
 
 #create missing columns and fill with NA
