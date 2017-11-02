@@ -1,6 +1,6 @@
 #Reformatting Coghill brood table data
 library(readxl)
-b <- read_excel('originals/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+b <- read_excel('original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
 
 b <- b[1:53, ]
 #get rid of the return year, total return, return/spawner columns, and two stray columns
