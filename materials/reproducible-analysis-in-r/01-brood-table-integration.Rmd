@@ -2,6 +2,14 @@
 
 ## Introduction
 
+```{r package loading, echo = FALSE}
+library(readxl)
+library(plyr)
+library(ggplot2) # For making plots at the end
+library(knitr)
+library(kableExtra)
+```
+
 Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
 
 These data can come in a number of different formats, but generally follow the pattern of:
@@ -24,6 +32,22 @@ If you are interested in analysing trends across multiple stocks, the many diffe
 
 ## Datasets
 
+As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 1 shows a list of these stocks, along with other regional and location information.
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE}
+stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
+kable(stocks, row.names = F, format = 'html') %>% 
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) #%>%
+
+```
+
+
+
+These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
+
+#how do I make a map here??
+
+
 
 
 
@@ -43,11 +67,7 @@ First we need to change the brood table column names so that they are in a consi
 ```
 
 First we need to load any packages. 
-```{r package loading}
-library(readxl)
-library(plyr)
-library(ggplot2) # For making plots at the end
-```
+
 
 Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
 
@@ -137,7 +157,7 @@ sourceEntireFolder <- function(folderName, verbose=FALSE, showWarnings=TRUE) {
 ```
 
 
-```{r run sourcefolder, eval = F}
+```{r run sourcefolder, eval = F, warning=FALSE, message = FALSE}
 t <- sourceEntireFolder('data/data_formatting_scripts/', verbose = T)
 ```
 
