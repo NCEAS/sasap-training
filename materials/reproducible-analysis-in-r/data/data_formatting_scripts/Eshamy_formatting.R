@@ -1,6 +1,6 @@
 #Reformatting Eshamy brood table data
 
-b <- read.csv('original/Eshamy_Sockeye.csv', stringsAsFactors = F)
+b <- read.csv('data/original/Eshamy_Sockeye.csv', stringsAsFactors = F)
 #convert to numeric
 
 b <- lapply(b, as.numeric)
