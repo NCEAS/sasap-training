@@ -32,7 +32,7 @@ reformat_bristolbay <- function(sheetnumber, stock.ID, stock, Sub.Region){
                'R2.1','R2.2','R2.3','R2.4',
                'R3.1','R3.2','R3.3','R3.4')]
 
-    path_base <- ('Reformatted/')
+    path_base <- ('reformatted/')
     path_end <- ('_sockeye.csv')
 
     write.csv(b, paste(path_base, stock, path_end, sep = ''), row.names = F)
