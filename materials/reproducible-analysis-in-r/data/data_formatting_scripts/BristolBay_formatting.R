@@ -18,7 +18,7 @@ reformat_bristolbay <- function(sheetnumber, stock.ID, stock, Sub.Region){
     b$Stock <- stock
     b$Region <- 'Bristol Bay'
     b$Sub.Region <- Sub.Region
-    b$Use <- 1 #placeholder column for WG to evaluate later
+    b$UseFlag <- 1 #placeholder column for WG to evaluate later
 
 
     colnames(b) <- c("BroodYear", 'R0.1',"R0.2","R0.3","R0.4","R0.5", "R1.1","R1.2",'R1.3',"R1.4","R1.5","R2.1",
