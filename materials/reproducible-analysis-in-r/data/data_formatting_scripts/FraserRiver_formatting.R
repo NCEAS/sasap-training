@@ -35,5 +35,5 @@ b2 <- b2[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
            'R3.1','R3.2','R3.3','R3.4')]
 
 
-write.csv(b2, 'reformatted/Fraser_sockeye_multipleStocks.csv', row.names = F)
+write.csv(b2, 'data/reformatted/Fraser_sockeye_multipleStocks.csv', row.names = F)
 
