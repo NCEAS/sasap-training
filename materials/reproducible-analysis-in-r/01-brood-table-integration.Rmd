@@ -2,21 +2,29 @@
 
 ## Introduction
 
-Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to determine the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
+Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
 
-These data can come in a number of different formats, but generally have rows of individual years, and columns with the total escapement and age classes, such as this:
+These data can come in a number of different formats, but generally follow the pattern of:
+1. Rows for each brood year
+2. Columnas for the estimated number of fish in each age class.
+
+See the example below, showing a Sockeye salmon brood table from the Goodnews River, Alaska:
 
 ![](images/GoodnewsHeader.png)
 
 
 
-Sometimes other columns are included, such as return years in this example:
+Sometimes other columns are included, such as return years in this example (again for Sockeye salmon) from Coghill Lake, Alaska:
 
 ![](images/CoghillHeader.png)
 
 
 
-If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented creates a formatting challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape these brood tables.
+If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented make integrating multiple brood tables a big challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape a set brood tables from around the state of Alaska. These datasets were gathered as part of the SASAP research from a number of different ADFG offices. We will start with the raw (unmodified) data for each stock, run each stock’s brood table through a separate R script to normalize the format, integrate all of the brood tables together, and finally do an exploratory analysis across stocks.
+
+## Datasets
+
+
 
 
 ## Reformatting
