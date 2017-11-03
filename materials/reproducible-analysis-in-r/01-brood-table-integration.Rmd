@@ -6,8 +6,9 @@
 library(readxl)
 library(plyr)
 library(ggplot2) # For making plots at the end
-library(knitr)
 library(kableExtra)
+library(leaflet)
+library(knitr)
 ```
 
 Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
@@ -32,7 +33,7 @@ If you are interested in analysing trends across multiple stocks, the many diffe
 
 ## Datasets
 
-As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 1 shows a list of these stocks, along with other regional and location information.
+As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 2.1 shows a list of these stocks, along with other regional and location information.
 
 ```{r, echo = FALSE}
 stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
@@ -40,25 +41,31 @@ stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
 ```
 
 ```{r, echo = FALSE}
-kable(stocks, row.names = F, format = 'html', caption = 'Table 1: Stock information', align = 'c') %>% 
-        kable_styling(bootstrap_options = c("hover", "condensed", "responsive", font_size = 10, position = 'center')) #%>%
+kable(stocks, row.names = F, format = 'html', caption = 'Stock information', align = 'c') %>% 
+        kable_styling(bootstrap_options = c("hover", "condensed"), font_size = 8, position = 'center') #%>%
 ```
+
+
 
 
 Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. 
 
-```{r echo = FALSE}
-stocks <- read.csv('data/original/source_information.csv', stringsAsFactors = F)
-kable(stocks, row.names = F, format = 'html', caption = 'Table 2: Source information', align = 'c') %>% 
-        kable_styling(bootstrap_options = c("hover", "condensed", "responsive", font_size = 10, position = 'center')) #%>%
+```{r, echo = FALSE}
+source <- read.csv('data/original/source_information.csv', stringsAsFactors = F)
+kable(source, row.names = F, format = 'html', caption = 'Source information', align = 'c') %>% 
+        kable_styling(bootstrap_options = c("hover", "condensed"), font_size = 8, position = 'center') #%>%
 ```
 
 These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
 
-#how do I make a map here??
+how do I make a map here??
 
 
-
+```{r}
+m <- leaflet(stocks)  %>%
+  setView(lng = -141, lat = 54, zoom = 2) %>%
+  addTiles()  
+```
 
 
 ## Reformatting
@@ -82,7 +89,7 @@ First we need to load any packages.
 Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
 
 ```{r read}
-b <- read_excel('data/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+b <- read_excel('data/original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
 colnames(b)
 ```
 
