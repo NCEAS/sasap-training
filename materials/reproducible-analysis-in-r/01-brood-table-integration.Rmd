@@ -34,12 +34,12 @@ If you are interested in analysing trends across multiple stocks, the many diffe
 
 As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 1 shows a list of these stocks, along with other regional and location information.
 
-```{r echo = FALSE}
+```{r, echo = FALSE}
 stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
 
 ```
 
-```{r echo = FALSE}
+```{r, echo = FALSE}
 kable(stocks, row.names = F, format = 'html', caption = 'Table 1: Stock information', align = 'c') %>% 
         kable_styling(bootstrap_options = c("hover", "condensed", "responsive", font_size = 10, position = 'center')) #%>%
 ```
