@@ -63,8 +63,10 @@ how do I make a map here??
 
 ```{r}
 m <- leaflet(stocks)  %>%
-  setView(lng = -141, lat = 54, zoom = 2) %>%
-  addTiles()  
+  setView(-median(stocks$Lon), median(stocks$Lat), zoom = 4) %>%
+  addTiles() %>% 
+  addMarkers(~-Lon, ~Lat)
+m
 ```
 
 
