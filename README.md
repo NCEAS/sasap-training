@@ -40,6 +40,8 @@ Helpful hints:
 
 - Only check in your `.Rmd` files in the `./materials` folder. Another service (Travis CI) does the rendering
 - Live-preview your work `bookdown::serve_book` while you work
+- Your changes will take a minute or two to appear on the website (because the site is built on a remote service)
+- If the Travis CI build fails for your commit (see badge at top of readme) the site won't be updated (so fix the build)
 
 ### How this works
 
