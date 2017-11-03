@@ -85,46 +85,47 @@ Figure 2.1: Location of stocks used in this data integration. Salmonid icon by S
 
 First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:
 
-|Stock Information| Run Information | Age Classes|
+
+||||
 |:------:|:------:|:-------:|
 |'Stock.ID'|'BroodYear'|'R0.1' 'R1.1' 'R2.1' 'R3.1' 'R4.1'|
 |'Species'|'TotalEscapement'|'R0.2' 'R1.2' 'R2.2' 'R3.2' 'R4.2'|
 |'Region'||'R0.3' 'R1.3' 'R2.3' 'R3.3' 'R4.3'|
 |'Sub.Region'||'R0.4' 'R1.4' 'R2.4' 'R3.4' 'R4.4'|
 |'UseFlag'||'R0.5' 'R1.5' 'R2.5' 'R3.5' 'R4.5'|
-```
-'Stock.ID', 'Species', 'Stock','Region','Sub.Region','UseFlag',
-'BroodYear','TotalEscapement',
-'R0.1','R0.2', 'R0.3','R0.4',	'R0.5',
-'R1.1','R1.2','R1.3','R1.4','R1.5', 
-'R2.1','R2.2','R2.3','R2.4','R2.5',
-'R3.1','R3.2','R3.3','R3.4',
-'R4.1','R4.2' ,'R4.3'
-```
+
 
 First we need to load any packages. 
 
+```{r, eval = FALSE, warning = FALSE, message = FALSE}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+```
 
-Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
+Now let's read in the brood table. After a quick visual inspection in Excel, we can see that the header doesn’t start until the sixth row, so we should tell `read_excel` to skip the first lines: 
+
 
 ```{r read}
-b <- read_excel('data/original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
-colnames(b)
+coghill_brood <- read_excel('data/original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+colnames(coghill_brood)
 ```
 
 There are definitely some redundant and confusing columns here that we need to remove, and some we need to add according to the list above. First we remove the columns we don't want - namely all of the return years, the total return, and recruits/spawner. Note that we can always calculate these columns again later from the rest of the data.
 
 ```{r clean up columns}
 #delete columns by column name
-b$Year__1 <- NULL
-b$Year__2 <- NULL
-b$Year__3 <- NULL
-b$Year__4 <- NULL
-b$Year__5 <- NULL
-b$Year__6 <- NULL
-b$Return <- NULL
-b$Return__1 <- NULL
-b$`Return/spawner` <- NULL
+
+coghill_brood <- coghill_brood %>% select(-Year__1,
+                         -Year__2, 
+                         -Year__3, 
+                         -Year__4,
+                         -Year__5, 
+                         -Year__6, 
+                         -Return, 
+                         -Return__1, 
+                         -`Return/spawner`)
+
 ```
 
 Now we need to fill in the information that is missing by adding columns:
@@ -132,12 +133,12 @@ Now we need to fill in the information that is missing by adding columns:
 
 ```{r add columns}
 #add stock information columns
-b$Stock.ID <- 139 #preassigned Stock.ID
-b$Species <- 'Sockeye'
-b$Stock <- 'Coghill'
-b$Region <- 'PWS'
-b$Sub.Region <- 'PWS'
-b$UseFlag <- 1
+coghill_brood$Stock.ID <- 139 #preassigned Stock.ID
+coghill_brood$Species <- 'Sockeye'
+coghill_brood$Stock <- 'Coghill'
+coghill_brood$Region <- 'PWS'
+coghill_brood$Sub.Region <- 'PWS'
+coghill_brood$UseFlag <- 1
 ```
 
 Note that since we have no reason to suspect any data are not up to quality standards yet, we fill the `UseFlag` columns with 1s.
@@ -145,19 +146,19 @@ Note that since we have no reason to suspect any data are not up to quality stan
 Let's do another check on column names now.
 
 ```{r colnames check}
-colnames(b)
+colnames(coghill_brood)
 ```
 
 Getting close, but these are not quite in the format that we decided on so we will rename them.
 
 ```{r rename columns}
-colnames(b) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",  
+colnames(coghill_brood) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",  
 "R1.4","R2.3","R2.4","Stock.ID","Species",'Stock',"Region","Sub.Region","UseFlag")
 ```
 
 Finally, you may want to reorder the columns into something more intuitive.
 ```{r reorder columns}
-b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
+coghill_brood <- coghill_brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
            'BroodYear','TotalEscapement','R0.2', 'R0.3',
            'R1.1','R1.2','R1.3','R1.4', 
            'R2.1','R2.2','R2.3','R2.4')]
@@ -166,35 +167,83 @@ b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
 And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.
 
 ```{r write file, eval = F}
-write.csv(b, 'Coghill_sockeye.csv', row.names = F)
+write.csv(coghill_brood, 'Coghill_sockeye.csv', row.names = F)
+```
+
+
+From top to bottom, here is what this reformatting script looks like:
+
+```{r, eval = FALSE}
+# Reformatting Coghill brood table data
+# Jeanette Clark
+# 09/23/2017
+
+
+library(readxl)
+library(dplyr)
+
+#header starts on row 6
+coghill_brood <- read_excel('data/original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+
+
+#get rid of the return year, total return, return/spawner columns, and two stray columns
+coghill_brood <- coghill_brood %>% select(-Year__1,
+                         -Year__2, 
+                         -Year__3, 
+                         -Year__4,
+                         -Year__5, 
+                         -Year__6, 
+                         -Return, 
+                         -Return__1, 
+                         -`Return/spawner`)
+
+#column names reminder
+#colnames: Stock.ID	Species	Stock	Region	Sub.Region	Use	BY	Escapement	R0.1	R0.2	R0.3	R0.4	R0.5	R1.1	R1.2	R1.3	R1.4	R1.5	R2.1	R2.2	R2.3	R2.4	R3.1	R3.2	R3.3	R3.4
+
+#Create columns for stock information
+coghill_brood$Stock.ID <- 139 #preassigned Stock.ID
+coghill_brood$Species <- 'Sockeye'
+coghill_brood$Stock <- 'Coghill'
+coghill_brood$Region <- 'PWS'
+coghill_brood$Sub.Region <- 'PWS'
+coghill_brood$UseFlag <- 1
+
+#rename columns according to predetermined column names
+colnames(coghill_brood) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",
+"R1.4","R2.3","R2.4","Stock.ID","Species",'Stock',"Region","Sub.Region","UseFlag")
+
+
+#reorder columns
+coghill_brood <- coghill_brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
+           'BroodYear','TotalEscapement','R0.1','R0.2', 'R0.3',	'R0.4',	'R0.5',
+           'R1.1','R1.2','R1.3','R1.4',	'R1.5',
+           'R2.1','R2.2','R2.3','R2.4',
+           'R3.1','R3.2','R3.3','R3.4')]
+
+#write csv
+write.csv(coghill_brood, 'data/reformatted/Coghill_sockeye.csv', row.names = F)
+```
+
+We write a script similar to this for each stock that we would like to integrate into the brood table analysis. Note that many of the original brood tables come in multi-tab spreadsheets containing multiple stocks with each tab corresponding to a unique stock, therefore some of these stock-specific scripts access the same original excel document, but different sheets. In the case where the sheets are all formatted the same (Bristol Bay), the script contains a function which processes each sheet and writes individual `.csv` files for each stock.
+
+```{r}
+dir('data/original/', include.dirs = F)
+```
+
+
+
+```{r}
+dir('data/data_formatting_scripts/', include.dirs = F)
 ```
 
 ## Batch Reformatting
 
-Once a reformatting script has been written for all of the data files that are going to be incorporated, we can write another script that will run all of those scripts at once. In this case, I use a nicely written function from [stack overflow](https://stackoverflow.com/a/20083589)
-
-```{r source folder}
-sourceEntireFolder <- function(folderName, verbose=FALSE, showWarnings=TRUE) { 
-    files <- list.files(folderName, full.names=TRUE)
-    
-    # Grab only R files
-    files <- files[ grepl("\\.[rR]$", files) ]
-    
-    if (!length(files) && showWarnings)
-        warning("No R files in ", folderName)
-    
-    for (f in files) {
-        if (verbose)
-            cat("sourcing: ", f, "\n")
-        try(source(f, local=FALSE, echo=FALSE), silent=!verbose)
-    }
-    return(invisible(NULL))
-}
-```
+Once a reformatting script has been written for all of the data files that are going to be incorporated, we can source all of the scripts within the reformatting folder and run them, which will create all of the reformatted data files.
 
 
-```{r run sourcefolder, eval = F, warning=FALSE, message = FALSE}
-t <- sourceEntireFolder('data/data_formatting_scripts/', verbose = T)
+```{r, warning = FALSE, message = FALSE, eval = FALSE}
+formatting_scripts <- dir("data/data_formatting_scripts/", full.names = TRUE, pattern = "*\\.[rR]")
+sapply(formatting_scripts, source)
 ```
 
 ## Merging
