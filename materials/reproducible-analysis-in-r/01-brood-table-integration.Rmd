@@ -2,13 +2,13 @@
 
 ## Introduction
 
-```{r package loading, echo = FALSE}
+```{r package loading, echo = FALSE, warning = FALSE, message = FALSE}
 library(readxl)
-library(plyr)
 library(ggplot2) # For making plots at the end
 library(kableExtra)
 library(leaflet)
 library(knitr)
+library(dplyr)
 ```
 
 Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
@@ -42,39 +42,56 @@ stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
 
 ```{r, echo = FALSE}
 kable(stocks, row.names = F, format = 'html', caption = 'Stock information', align = 'c') %>% 
-        kable_styling(bootstrap_options = c("hover", "condensed"), font_size = 8, position = 'center') #%>%
+        kable_styling(bootstrap_options = c('table','hover','condensed','responsive'), font_size = 8, position = 'center') #%>%
 ```
 
 
 
 
-Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. 
+Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. THIS TABLE IS TOO LONG AND I HATE THE STRIPES
+
+
 
 ```{r, echo = FALSE}
 source <- read.csv('data/original/source_information.csv', stringsAsFactors = F)
 kable(source, row.names = F, format = 'html', caption = 'Source information', align = 'c') %>% 
-        kable_styling(bootstrap_options = c("hover", "condensed"), font_size = 8, position = 'center') #%>%
+        kable_styling(bootstrap_options = c('table','hover', 'condensed', 'responsive'), font_size = 8, position = 'center') #%>%
 ```
+
+
 
 These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
 
-how do I make a map here??
 
 
-```{r}
+Figure 2.1 indicates the approximate location of the salmon stocks in Table 2.1.
+
+```{r, echo = FALSE}
+salmon = makeIcon('/home/sjclark/sasap-training/materials/reproducible-analysis-in-r/data/images/salmon_tiny.png',
+                  '/home/sjclark/sasap-training/materials/reproducible-analysis-in-r/data/images/salmon_big.png',
+                  26, 14)
+
 m <- leaflet(stocks)  %>%
   setView(-median(stocks$Lon), median(stocks$Lat), zoom = 4) %>%
   addTiles() %>% 
-  addMarkers(~-Lon, ~Lat)
-m
-```
+  addMarkers(~-Lon, ~Lat, icon = salmon)
 
+m
+
+```
+Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) [License](https://creativecommons.org/licenses/by-sa/3.0/)
 
 ## Reformatting
 
 First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:
 
-
+|Stock Information| Run Information | Age Classes|
+|:------:|:------:|:-------:|
+|'Stock.ID'|'BroodYear'|'R0.1' 'R1.1' 'R2.1' 'R3.1' 'R4.1'|
+|'Species'|'TotalEscapement'|'R0.2' 'R1.2' 'R2.2' 'R3.2' 'R4.2'|
+|'Region'||'R0.3' 'R1.3' 'R2.3' 'R3.3' 'R4.3'|
+|'Sub.Region'||'R0.4' 'R1.4' 'R2.4' 'R3.4' 'R4.4'|
+|'UseFlag'||'R0.5' 'R1.5' 'R2.5' 'R3.5' 'R4.5'|
 ```
 'Stock.ID', 'Species', 'Stock','Region','Sub.Region','UseFlag',
 'BroodYear','TotalEscapement',
@@ -188,7 +205,7 @@ Now that all of the data tables have been reformatted, we can read them in and m
 readmerge <- function(path1){
     files <- dir(path1, include.dirs = FALSE)
     files <- files[ grepl(".csv", files) ]
-    a <- do.call(rbind.fill,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
+    a <- do.call(bind_rows,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
     #NEED TO FIGURE OUT HOW TO USE RBIND.FILL TO FILL WITH ZEROS HERE
     return(a)
 }
