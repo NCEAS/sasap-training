@@ -48,7 +48,7 @@ kable(stocks, row.names = F, format = 'html', caption = 'Stock information', ali
 
 
 
-Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. THIS TABLE IS TOO LONG AND I HATE THE STRIPES
+Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. THIS TABLE IS TOO LONG AND I HATE THE STRIPES. I also think I should just include source info directly in this table instead of having two tables, but will wait on overall table feedback from Bryce
 
 
 
