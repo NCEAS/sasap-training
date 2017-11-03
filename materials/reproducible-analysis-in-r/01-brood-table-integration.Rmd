@@ -32,16 +32,22 @@ If you are interested in analysing trends across multiple stocks, the many diffe
 
 ## Datasets
 
-As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 1 shows a list of these stocks, along with other regional and location information.
+As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. The following table shows a list of these stocks, along with other regional and location information.
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE}
 stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
-kable(stocks, row.names = F, format = 'html') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) #%>%
-
+kable(stocks, row.names = F, format = 'html', caption = 'Table 1: Stock information', align = 'c') %>% 
+        kable_styling(bootstrap_options = c("hover", "condensed", "responsive", font_size = 10, position = 'center')) #%>%
 ```
 
 
+Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. 
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE}
+stocks <- read.csv('data/original/source_information.csv', stringsAsFactors = F)
+kable(stocks, row.names = F, format = 'html', caption = 'Table 2: Source information', align = 'c') %>% 
+        kable_styling(bootstrap_options = c("hover", "condensed", "responsive", font_size = 10, position = 'center')) #%>%
+```
 
 These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
 
