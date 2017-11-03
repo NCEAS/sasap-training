@@ -5,6 +5,9 @@ Version: 0.0.1
 Imports: 
     bookdown,
     ggplot2,
+    kableExtra,
+    knitr,
+    leaflet,
     plyr,
     readxl
 Remotes: rstudio/bookdown
