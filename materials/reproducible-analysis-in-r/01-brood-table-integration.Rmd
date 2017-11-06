@@ -79,7 +79,7 @@ m <- leaflet(stocks)  %>%
 m
 
 ```
-Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) [License](https://creativecommons.org/licenses/by-sa/3.0/)
+Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) [License](https://creativecommons.org/licenses/by-sa/3.0/), available at [Phylopic](http://phylopic.org/)
 
 ## Reformatting
 
@@ -143,13 +143,7 @@ coghill_brood$UseFlag <- 1
 
 Note that since we have no reason to suspect any data are not up to quality standards yet, we fill the `UseFlag` columns with 1s.
 
-Let's do another check on column names now.
-
-```{r colnames check}
-colnames(coghill_brood)
-```
-
-Getting close, but these are not quite in the format that we decided on so we will rename them.
+The rest of the columns are still not quite in the format that we decided on so we will rename them.
 
 ```{r rename columns}
 colnames(coghill_brood) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",  
@@ -157,6 +151,7 @@ colnames(coghill_brood) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3"
 ```
 
 Finally, you may want to reorder the columns into something more intuitive.
+
 ```{r reorder columns}
 coghill_brood <- coghill_brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
            'BroodYear','TotalEscapement','R0.2', 'R0.3',
@@ -167,7 +162,7 @@ coghill_brood <- coghill_brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.
 And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.
 
 ```{r write file, eval = F}
-write.csv(coghill_brood, 'Coghill_sockeye.csv', row.names = F)
+write.csv(coghill_brood, 'data/reformatted/Coghill_sockeye.csv', row.names = F)
 ```
 
 
@@ -226,17 +221,18 @@ write.csv(coghill_brood, 'data/reformatted/Coghill_sockeye.csv', row.names = F)
 
 We write a script similar to this for each stock that we would like to integrate into the brood table analysis. Note that many of the original brood tables come in multi-tab spreadsheets containing multiple stocks with each tab corresponding to a unique stock, therefore some of these stock-specific scripts access the same original excel document, but different sheets. In the case where the sheets are all formatted the same (Bristol Bay), the script contains a function which processes each sheet and writes individual `.csv` files for each stock.
 
-```{r}
+Here is a listing of the original data files: 
+```{r, echo = FALSE}
 dir('data/original/', include.dirs = F)
 ```
 
 
-
-```{r}
+And of the reformatting scripts:
+```{r, echo = FALSE}
 dir('data/data_formatting_scripts/', include.dirs = F)
 ```
 
-## Batch Reformatting
+### Batch Reformatting
 
 Once a reformatting script has been written for all of the data files that are going to be incorporated, we can source all of the scripts within the reformatting folder and run them, which will create all of the reformatted data files.
 
@@ -248,59 +244,120 @@ sapply(formatting_scripts, source)
 
 ## Merging
 
-Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function `rbind.fill` here to merge the files together since some of these files have age classes that others don't. The `rbind.fill` function adds in all columns that exist, filling in the columns that don't have values for a particular stock with `NA`.
+Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function `bind_rows` here to merge the files together since some of these files have age classes that others don't. The `bind_rows` function adds in all columns that exist, filling in the columns that don't have values for a particular stock with `NA`.
 
 ```{r merge}
-readmerge <- function(path1){
-    files <- dir(path1, include.dirs = FALSE)
-    files <- files[ grepl(".csv", files) ]
-    a <- do.call(bind_rows,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
-    #NEED TO FIGURE OUT HOW TO USE RBIND.FILL TO FILL WITH ZEROS HERE
-    return(a)
-}
+    path1 <- 'data/reformatted/'
 
-path1 <- 'data/reformatted/'
-b <- readmerge(path1)
+    files <- dir(path1, include.dirs = FALSE)
+    brood <- do.call(bind_rows,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
+ 
 ```
 
-Using `rbind.fill` made the column order a little strange, so we'll rearrange again.
+Using `bind_rows` made the column order a little strange, so we'll rearrange again.
 
 ```{r rearrange again}
 #rearrange columns
-b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag','BroodYear',
+brood <- brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag','BroodYear',
                 'TotalEscapement','R0.1','R0.2', 'R0.3','R0.4',	'R0.5',
                 'R1.1','R1.2','R1.3','R1.4','R1.5', 
-                'R2.1','R2.2','R2.3','R2.4','R2.5',
+                'R2.1','R2.2','R2.3','R2.4',
                 'R3.1','R3.2','R3.3','R3.4',
                 'R4.1','R4.2' ,'R4.3')]
 ```
 
 
 ## Quality Assurance
+### Acceptable values
 
-Now we should do some checks to make sure that the data are up to standards and the reformatting was done correctly.
+Now we should do some checks to make sure that the data are up to standards and that there were no errors during the reformatting process. Below is a list of expected values for this dataset that we can check for:
 
-First, for character columns, check that unique values are as expected.
+* Year values are numeric and within reasonable bounds (1900s to present), no `NA` values
+* Age class columns are numeric with values greater than or equal to zero, `NA` allowed
+* Age class columns are integers
+* Escapement values are numeric and greater than 0, `NA` allowed
 
-```{r unique character columns}
-charCol <- which(lapply(b, class) == 'character') #use lapply and which to find index of columns that are of class "character"
+These checks are very simple to make - we will simply use the `range` function on these three columns.
 
-for (i in 1:length(charCol)){
-    print(colnames(b)[charCol[i]]) #print column name
-   print(unique(b[, charCol[i]])) #display unique values for that column
-}
+#### Checking BroodYear
+
+```{r}
+range(brood$BroodYear)
+```
+
+The year data look good.
+
+#### Checking Age Classes
+
+Here we use the `select` function, combined with `matches` and a regular expression, to select only the age class columns.
+
+```{r}
+range(select(brood, matches("R[0-9].[0-9]")), na.rm = T)
+```
+
+The data in all of the age class columns look good in terms of range. Now we check to see if the values look like integers.
+
+```{r, echo = F}
+kable(head(unique(select(brood, matches("R[0-9].[0-9]")))), row.names = F, format = 'html', align = 'c') %>% 
+        kable_styling(bootstrap_options = c('table','hover', 'condensed', 'responsive'), font_size = 8, position = 'center') #%>%
 
 ```
 
-For numeric/integer columns, the `summary` function gives a nice overview of the range, distribution, and number of `NA` values.
+Because much of these data were imported from excel spreadsheets which use formulas to calculate the values in each cell for the recruits per age class, many of these recruit values contain real numbers as opposed to integers. Since the data were meant to be interpreted as integers (number of fish), we use the `trunc` function to round all of the values in the age class columns down to the nearest integer.
 
-```{r summary of numeric columns}
-numCol <- which(lapply(b, class) != 'character') #use lapply and which to find index of columns that are of class "character"
-summary(b[, numCol])
+This line runs the `trunc` function only the columns in the `brood` `data.frame` which match the pattern that defines the age class columns
+
+```{r}
+brood <- mutate_at(brood, vars(matches("R[0-9].[0-9]")), trunc)
+```
+
+#### Checking Escapement
+
+```{r}
+range(brood$TotalEscapement, na.rm = T)
+```
+
+Some escapement data have a value of 0 - which does not make sense in this context. Let's examine these 0 values,
+
+```{r, echo=FALSE}
+kable(subset(brood, TotalEscapement == 0), row.names = F, format = 'html', align = 'c') %>% 
+        kable_styling(bootstrap_options = c('table','hover', 'condensed', 'responsive'), font_size = 8, position = 'center') #%>%
+```
+
+These values appear to not be real 0 values (no spawners) but instead indicate that there are no data available. We can find and replace these values with `NA`.
+
+```{r}
+brood$TotalEscapement[which(brood$TotalEscapement == 0)] <- NA
+```
+
+### Questionable data
+
+Now that we have confirmed all of our values are within the acceptable bounds defined above, we can search for additional outliers that may fall within the acceptable range numerically but still should not be used in analysis. One way we can check for these outliers is by calculating the total recruits to spawner ratio (R/S), also called productivity. Typically stock productivity is less than 10. Values outside of these bounds could indicate that there are problems either with the age class recruit data, or the escapement data.
+
+First we calculate the total number of recruits by summing across all age class recruits in a row. Note that we need to use a customized function to calculate this sum, where if all values in the row are `NA` the total number of recruits is also `NA` (as opposed to 0). Otherwise, `NA` values are ignored in calculating the sum. The R/S value is calculated by dividing this value by the total number of spawners (TotalEscapement).
+
+```{r}
+nasum <- function(x) if (all(is.na(x))) NA else sum(x,na.rm=T)
+
+brood$TotalRecruits <- apply(select(brood, matches("R[0-9].[0-9]")), 1, nasum)
+```
+
+Now we can look for outliers in productivity by examining at a boxplot of these values by stock.
+
+```{r, echo = FALSE}
+brood_s <- subset(brood, !is.na(TotalRecruits) & !is.na(TotalEscapement))
+ggplot(brood_s, aes(Stock, TotalRecruits/TotalEscapement)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab('Recruits/Spawners')
+
 ```
 
 
-From here, I can go into writing more QA functions or we can go ahead and melt the dataframe. Open to suggestions from you Bryce
+There are certainly some extreme outliers in this dataset. Although it would be beneficial to look at the data individually by stock, as a first pass for this exercise we can change the UseFlag column to 0, indicating that data should not be used in analysis, if the recruits/spawner ratio is greater than 25. We will also change the UseFlag to 0 if either the TotalRecruits or TotalEscapement columns are `NA`.
+
+```{r}
+brood$UseFlag[which(brood$TotalRecruits/brood$TotalEscapement > 50)] <- 0
+brood$UseFlag[is.na(brood$TotalRecruits) == T | is.na(brood$TotalEscapement) == T] <- 0
+```
+
 
 ## Analysis
 
@@ -314,7 +371,7 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 ### Relationship between 1.2s and 1.3s by Region
 
 ```{r, warning=FALSE}
-ggplot(b, aes(R1.2, R1.3)) + 
+ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
@@ -331,7 +388,7 @@ Because we're using R, we could easily extract such information.
 The same type of plot can easily be produced for a different grouping level, such as stock:
 
 ```{r, warning=FALSE}
-ggplot(b, aes(R1.2, R1.3)) + 
+ggplot(brood, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
