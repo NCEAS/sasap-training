@@ -4,7 +4,9 @@ Title: Does not matter.
 Version: 0.0.1
 Imports: 
     bookdown,
+    dplyr,
     ggplot2,
+    ggpmisc,
     kableExtra,
     knitr,
     leaflet,
