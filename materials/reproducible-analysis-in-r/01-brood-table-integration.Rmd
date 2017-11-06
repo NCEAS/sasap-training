@@ -9,6 +9,7 @@ library(kableExtra)
 library(leaflet)
 library(knitr)
 library(dplyr)
+library(ggpmisc)
 ```
 
 Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
