@@ -370,18 +370,103 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 
 ### Relationship between 1.2s and 1.3s by Region
 
+With p-Values in the plots
 ```{r, warning=FALSE}
+ggplot(b, aes(R1.2, R1.3)) + 
+  geom_point(size=.1) + 
 ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
               se = FALSE) + 
+  stat_fit_glance(method = 'lm',
+                       method.args = list(formula = "y ~ 0 + x"),
+                       geom = 'text',
+                       aes(label = paste("P-value = ", signif(..p.value.., digits = 4), sep = "")),
+       label.x.npc = 'right', size = 3) +
   facet_wrap(~ Region,
              scales = "free")
 ```
 
 Note that the scales are not fixed so comparing slopes across panels does not make sense.
 Because we're using R, we could easily extract such information.
+
+### Relationship between 1.2s and 1.3s by Region
+Same than above but now using a look to look the slope and p-Values
+```{r, warning=FALSE}
+region <- unique(b$Region)
+for (i in region)
+{
+  temp <- filter(b, Region == i)
+  test <- lm(R1.3 ~ R1.2, data = temp)
+  slope_p <- summary(test)[4]$coefficients[2,4]
+  color <- "blue"
+  if(slope_p<0.01) {color <- "red"}
+  summary(test)
+  p <- ggplot(temp, aes(R1.2, R1.3)) + 
+    geom_point() + 
+    geom_smooth(method = "lm", 
+                formula = "y ~ 0 + x",
+                color = color,
+                se = FALSE) +
+    ylim(0, 7e6) + xlim(0, 7e6) +
+      stat_fit_glance(method = 'lm',
+                       method.args = list(formula = "y ~ 0 + x"),
+                       geom = 'text',
+                       aes(label = paste("m P-value = ", signif(..p.value.., digits = 2), sep = "")),
+       label.x.npc = 'right', label.y.npc = 0.35, size = 3) +
+     labs( subtitle = paste('Function y =', round(summary(test)$coefficients[1], 0), "+", round(summary(test)$coefficients[2],2), 'x'))
+  print(p)
+}
+```
+
+### Age Diversity
+Function for the Simpson diversity index.
+```{r, warning=FALSE}
+simpson <- function(ages)
+{
+  total <- sum(ages, na.rm = T)
+  res <- 0
+  for (i in 1:length(ages))
+  {
+    if (!is.na(ages[i]))
+    {
+      res <- res + (ages[i]/total)^2
+    }
+  }
+  return(1-res)
+}
+
+
+```
+
+Using is for the data
+```{r, warning=FALSE}
+b$Simpson <- NA
+pb <- txtProgressBar(min = 1, max = nrow(b), style = 3)
+
+for (i in 1:nrow(b))
+{
+  (b$Simpson[i] <- simpson(b[i,9:30])  )
+  setTxtProgressBar(pb, i)
+}
+
+```
+
+Plot how the Return ages have changed over time
+
+```{r, warning=FALSE}
+
+ggplot(b, aes(BroodYear, Simpson)) + 
+  geom_point(size=0.1) + 
+  geom_smooth(method = "lm", 
+              formula = "y ~ x", 
+              se = FALSE) + 
+  stat_poly_eq(aes(label = ..eq.label..), formula = "y ~ x", 
+               parse = TRUE, size=3) +
+  facet_wrap(~ Region)
+
+````
 
 ### Relationship between 1.2s and 1.3s by Stock
 
