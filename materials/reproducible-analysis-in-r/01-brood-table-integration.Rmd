@@ -388,7 +388,7 @@ Because we're using R, we could easily extract such information.
 The same type of plot can easily be produced for a different grouping level, such as stock:
 
 ```{r, warning=FALSE}
-ggplot(brood, aes(R1.2, R1.3)) + 
+ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
