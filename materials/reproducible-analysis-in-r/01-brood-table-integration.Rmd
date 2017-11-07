@@ -393,10 +393,10 @@ Because we're using R, we could easily extract such information.
 ### Relationship between 1.2s and 1.3s by Region
 Same than above but now using a look to look the slope and p-Values
 ```{r, warning=FALSE}
-region <- unique(brood$Region)
+region <- unique(brood_s$Region)
 for (i in region)
 {
-  temp <- filter(brood, Region == i)
+  temp <- filter(brood_s, Region == i)
   test <- lm(R1.3 ~ R1.2, data = temp)
   slope_p <- summary(test)[4]$coefficients[2,4]
   color <- "blue"
@@ -441,12 +441,12 @@ simpson <- function(ages)
 
 Using is for the data
 ```{r, warning=FALSE}
-brood$Simpson <- NA
-pb <- txtProgressBar(min = 1, max = nrow(brood), style = 3)
+brood_s$Simpson <- NA
+pb <- txtProgressBar(min = 1, max = nrow(brood_s), style = 3)
 
-for (i in 1:nrow(brood))
+for (i in 1:nrow(b))
 {
-  (brood$Simpson[i] <- simpson(brood[i,9:30])  )
+  (brood_s$Simpson[i] <- simpson(brood_s[i,9:30])  )
   setTxtProgressBar(pb, i)
 }
 
@@ -456,7 +456,7 @@ Plot how the Return ages have changed over time
 
 ```{r, warning=FALSE}
 
-ggplot(brood, aes(BroodYear, Simpson)) + 
+ggplot(brood_s, aes(BroodYear, Simpson)) + 
   geom_point(size=0.1) + 
   geom_smooth(method = "lm", 
               formula = "y ~ x", 
