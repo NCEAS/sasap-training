@@ -5,6 +5,7 @@ Version: 0.0.1
 Imports: 
     bookdown,
     dplyr,
+    DT,
     ggplot2,
     ggpmisc,
     kableExtra,
