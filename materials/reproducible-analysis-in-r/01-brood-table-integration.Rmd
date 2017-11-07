@@ -371,7 +371,9 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 
 ### Relationship between 1.2s and 1.3s by Region
 
-With p-Values in the plots
+It is possible to add a tendency line to the plot. In this case we used a linear model, in this case we used *geom_smoth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
+p-Value for the slope is shown in each plot.
+
 ```{r, warning=FALSE}
 ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
@@ -382,89 +384,39 @@ ggplot(brood_s, aes(R1.2, R1.3)) +
                        method.args = list(formula = "y ~ 0 + x"),
                        geom = 'text',
                        aes(label = paste("P-value = ", signif(..p.value.., digits = 4), sep = "")),
-       label.x.npc = 'right', size = 3) +
+       label.x.npc = 'right', size = 2) +
   facet_wrap(~ Region,
              scales = "free")
 ```
 
-Note that the scales are not fixed so comparing slopes across panels does not make sense.
-Because we're using R, we could easily extract such information.
+Note that the scales are not fixed so comparing slopes across panels does not make sense. To compare the slopes in in graph we should fix *y* and *x* axis or export the slopes from the linear model.
 
 ### Relationship between 1.2s and 1.3s by Region
-Same than above but now using a look to look the slope and p-Values
+
+This section make the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes reagion by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+
+Not that here we use the slope *p-Value* obtained with the function *lm* to change the color from blue to red, if is not significant different than 0.  
+
 ```{r, warning=FALSE}
 region <- unique(brood_s$Region)
 for (i in region)
 {
   temp <- filter(brood_s, Region == i)
-  test <- lm(R1.3 ~ R1.2, data = temp)
+  test <- lm(R1.3 ~ 0 + R1.2, data = temp)
   slope_p <- summary(test)[4]$coefficients[2,4]
-  color <- "blue"
-  if(slope_p<0.01) {color <- "red"}
+  color <- "red"
+  if(slope_p<0.01) {color <- "blue"}
   summary(test)
   p <- ggplot(temp, aes(R1.2, R1.3)) + 
-    geom_point() + 
-    geom_smooth(method = "lm", 
-                formula = "y ~ 0 + x",
-                color = color,
-                se = FALSE) +
-    ylim(0, 7e6) + xlim(0, 7e6) +
-      stat_fit_glance(method = 'lm',
-                       method.args = list(formula = "y ~ 0 + x"),
-                       geom = 'text',
-                       aes(label = paste("m P-value = ", signif(..p.value.., digits = 2), sep = "")),
-       label.x.npc = 'right', label.y.npc = 0.35, size = 3) +
+    geom_point() + ylim(0, 7e6) + xlim(0, 7e6) + 
+    geom_smooth(method = "lm", formula = "y ~ 0 + x", color = color, se = FALSE) +
+    stat_fit_glance(method = 'lm', method.args = list(formula = "y ~ 0 + x"),
+                       geom = 'text', aes(label = paste("m P-value = ", signif(..p.value.., digits = 2), 
+                                                        sep = "")), label.x.npc = 'right', 
+                    label.y.npc = 0.35, size = 3) +
      labs( subtitle = paste('Function y =', round(summary(test)$coefficients[1], 0), "+", round(summary(test)$coefficients[2],2), 'x'))
   print(p)
 }
-```
-
-### Age Diversity
-Function for the Simpson diversity index.
-```{r, warning=FALSE}
-simpson <- function(ages)
-{
-  total <- sum(ages, na.rm = T)
-  res <- 0
-  for (i in 1:length(ages))
-  {
-    if (!is.na(ages[i]))
-    {
-      res <- res + (ages[i]/total)^2
-    }
-  }
-  return(1-res)
-}
-
-
-```
-
-Using is for the data
-```{r, warning=FALSE}
-brood_s$Simpson <- NA
-pb <- txtProgressBar(min = 1, max = nrow(brood_s), style = 3)
-
-for (i in 1:nrow(b))
-{
-  (brood_s$Simpson[i] <- simpson(brood_s[i,9:30])  )
-  setTxtProgressBar(pb, i)
-}
-
-```
-
-Plot how the Return ages have changed over time
-
-```{r, warning=FALSE}
-
-ggplot(brood_s, aes(BroodYear, Simpson)) + 
-  geom_point(size=0.1) + 
-  geom_smooth(method = "lm", 
-              formula = "y ~ x", 
-              se = FALSE) + 
-  stat_poly_eq(aes(label = ..eq.label..), formula = "y ~ x", 
-               parse = TRUE, size=3) +
-  facet_wrap(~ Region)
-
 ```
 
 ### Relationship between 1.2s and 1.3s by Stock
@@ -482,3 +434,53 @@ ggplot(brood_s, aes(R1.2, R1.3)) +
 ```
 
 Note that the scales are not fixed so comparing slopes across panels does not make sense.
+
+### Age Diversity
+
+As an example on how to create and use function in *R*, we ask the question How the diversity of age clases have change over time for each region.
+
+For this we use the Simpson's diveristy index, which measures the probability that two oragsnisms randomly selected from a sample will belong to the same age class. For this, the function *simpson* is defined as $D = 1-\sum(\frac{n}{N})^2$, where $n$ is the total number of organisms in the age class $i$ and $N$ the total number or organisms in all the age classes. 
+
+This function take a vector containing the number of individual in each age class and return the *Simpson* diversity index $D$. 
+```{r, warning=FALSE}
+simpson <- function(ages)
+{
+  total <- sum(ages, na.rm = T)
+  res <- 0
+  for (i in 1:length(ages))
+  {
+    if (!is.na(ages[i]))
+    {
+      res <- res + (ages[i]/total)^2
+    }
+  }
+  return(1-res)
+}
+```
+
+A new column is create with the *Simpson* diversity index.
+```{r, warning=FALSE}
+brood_s$Simpson <- NA
+for (i in 1:nrow(b))
+{
+  (brood_s$Simpson[i] <- simpson(brood_s[i,9:30])  )
+}
+```
+
+And we then plot *Simpson* diverity index over time. We included the linear equation in each plot. This information can be easity exported as a CSV to be used in other analysis.
+
+```{r, warning=FALSE}
+
+ggplot(brood_s, aes(BroodYear, Simpson)) + 
+  geom_point(size=0.1) + 
+  geom_smooth(method = "lm", 
+              formula = "y ~ x", 
+              se = FALSE) + 
+  stat_poly_eq(aes(label = ..eq.label..), formula = "y ~ x", 
+               parse = TRUE, size=3) +
+  facet_wrap(~ Region)
+
+```
+
+
+
