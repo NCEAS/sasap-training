@@ -68,8 +68,8 @@ These stocks range geographically from Washington to Alaska. Although temporal c
 Figure 2.1 indicates the approximate location of the salmon stocks in Table 2.1.
 
 ```{r, echo = FALSE}
-salmon = makeIcon('/home/sjclark/sasap-training/materials/reproducible-analysis-in-r/data/images/salmon_tiny.png',
-                  '/home/sjclark/sasap-training/materials/reproducible-analysis-in-r/data/images/salmon_big.png',
+salmon = makeIcon('images/salmon_tiny.png',
+                  'images/salmon_big.png',
                   26, 14)
 
 m <- leaflet(stocks)  %>%
@@ -373,8 +373,6 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 
 With p-Values in the plots
 ```{r, warning=FALSE}
-ggplot(b, aes(R1.2, R1.3)) + 
-  geom_point(size=.1) + 
 ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
@@ -395,10 +393,10 @@ Because we're using R, we could easily extract such information.
 ### Relationship between 1.2s and 1.3s by Region
 Same than above but now using a look to look the slope and p-Values
 ```{r, warning=FALSE}
-region <- unique(b$Region)
+region <- unique(brood$Region)
 for (i in region)
 {
-  temp <- filter(b, Region == i)
+  temp <- filter(brood, Region == i)
   test <- lm(R1.3 ~ R1.2, data = temp)
   slope_p <- summary(test)[4]$coefficients[2,4]
   color <- "blue"
@@ -443,12 +441,12 @@ simpson <- function(ages)
 
 Using is for the data
 ```{r, warning=FALSE}
-b$Simpson <- NA
-pb <- txtProgressBar(min = 1, max = nrow(b), style = 3)
+brood$Simpson <- NA
+pb <- txtProgressBar(min = 1, max = nrow(brood), style = 3)
 
-for (i in 1:nrow(b))
+for (i in 1:nrow(brood))
 {
-  (b$Simpson[i] <- simpson(b[i,9:30])  )
+  (brood$Simpson[i] <- simpson(brood[i,9:30])  )
   setTxtProgressBar(pb, i)
 }
 
@@ -458,7 +456,7 @@ Plot how the Return ages have changed over time
 
 ```{r, warning=FALSE}
 
-ggplot(b, aes(BroodYear, Simpson)) + 
+ggplot(brood, aes(BroodYear, Simpson)) + 
   geom_point(size=0.1) + 
   geom_smooth(method = "lm", 
               formula = "y ~ x", 
@@ -467,7 +465,7 @@ ggplot(b, aes(BroodYear, Simpson)) +
                parse = TRUE, size=3) +
   facet_wrap(~ Region)
 
-````
+```
 
 ### Relationship between 1.2s and 1.3s by Stock
 
