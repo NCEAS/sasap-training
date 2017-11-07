@@ -461,7 +461,7 @@ simpson <- function(ages)
 A new column is create with the *Simpson* diversity index.
 ```{r, warning=FALSE}
 brood_s$Simpson <- NA
-for (i in 1:nrow(b))
+for (i in 1:nrow(brood_s))
 {
   (brood_s$Simpson[i] <- simpson(brood_s[i,9:30])  )
 }
