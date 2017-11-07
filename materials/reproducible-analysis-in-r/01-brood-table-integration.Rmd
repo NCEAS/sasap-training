@@ -406,7 +406,7 @@ for (i in region)
   slope_p <- test$coefficients
   color <- "red"
   if(slope_p<0.01) {color <- "blue"}
-  summary(test)
+  
   p <- ggplot(temp, aes(R1.2, R1.3)) + 
     geom_point() + ylim(0, 7e6) + xlim(0, 7e6) + 
     geom_smooth(method = "lm", formula = "y ~ 0 + x", color = color, se = FALSE) +
