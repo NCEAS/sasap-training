@@ -403,7 +403,7 @@ for (i in region)
 {
   temp <- filter(brood_s, Region == i)
   test <- lm(R1.3 ~ 0 + R1.2, data = temp)
-  slope_p <- summary(test)[4]$coefficients[2,4]
+  slope_p <- test$coefficients
   color <- "red"
   if(slope_p<0.01) {color <- "blue"}
   summary(test)
