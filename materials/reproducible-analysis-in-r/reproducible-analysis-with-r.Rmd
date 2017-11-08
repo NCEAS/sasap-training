@@ -1,3 +1,25 @@
+--- 
+title: "Reproducible Analysis With R"
+date: "November 28-29, 2017"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Practical open science approaches to salmon data management, analysis, and synthesis"
+always_allow_html: yes
+---
+
+# Prerequisites
+
+- R
+- RStudio
+- git
+- Web browser
+
+<!--chapter:end:index.Rmd-->
+
 # Example: Brood Table Analysis
 
 ## Introduction
@@ -67,8 +89,10 @@ Figure 2.1: Location of stocks used in this data integration. Salmonid icon by S
 
 First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:
 
+<p style="font-size: 75%">
 | Stock.ID | BroodYear | Region | Sub.Region | UseFlag | BroodYear | TotalEscapement | R0.1 | ... | R4.5 |
 |-|-|-|-|-|-|-|-|-|-|
+</p>
 
 Now let's read in the brood table. After a quick visual inspection in Excel, we can see that the header doesn’t start until the sixth row, so we should tell `read_excel` to skip the first six lines: 
 
@@ -414,3 +438,82 @@ ggplot(brood_s, aes(BroodYear, Simpson)) +
                size = 3) +
   facet_wrap(~ Region)
 ```
+
+<!--chapter:end:01-brood-table-integration.Rmd-->
+
+# Literate Analysis with RMarkdown
+
+<!--chapter:end:02-literate-analysis.Rmd-->
+
+# RStudio and Git/GitHub Setup
+
+Draft outline (Bryce jotting things down for others to see) (not complete):
+
+- Get familiar RStudio
+  - Using R Projects so you can be happy
+  - How to structure your analysis in a folder
+  
+  The idea is that we don't wantt to teach just "how to use package X", we're teaching how to use packages together in an analysis.
+  We'll need to talk about conventions for where stuff (R scripts, raw data, processed data) should go.
+- Get Git and GitHub all set up
+  - Walkthrough on git (very basic)
+  - Get accounts on GitHub
+
+<!--chapter:end:03-setup-rstudio-git-github.Rmd-->
+
+# Version Control With Git and GitHub
+
+<!--chapter:end:04-version-control.Rmd-->
+
+# Data Modeling & Tidy Data
+
+<!--chapter:end:05-data-modeling.Rmd-->
+
+# Data Cleaning and Manipulation
+
+## Outline (TBD)
+
+Packages:
+
+- `dplyr`
+- `tidyr`
+
+Functions to demo:
+
+- `dplyr`
+    - `mutate()`
+    - `select()`
+    - `filter()`
+    - `summarise()`
+    - `arrange()`
+    - `*_join()` (at least one, perhaps `left_join()`)
+- `tidyr`
+    - `gather()`
+    - `spread()`
+    - `extract()`
+    - `separate()`
+
+<!--chapter:end:06-data-cleaning-and-manipulation.Rmd-->
+
+# Hands On: Clean and Integrate Datasets
+
+<!--chapter:end:07-hands-on-data-cleaning-and-integration.Rmd-->
+
+# Publication Graphics with ggplot2
+
+<!--chapter:end:08-publication-graphics.Rmd-->
+
+# Data Documentation and Publishing 
+
+<!--chapter:end:09-data-documentation-and-publishing.Rmd-->
+
+# Publishing Analyses to the Web
+
+<!--chapter:end:10-publishing-analyses-to-the-web.Rmd-->
+
+```{r}
+knitr::read_chunk("data/data_formatting_scripts/Coghill_formatting.R")
+```
+
+<!--chapter:end:test.Rmd-->
+
