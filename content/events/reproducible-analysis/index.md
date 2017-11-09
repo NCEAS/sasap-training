@@ -20,6 +20,7 @@ both for publications and the web.
 ## Prerequisites and Topics:
 
 - __Prerequisite__: familiarity with R and statistical analysis
+    For more detailed information on how to prepare for the workshop, see [Preparing for the Workshop]({{<ref "#preparing-for-the-workshop" >}})
 - Open Science Tools to support synthesis of salmon data and management
 - Effective data management for salmon data management, analysis, and synthesis
 - Practical open science skills for salmon management
@@ -71,3 +72,38 @@ The [Gordon and Betty Moore Foundation](https://www.moore.org), __Salmon Data Ta
 <img src="/images/nceas.png" id="nceaslogo"/>
 
 Additional support was provided for collaboration by the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu), a Center funded by the University of California, Santa Barbara, and the State of California.
+
+## Preparing for the Workshop
+
+### Required software
+
+We will primarily be using a web browser, RStudio, and `git`.
+
+- To download RStudio, visit [RStudio's download page](https://www.rstudio.com/products/rstudio/download/).
+  *If you don't know how up to date your version of RStudio is, it might be a good idea to download a updated copy and install it*
+    
+- (Windows users only) [Download git](https://git-scm.com/downloads) and install it on your system.
+  *Make sure to select "Use MinTTY" when you see "Configuring the terminal emulator to use with Git Bash"*
+
+### Refresh your skills
+
+This workshop assumes a base level of experience using R for scientific and statistical analyses.
+However, we realize that not everyone will be at the same place in terms of familiarity with the tools we'll be using.
+If you'd like to brush up on your R skills prior to the workshop, check out this list of resources we like:
+
+- The [Data Scientist with R](https://www.datacamp.com/tracks/data-scientist-with-r) track at [DataCamp](https://www.datacamp.com)
+- The [Introduction to R](http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html) lesson in [Data Carpentry's R for data analysis](http://www.datacarpentry.org/R-ecology-lesson/) course.
+- The QCBS [Introduction to R](https://qcbs.ca/wiki/r) lesson
+- [RStudio's R Programming](https://www.rstudio.com/online-learning/) page
+
+If you're a fan of cheat sheets, [RStudio](https://www.rstudio.com) provivdes some fantastic ones on their [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) page.
+*Please make sure to print ahead of time if you prefer hard copies.*
+In particular, check out:
+
+* Base R
+* Data Import 
+* Data Transformation with dplyr 
+* R Markdown
+* Data Visualization with ggplot2
+* R Markdown Reference Guide 
+* The leaflet package
