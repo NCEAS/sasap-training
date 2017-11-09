@@ -2,65 +2,131 @@
 
 ## Introduction
 
-Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to determine the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
+```{r package loading, echo = FALSE, warning = FALSE, message = FALSE}
+library(readxl)
+library(ggplot2) # For making plots at the end
+library(kableExtra)
+library(leaflet)
+library(knitr)
+library(dplyr)
+library(ggpmisc)
+library(DT)
+```
 
-These data can come in a number of different formats, but generally have rows of individual years, and columns with the total escapement and age classes, such as this:
+Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.
+
+These data can come in a number of different formats, but generally follow the pattern of:
+1. Rows for each brood year
+2. Columnas for the estimated number of fish in each age class.
+
+See the example below, showing a Sockeye salmon brood table from the Goodnews River, Alaska:
 
 ![](images/GoodnewsHeader.png)
 
 
 
-Sometimes other columns are included, such as return years in this example:
+Sometimes other columns are included, such as return years in this example (again for Sockeye salmon) from Coghill Lake, Alaska:
 
 ![](images/CoghillHeader.png)
 
 
 
-If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented creates a formatting challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape these brood tables.
+If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented make integrating multiple brood tables a big challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape a set brood tables from around the state of Alaska. These datasets were gathered as part of the SASAP research from a number of different ADFG offices. We will start with the raw (unmodified) data for each stock, run each stock’s brood table through a separate R script to normalize the format, integrate all of the brood tables together, and finally do an exploratory analysis across stocks.
 
+## Datasets
+
+As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 2.1 shows a list of these stocks, along with other regional and location information.
+
+```{r, echo = FALSE}
+stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
+
+```
+
+```{r, echo = FALSE}
+datatable(stocks, rownames = FALSE, caption = "Stock information")
+```
+
+
+
+
+Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. THIS TABLE IS TOO LONG AND I HATE THE STRIPES. I also think I should just include source info directly in this table instead of having two tables, but will wait on overall table feedback from Bryce
+
+
+
+```{r, echo = FALSE}
+source <- read.csv('data/original/source_information.csv', stringsAsFactors = F)
+kable(source, row.names = F, format = 'html', caption = 'Source information', align = 'c') %>% 
+        kable_styling(bootstrap_options = c('table','hover', 'condensed', 'responsive'), font_size = 8, position = 'center') #%>%
+```
+
+
+
+These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
+
+
+
+Figure 2.1 indicates the approximate location of the salmon stocks in Table 2.1.
+
+```{r, echo = FALSE}
+salmon = makeIcon('images/salmon_tiny.png',
+                  'images/salmon_big.png',
+                  26, 14)
+
+m <- leaflet(stocks)  %>%
+  setView(-median(stocks$Lon), median(stocks$Lat), zoom = 4) %>%
+  addTiles() %>% 
+  addMarkers(~-Lon, ~Lat, icon = salmon)
+
+m
+
+```
+Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) [CC-BY-SA](https://creativecommons.org/licenses/by-sa/3.0/), available at [Phylopic](http://phylopic.org/)
 
 ## Reformatting
 
 First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:
 
 
-```
-'Stock.ID', 'Species', 'Stock','Region','Sub.Region','UseFlag',
-'BroodYear','TotalEscapement',
-'R0.1','R0.2', 'R0.3','R0.4',	'R0.5',
-'R1.1','R1.2','R1.3','R1.4','R1.5', 
-'R2.1','R2.2','R2.3','R2.4','R2.5',
-'R3.1','R3.2','R3.3','R3.4',
-'R4.1','R4.2' ,'R4.3'
-```
+||||
+|:------:|:------:|:-------:|
+|'Stock.ID'|'BroodYear'|'R0.1' 'R1.1' 'R2.1' 'R3.1' 'R4.1'|
+|'Species'|'TotalEscapement'|'R0.2' 'R1.2' 'R2.2' 'R3.2' 'R4.2'|
+|'Region'||'R0.3' 'R1.3' 'R2.3' 'R3.3' 'R4.3'|
+|'Sub.Region'||'R0.4' 'R1.4' 'R2.4' 'R3.4' 'R4.4'|
+|'UseFlag'||'R0.5' 'R1.5' 'R2.5' 'R3.5' 'R4.5'|
+
 
 First we need to load any packages. 
-```{r package loading}
+
+```{r, eval = FALSE, warning = FALSE, message = FALSE}
 library(readxl)
-library(plyr)
-library(ggplot2) # For making plots at the end
+library(dplyr)
+library(ggplot2)
 ```
 
-Now read in the file, skipping the first 6 lines before the true header row on line 7, and check the column names
+Now let's read in the brood table. After a quick visual inspection in Excel, we can see that the header doesn’t start until the sixth row, so we should tell `read_excel` to skip the first lines: 
+
 
 ```{r read}
-b <- read_excel('data/112_COGHILL_BROOD_TABLE.xls', skip = 6)
-colnames(b)
+coghill_brood <- read_excel('data/original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+colnames(coghill_brood)
 ```
 
 There are definitely some redundant and confusing columns here that we need to remove, and some we need to add according to the list above. First we remove the columns we don't want - namely all of the return years, the total return, and recruits/spawner. Note that we can always calculate these columns again later from the rest of the data.
 
 ```{r clean up columns}
 #delete columns by column name
-b$Year__1 <- NULL
-b$Year__2 <- NULL
-b$Year__3 <- NULL
-b$Year__4 <- NULL
-b$Year__5 <- NULL
-b$Year__6 <- NULL
-b$Return <- NULL
-b$Return__1 <- NULL
-b$`Return/spawner` <- NULL
+
+coghill_brood <- coghill_brood %>% select(-Year__1,
+                         -Year__2, 
+                         -Year__3, 
+                         -Year__4,
+                         -Year__5, 
+                         -Year__6, 
+                         -Return, 
+                         -Return__1, 
+                         -`Return/spawner`)
+
 ```
 
 Now we need to fill in the information that is missing by adding columns:
@@ -68,32 +134,27 @@ Now we need to fill in the information that is missing by adding columns:
 
 ```{r add columns}
 #add stock information columns
-b$Stock.ID <- 139 #preassigned Stock.ID
-b$Species <- 'Sockeye'
-b$Stock <- 'Coghill'
-b$Region <- 'PWS'
-b$Sub.Region <- 'PWS'
-b$UseFlag <- 1
+coghill_brood$Stock.ID <- 139 #preassigned Stock.ID
+coghill_brood$Species <- 'Sockeye'
+coghill_brood$Stock <- 'Coghill'
+coghill_brood$Region <- 'PWS'
+coghill_brood$Sub.Region <- 'PWS'
+coghill_brood$UseFlag <- 1
 ```
 
 Note that since we have no reason to suspect any data are not up to quality standards yet, we fill the `UseFlag` columns with 1s.
 
-Let's do another check on column names now.
-
-```{r colnames check}
-colnames(b)
-```
-
-Getting close, but these are not quite in the format that we decided on so we will rename them.
+The rest of the columns are still not quite in the format that we decided on so we will rename them.
 
 ```{r rename columns}
-colnames(b) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",  
+colnames(coghill_brood) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",  
 "R1.4","R2.3","R2.4","Stock.ID","Species",'Stock',"Region","Sub.Region","UseFlag")
 ```
 
 Finally, you may want to reorder the columns into something more intuitive.
+
 ```{r reorder columns}
-b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
+coghill_brood <- coghill_brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
            'BroodYear','TotalEscapement','R0.2', 'R0.3',
            'R1.1','R1.2','R1.3','R1.4', 
            'R2.1','R2.2','R2.3','R2.4')]
@@ -102,92 +163,202 @@ b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
 And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.
 
 ```{r write file, eval = F}
-write.csv(b, 'Coghill_sockeye.csv', row.names = F)
-```
-
-## Batch Reformatting
-
-Once a reformatting script has been written for all of the data files that are going to be incorporated, we can write another script that will run all of those scripts at once. In this case, I use a nicely written function from [stack overflow](https://stackoverflow.com/a/20083589)
-
-```{r source folder}
-sourceEntireFolder <- function(folderName, verbose=FALSE, showWarnings=TRUE) { 
-    files <- list.files(folderName, full.names=TRUE)
-    
-    # Grab only R files
-    files <- files[ grepl("\\.[rR]$", files) ]
-    
-    if (!length(files) && showWarnings)
-        warning("No R files in ", folderName)
-    
-    for (f in files) {
-        if (verbose)
-            cat("sourcing: ", f, "\n")
-        try(source(f, local=FALSE, echo=FALSE), silent=!verbose)
-    }
-    return(invisible(NULL))
-}
+write.csv(coghill_brood, 'data/reformatted/Coghill_sockeye.csv', row.names = F)
 ```
 
 
-```{r run sourcefolder, eval = F}
-t <- sourceEntireFolder('data/data_formatting_scripts/', verbose = T)
+From top to bottom, here is what this reformatting script looks like:
+
+```{r, eval = FALSE}
+# Reformatting Coghill brood table data
+# Jeanette Clark
+# 09/23/2017
+
+
+library(readxl)
+library(dplyr)
+
+#header starts on row 6
+coghill_brood <- read_excel('data/original/112_COGHILL_BROOD_TABLE.xls', skip = 6)
+
+
+#get rid of the return year, total return, return/spawner columns, and two stray columns
+coghill_brood <- coghill_brood %>% select(-Year__1,
+                         -Year__2, 
+                         -Year__3, 
+                         -Year__4,
+                         -Year__5, 
+                         -Year__6, 
+                         -Return, 
+                         -Return__1, 
+                         -`Return/spawner`)
+
+#column names reminder
+#colnames: Stock.ID	Species	Stock	Region	Sub.Region	Use	BY	Escapement	R0.1	R0.2	R0.3	R0.4	R0.5	R1.1	R1.2	R1.3	R1.4	R1.5	R2.1	R2.2	R2.3	R2.4	R3.1	R3.2	R3.3	R3.4
+
+#Create columns for stock information
+coghill_brood$Stock.ID <- 139 #preassigned Stock.ID
+coghill_brood$Species <- 'Sockeye'
+coghill_brood$Stock <- 'Coghill'
+coghill_brood$Region <- 'PWS'
+coghill_brood$Sub.Region <- 'PWS'
+coghill_brood$UseFlag <- 1
+
+#rename columns according to predetermined column names
+colnames(coghill_brood) <- c("BroodYear", "TotalEscapement","R1.1","R0.2","R0.3","R1.2","R2.1","R1.3","R2.2",
+"R1.4","R2.3","R2.4","Stock.ID","Species",'Stock',"Region","Sub.Region","UseFlag")
+
+
+#reorder columns
+coghill_brood <- coghill_brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag',
+           'BroodYear','TotalEscapement','R0.1','R0.2', 'R0.3',	'R0.4',	'R0.5',
+           'R1.1','R1.2','R1.3','R1.4',	'R1.5',
+           'R2.1','R2.2','R2.3','R2.4',
+           'R3.1','R3.2','R3.3','R3.4')]
+
+#write csv
+write.csv(coghill_brood, 'data/reformatted/Coghill_sockeye.csv', row.names = F)
+```
+
+We write a script similar to this for each stock that we would like to integrate into the brood table analysis. Note that many of the original brood tables come in multi-tab spreadsheets containing multiple stocks with each tab corresponding to a unique stock, therefore some of these stock-specific scripts access the same original excel document, but different sheets. In the case where the sheets are all formatted the same (Bristol Bay), the script contains a function which processes each sheet and writes individual `.csv` files for each stock.
+
+Here is a listing of the original data files: 
+```{r, echo = FALSE}
+dir('data/original/', include.dirs = F)
+```
+
+
+And of the reformatting scripts:
+```{r, echo = FALSE}
+dir('data/data_formatting_scripts/', include.dirs = F)
+```
+
+### Batch Reformatting
+
+Once a reformatting script has been written for all of the data files that are going to be incorporated, we can source all of the scripts within the reformatting folder and run them, which will create all of the reformatted data files.
+
+
+```{r, warning = FALSE, message = FALSE, eval = FALSE}
+formatting_scripts <- dir("data/data_formatting_scripts/", full.names = TRUE, pattern = "*\\.[rR]")
+sapply(formatting_scripts, source)
 ```
 
 ## Merging
 
-Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function `rbind.fill` here to merge the files together since some of these files have age classes that others don't. The `rbind.fill` function adds in all columns that exist, filling in the columns that don't have values for a particular stock with `NA`.
+Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function `bind_rows` here to merge the files together since some of these files have age classes that others don't. The `bind_rows` function adds in all columns that exist, filling in the columns that don't have values for a particular stock with `NA`.
 
 ```{r merge}
-readmerge <- function(path1){
-    files <- dir(path1, include.dirs = FALSE)
-    files <- files[ grepl(".csv", files) ]
-    a <- do.call(rbind.fill,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
-    #NEED TO FIGURE OUT HOW TO USE RBIND.FILL TO FILL WITH ZEROS HERE
-    return(a)
-}
+    path1 <- 'data/reformatted/'
 
-path1 <- 'data/reformatted/'
-b <- readmerge(path1)
+    files <- dir(path1, include.dirs = FALSE)
+    brood <- do.call(bind_rows,lapply(file.path(path1,files),read.csv, stringsAsFactors = F))
+ 
 ```
 
-Using `rbind.fill` made the column order a little strange, so we'll rearrange again.
+Using `bind_rows` made the column order a little strange, so we'll rearrange again.
 
 ```{r rearrange again}
 #rearrange columns
-b <- b[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag','BroodYear',
+brood <- brood[, c('Stock.ID', 'Species', 'Stock','Region','Sub.Region', 'UseFlag','BroodYear',
                 'TotalEscapement','R0.1','R0.2', 'R0.3','R0.4',	'R0.5',
                 'R1.1','R1.2','R1.3','R1.4','R1.5', 
-                'R2.1','R2.2','R2.3','R2.4','R2.5',
+                'R2.1','R2.2','R2.3','R2.4',
                 'R3.1','R3.2','R3.3','R3.4',
                 'R4.1','R4.2' ,'R4.3')]
 ```
 
 
 ## Quality Assurance
+### Acceptable values
 
-Now we should do some checks to make sure that the data are up to standards and the reformatting was done correctly.
+Now we should do some checks to make sure that the data are up to standards and that there were no errors during the reformatting process. Below is a list of expected values for this dataset that we can check for:
 
-First, for character columns, check that unique values are as expected.
+* Year values are numeric and within reasonable bounds (1900s to present), no `NA` values
+* Age class columns are numeric with values greater than or equal to zero, `NA` allowed
+* Age class columns are integers
+* Escapement values are numeric and greater than 0, `NA` allowed
 
-```{r unique character columns}
-charCol <- which(lapply(b, class) == 'character') #use lapply and which to find index of columns that are of class "character"
+These checks are very simple to make - we will simply use the `range` function on these three columns.
 
-for (i in 1:length(charCol)){
-    print(colnames(b)[charCol[i]]) #print column name
-   print(unique(b[, charCol[i]])) #display unique values for that column
-}
+#### Checking BroodYear
+
+```{r}
+range(brood$BroodYear)
+```
+
+The year data look good.
+
+#### Checking Age Classes
+
+Here we use the `select` function, combined with `matches` and a regular expression, to select only the age class columns.
+
+```{r}
+range(select(brood, matches("R[0-9].[0-9]")), na.rm = T)
+```
+
+The data in all of the age class columns look good in terms of range. Now we check to see if the values look like integers.
+
+```{r, echo = F}
+kable(head(unique(select(brood, matches("R[0-9].[0-9]")))), row.names = F, format = 'html', align = 'c') %>% 
+        kable_styling(bootstrap_options = c('table','hover', 'condensed', 'responsive'), font_size = 8, position = 'center') #%>%
 
 ```
 
-For numeric/integer columns, the `summary` function gives a nice overview of the range, distribution, and number of `NA` values.
+Because much of these data were imported from excel spreadsheets which use formulas to calculate the values in each cell for the recruits per age class, many of these recruit values contain real numbers as opposed to integers. Since the data were meant to be interpreted as integers (number of fish), we use the `trunc` function to round all of the values in the age class columns down to the nearest integer.
 
-```{r summary of numeric columns}
-numCol <- which(lapply(b, class) != 'character') #use lapply and which to find index of columns that are of class "character"
-summary(b[, numCol])
+This line runs the `trunc` function only the columns in the `brood` `data.frame` which match the pattern that defines the age class columns
+
+```{r}
+brood <- mutate_at(brood, vars(matches("R[0-9].[0-9]")), trunc)
+```
+
+#### Checking Escapement
+
+```{r}
+range(brood$TotalEscapement, na.rm = T)
+```
+
+Some escapement data have a value of 0 - which does not make sense in this context. Let's examine these 0 values,
+
+```{r, echo=FALSE}
+kable(subset(brood, TotalEscapement == 0), row.names = F, format = 'html', align = 'c') %>% 
+        kable_styling(bootstrap_options = c('table','hover', 'condensed', 'responsive'), font_size = 8, position = 'center') #%>%
+```
+
+These values appear to not be real 0 values (no spawners) but instead indicate that there are no data available. We can find and replace these values with `NA`.
+
+```{r}
+brood$TotalEscapement[which(brood$TotalEscapement == 0)] <- NA
+```
+
+### Questionable data
+
+Now that we have confirmed all of our values are within the acceptable bounds defined above, we can search for additional outliers that may fall within the acceptable range numerically but still should not be used in analysis. One way we can check for these outliers is by calculating the total recruits to spawner ratio (R/S), also called productivity. Typically stock productivity is less than 10. Values outside of these bounds could indicate that there are problems either with the age class recruit data, or the escapement data.
+
+First we calculate the total number of recruits by summing across all age class recruits in a row. Note that we need to use a customized function to calculate this sum, where if all values in the row are `NA` the total number of recruits is also `NA` (as opposed to 0). Otherwise, `NA` values are ignored in calculating the sum. The R/S value is calculated by dividing this value by the total number of spawners (TotalEscapement).
+
+```{r}
+nasum <- function(x) if (all(is.na(x))) NA else sum(x,na.rm=T)
+
+brood$TotalRecruits <- apply(select(brood, matches("R[0-9].[0-9]")), 1, nasum)
+```
+
+Now we can look for outliers in productivity by examining at a boxplot of these values by stock.
+
+```{r, echo = FALSE}
+brood_s <- subset(brood, !is.na(TotalRecruits) & !is.na(TotalEscapement))
+ggplot(brood_s, aes(Stock, TotalRecruits/TotalEscapement)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab('Recruits/Spawners')
+
 ```
 
 
-From here, I can go into writing more QA functions or we can go ahead and melt the dataframe. Open to suggestions from you Bryce
+There are certainly some extreme outliers in this dataset. Although it would be beneficial to look at the data individually by stock, as a first pass for this exercise we can change the UseFlag column to 0, indicating that data should not be used in analysis, if the recruits/spawner ratio is greater than 25. We will also change the UseFlag to 0 if either the TotalRecruits or TotalEscapement columns are `NA`.
+
+```{r}
+brood$UseFlag[which(brood$TotalRecruits/brood$TotalEscapement > 50)] <- 0
+brood$UseFlag[is.na(brood$TotalRecruits) == T | is.na(brood$TotalEscapement) == T] <- 0
+```
+
 
 ## Analysis
 
@@ -200,25 +371,60 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 
 ### Relationship between 1.2s and 1.3s by Region
 
+It is possible to add a tendency line to the plot. In this case we used a linear model, in this case we used *geom_smoth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
+p-Value for the slope is shown in each plot.
+
 ```{r, warning=FALSE}
-ggplot(b, aes(R1.2, R1.3)) + 
+ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
               se = FALSE) + 
+  stat_fit_glance(method = 'lm',
+                       method.args = list(formula = "y ~ 0 + x"),
+                       geom = 'text',
+                       aes(label = paste("P-value = ", signif(..p.value.., digits = 4), sep = "")),
+       label.x.npc = 'right', size = 2) +
   facet_wrap(~ Region,
              scales = "free")
 ```
 
-Note that the scales are not fixed so comparing slopes across panels does not make sense.
-Because we're using R, we could easily extract such information.
+Note that the scales are not fixed so comparing slopes across panels does not make sense. To compare the slopes in in graph we should fix *y* and *x* axis or export the slopes from the linear model.
+
+### Relationship between 1.2s and 1.3s by Region
+
+This section make the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes reagion by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+
+Not that here we use the slope *p-Value* obtained with the function *lm* to change the color from blue to red, if is not significant different than 0.  
+
+```{r, warning=FALSE}
+region <- unique(brood_s$Region)
+for (i in region)
+{
+  temp <- filter(brood_s, Region == i)
+  test <- lm(R1.3 ~ 0 + R1.2, data = temp)
+  slope_p <- test$coefficients
+  color <- "red"
+  if(slope_p<0.01) {color <- "blue"}
+  
+  p <- ggplot(temp, aes(R1.2, R1.3)) + 
+    geom_point() + ylim(0, 7e6) + xlim(0, 7e6) + 
+    geom_smooth(method = "lm", formula = "y ~ 0 + x", color = color, se = FALSE) +
+    stat_fit_glance(method = 'lm', method.args = list(formula = "y ~ 0 + x"),
+                       geom = 'text', aes(label = paste("m P-value = ", signif(..p.value.., digits = 2), 
+                                                        sep = "")), label.x.npc = 'right', 
+                    label.y.npc = 0.35, size = 3) +
+     labs( subtitle = paste('Function y =', round(summary(test)$coefficients[1], 0), "+", round(summary(test)$coefficients[2],2), 'x'))
+  print(p)
+}
+```
 
 ### Relationship between 1.2s and 1.3s by Stock
 
 The same type of plot can easily be produced for a different grouping level, such as stock:
 
 ```{r, warning=FALSE}
-ggplot(b, aes(R1.2, R1.3)) + 
+ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
@@ -228,3 +434,53 @@ ggplot(b, aes(R1.2, R1.3)) +
 ```
 
 Note that the scales are not fixed so comparing slopes across panels does not make sense.
+
+### Age Diversity
+
+As an example on how to create and use function in *R*, we ask the question How the diversity of age clases have change over time for each region.
+
+For this we use the Simpson's diveristy index, which measures the probability that two oragsnisms randomly selected from a sample will belong to the same age class. For this, the function *simpson* is defined as $D = 1-\sum(\frac{n}{N})^2$, where $n$ is the total number of organisms in the age class $i$ and $N$ the total number or organisms in all the age classes. 
+
+This function take a vector containing the number of individual in each age class and return the *Simpson* diversity index $D$. 
+```{r, warning=FALSE}
+simpson <- function(ages)
+{
+  total <- sum(ages, na.rm = T)
+  res <- 0
+  for (i in 1:length(ages))
+  {
+    if (!is.na(ages[i]))
+    {
+      res <- res + (ages[i]/total)^2
+    }
+  }
+  return(1-res)
+}
+```
+
+A new column is create with the *Simpson* diversity index.
+```{r, warning=FALSE}
+brood_s$Simpson <- NA
+for (i in 1:nrow(brood_s))
+{
+  (brood_s$Simpson[i] <- simpson(brood_s[i,9:30])  )
+}
+```
+
+And we then plot *Simpson* diverity index over time. We included the linear equation in each plot. This information can be easity exported as a CSV to be used in other analysis.
+
+```{r, warning=FALSE}
+
+ggplot(brood_s, aes(BroodYear, Simpson)) + 
+  geom_point(size=0.1) + 
+  geom_smooth(method = "lm", 
+              formula = "y ~ x", 
+              se = FALSE) + 
+  stat_poly_eq(aes(label = ..eq.label..), formula = "y ~ x", 
+               parse = TRUE, size=3) +
+  facet_wrap(~ Region)
+
+```
+
+
+

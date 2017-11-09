@@ -3,11 +3,10 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Open Science for Salmon</a></li>
+        <li><a href="./">Reproducible Analysis With R</a></li>
         <li><a href="/sasap-training/">← Back to main website</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
