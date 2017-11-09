@@ -67,8 +67,18 @@ Figure 2.1: Location of stocks used in this data integration. Salmonid icon by S
 
 First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:
 
-| Stock.ID | BroodYear | Region | Sub.Region | UseFlag | BroodYear | TotalEscapement | R0.1 | ... | R4.5 |
-|-|-|-|-|-|-|-|-|-|-|
+```
+Stock.ID
+BroodYear
+Region
+Sub.Region
+UseFlag
+BroodYear
+TotalEscapement
+R0.1
+...
+R4.5
+```
 
 Now let's read in the brood table. After a quick visual inspection in Excel, we can see that the header doesn’t start until the sixth row, so we should tell `read_excel` to skip the first six lines: 
 
