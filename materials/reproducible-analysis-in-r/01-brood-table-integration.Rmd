@@ -17,7 +17,7 @@ Brood tables, also called run reconstructions, utilize annual estimates of the t
 
 These data can come in a number of different formats, but generally follow the pattern of:
 1. Rows for each brood year
-2. Columnas for the estimated number of fish in each age class.
+2. Columns for the estimated number of fish in each age class.
 
 See the example below, showing a Sockeye salmon brood table from the Goodnews River, Alaska:
 
@@ -40,8 +40,6 @@ stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
 ```{r, echo = FALSE}
 datatable(stocks, rownames = FALSE, caption = "Stock information")
 ```
-
-Source information, including who initially requested the data and the year in which it was obtained, is shown in Table 2. I also think I should just include source info directly in this table instead of having two tables, but will wait on overall table feedback from Bryce
 
 These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
 
