@@ -97,7 +97,7 @@ We will primarily be using a web browser, `R`, RStudio, and `git`.
     You can install these packages quickly by running the following code snippet:
 
     ```r
-    packages <- c("dplyr", "tidyr", "ggplot2", "leaflet", "dataone", "datapack", "EML")
+    packages <- c("dplyr", "tidyr", "ggplot2", "leaflet", "dataone", "datapack", "EML");
 
     for (package in packages) {
       if (!(package %in% installed.packages())) {
