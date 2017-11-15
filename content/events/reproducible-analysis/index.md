@@ -77,11 +77,16 @@ Additional support was provided for collaboration by the [National Center for Ec
 
 ### Required software
 
-We will primarily be using a web browser, RStudio, and `git`.
+We will primarily be using a web browser, `R`, RStudio, and `git`.
+
+- We will use R version 3.4.2, which you can find on [CRAN](https://cran.rstudio.com)
 
 - To download RStudio, visit [RStudio's download page](https://www.rstudio.com/products/rstudio/download/).
-  *If you don't know how up to date your version of RStudio is, it might be a good idea to download a updated copy and install it*
+  *If you don't know how up to date your version of RStudio is, please download an updated copy and install it*
     
+- R packages: Please be sure you have installed or updated the following packages, using a command such as:
+    - `devtools::update_packages(c("dplyr", "leaflet", "dataone", "datapack", "readxl", "ggplot2", "kableExtra", "knitr", "ggpmisc", "DT", "EML"))`
+
 - (Windows users only) [Download git](https://git-scm.com/downloads) and install it on your system.
   *Make sure to select "Use MinTTY" when you see "Configuring the terminal emulator to use with Git Bash"*
 
