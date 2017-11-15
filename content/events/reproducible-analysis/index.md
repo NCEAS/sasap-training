@@ -79,16 +79,35 @@ Additional support was provided for collaboration by the [National Center for Ec
 
 We will primarily be using a web browser, `R`, RStudio, and `git`.
 
-- We will use R version 3.4.2, which you can find on [CRAN](https://cran.rstudio.com)
+- **R:** We will use R version 3.4.2, which you can find on [CRAN](https://cran.rstudio.com)
 
-- To download RStudio, visit [RStudio's download page](https://www.rstudio.com/products/rstudio/download/).
+- **RStudio**: To download RStudio, visit [RStudio's download page](https://www.rstudio.com/products/rstudio/download/).
   *If you don't know how up to date your version of RStudio is, please download an updated copy and install it*
     
-- R packages: Please be sure you have installed or updated the following packages, using a command such as:
-    - `devtools::update_packages(c("dplyr", "leaflet", "dataone", "datapack", "readxl", "ggplot2", "kableExtra", "knitr", "ggpmisc", "DT", "EML"))`
+- **R packages:** Please be sure you have installed or updated the following packages:
 
-- (Windows users only) [Download git](https://git-scm.com/downloads) and install it on your system.
-  *Make sure to select "Use MinTTY" when you see "Configuring the terminal emulator to use with Git Bash"*
+    - dplyr
+    - tidyr
+    - ggplot2
+    - leaflet
+    - dataone
+    - datapack
+    - EML
+    
+    You can install these packages quickly by running the following code snippet:
+
+    ```r
+    packages <- c("dplyr", "tidyr", "ggplot2", "leaflet", "dataone", "datapack", "EML")
+
+    for (package in packages) {
+      if (!(package %in% installed.packages())) {
+        install.packages(package)
+      }
+    }
+    ```
+
+- **git:** [Download git](https://git-scm.com/downloads) and install it on your system.
+  *Windows users: Make sure to select "Use MinTTY" when you see "Configuring the terminal emulator to use with Git Bash"*
 
 ### Refresh your skills
 
