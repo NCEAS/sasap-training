@@ -3,7 +3,9 @@
 ## Learning Objectives
 
 - Understand what the Split-Apply-Combine strategy is and how it applies to data
+- Know the difference between Wide vs. Tall table formats and how to convert between them
 - Become familiar with using `dplyr` and `tidyr` to clean and manipulate data for analysis
+- Learn how to join multiple `data.frame`s together usingn `dplyr`
 
 ## Introduction
 

@@ -15,3 +15,5 @@ dat <- data.frame(site = c("gold", "lake", "dredge"),
                   "1992" = round(runif(3, 100, 150)),
                   "1993" = round(runif(3, 100, 150)))
 kable(dat)
+
+kable(gather(dat,  "year", "length", -site))
