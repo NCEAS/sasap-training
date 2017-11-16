@@ -5,28 +5,6 @@
 - Understand what the Split-Apply-Combine strategy is and how it applies to data
 - Become familiar with using `dplyr` and `tidyr` to clean and manipulate data for analysis
 
-## Outline (TBD)
-
-Packages:
-
-- `dplyr`
-- `tidyr`
-
-Functions to demo:
-
-- `dplyr`
-    - `mutate()`
-    - `select()`
-    - `filter()`
-    - `summarise()`
-    - `arrange()`
-    - `*_join()` (at least one, perhaps `left_join()`)
-- `tidyr`
-    - `gather()`
-    - `spread()`
-    - `extract()`
-    - `separate()`
-
 ## Introduction
 
 The data we get to work with are rarely, if ever, in the format we need to do our analysis.
@@ -69,8 +47,7 @@ In an ideal world, we'd run:
 ```{r eval=FALSE}
 lm(length ~ year)
 ```
-but this won't work on our wide data.
-
+but this won't work on our wide data because `lm` needs `length` and `year` to be columns in our table.
 Or how would we make a separate plot for each year?
 We could call `plot` one time for each year but this is tedious and hard to maintain as we add more years of data to our dataset.
 
@@ -84,6 +61,20 @@ The `tidyr` package allows us to quickly switch between Wide format and what is 
 | ...    | ...  |    ... |
 | dredge | 1993 |    145 |
 
+In this lesson we're going to walk through the functions you'll most commonly use from the `dplyr` and `tidyr` packages:
+
+- `dplyr`
+    - `summarise()`
+    - `mutate()`:
+    - `select()`
+    - `filter()`
+    - `arrange()`
+    - `*_join()` (at least one, perhaps `left_join()`)
+- `tidyr`
+    - `gather()`
+    - `spread()`
+    - `extract()`
+    - `separate()`
 
 ## `dplyr` Walkthrough
 
