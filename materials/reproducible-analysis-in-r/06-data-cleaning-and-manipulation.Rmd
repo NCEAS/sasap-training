@@ -1,5 +1,10 @@
 # Data Cleaning and Manipulation
 
+## Learning Objectives
+
+- Understand what the Split-Apply-Combine strategy is and how it applies to data
+- Become familiar with using `dplyr` and `tidyr` to clean and manipulate data for analysis
+
 ## Outline (TBD)
 
 Packages:
@@ -21,3 +26,65 @@ Functions to demo:
     - `spread()`
     - `extract()`
     - `separate()`
+
+## Introduction
+
+The data we get to work with are rarely, if ever, in the format we need to do our analysis.
+To be efficient analysts, we should have good tools for reformatting data for our needs so we can do the fun stuff like making plots and fitting models.
+The `dplyr` and `tidyr` R packages provide a fairly complete and extremely powerful set of functions for us to do this formatting quickly.
+
+Our analyses commonly conform to what is known as the Split-Apply-Combine strategy, which follows a usual set of steps:
+
+- Split the data into logical groups (e.g., area, stock, year)
+- Calculate some summary statistic on each group (e.g. mean total length by year)
+- Combine the groups back together into one table
+
+![diagram of the split apply combine strategy](images/split-apply-combine-diagram.png)
+
+`dplyr` provides a fast and powerful way to express this.
+Assuming our length data is already loaded in a `data.frame` called `length_data`, we can do this calculation using `dplyr` like this:
+
+```{r eval=FALSE}
+length_data %>% 
+  group_by(year) %>% 
+  summarise(mean_length_cm = mean(length_cm))
+```
+
+Another exceedingly common thing we need to do is "reshape" our data.
+Let's look at an example table that is in what we will call "wide" format:
+
+| site   | 1990 | 1991 | ... | 1993 |
+|--------|------|------|-----|------|
+| gold   | 100  | 118  | ... | 112  |
+| lake   | 100  | 118  | ... | 112  |
+| ...    | ...  | ...  | ... | ...  |
+| dredge | 100  | 118  | ... | 112  |
+
+You may be very familiar with data in the above format, where values of the variable being observed are spread out across year columns.
+Another way of thinking about this is that there is more than one measuremnt per row.
+This "wide" format works well for data entry and sometimes works well for analysis but we quickly outgrow it when using R.
+For example, how would you fit a model with Year as a predictor variable?
+In an ideal world, we'd run:
+
+```{r eval=FALSE}
+lm(length ~ year)
+```
+but this won't work on our wide data.
+
+Or how would we make a separate plot for each year?
+We could call `plot` one time for each year but this is tedious and hard to maintain as we add more years of data to our dataset.
+
+The `tidyr` package allows us to quickly switch between Wide format and what is called Tall format using the `gather` function:
+
+| site   | year | length |
+|--------|------|-------:|
+| gold   | 1990 |    101 |
+| lake   | 1990 |    104 |
+| dredge | 1990 |    144 |
+| ...    | ...  |    ... |
+| dredge | 1993 |    145 |
+
+
+## `dplyr` Walkthrough
+
+## `tidyr` Walkthrough
