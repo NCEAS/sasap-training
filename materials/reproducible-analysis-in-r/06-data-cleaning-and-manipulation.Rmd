@@ -15,13 +15,16 @@ The `dplyr` and `tidyr` R packages provide a fairly complete and extremely power
 
 Our analyses commonly conform to what is known as the Split-Apply-Combine strategy, which follows a usual set of steps:
 
-- Split the data into logical groups (e.g., area, stock, year)
-- Calculate some summary statistic on each group (e.g. mean total length by year)
-- Combine the groups back together into one table
+- **Split**: Split the data into logical groups (e.g., area, stock, year)
+- **Apply:** Calculate some summary statistic on each group (e.g. mean total length by year)
+- **Combine:** Combine the groups back together into one table
 
-![diagram of the split apply combine strategy](images/split-apply-combine-diagram.png)
+![Figure 1: diagram of the split apply combine strategy](images/split-apply-combine-diagram.png)
+
+As shown above (Figure 1), our original table is split into groups by `year`, we calculate the mean length for each group, and finally combine the per-year means into a single table.
 
 `dplyr` provides a fast and powerful way to express this.
+Let's look at a simple example of how this is done:
 Assuming our length data is already loaded in a `data.frame` called `length_data`, we can do this calculation using `dplyr` like this:
 
 ```{r eval=FALSE}
