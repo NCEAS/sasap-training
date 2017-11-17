@@ -17,3 +17,12 @@ dat <- data.frame(site = c("gold", "lake", "dredge"),
 kable(dat)
 
 kable(gather(dat,  "year", "length", -site))
+
+
+gdp <- read_csv("~/Downloads/GDP.csv")
+library(lubridate)
+
+gdp %>%
+  mutate(year = year(DATE)) %>%
+  group_by(year) %>%
+  summarize(mean(GDP)) %>% write_csv("data/mean_annual_gdp.csv")

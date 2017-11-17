@@ -52,7 +52,8 @@ In an ideal world, we'd run:
 ```{r eval=FALSE}
 lm(length ~ year)
 ```
-but this won't work on our wide data because `lm` needs `length` and `year` to be columns in our table.
+
+But this won't work on our wide data because `lm` needs `length` and `year` to be columns in our table.
 Or how would we make a separate plot for each year?
 We could call `plot` one time for each year but this is tedious and hard to maintain as we add more years of data to our dataset.
 
@@ -69,8 +70,9 @@ The `tidyr` package allows us to quickly switch between Wide format and what is 
 In this lesson we're going to walk through the functions you'll most commonly use from the `dplyr` and `tidyr` packages:
 
 - `dplyr`
+    - `mutate()`
+    - `group_by()`
     - `summarise()`
-    - `mutate()`:
     - `select()`
     - `filter()`
     - `arrange()`
@@ -82,5 +84,180 @@ In this lesson we're going to walk through the functions you'll most commonly us
     - `separate()`
 
 ## `dplyr` Walkthrough
+
+Let's start going over the most common functions you'll use from the `dplyr` package.
+To demonstrate, we'll be working with a tidied up version of a dataset from ADF&G containing commercial catch data from 1878-1997.
+The dataset and reference to the original source can be found at https://knb.ecoinformatics.org/#view/df35b.304.2.
+
+```{r}
+catch <- read.csv("data/byerly_et_al_catch.csv",
+                  stringsAsFactors = FALSE)
+head(catch)
+```
+
+### mutate
+
+The `mutate()` adds new columns to your `data.frame`.
+
+If you scan through the data, you may notice the values in the `catch` column are very small (these are annual catches).
+If we look at [the metadata](https://knb.ecoinformatics.org/#view/df35b.304.2) we can see that the `catch` column is in thousands of fish.
+Let's convert the values in the `catch` column to actual numbers of fish:
+
+```{r}
+catch <- catch %>%
+  mutate(catch = catch * 1000)
+```
+
+Let's stop and pick apart this syntax because it might be fairly confusing.
+First up is the `%>%`: This is called the "pipe" and is just a fancy way to write:
+
+```{r eval=FALSE}
+mutate(catch, catch = catch * 1000)
+```
+
+What the pipe does behind the seasons is run the function on its right side with what's on its left side as the first argument.
+A good way to see what's going on is by comparing equivalent expressions that use and do not use the pipe:
+
+```{r eval=FALSE}
+summary(catch)
+catch %>% summary()
+
+head(catch)
+catch %>% head()
+
+mutate(catch, catch = catch * 1000)
+catch %>% mutate(catch = catch * 1000)
+```
+
+Why use the pipe at all if there's always an equivalent bit of R code you can run instead?
+It really comes down to personal preference.
+However, the pipe shines when you want to apply a number of operations to your data in sequence and don't care about the intermediate result, e.g.,:
+
+```{r eval=FALSE}
+catch %>% 
+  mutate(catch = catch * 1000) %>%
+  group_by(region, year) %>%
+  summarise(mean(catch)) # Calculates mean catch by region & year
+```
+
+An equivalent way to write this without the pipe would look something like this:
+
+```{r eval=FALSE}
+catch <- mutate(catch, catch = catch * 1000)
+catch <- group_by(catch, region, year)
+summarise(catch, mean(catch))
+```
+
+For the rest of these examples, we'll use the pipe because that's my personal preference but you should choose whichever style works best for you.
+
+### `group_by` and `summarise`
+
+As I outlined in the Introduction, `dplyr` lets us employ the Split-Apply-Combine strategy and this is exemplified through the use of the `group_by()` and `summarise()` functions:
+
+```{r}
+catch %>% 
+  mutate(catch = catch * 1000) %>%
+  group_by(region) %>%
+  summarise(mean(catch))
+```
+
+Challenge: Find another grouping and statistic to calculate for each group.
+
+Another common use of `group_by()` followed by `summarize()` is to count the number of rows in each group:
+
+```{r}
+catch %>% 
+  group_by(region) %>%
+  summarize(n = n())
+```
+
+### filter()
+
+`filter()` is the verb we use to filter our `data.frame` to rows matching some condition.
+It's similar to `subset()`.
+
+Let's go back to our original `data.frame` and do some `filter()`ing:
+
+```{r}
+catch %>% 
+  filter(region == "SSE") %>% 
+  head() # Show just the first 6 rows
+```
+
+Challenge: Filter to just catches of over one million fish.
+
+### select()
+
+While `filter()` subsets rows, `select()` subsets columns.
+Let's say we didn't care about the `year` column.
+We can remove it like this:
+
+```{r}
+catch %>% 
+  select(-year) %>% 
+  head()
+```
+
+Note how we pass the column name we wnat to remove, preceded by a minus sign (`-`).
+This is a bit of a tricky syntax that is specific to `dplyr` and some related packages.
+
+`select()` can also let us specify which columns we want, discarding the rest:
+
+```{r}
+catch %>%
+  select(region, species, catch) %>% 
+  head()
+```
+
+### arrange()
+
+`arrange()` is how we sort the rows of a `data.frame`.
+In my experience, I use `arrange()` in two common cases:
+
+- When we want to calculate a cumulative sum (with `cumsum()`) so row order matters
+- When we want to display a table (like in an `.Rmd` document)
+
+Let's re-calculate mean catch by region, and then sort the output by mean catch:
+
+```{r}
+catch %>% 
+  group_by(region) %>% 
+  summarise(mean_catch = mean(catch)) %>% 
+  arrange(mean_catch)
+```
+
+The default sorting order of `arrange()` is to sort in ascending order.
+To reverse the sort order, wrap the column name inside the `desc()` function:
+
+```{r}
+catch %>% 
+  group_by(region) %>% 
+  summarise(mean_catch = mean(catch)) %>% 
+  arrange(desc(mean_catch))
+```
+
+### Joining in dplyr
+
+So now that we're awesome at manipulating single `data.frame`s, where do we go from here?
+Manipulating **multiple** `data.frame`s.
+
+If you've ever used a database, you may have heard of or used what's called a "join", which allows us to to intelligently merge two tables together into a single table.
+We've already covered joins in Data Modeling & Tidy Data so let's see how it's done with `dplyr`.
+
+Let's say we're interested in seeing if the catch of salmon in Alaska correlates with the United States' GDP.
+Note: This is a totally nonsensical way to go about this in terms of actually finding out if catches of Alaska salmon influence GDP.
+
+```{r}
+usgdp <- read.csv("data/mean_annual_gdp.csv",
+                  stringsAsFactors = FALSE)
+
+catch %>% 
+  group_by(year) %>% 
+  summarise(total_catch = sum(catch)) %>% 
+  inner_join(usgdp, by = "year")
+```
+
+Here we used an inner join because I knew that the two tables didn't have coverage for all of the same years and I knew I wanted just the years where there is overlap.
+`dplyr` provides a complete set of joins: inner, left, right, full, semi, anti.
 
 ## `tidyr` Walkthrough
