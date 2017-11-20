@@ -19,6 +19,7 @@ In this lesson, you will learn:
   The idea is that we don't want to teach just "how to use package X", we're teaching how to use packages together in an analysis.
   We'll need to talk about conventions for where stuff (R scripts, raw data, processed data) should go.
   
+- Create a new RMarkdown document, follow the prompts to get it all loadd
 - Get Git and GitHub all set up
   - Set global config options
   - Get accounts on GitHub
