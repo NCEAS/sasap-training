@@ -16,6 +16,7 @@ In this lesson, you will learn:
 Optional topics:
 
 - Using git on the command line
+- gitignore to protect sensitive data
 - Resolving conflicts
 - Issues
   - What are
