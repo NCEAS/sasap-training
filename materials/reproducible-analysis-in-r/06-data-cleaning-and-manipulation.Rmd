@@ -302,7 +302,9 @@ To convert `catch` to Tall format, we use `gather()`:
 ```{r}
 library(tidyr)
 
-catch %>% gather(species, catch, -region, -year)
+catch %>% 
+  gather(species, catch, -region, -year) %>% 
+  head()
 ```
 
 The syntax might be a bit confusing at first.
