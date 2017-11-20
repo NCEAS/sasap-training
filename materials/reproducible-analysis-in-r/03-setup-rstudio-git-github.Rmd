@@ -1,3 +1,7 @@
+---
+time_slot: 30 minutes
+---
+
 # RStudio and Git/GitHub Setup
 
 ## Learning Objectives

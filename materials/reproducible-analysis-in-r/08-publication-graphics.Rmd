@@ -1,3 +1,7 @@
+---
+time_slot: 2 hours
+---
+
 # Publication Graphics with ggplot2
 
 ## Learning Objectives

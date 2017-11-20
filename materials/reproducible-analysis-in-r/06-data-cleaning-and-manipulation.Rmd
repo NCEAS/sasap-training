@@ -1,3 +1,7 @@
+---
+time_slot: 1.5 hours
+---
+
 # Data Cleaning and Manipulation
 
 ## Learning Objectives

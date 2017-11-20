@@ -1,3 +1,7 @@
+---
+time_slot: 1 hour
+---
+
 # Hands On: Clean and Integrate Datasets
 
 ## Learning Objectives

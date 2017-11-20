@@ -1,3 +1,7 @@
+---
+time_slot: 30 minutes
+---
+
 # Data Modeling & Tidy Data
 
 ## Learning Objectives

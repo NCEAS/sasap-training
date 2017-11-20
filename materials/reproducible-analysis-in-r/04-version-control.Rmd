@@ -1,3 +1,7 @@
+---
+time_slot: 1 hour
+---
+
 # Version Control With Git and GitHub
 
 ## Learning Objectives

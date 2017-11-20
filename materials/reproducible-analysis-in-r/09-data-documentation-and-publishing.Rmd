@@ -1,3 +1,7 @@
+---
+time_slot: 1 hour
+---
+
 # Data Documentation and Publishing 
 
 ## Learning Objectives
