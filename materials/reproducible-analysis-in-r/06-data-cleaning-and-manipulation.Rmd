@@ -300,6 +300,8 @@ head(catch)
 To convert `catch` to Tall format, we use `gather()`:
 
 ```{r}
+library(tidyr)
+
 catch %>% gather(species, catch, -region, -year)
 ```
 
