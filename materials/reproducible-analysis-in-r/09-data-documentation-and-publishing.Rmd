@@ -1,1 +1,6 @@
 # Data Documentation and Publishing 
+
+## Learning Objectives
+
+In this lesson, you will learn:
+

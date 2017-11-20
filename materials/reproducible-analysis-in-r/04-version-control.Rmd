@@ -1,1 +1,5 @@
 # Version Control With Git and GitHub
+
+## Learning Objectives
+
+In this lesson, you will learn:

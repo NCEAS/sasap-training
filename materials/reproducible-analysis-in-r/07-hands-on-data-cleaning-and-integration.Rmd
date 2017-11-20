@@ -1,1 +1,5 @@
 # Hands On: Clean and Integrate Datasets
+
+## Learning Objectives
+
+In this lesson, you will learn:

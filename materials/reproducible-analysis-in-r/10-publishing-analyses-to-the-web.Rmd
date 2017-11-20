@@ -1,1 +1,9 @@
 # Publishing Analyses to the Web
+
+## Learning Objectives
+
+In this lesson, you will learn:
+
+## Outline
+
+- Participants will publish their hands-on activity as to GH Pages

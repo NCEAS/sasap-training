@@ -1,5 +1,11 @@
 # RStudio and Git/GitHub Setup
 
+## Learning Objectives
+
+In this lesson, you will learn:
+
+## Outline
+
 Draft outline (Bryce jotting things down for others to see) (not complete):
 
 - Get familiar RStudio

@@ -1,1 +1,5 @@
 # Literate Analysis with RMarkdown
+
+## Learning Objectives
+
+In this lesson, you will learn:

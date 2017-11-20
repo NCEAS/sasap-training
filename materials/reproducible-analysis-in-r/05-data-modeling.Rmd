@@ -1,1 +1,5 @@
 # Data Modeling & Tidy Data
+
+## Learning Objectives
+
+In this lesson, you will learn:
