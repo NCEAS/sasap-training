@@ -267,3 +267,42 @@ Here we used an inner join because I knew that the two tables didn't have covera
 `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti.
 
 ## `tidyr` Walkthrough
+
+With `dplyr`, we saw how we could implement the Split-Apply-Combine strategy to quickly and easily analyze tabular data.
+However, sometimes our tabular data are not quite in the shape needed to apply this strategy.
+This is where `tidyr` comes in.
+
+`tidyr` is a Swiss Army knife for tidying up un-tidy data.
+Untidy data can mean:
+
+- Data in Wide format: Need to make Tall in order to do anything with it
+- Information we need is split across columns or smushed into a single column
+- Data contains NAs or other missing value codes we don't want
+
+We'll work thorugh just four functions from `tidyr`:
+
+- `gather()` and `spread()`
+- `separate()` and `unite()`
+
+### gather() and spread()
+
+`gather()` turns Wide data into Tall data, and `spread()` does just the opposite.
+Let's take the Byerly et al. dataset we used above to illustrate how these two functions work together:
+It turns out that the data were actually already archived in Wide format and I converted them to Tall format for simplicity's sake.
+But let's take a look at the original data:
+
+```{r}
+catch <- read.csv("data/byerly_et_al_catch_wide.csv", 
+                  stringsAsFactors = FALSE)
+head(catch)
+```
+
+To convert `catch` to Tall format, we use `gather()`:
+
+```{r}
+catch %>% gather(species, catch, -region, -year)
+```
+
+The syntax might be a bit confusing at first.
+
+![annotated gather code](images/gather_annotated.png)

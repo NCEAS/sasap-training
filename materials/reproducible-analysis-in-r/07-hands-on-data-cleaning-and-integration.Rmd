@@ -7,3 +7,11 @@ time_slot: 1 hour
 ## Learning Objectives
 
 In this lesson, you will learn:
+
+- How to conduct a reproducible analysis from start to finish
+
+
+## Outlie
+
+[These are mainly notes for Bryce and will be turned into a proper lesson later]
+

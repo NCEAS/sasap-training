@@ -8,3 +8,6 @@ time_slot: 1 hour
 
 In this lesson, you will learn:
 
+- About open data archives
+- What science metadata is and how it can be used
+- How data can be documented and published in open data archives

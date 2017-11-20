@@ -7,3 +7,20 @@ time_slot: 1 hour
 ## Learning Objectives
 
 In this lesson, you will learn:
+
+- How plain text, Markdown, and RMarkdown differ
+- How to write reports using RMarkdown
+- How to integrate RMarkdown into your projects
+
+## What is (R)Markdown?
+
+## What's possible with RMarkdown
+
+## RMarkdown basics
+
+- Chunks
+- Chunk options
+
+## File/folder layout conventions
+
+[i.e. where to put your rmds]
