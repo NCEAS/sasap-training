@@ -25,4 +25,4 @@ library(lubridate)
 gdp %>%
   mutate(year = year(DATE)) %>%
   group_by(year) %>%
-  summarize(mean(GDP)) %>% write_csv("data/mean_annual_gdp.csv")
+  summarize(mean_gdp = mean(GDP)) %>% write_csv("data/mean_annual_gdp.csv")
