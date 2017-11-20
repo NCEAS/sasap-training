@@ -2,8 +2,22 @@
 time_slot: 1 hour
 ---
 
-# Version Control With Git and GitHub
+# Version Control With git and GitHub
 
 ## Learning Objectives
 
 In this lesson, you will learn:
+
+- How to use git and GitHub to track changes to your work over time
+- How to structure your commits so your changes are clear to others
+- How to write effective commit messages
+- How to tag a release of your work for later reference
+
+Optional topics:
+
+- Using git on the command line
+- Resolving conflicts
+- Issues
+  - What are
+  - How to effectively
+- The PR model vs. direct contributor model of git collaboration

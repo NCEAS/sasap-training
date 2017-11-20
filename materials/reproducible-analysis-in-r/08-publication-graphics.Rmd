@@ -10,3 +10,16 @@ In this lesson, you will learn:
 
 - The basics of the `ggplot2` package
 - How to use `ggplot2`'s theming abilities to create publication-grade graphics
+
+## Outline
+
+[These are mainly notes for Bryce which will be removed at a later date]
+
+- Walk through my 1.5hr ggplot2 tutorial
+  Depending on the group this can take 1.5hrs to 2.5hrs
+- Add on about 30 minutes for talking about advanced topics:
+  - Theming
+  - Multi-panel plotting
+  - (Optional) Extra geoms, like...
+    - beeswarm
+    - maps

@@ -8,6 +8,28 @@ time_slot: 1 hour
 
 In this lesson, you will learn:
 
+- How to use git, GitHub (+Pages), and (R)Markdown to publish an analysis to the web
+
 ## Outline
 
-- Participants will publish their hands-on activity as to GH Pages
+[These are mainly notes for Bryce which will be removed at a later date]
+
+Main goal: Participants will publish their hands-on activity as to GH Pages
+
+Steps:
+
+- [Pre] Participants will already have a repo on GitHub with, at least, an RMarkdown document in it
+- Get the students to render their Rmd to HTML
+- Preview locally
+- Commit the change and push to GitHub
+- Turn on GH Pages for the master branch on GitHub
+- View the resulting URL
+- Do another change
+- Commit and push
+- See result
+
+Idealy, the RMd would have:
+
+- Some prose
+- One or more plots
+- One map w/ Leaflet
