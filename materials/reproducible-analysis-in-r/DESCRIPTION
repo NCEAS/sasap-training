@@ -11,6 +11,5 @@ Imports:
     kableExtra,
     knitr,
     leaflet,
-    plyr,
     readxl
 Remotes: rstudio/bookdown
