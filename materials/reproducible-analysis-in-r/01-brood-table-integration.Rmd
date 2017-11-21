@@ -38,7 +38,7 @@ stocks <- read.csv('data/original/StockInfo.csv', stringsAsFactors = F)
 ```
 
 ```{r, echo = FALSE}
-datatable(stocks, rownames = FALSE, caption = "Stock information")
+datatable(stocks[, c('Stock.ID','Stock' ,'Region', 'Sub.Region')], rownames = FALSE, caption = "Stock information")
 ```
 
 These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922. 
