@@ -1,6 +1,7 @@
 ---
 time_slot: 30 minutes
 ---
+Instructor: Matt Jones
 
 # Data Modeling & Tidy Data
 

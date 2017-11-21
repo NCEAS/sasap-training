@@ -2,6 +2,8 @@
 time_slot: 1 hour
 ---
 
+Instructor: Bryce Mecum (+ Matt Jones)
+
 # Hands On: Clean and Integrate Datasets
 
 ## Learning Objectives

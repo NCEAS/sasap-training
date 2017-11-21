@@ -2,6 +2,8 @@
 time_slot: 2 hours
 ---
 
+Instructor: Bryce Mecum
+
 # Publication Graphics with ggplot2
 
 ## Learning Objectives
