@@ -426,5 +426,5 @@ ggplot(brood_s, aes(BroodYear, Simpson)) +
                size = 3) +
   facet_wrap(~ Region) +
    theme(axis.text.y = element_text(angle = 0), 
-        axis.text.x = element_text(angle = 45, hjust = 1))
+        axis.text.x = element_text(angle = 90, hjust = 1))
 ```
