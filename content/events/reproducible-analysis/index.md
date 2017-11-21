@@ -87,19 +87,26 @@ We will primarily be using a web browser, `R`, RStudio, and `git`.
     
 - **R packages:** Please be sure you have installed or updated the following packages:
 
-    - dplyr
-    - tidyr
-    - ggplot2
-    - leaflet
     - dataone
     - datapack
+    - devtools
+    - dplyr
+    - DT
     - EML
+    - ggplot2
+    - ggpmisc
+    - kableExtra
+    - leaflet
+    - readxl
+    - tidyr
     
-    You can install these packages quickly by running the following code snippet:
+    You can install these packages quickly by running the following two code snippets:
 
     ```r
-    packages <- c("devtools", "dplyr", "DT", "tidyr", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "dataone", "datapack", "EML", "readxl");
-
+    packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "tidyr")
+    ```
+    
+    ```r
     for (package in packages) {
       if (!(package %in% installed.packages())) {
         install.packages(package)
