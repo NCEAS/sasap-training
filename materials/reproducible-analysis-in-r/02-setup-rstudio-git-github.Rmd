@@ -2,9 +2,9 @@
 time_slot: 30 minutes
 ---
 
-Instructor: Jeanette Clark
-
 # RStudio and Git/GitHub Setup
+
+Instructor: Jeanette Clark
 
 ## Learning Objectives
 

@@ -2,9 +2,9 @@
 time_slot: 1 hour
 ---
 
-Instructor: Bryce Mecum
-
 # Publishing Analyses to the Web
+
+Instructor: Bryce Mecum
 
 ## Learning Objectives
 

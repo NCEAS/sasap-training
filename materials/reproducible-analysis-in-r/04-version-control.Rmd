@@ -2,9 +2,9 @@
 time_slot: 1 hour
 ---
 
-Instructor: Matt Jones
-
 # Version Control With git and GitHub
+
+Instructor: Matt Jones
 
 ## Learning Objectives
 

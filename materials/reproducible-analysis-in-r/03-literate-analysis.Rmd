@@ -2,9 +2,9 @@
 time_slot: 1 hour
 ---
 
-Instructor: Matt Jones
-
 # Literate Analysis with RMarkdown
+
+Instructor: Matt Jones
 
 ## Learning Objectives
 
