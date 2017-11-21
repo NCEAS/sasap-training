@@ -315,62 +315,66 @@ It is possible to add a tendency line to the plot. In this case we used a linear
 p-Value for the slope is shown in each plot.
 
 ```{r, warning=FALSE}
+formula <- y ~ x + 0
 ggplot(brood_s, aes(R1.2, R1.3)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
               se = FALSE) + 
-  stat_fit_glance(method = 'lm',
-                  method.args = list(formula = "y ~ 0 + x"),
-                  geom = 'text',
-                  aes(label = paste("P-value = ", signif(..p.value.., digits = 4), sep = "")),
-                  label.x.npc = 'right', size = 2) +
+  stat_poly_eq(aes(label = paste(..rr.label..)),
+                      label.x.npc = "right", label.y.npc = "bottom", formula = formula, 
+                      parse = TRUE, size = 3) +
   facet_wrap(~ Region,
-             scales = "free")
+             scales = "free") +
+  theme(strip.text.y = element_text(angle = 0), axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
 Note that the scales are not fixed so comparing slopes across panels does not make sense. To compare the slopes in in graph we should fix *y* and *x* axis or export the slopes from the linear model.
 
 ### Relationship between 1.2s and 1.3s by Region
 
-This section make the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes reagion by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+This section make the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes region by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+*Because this is very repetitive, we only select 3 Regions to be ploted*.
 
-Not that here we use the slope *p-Value* obtained with the function *lm* to change the color from blue to red, if is not significant different than 0.  
+We use $R^2$ obtained with the function *lm* to change the color from blue to red, if $>0.5$.  
 
 ```{r, warning=FALSE}
 region <- unique(brood_s$Region)
-for (i in region)
+for (i in region[1:3])
 {
   temp <- filter(brood_s, Region == i)
   test <- lm(R1.3 ~ 0 + R1.2, data = temp)
-  slope_p <- test$coefficients
+  r <- summary(test)$r.squared
   color <- "red"
-  if(slope_p<0.01) {color <- "blue"}
+  if(r<0.5) {color <- "blue"}
   
   p <- ggplot(temp, aes(R1.2, R1.3)) + 
-    geom_point() + ylim(0, 7e6) + xlim(0, 7e6) + 
+    geom_point() +
     geom_smooth(method = "lm", formula = "y ~ 0 + x", color = color, se = FALSE) +
     stat_fit_glance(method = 'lm', method.args = list(formula = "y ~ 0 + x"),
-                    geom = 'text', aes(label = paste("m P-value = ", signif(..p.value.., digits = 2), 
+                    geom = 'text', aes(label = paste("R^2 = ", signif(r, digits = 2), 
                                                      sep = "")), label.x.npc = 'right', 
-                    label.y.npc = 0.35, size = 3) +
-    labs( subtitle = paste('Function y =', round(summary(test)$coefficients[1], 0), "+", round(summary(test)$coefficients[2],2), 'x'))
+                    label.y.npc = 0.35, size = 3)
   print(p)
 }
 ```
 
 ### Relationship between 1.2s and 1.3s by Stock
 
-The same type of plot can easily be produced for a different grouping level, such as stock:
+The same type of plot can easily be produced for a different grouping level. For this we selected 20 stock in the brood table:
+
 
 ```{r, warning=FALSE}
-ggplot(brood_s, aes(R1.2, R1.3)) + 
+ggplot(filter(brood_s, Stock.ID<=120), aes(R1.2/1000, R1.3/1000)) + 
   geom_point() + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
               se = FALSE) + 
-  facet_wrap(~ Stock,
-             scales = "free")
+  facet_wrap(~ Stock, nrow = 5, ncol = 4,
+             scales = "free") +
+  xlab("R1.2 x 1,000")+ylab("R1.3 x 1,000")+
+  theme(axis.text.y = element_text(angle = 0, size = 7), 
+        axis.text.x = element_text(angle = 15, hjust = 1, size = 7))
 ```
 
 Note that the scales are not fixed so comparing slopes across panels does not make sense.
@@ -387,13 +391,11 @@ This function take a vector containing the number of individual in each age clas
 simpson <- function(ages) {
   total <- sum(ages, na.rm = T)
   res <- 0
-  
   for (i in 1:length(ages)) {
     if (!is.na(ages[i])) {
       res <- res + (ages[i] / total) ^ 2
     }
   }
-  
   return(1 - res)
 }
 ```
@@ -420,5 +422,7 @@ ggplot(brood_s, aes(BroodYear, Simpson)) +
                formula = "y ~ x", 
                parse = TRUE, 
                size = 3) +
-  facet_wrap(~ Region)
+  facet_wrap(~ Region) +
+   theme(axis.text.y = element_text(angle = 0), 
+        axis.text.x = element_text(angle = 45, hjust = 1))
 ```
