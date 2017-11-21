@@ -316,11 +316,12 @@ The $R^2$ value for the correlation is shown in each plot.
 
 ```{r, warning=FALSE}
 formula <- y ~ x + 0
-ggplot(brood_s, aes(R1.2, R1.3)) + 
+ggplot(brood_s, aes(R1.2/1000, R1.3/1000)) + 
   geom_point(size = 0.3) + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
               se = FALSE) + 
+   xlab("R1.2 x 1,000")+ylab("R1.3 x 1,000")+
   stat_poly_eq(aes(label = paste(..rr.label..)),
                       label.x.npc = "right", label.y.npc = "bottom", formula = formula, 
                       parse = TRUE, size = 3) +
