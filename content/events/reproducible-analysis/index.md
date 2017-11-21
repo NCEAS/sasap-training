@@ -58,13 +58,15 @@ both for publications and the web.
 
 ## Organizers
 
-- Matthew Jones
-- Bryce Mecum
-- Jeanette Clark
-- Jorge Cornejo
-- Madeline Jovanovich
+|Name         | Email              |
+|-------------|--------------------|
+|Matthew Jones| jones@nceas.ucsb.edu |
+|Bryce Mecum| mecum@nceas.ucsb.edu |
+|Jeanette Clark| jclark@nceas.ucsb.edu |
+|Jorge Cornejo| cornejo@nceas.ucsb.edu |
+Madeline Jovanovich| mjovanovich@alaska.edu |
 
-### Acknowledgements
+## Acknowledgements
 
 These training events were supported by:
 
@@ -139,3 +141,35 @@ In particular, check out:
 * Data Visualization with ggplot2
 * R Markdown Reference Guide 
 * The leaflet package
+
+## Participants
+
+|Name         | Email              |
+|-------------|--------------------|
+|Milo	Adkison	|Mdadkison@alaska.edu|
+|Bev	Agler	|bev.agler@alaska.gov|
+|Ryan	Bare	|Ryan.bare@noaa.gov|
+|Julie	Bednarski	|julie.bednarski@alaska.gov|
+|Rich	Brenner	|richard.brenner@alaska.gov|
+|Jesse	Coleman	|jmcoleman2@alaska.edu|
+|Mike	Donnellan	|mike.donnellan@alaska.gov|
+|Kari	Fenske	|kari.fenske@noaa.gov|
+|Elizabeth	Figus	|ecfigus@alaska.edu|
+|William 	Gaeuman	|william.gaeuman@alaska.gov|
+|Scott	Gende	|scott_gende@nps.gov|
+|Tania	Lewis	|lupineluna@gmail.com|
+|Kevin 	McNeel	|kevin.mcneel@alaska.gov|
+|Megan	McPhee	|mvmcphee@alaska.edu|
+|Sara	Miller	|Saramiller50@hotmail.com|
+|Todd	Miller	|todd.miller@noaa.gov|
+|Krista	Oke	|kristaoke@gmail.com|
+|Andrew	Olson	|andrew.olson@alaska.gov|
+|Sara	Power	|sarah.power@alaska.gov|
+|Wendel	Raymond	|wraymond2@alaska.edu|
+|Tobias	Schwoerer	|tschwoerer@alaska.edu|
+|Kyle	Shedd	|kyle.shedd@alaska.gov|
+|Jennifer	Shriver	|jennifer.shriver@alaska.gov|
+|Tiffany	Stephens	|tastephens@alaska.edu|
+|Lorna	Wilson	|Lorna.wilson@alaska.gov|
+|Jamie	Womble	|Jamie_Womble@nps.gov|
+|Molly	Zaleski	|mzaleski@oceana.org|
