@@ -349,12 +349,13 @@ for (i in region[1:3])
   if(r<0.5) {color <- "blue"}
   
   p <- ggplot(temp, aes(R1.2, R1.3)) + 
-    geom_point(size = 0.5) +
+    geom_point(size = 0.5) + ggtitle(unique(temp$Region), ) +
     geom_smooth(method = "lm", formula = "y ~ 0 + x", color = color, se = FALSE) +
     stat_fit_glance(method = 'lm', method.args = list(formula = "y ~ 0 + x"),
                     geom = 'text', aes(label = paste("R^2 = ", signif(r, digits = 2), 
                                                      sep = "")), label.x.npc = 'right', 
-                    label.y.npc = 0.35, size = 3)
+                    label.y.npc = 0.35, size = 3) +
+    theme(plot.title = element_text(size="16"))
   print(p)
 }
 ```
@@ -365,7 +366,8 @@ The same type of plot can easily be produced for a different grouping level. For
 
 
 ```{r, warning=FALSE}
-ggplot(filter(brood_s, Stock.ID<=120), aes(R1.2/1000, R1.3/1000)) + 
+
+ggplot(filter(brood_s, Region %in% c("Bristol Bay", "Kodiak", "PWS", "AK Peninsula")), aes(R1.2/1000, R1.3/1000)) + 
   geom_point(size = 0.5) + 
   geom_smooth(method = "lm", 
               formula = "y ~ 0 + x", 
