@@ -304,11 +304,23 @@ To convert `catch` to Tall format, we use `gather()`:
 ```{r}
 library(tidyr)
 
-catch %>% 
-  gather(species, catch, -region, -year) %>% 
-  head()
+catch_tall <- catch %>% 
+  gather(species, catch, -region, -year)
+head(catch_tall)
 ```
 
 The syntax might be a bit confusing at first.
+Let's look at an annotated code snippet:
 
 ![annotated gather code](images/gather_annotated.png)
+
+With `gather()`, we tell it what the result should look like, rather than how `gather()` should get there, and `gather()` does the rest for us.
+The result, in this case, will have a column `species`, and the catch values will be in a new column called `catch`.
+
+To convert **back** to Wide format, we use `gather()`'s opposite: `spread()` using very similar arguments as we used for `gather()`:
+
+```{r}
+catch_tall %>% 
+  spread(species, catch) %>% 
+  head()
+```
