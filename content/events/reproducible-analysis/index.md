@@ -65,6 +65,7 @@ both for publications and the web.
 - Madeline Jovanovich
 
 ### Acknowledgements
+
 These training events were supported by:
 
 The [Gordon and Betty Moore Foundation](https://www.moore.org), __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
