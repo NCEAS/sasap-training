@@ -98,7 +98,7 @@ We will primarily be using a web browser, `R`, RStudio, and `git`.
     You can install these packages quickly by running the following code snippet:
 
     ```r
-    packages <- c("dplyr", "tidyr", "ggplot2", "leaflet", "dataone", "datapack", "EML");
+    packages <- c("devtools", "dplyr", "DT", "tidyr", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "dataone", "datapack", "EML", "readxl");
 
     for (package in packages) {
       if (!(package %in% installed.packages())) {
@@ -108,7 +108,7 @@ We will primarily be using a web browser, `R`, RStudio, and `git`.
     ```
 
 - **git:** [Download git](https://git-scm.com/downloads) and install it on your system.
-  *Windows users: Make sure to select "Use MinTTY" when you see "Configuring the terminal emulator to use with Git Bash"*
+- **GitHub:** We will be using [GitHub](https://github.com) so you will need create (or remember your existing) GitHub login
 
 ### Refresh your skills
 
