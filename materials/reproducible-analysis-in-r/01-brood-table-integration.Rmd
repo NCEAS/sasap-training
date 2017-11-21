@@ -312,7 +312,7 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 ### Relationship between 1.2s and 1.3s by Region
 
 It is possible to add a tendency line to the plot. In this case we used a linear model, in this case we used *geom_smoth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
-p-Value for the slope is shown in each plot.
+The $R^2$ value for the correlation is shown in each plot.
 
 ```{r, warning=FALSE}
 formula <- y ~ x + 0
@@ -333,7 +333,7 @@ Note that the scales are not fixed so comparing slopes across panels does not ma
 
 ### Relationship between 1.2s and 1.3s by Region
 
-This section make the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes region by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+This section makes the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes region by region, fit a linear model forcing the intercept to be 0, and then create the plot.
 *Because this is very repetitive, we only select 3 Regions to be ploted*.
 
 We use $R^2$ obtained with the function *lm* to change the color from blue to red, if $>0.5$.  
@@ -362,7 +362,7 @@ for (i in region[1:3])
 
 ### Relationship between 1.2s and 1.3s by Stock
 
-The same type of plot can easily be produced for a different grouping level. For this we selected 20 stock in the brood table:
+The same type of plot can easily be produced for a different grouping level. For this we selected 20 stocks in the brood table from a set of regions:
 
 
 ```{r, warning=FALSE}
@@ -383,11 +383,11 @@ Note that the scales are not fixed so comparing slopes across panels does not ma
 
 ### Age Diversity
 
-As an example on how to create and use function in *R*, we ask the question How the diversity of age clases have change over time for each region.
+As an example on how to create and use a function in *R*, we ask how the diversity of age clases have changed over time for each region.
 
 For this we use the Simpson's diveristy index, which measures the probability that two oragsnisms randomly selected from a sample will belong to the same age class. For this, the function *simpson* is defined as $D = 1-\sum(\frac{n}{N})^2$, where $n$ is the total number of organisms in the age class $i$ and $N$ the total number or organisms in all the age classes.
 
-This function take a vector containing the number of individual in each age class and return the *Simpson* diversity index $D$.
+This function takes a vector containing the number of individual in each age class and returns the *Simpson* diversity index $D$.
 
 ```{r, warning=FALSE}
 simpson <- function(ages) {
@@ -402,7 +402,7 @@ simpson <- function(ages) {
 }
 ```
 
-A new column is create with the Simpson diversity index.
+A new column is created with the Simpson diversity index.
 
 ```{r, warning=FALSE}
 brood_s$Simpson <- NA
@@ -412,7 +412,7 @@ for (i in 1:nrow(brood_s)) {
 }
 ```
 
-And we then plot Simpson diverity index over time. We included the linear equation in each plot. This information can be easity exported as a CSV to be used in other analysis.
+We then plot Simpson diversity index over time. We included the linear equation in each plot. This information can be easily exported as a CSV file to be used in other analysis.
 
 ```{r, warning=FALSE}
 ggplot(brood_s, aes(BroodYear, Simpson)) + 
