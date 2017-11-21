@@ -128,7 +128,7 @@ If you'd like to brush up on your R skills prior to the workshop, check out this
 - The QCBS [Introduction to R](https://qcbs.ca/wiki/r) lesson
 - [RStudio's R Programming](https://www.rstudio.com/online-learning/) page
 
-If you're a fan of cheat sheets, [RStudio](https://www.rstudio.com) provivdes some fantastic ones on their [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) page.
+If you're a fan of cheat sheets, [RStudio](https://www.rstudio.com) provides some fantastic ones on their [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) page.
 *Please make sure to print ahead of time if you prefer hard copies.*
 In particular, check out:
 
