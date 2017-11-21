@@ -78,9 +78,9 @@ Additional support was provided for collaboration by the [National Center for Ec
 
 ### Required software
 
-We will primarily be using a web browser, `R`, RStudio, and `git`.
+We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sure these are all installed on your laptop, as follows:
 
-- **R:** We will use R version 3.4.2, which you can find on [CRAN](https://cran.rstudio.com)
+- **R:** We will use R version 3.4.2, which you can download and install from [CRAN](https://cran.rstudio.com)
 
 - **RStudio**: To download RStudio, visit [RStudio's download page](https://www.rstudio.com/products/rstudio/download/).
   *If you don't know how up to date your version of RStudio is, please download an updated copy and install it*
