@@ -97,9 +97,19 @@ Let's start going over the most common functions you'll use from the `dplyr` pac
 To demonstrate, we'll be working with a tidied up version of a dataset from ADF&G containing commercial catch data from 1878-1997.
 The dataset and reference to the original source can be found at https://knb.ecoinformatics.org/#view/df35b.304.2.
 
-```{r, warning=FALSE}
-library(dplyr)
+First, let's load `dplyr`:
+
+```{r, eval=FALSE}
+library(tidyr)
 ```
+
+```{r, include=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+})
+```
+
+Then let's read in the data and take a look at it:
 
 ```{r}
 catch <- read.csv("data/byerly_et_al_catch.csv",
@@ -173,7 +183,7 @@ catch %>%
   summarise(mean(catch))
 ```
 
-Challenge: Find another grouping and statistic to calculate for each group.
+**Challenge:** Find another grouping and statistic to calculate for each group.
 
 Another common use of `group_by()` followed by `summarize()` is to count the number of rows in each group:
 
@@ -196,7 +206,7 @@ catch %>%
   head() # Show just the first 6 rows
 ```
 
-Challenge: Filter to just catches of over one million fish.
+**Challenge:** Filter to just catches of over one million fish.
 
 ### select()
 
@@ -353,4 +363,20 @@ cities_df <- data.frame(city = c("Juneau AK",
                                  "Sitka AK", 
                                  "Anchorage AK"),
                         stringsAsFactors = FALSE)
+
+# Write your solution here
+```
+
+`united()` does just the reverse of `separate()`:
+
+```{r}
+dates_df %>% 
+  separate(date, c("month", "day", "year"), "/") %>% 
+  unite(date, month, day, year, sep = "/")
+```
+
+**Challenge:** Use `united()` on your solution above to combine the `cities_df` back to its original form with just one column, `city`:
+
+```{r}
+# Write your solution here
 ```
