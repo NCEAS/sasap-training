@@ -91,86 +91,178 @@ In this lesson we're going to walk through the functions you'll most commonly us
     - `extract()`
     - `separate()`
 
-## `dplyr` Walkthrough
+## Walkthrough
 
 Let's start going over the most common functions you'll use from the `dplyr` package.
 To demonstrate, we'll be working with a tidied up version of a dataset from ADF&G containing commercial catch data from 1878-1997.
 The dataset and reference to the original source can be found at https://knb.ecoinformatics.org/#view/df35b.304.2.
 
-First, let's load `dplyr`:
+First, let's load `dplyr` and `tidyr`:
 
 ```{r, eval=FALSE}
+library(dplyr)
 library(tidyr)
 ```
 
 ```{r, include=FALSE}
 suppressPackageStartupMessages({
   library(dplyr)
+  library(tidyr)
 })
 ```
 
 Then let's read in the data and take a look at it:
 
 ```{r}
-catch <- read.csv("data/byerly_et_al_catch.csv",
+catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
                   stringsAsFactors = FALSE)
 head(catch)
 ```
 
-### mutate
+Note: I copied the URL from the Download button on https://knb.ecoinformatics.org/#view/df35b.304.2
 
-The `mutate()` adds new columns to your `data.frame`.
 
-If you scan through the data, you may notice the values in the `catch` column are very small (these are annual catches).
+
+This dataset is relatively clean and easy to interpret as-is.
+But while it may be clean, it's in a shape that makes it hard to use for some types of analyses so we'll want to fix that first.
+
+### Selecting/removing columns: `select()`
+
+The first issue is the extra columns `All` and `notesRegCode`.
+Let's remove those columns:
+
+```{r}
+catch %>% 
+  select(-All, -notesRegCode) %>% 
+  head()
+```
+
+Much beter!
+In the above example, we pass unquoted column names preceded by `-` signs to specify which columns we dont want.
+`select()` also allows us to specify which columns we do want:
+
+```{r}
+catch %>% 
+  select(Region, Year, Chinook, Sockeye, Coho, Pink, Chum) %>% 
+  head()
+```
+
+Let's save our changes by overwriting the `catch` variable:
+
+```{r}
+catch <- catch %>% 
+  select(-All, -notesRegCode)
+```
+
+### Changing shape: `gather()` and `spread()`
+
+The next issue is that the data are in a Wide format and, we want the data in a Tall format instead.
+`gather()` from the `tidyr` package helps us do just this conversion:
+
+```{r}
+catch <- catch %>% 
+  gather(species, catch, -Region, -Year)
+head(catch)
+```
+
+The syntax we used above for `gather()` might be a bit confusing so let's look at a diagram:
+
+![annotated gather code](images/gather_annotated.png)
+
+The first two arguments to `gather()` are the names of new columns that will be created and the other arguments with `-` symbols in front of them are columns to ignore in this process.
+The opposite of `gather()`, `spread()`, works in a similar declarative fashion:
+
+```{r}
+catch %>% 
+  spread(species, catch) %>% 
+  head()
+```
+
+### Renaming columns with `rename()`
+
+If you scan through the data, you may notice the values in the `catch` column are very small (these are annual catches so they are quite small).
 If we look at [the metadata](https://knb.ecoinformatics.org/#view/df35b.304.2) we can see that the `catch` column is in thousands of fish.
-Let's convert the values in the `catch` column to actual numbers of fish:
+
+Let's first rename the `catch` column to be called `catch_thousands`:
+
+```{r}
+catch <- catch %>% 
+  rename(catch_thousands = catch)
+```
+
+### Adding columns: `mutate()`
+
+Now let's create a new column called `catch` with units of fish (instead of thousands of fish):
+
+```{r, eval=FALSE}
+catch <- catch %>%
+  mutate(catch = catch_thousands * 1000)
+```
+
+You'll notice that we get an error:
+
+> Error in mutate_impl(.data, dots) : Evaluation error: non-numeric argument to binary operator.
+
+What is this extremely cryptic error telling us?
+These kinds of errors can be very hard to diagnose, but maybe the `catch` column isn't quite what we are expecting.
+How could we find out?
+R provides a number of handy utility functions for quickly summarizing a large table:
+
+```{r}
+summary(catch)
+```
+
+Notice in the above output that the `catch_thousands` column shows up as `Class :character`.
+That seems wrong since catch should be whole numbers (in R, these show up as integers).
+
+Let's try to convert the values to integers and see what happens:
+
+```{r}
+catch_integers <- as.integer(catch$catch_thousands)
+```
+
+We get an error "NAs introduced by coercion" which is R telling us that it couldn't convert every value to an integer and, for those values it couldn't convert, it put an `NA` in its place.
+We can find out which values are NAs like this:
+
+```{r}
+na_values <- which(is.na(catch_integers))
+na_values
+```
+
+It looks like the 401st value is the problem.
+Let's look at the 401s row of the `catch` data.frame:
+
+```{r}
+catch[401,]
+```
+
+Well that's odd: The value in `catch_thousands` is `I` which is isn't even a number.
+It turns out that this dataset is from a PDF which was automatically converted into a CSV and this value of `I` is actually a 1.
+Let's fix it:
 
 ```{r}
 catch <- catch %>%
-  mutate(catch = catch * 1000)
+  mutate(catch_thousands = ifelse(catch_thousands == "I", 1, catch_thousands),
+         catch_thousands = as.integer(catch_thousands))
 ```
 
-Let's stop and pick apart this syntax because it might be fairly confusing.
-First up is the `%>%`: This is called the "pipe" and is just a fancy way to write:
+Now let's try our conversion again:
 
-```{r eval=FALSE}
-mutate(catch, catch = catch * 1000)
-```
-
-What the pipe does behind the seasons is run the function on its right side with what's on its left side as the first argument.
-A good way to see what's going on is by comparing equivalent expressions that use and do not use the pipe:
-
-```{r eval=FALSE}
-summary(catch)
-catch %>% summary()
+```{r}
+catch <- catch %>%
+  mutate(catch = catch_thousands * 1000)
 
 head(catch)
-catch %>% head()
-
-mutate(catch, catch = catch * 1000)
-catch %>% mutate(catch = catch * 1000)
 ```
 
-Why use the pipe at all if there's always an equivalent bit of R code you can run instead?
-It really comes down to personal preference.
-However, the pipe shines when you want to apply a number of operations to your data in sequence and don't care about the intermediate result, e.g.,:
+Let's remove the `catch_thousands` column for now since we don't need it:
 
-```{r eval=FALSE}
-catch %>% 
-  mutate(catch = catch * 1000) %>%
-  group_by(region, year) %>%
-  summarise(mean(catch)) # Calculates mean catch by region & year
+```{r}
+catch <- catch %>% select(-catch_thousands)
+head(catch)
 ```
 
-An equivalent way to write this without the pipe would look something like this:
-
-```{r eval=FALSE}
-catch <- mutate(catch, catch = catch * 1000)
-catch <- group_by(catch, region, year)
-summarise(catch, mean(catch))
-```
-
-For the rest of these examples, we'll use the pipe because that's my personal preference but you should choose whichever style works best for you.
+Looks good!
 
 ### `group_by` and `summarise`
 
@@ -178,8 +270,7 @@ As I outlined in the Introduction, `dplyr` lets us employ the Split-Apply-Combin
 
 ```{r}
 catch %>% 
-  mutate(catch = catch * 1000) %>%
-  group_by(region) %>%
+  group_by(Region) %>%
   summarise(mean(catch))
 ```
 
@@ -189,7 +280,7 @@ Another common use of `group_by()` followed by `summarize()` is to count the num
 
 ```{r}
 catch %>% 
-  group_by(region) %>%
+  group_by(Region) %>%
   summarize(n = n())
 ```
 
@@ -202,36 +293,13 @@ Let's go back to our original `data.frame` and do some `filter()`ing:
 
 ```{r}
 catch %>% 
-  filter(region == "SSE") %>% 
+  filter(Region == "SSE") %>% 
   head() # Show just the first 6 rows
 ```
 
 **Challenge:** Filter to just catches of over one million fish.
 
-### select()
-
-While `filter()` subsets rows, `select()` subsets columns.
-Let's say we didn't care about the `year` column.
-We can remove it like this:
-
-```{r}
-catch %>% 
-  select(-year) %>% 
-  head()
-```
-
-Note how we pass the column name we wnat to remove, preceded by a minus sign (`-`).
-This is a bit of a tricky syntax that is specific to `dplyr` and some related packages.
-
-`select()` can also let us specify which columns we want, discarding the rest:
-
-```{r}
-catch %>%
-  select(region, species, catch) %>% 
-  head()
-```
-
-### arrange()
+### Sorting your data: arrange()
 
 `arrange()` is how we sort the rows of a `data.frame`.
 In my experience, I use `arrange()` in two common cases:
@@ -243,7 +311,7 @@ Let's re-calculate mean catch by region, and then sort the output by mean catch:
 
 ```{r}
 catch %>% 
-  group_by(region) %>% 
+  group_by(Region) %>% 
   summarise(mean_catch = mean(catch)) %>% 
   arrange(mean_catch)
 ```
@@ -253,7 +321,7 @@ To reverse the sort order, wrap the column name inside the `desc()` function:
 
 ```{r}
 catch %>% 
-  group_by(region) %>% 
+  group_by(Region) %>% 
   summarise(mean_catch = mean(catch)) %>% 
   arrange(desc(mean_catch))
 ```
@@ -266,78 +334,24 @@ Manipulating **multiple** `data.frame`s.
 If you've ever used a database, you may have heard of or used what's called a "join", which allows us to to intelligently merge two tables together into a single table.
 We've already covered joins in Data Modeling & Tidy Data so let's see how it's done with `dplyr`.
 
-Let's say we're interested in seeing if the catch of salmon in Alaska correlates with the United States' GDP.
-Note: This is a totally nonsensical way to go about this in terms of actually finding out if catches of Alaska salmon influence GDP.
+The dataset we're working with, https://knb.ecoinformatics.org/#view/df35b.304.2, contains a second CSV which has the definition of each `Region` code.
+This is a really common way of storing auxiliary information about our data of interest (catch) but, for analylitcal purposes, we often want them in the same `data.frame`.
+Joins let us do that easily:
 
 ```{r}
-usgdp <- read.csv("data/mean_annual_gdp.csv",
-                  stringsAsFactors = FALSE)
+region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
+                        stringsAsFactors = FALSE)
 
 catch %>% 
-  group_by(year) %>% 
+  group_by(Region) %>% 
   summarise(total_catch = sum(catch)) %>% 
-  inner_join(usgdp, by = "year")
+  left_join(region_defs, by = c("Region" = "code"))
 ```
 
-Here we used an inner join because I knew that the two tables didn't have coverage for all of the same years and I knew I wanted just the years where there is overlap.
-`dplyr` provides a complete set of joins: inner, left, right, full, semi, anti.
+Note: `left_join` and the other join functions can often guess the shared column name but, in this case, the column names differed between the two `data.frame`s so we had to be explicit.
 
-## `tidyr` Walkthrough
-
-With `dplyr`, we saw how we could implement the Split-Apply-Combine strategy to quickly and easily analyze tabular data.
-However, sometimes our tabular data are not quite in the shape needed to apply this strategy.
-This is where `tidyr` comes in.
-
-`tidyr` is a Swiss Army knife for tidying up un-tidy data.
-Untidy data can mean:
-
-- Data in Wide format: Need to make Tall in order to do anything with it
-- Information we need is split across columns or smushed into a single column
-- Data contains NAs or other missing value codes we don't want
-
-We'll work thorugh just four functions from `tidyr`:
-
-- `gather()` and `spread()`
-- `separate()` and `unite()`
-
-### gather() and spread()
-
-`gather()` turns Wide data into Tall data, and `spread()` does just the opposite.
-Let's take the Byerly et al. dataset we used above to illustrate how these two functions work together:
-It turns out that the data were actually already archived in Wide format and I converted them to Tall format for simplicity's sake.
-But let's take a look at the original data:
-
-```{r}
-catch <- read.csv("data/byerly_et_al_catch_wide.csv", 
-                  stringsAsFactors = FALSE)
-head(catch)
-```
-
-To convert `catch` to Tall format, we use `gather()`:
-
-```{r}
-library(tidyr)
-
-catch_tall <- catch %>% 
-  gather(species, catch, -region, -year)
-head(catch_tall)
-```
-
-The syntax might be a bit confusing at first.
-Let's look at an annotated code snippet:
-
-![annotated gather code](images/gather_annotated.png)
-
-With `gather()`, we tell it what the result should look like, rather than how `gather()` should get there, and `gather()` does the rest for us.
-The result, in this case, will have a column `species`, and the catch values will be in a new column called `catch`.
-
-To convert **back** to Wide format, we use `gather()`'s opposite: `spread()` using very similar arguments as we used for `gather()`:
-
-```{r}
-catch_tall %>% 
-  spread(species, catch) %>% 
-  head()
-```
+Now our catches have the auxiliary information from the region definitions file alongside them.
+Note: `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti.
 
 ### separate() and unite()
 
@@ -380,3 +394,25 @@ dates_df %>%
 ```{r}
 # Write your solution here
 ```
+
+## Summary
+
+We just ran through the various things we can do with `dplyr` and `tidyr` but if you're wondering how this migth look in a real analysis.
+Let's look at that now:
+
+```{r}
+catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
+                  stringsAsFactors = FALSE)
+region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
+                        stringsAsFactors = FALSE)
+
+catch %>%
+  select(-All, -notesRegCode) %>% 
+  gather(species, catch, -Region, -Year) %>%
+  mutate(catch = ifelse(catch == "I", 1, catch)) %>% 
+  mutate(catch = as.integer(catch)) %>% 
+  group_by(Region) %>% 
+  summarize(mean_catch = mean(catch)) %>% 
+  left_join(region_defs, by = c("Region" = "code"))
+```
+
