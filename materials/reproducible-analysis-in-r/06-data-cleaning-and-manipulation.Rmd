@@ -97,6 +97,10 @@ Let's start going over the most common functions you'll use from the `dplyr` pac
 To demonstrate, we'll be working with a tidied up version of a dataset from ADF&G containing commercial catch data from 1878-1997.
 The dataset and reference to the original source can be found at https://knb.ecoinformatics.org/#view/df35b.304.2.
 
+```{r, warning=FALSE}
+library(dplyr)
+```
+
 ```{r}
 catch <- read.csv("data/byerly_et_al_catch.csv",
                   stringsAsFactors = FALSE)
@@ -323,4 +327,30 @@ To convert **back** to Wide format, we use `gather()`'s opposite: `spread()` usi
 catch_tall %>% 
   spread(species, catch) %>% 
   head()
+```
+
+### separate() and unite()
+
+`separate()` and its complement, `unite()` allow us to easily split a single column into numerous (or numerous into a single).
+This can come in really handle when we have a date column and we want to group by year or month:
+
+```{r}
+dates_df <- data.frame(date = c("5/24/1930",
+                          "5/25/1930",
+                          "5/26/1930",
+                          "5/27/1930",
+                          "5/28/1930"),
+                       stringsAsFactors = FALSE)
+
+dates_df %>% 
+  separate(date, c("month", "day", "year"), "/")
+```
+
+**Challenge:** Split the `city` column in the following `data.frame` into `city` and `state_code` columns:
+
+```{r}
+cities_df <- data.frame(city = c("Juneau AK", 
+                                 "Sitka AK", 
+                                 "Anchorage AK"),
+                        stringsAsFactors = FALSE)
 ```
