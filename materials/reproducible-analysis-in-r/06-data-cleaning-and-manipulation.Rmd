@@ -11,21 +11,23 @@ Instructor: Bryce Mecum
 In this lesson, you will learn:
 
 - What the Split-Apply-Combine strategy is and how it applies to data
-- The difference between Wide vs. Tall table formats and how to convert between them
+- The difference between wide vs. tall table formats and how to convert between them
 - How to use `dplyr` and `tidyr` to clean and manipulate data for analysis
 - How to join multiple `data.frame`s together usingn `dplyr`
 
 ## Introduction
 
-The data we get to work with are rarely, if ever, in the format we need to do our analysis.
-To be efficient analysts, we should have good tools for reformatting data for our needs so we can do the fun stuff like making plots and fitting models.
-The `dplyr` and `tidyr` R packages provide a fairly complete and extremely powerful set of functions for us to do this formatting quickly.
+The data we get to work with are rarely, if ever, in the format we need to do our analyses.
+It's often the case that one package requires data in one format, while another package requires the data to be in another format.
+To be efficient analysts, we should have good tools for reformatting data for our needs so we can do our actual work like making plots and fitting models.
+The `dplyr` and `tidyr` R packages provide a fairly complete and extremely powerful set of functions for us to do this formatting quickly and learning these tools well will greatly increase your efficiency as an analyst.
 
-Our analyses commonly conform to what is known as the Split-Apply-Combine strategy, which follows a usual set of steps:
+Analyses take many shapes, but they often conform to what is known as the Split-Apply-Combine strategy
+This strategy follows a usual set of steps:
 
 - **Split**: Split the data into logical groups (e.g., area, stock, year)
 - **Apply:** Calculate some summary statistic on each group (e.g. mean total length by year)
-- **Combine:** Combine the groups back together into one table
+- **Combine:** Combine the groups back together into a single table
 
 ![Figure 1: diagram of the split apply combine strategy](images/split-apply-combine-diagram.png)
 
@@ -33,9 +35,25 @@ As shown above (Figure 1), our original table is split into groups by `year`, we
 
 `dplyr` provides a fast and powerful way to express this.
 Let's look at a simple example of how this is done:
-Assuming our length data is already loaded in a `data.frame` called `length_data`, we can do this calculation using `dplyr` like this:
 
-```{r eval=FALSE}
+Assuming our length data is already loaded in a `data.frame` called `length_data`:
+
+| year| length_cm|
+|----:|---------:|
+| 1991|  5.673318|
+| 1991|  3.081224|
+| 1991|  4.592696|
+| 1992|  4.381523|
+| 1992|  5.597777|
+| 1992|  4.900052|
+| 1992|  4.139282|
+| 1992|  5.422823|
+| 1992|  5.905247|
+| 1992|  5.098922|
+
+We can do this calculation using `dplyr` like this:
+
+```{r, eval = FALSE}
 length_data %>% 
   group_by(year) %>% 
   summarise(mean_length_cm = mean(length_cm))
@@ -53,11 +71,11 @@ Let's look at an example table that is in what we will call "wide" format:
 
 You may be very familiar with data in the above format, where values of the variable being observed are spread out across year columns.
 Another way of thinking about this is that there is more than one measuremnt per row.
-This "wide" format works well for data entry and sometimes works well for analysis but we quickly outgrow it when using R.
+This wide format works well for data entry and sometimes works well for analysis but we quickly outgrow it when using R.
 For example, how would you fit a model with Year as a predictor variable?
-In an ideal world, we'd run:
+In an ideal world, we'd be able to just run:
 
-```{r eval=FALSE}
+```{r eval = FALSE}
 lm(length ~ year)
 ```
 
@@ -65,7 +83,7 @@ But this won't work on our wide data because `lm` needs `length` and `year` to b
 Or how would we make a separate plot for each year?
 We could call `plot` one time for each year but this is tedious and hard to maintain as we add more years of data to our dataset.
 
-The `tidyr` package allows us to quickly switch between Wide format and what is called Tall format using the `gather` function:
+The `tidyr` package allows us to quickly switch between wide format and what is called tall format using the `gather` function:
 
 | site   | year | length |
 |--------|------|-------:|
@@ -85,6 +103,7 @@ In this lesson we're going to walk through the functions you'll most commonly us
     - `filter()`
     - `arrange()`
     - `*_join()` (at least one, perhaps `left_join()`)
+    - `rename()`
 - `tidyr`
     - `gather()`
     - `spread()`
@@ -95,7 +114,7 @@ In this lesson we're going to walk through the functions you'll most commonly us
 
 Let's start going over the most common functions you'll use from the `dplyr` package.
 To demonstrate, we'll be working with a tidied up version of a dataset from ADF&G containing commercial catch data from 1878-1997.
-The dataset and reference to the original source can be found at https://knb.ecoinformatics.org/#view/df35b.304.2.
+The dataset and reference to the original source can be found at its public archive: https://knb.ecoinformatics.org/#view/df35b.304.2.
 
 First, let's load `dplyr` and `tidyr`:
 
@@ -105,6 +124,8 @@ library(tidyr)
 ```
 
 ```{r, include=FALSE}
+# This chunk looks like a duplicate of the above chunk but I did it this way
+# so the renderd output (above chunk) looks clean.
 suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
@@ -120,8 +141,6 @@ head(catch)
 ```
 
 Note: I copied the URL from the Download button on https://knb.ecoinformatics.org/#view/df35b.304.2
-
-
 
 This dataset is relatively clean and easy to interpret as-is.
 But while it may be clean, it's in a shape that makes it hard to use for some types of analyses so we'll want to fix that first.
@@ -156,16 +175,17 @@ catch <- catch %>%
 
 ### Changing shape: `gather()` and `spread()`
 
-The next issue is that the data are in a Wide format and, we want the data in a Tall format instead.
+The next issue is that the data are in a wide format and, we want the data in a tall format instead.
 `gather()` from the `tidyr` package helps us do just this conversion:
 
 ```{r}
 catch <- catch %>% 
   gather(species, catch, -Region, -Year)
+
 head(catch)
 ```
 
-The syntax we used above for `gather()` might be a bit confusing so let's look at a diagram:
+The syntax we used above for `gather()` might be a bit confusing so let's look at an annotated diagram:
 
 ![annotated gather code](images/gather_annotated.png)
 
@@ -180,7 +200,7 @@ catch %>%
 
 ### Renaming columns with `rename()`
 
-If you scan through the data, you may notice the values in the `catch` column are very small (these are annual catches so they are quite small).
+If you scan through the data, you may notice the values in the `catch` column are very small (these are supposed to be annual catches).
 If we look at [the metadata](https://knb.ecoinformatics.org/#view/df35b.304.2) we can see that the `catch` column is in thousands of fish.
 
 Let's first rename the `catch` column to be called `catch_thousands`:
@@ -203,7 +223,7 @@ You'll notice that we get an error:
 
 > Error in mutate_impl(.data, dots) : Evaluation error: non-numeric argument to binary operator.
 
-What is this extremely cryptic error telling us?
+This is an extremely cryptic error -- what is it telling us?
 These kinds of errors can be very hard to diagnose, but maybe the `catch` column isn't quite what we are expecting.
 How could we find out?
 R provides a number of handy utility functions for quickly summarizing a large table:
@@ -252,7 +272,7 @@ Now let's try our conversion again:
 catch <- catch %>%
   mutate(catch = catch_thousands * 1000)
 
-head(catch)
+summary(catch)
 ```
 
 Let's remove the `catch_thousands` column for now since we don't need it:
@@ -263,6 +283,7 @@ head(catch)
 ```
 
 Looks good!
+We're now ready to start analyzing the data.
 
 ### `group_by` and `summarise`
 
@@ -274,7 +295,7 @@ catch %>%
   summarise(mean(catch))
 ```
 
-**Challenge:** Find another grouping and statistic to calculate for each group.
+**Exercise:** Find another grouping and statistic to calculate for each group.
 
 Another common use of `group_by()` followed by `summarize()` is to count the number of rows in each group:
 
@@ -297,17 +318,17 @@ catch %>%
   head() # Show just the first 6 rows
 ```
 
-**Challenge:** Filter to just catches of over one million fish.
+**Exercise:** Filter to just catches of over one million fish.
 
 ### Sorting your data: arrange()
 
 `arrange()` is how we sort the rows of a `data.frame`.
 In my experience, I use `arrange()` in two common cases:
 
-- When we want to calculate a cumulative sum (with `cumsum()`) so row order matters
-- When we want to display a table (like in an `.Rmd` document)
+- When I want to calculate a cumulative sum (with `cumsum()`) so row order matters
+- When I want to display a table (like in an `.Rmd` document) in sorted order
 
-Let's re-calculate mean catch by region, and then sort the output by mean catch:
+Let's re-calculate mean catch by region, and then `arrange()` the output by mean catch:
 
 ```{r}
 catch %>% 
@@ -335,7 +356,7 @@ If you've ever used a database, you may have heard of or used what's called a "j
 We've already covered joins in Data Modeling & Tidy Data so let's see how it's done with `dplyr`.
 
 The dataset we're working with, https://knb.ecoinformatics.org/#view/df35b.304.2, contains a second CSV which has the definition of each `Region` code.
-This is a really common way of storing auxiliary information about our data of interest (catch) but, for analylitcal purposes, we often want them in the same `data.frame`.
+This is a really common way of storing auxiliary information about our dataset of interest (catch) but, for analylitcal purposes, we often want them in the same `data.frame`.
 Joins let us do that easily:
 
 ```{r}
@@ -351,26 +372,27 @@ catch %>%
 Note: `left_join` and the other join functions can often guess the shared column name but, in this case, the column names differed between the two `data.frame`s so we had to be explicit.
 
 Now our catches have the auxiliary information from the region definitions file alongside them.
-Note: `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti.
+Note: `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti, not just left_join.
 
 ### separate() and unite()
 
 `separate()` and its complement, `unite()` allow us to easily split a single column into numerous (or numerous into a single).
-This can come in really handle when we have a date column and we want to group by year or month:
+This can come in really handle when we have a date column and we want to group by year or month.
+Let's make a new `data.frame` with fake data to illustrate this:
 
 ```{r}
 dates_df <- data.frame(date = c("5/24/1930",
-                          "5/25/1930",
-                          "5/26/1930",
-                          "5/27/1930",
-                          "5/28/1930"),
+                                "5/25/1930",
+                                "5/26/1930",
+                                "5/27/1930",
+                                "5/28/1930"),
                        stringsAsFactors = FALSE)
 
 dates_df %>% 
   separate(date, c("month", "day", "year"), "/")
 ```
 
-**Challenge:** Split the `city` column in the following `data.frame` into `city` and `state_code` columns:
+**Exercise:** Split the `city` column in the following `data.frame` into `city` and `state_code` columns:
 
 ```{r}
 cities_df <- data.frame(city = c("Juneau AK", 
@@ -389,7 +411,7 @@ dates_df %>%
   unite(date, month, day, year, sep = "/")
 ```
 
-**Challenge:** Use `united()` on your solution above to combine the `cities_df` back to its original form with just one column, `city`:
+**Exercise:** Use `united()` on your solution above to combine the `cities_df` back to its original form with just one column, `city`:
 
 ```{r}
 # Write your solution here
