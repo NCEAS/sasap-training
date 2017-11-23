@@ -12,6 +12,121 @@ In this lesson, you will learn:
 - The basics of the `ggplot2` package
 - How to use `ggplot2`'s theming abilities to create publication-grade graphics
 
+## Lesson
+
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+
+Let's load the Byerly et al. data from Chapter 7, https://knb.ecoinformatics.org/#view/df35b.304.2,:
+
+```{r}
+catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
+                  stringsAsFactors = FALSE)
+```
+
+
+```{r}
+catch <- catch %>%
+  select(-All, -notesRegCode) %>% 
+  gather(species, catch, -Region, -Year) %>%
+  mutate(catch = ifelse(catch == "I", 1, catch)) %>% 
+  mutate(catch = as.integer(catch))
+```
+
+```{r}
+catch_nse <- catch %>% 
+  filter(Region == "NSE")
+```
+
+```{r}
+permits <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Aa3c58bd6-481e-4c64-aa93-795df10a4664",
+                    stringsAsFactors = FALSE)
+```
+
+```{r}
+ggplot(catch_nse, aes(Year, catch)) +
+  geom_point()
+
+
+seine <- permits %>% 
+  filter(Gear == "Purse Seine")
+
+se_seine <- permits %>% 
+  filter(Gear == "Purse Seine",
+         Region == "Southeast")
+
+ggplot(se_seine, aes(Year, Value)) +
+  geom_point() 
+
+ggplot(se_seine, aes(Year, Value)) +
+  geom_line()
+
+
+ggplot(se_seine, aes(Year, Value)) +
+  geom_point() + 
+  geom_line()
+
+```
+
+```{r}
+ggplot(catch_nse, aes(Year, catch, color = species)) +
+  geom_point()
+```
+
+```{r}
+ggplot(catch_nse, aes(Year, catch, color = species)) +
+  geom_point(shape = 1)
+```
+
+```{r}
+ggplot(catch_nse, aes(Year, catch, color = species)) +
+  geom_line()
+```
+
+```{r}
+catch %>%
+  group_by(species) %>% 
+  summarize(mean_catch = mean(catch)) %>% 
+  ggplot(aes(species, mean_catch)) +
+  geom_col()
+```
+
+```{r}
+ggplot(catch, aes(Year)) +
+  geom_histogram()
+```
+
+```{r}
+ggplot(catch, aes(Year)) +
+  geom_histogram(binwidth = 1)
+```
+
+```{r}
+catch %>% 
+  group_by(Region, species) %>% 
+  summarize(n = n())
+```
+
+```{r}
+ggplot(catch, aes(species, catch)) +
+  geom_boxplot()
+```
+
+
+```{r}
+ggplot(catch, aes(species, catch)) +
+  geom_boxplot() +
+  scale_y_log10()
+```
+
+```{r}
+ggplot(catch, aes(species, catch)) +
+  geom_violin() +
+  scale_y_log10()
+```
+
 ## Outline
 
 [These are mainly notes for Bryce which will be removed at a later date]
