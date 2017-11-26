@@ -322,20 +322,42 @@ Facets allow us to create a powerful visualization called a small multiple:
 
 http://www.latimes.com/local/lanow/la-me-g-california-drought-map-htmlstory.html
 
-I use small multiples all the time when I have a variable like a site or year and I want to quickly compare across years. Let's compare highway fuel economy versus engine displacement across our two samples:
+I use small multiples all the time when I have a variable like a site or year and I want to quickly compare across years. 
+Let's create a graphical comparison of the permit prices in Cook Inlet over time:
 
 ```{r}
-ggplot(mpg, aes(displ, hwy)) +
+ggplot(permits_ci, aes(Year, Value)) +
   geom_point() +
-  facet_wrap(~ year)
+  geom_line() +
+  facet_wrap(~ Gear)
 ```
 
-Or fuel economy versus engine displacement across manufacturer:
+`facet_wrap()` chose a layout for us but, in this case, it aids comparison if we stack eachpanel on top of one another:
 
 ```{r}
-ggplot(mpg, aes(displ, hwy)) +
+ggplot(permits_ci, aes(Year, Value)) +
   geom_point() +
-  facet_wrap(~ manufacturer)
+  geom_line() +
+  facet_wrap(~ Gear, ncol = 1)
+```
+
+Note that the X and Y limits are shared across panels which is often a good default to stick with.
+For example, if we plot permit value over time by gear type, we don't get a very readable plot due to differences in permit values across gear types:
+
+
+```{r}
+ggplot(permits, aes(Year, Value, group = Region)) +
+  geom_line() +
+  facet_wrap(~ Gear)
+```
+
+Note that I also added `group = Region` to the `aes()` call, which tells `geom_line()` to draw one line per Region instead.
+Allowing the Y scales to differ across panels makes things much easier to see:
+
+```{r}
+ggplot(permits, aes(Year, Value)) +
+  geom_line(aes(group = Region)) +
+  facet_wrap(~ Gear, scales = "free_y")
 ```
 
 ### Plot customization
@@ -346,7 +368,7 @@ ggplot2 comes with a set of themes which are a quick way to get a different look
 Let's use another theme than the default:
 
 ```{r}
-ggplot(mpg, aes(displ, hwy, color = class)) + 
+ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() +
   theme_classic()
 ```
@@ -357,7 +379,7 @@ The legend in ggplot2 is a thematic element.
 Let's change the way the legend displays:
 
 ```{r}
-ggplot(mpg, aes(displ, hwy, color = class)) + 
+ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() +
   theme_classic() +
   theme(legend.position = "bottom",
@@ -369,17 +391,31 @@ ggplot(mpg, aes(displ, hwy, color = class)) +
 Let's adjust our axis labels and title:
 
 ```{r}
-ggplot(mpg, aes(displ, hwy, color = class)) + 
+ggplot(permits, aes(Value, StdDev, color = Gear)) +
   geom_point() +
   theme_classic() +
   theme(legend.position = c(1, 1),
         legend.justification = c(1,1),
         legend.direction = "horizontal",
         legend.title = element_blank()) +
-  xlab("Engine Displacement") +
-  ylab("Highway Fuel Economy (miles / gallon") +
-  ggtitle("Highway fuel economy versus engine displacement",
-          "or why do you need that big truck again? ")
+  xlab("Permit Value (unadjusted USD") +
+  ylab("Permit Std. Dev. (unadjusted USD)") +
+  ggtitle("Permit Standard Deviation against Permit Value by Gear Type",
+          "or: I wish I owned a seine permit")
+```
+
+In this case, we've put together a theme by adding it to our plot code with a `+` symbol.
+It turns out that we can save our theme to a variable and add it to any plot we want:
+
+```{r}
+my_theme <- theme_bw() +
+  theme(legend.title = element_blank(),
+        panel.grid.major = element_line(size = 1, linetype = 4),
+        panel.grid.minor = element_blank())
+  
+ggplot(permits, aes(Value, StdDev, color = Gear)) +
+  geom_point() +
+  my_theme
 ```
 
 **Challenge:** Look at the help for ?theme and try changing something else about the above plot.
@@ -392,138 +428,24 @@ Let's save that great plot we just made.
 Saving plots in ggplot is done with the `ggsave()` function:
 
 ```{r}
-ggsave("hwy_vs_displ.png")
+ggsave("permit_stddev_vs_value.png")
 ```
 
 `ggsave` automatically chooses the format based on your file extension and guesses a default image size.
 We can customize the size with the `width` and `height` arguments:
 
 ```{r}
-ggsave("hwy_vs_displ.png", width = 6, height = 6)
+ggsave("permit_stddev_vs_value.png", width = 6, height = 6)
 ```
 
+You may notice if you often save plots that the scaling of various elements can get funky.
+This is because ggplot scales plot elements based on relative sizes.
+This most commonly manifests itself as too large/small axis labels.
+You can remedy this in a few ways:
 
-
-
-
-
-
-
-## Old Lesson
-
-
-```{r}
-library(ggplot2)
-library(dplyr)
-```
-
-Let's load the Byerly et al. data from Chapter 7, https://knb.ecoinformatics.org/#view/df35b.304.2,:
-
-```{r}
-catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
-                  stringsAsFactors = FALSE)
-```
-
-
-```{r}
-catch <- catch %>%
-  select(-All, -notesRegCode) %>% 
-  gather(species, catch, -Region, -Year) %>%
-  mutate(catch = ifelse(catch == "I", 1, catch)) %>% 
-  mutate(catch = as.integer(catch))
-```
-
-```{r}
-catch_nse <- catch %>% 
-  filter(Region == "NSE")
-```
-
-```{r}
-permits <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Aa3c58bd6-481e-4c64-aa93-795df10a4664",
-                    stringsAsFactors = FALSE)
-```
-
-```{r}
-ggplot(catch_nse, aes(Year, catch)) +
-  geom_point()
-
-
-seine <- permits %>% 
-  filter(Gear == "Purse Seine")
-
-se_seine <- permits %>% 
-  filter(Gear == "Purse Seine",
-         Region == "Southeast")
-
-ggplot(se_seine, aes(Year, Value)) +
-  geom_point() 
-
-ggplot(se_seine, aes(Year, Value)) +
-  geom_line()
-
-
-ggplot(se_seine, aes(Year, Value)) +
-  geom_point() + 
-  geom_line()
-
-```
-
-```{r}
-ggplot(catch_nse, aes(Year, catch, color = species)) +
-  geom_point()
-```
-
-```{r}
-ggplot(catch_nse, aes(Year, catch, color = species)) +
-  geom_point(shape = 1)
-```
-
-```{r}
-ggplot(catch_nse, aes(Year, catch, color = species)) +
-  geom_line()
-```
-
-```{r}
-catch %>%
-  group_by(species) %>% 
-  summarize(mean_catch = mean(catch)) %>% 
-  ggplot(aes(species, mean_catch)) +
-  geom_col()
-```
-
-```{r}
-ggplot(catch, aes(Year)) +
-  geom_histogram()
-```
-
-```{r}
-ggplot(catch, aes(Year)) +
-  geom_histogram(binwidth = 1)
-```
-
-```{r}
-catch %>% 
-  group_by(Region, species) %>% 
-  summarize(n = n())
-```
-
-```{r}
-ggplot(catch, aes(species, catch)) +
-  geom_boxplot()
-```
-
-
-```{r}
-ggplot(catch, aes(species, catch)) +
-  geom_boxplot() +
-  scale_y_log10()
-```
-
-```{r}
-ggplot(catch, aes(species, catch)) +
-  geom_violin() +
-  scale_y_log10()
-```
+- Change the plot dimensions
+- Changing the base_size (`theme_classic(base_size = 16)`)
+- Customize your theme (`theme()`)
 
 ## Bonus: Multi-panel plots: Beyond facets
 
@@ -531,34 +453,23 @@ Often times, we outgrow the small multiples (facet) paradigm.
 For example, we might want a line plot and a box plot to appear in the same graphic.
 
 ```{r}
-```
-
-```{r}
 library(gridExtra)
-```
-
-```{r}
-library(cowplot)
 
 p1 <- ggplot(se_seine, aes(Year, Value)) +
   geom_point() + 
   geom_line()
 
-p2 <- ggplot(permits, aes(Region, Value)) +
-  geom_boxplot()
+p2 <- ggplot(permits %>% filter(Gear == "Purse Seine"), aes(Region, Value)) +
+  geom_boxplot() +
+  scale_y_continuous(labels = function(x) { format(x, scientific = FALSE) })
+
+grid.arrange(p1, p2)
+```
+
+
+```{r}
+library(cowplot)
 
 plot_grid(p1, p2, align = "hv", ncol = 1)
 ```
 
-## Outline
-
-[These are mainly notes for Bryce which will be removed at a later date]
-
-- Walk through my 1.5hr ggplot2 tutorial
-Depending on the group this can take 1.5hrs to 2.5hrs
-- Add on about 30 minutes for talking about advanced topics:
-- Theming
-- Multi-panel plotting
-- (Optional) Extra geoms, like...
-- beeswarm
-- maps
