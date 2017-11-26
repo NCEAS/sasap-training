@@ -455,7 +455,7 @@ For example, we might want a line plot and a box plot to appear in the same grap
 ```{r}
 library(gridExtra)
 
-p1 <- ggplot(se_seine, aes(Year, Value)) +
+p1 <- ggplot(permits_se_seine, aes(Year, Value)) +
   geom_point() + 
   geom_line()
 
