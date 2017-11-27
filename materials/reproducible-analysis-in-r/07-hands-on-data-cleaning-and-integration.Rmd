@@ -6,13 +6,14 @@ time_slot: 1 hour
 
 ## Learning Objectives
 
-In this lesson, you will learn:
+In this lesson, you will:
 
-- How to clean and integrate datasets using dplyr and tidyr
+- Clean and integrate two datasets using dplyr and tidyr
+- Make use of previously-learned knowledge of dplyr and tidyr
 
 ## Outline
 
-In this one hour block, you will load two datasets into R,
+In this one hour block, you will load data from the following two datasets into R,
 
 - [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47)
 - [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e)
@@ -21,17 +22,12 @@ and then clean, and integrate them together to answer a research question:
 
 > Are Sockeye salmon escapement goals being met in recent years in Bristol Bay?
 
-To do this, you will have to use what you've just learned in the previous lesson on `dplyr` and `tidyr`.
+Depending on your familiarity with dplyr and tidyr, you will probably want to look up how to do things.
+I suggest two strategies:
 
-```{r}
-# https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47
-# Search "OceanAK"
-esc <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", stringsAsFactors = FALSE)
-
-# https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e
-# Search "escapement goals", choose 2007-2015 dataset
-goals <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.1", stringsAsFactors = FALSE)
-```
+1. Look back on the [Data Cleaning and Manipulation] lesson
+2. Use the official [dplyr documentation](http://dplyr.tidyverse.org/)
+3. Once you know what function to use, use R's built-in help by prepending a `?` to the function name and running that (e.g., run `?select` to get help on the `select` function)
 
 ## High-level steps
 
@@ -39,14 +35,27 @@ Note: This need not be the exaxct order your code is written in.
 
 1. Load our two datasets
     - Load the escapement goals CSV into R as a `data.frame`
+        - Visit https://knb.ecoinformatics.org/#data and search for "escapement goals" and choose the 2007-2015 dataset
+        - Click the following dataset:
+        
+        >  Andrew Munro and Eric Volk. 2017. **Summary of Pacific Salmon Escapement Goals in Alaska with a Review of Escapements from 2007 to 2015**. Knowledge Network for Biocomplexity.
+        
+        - Right-click and copy address for the file `MandV2016`
     - Load the escapement counts CSV into R as a `data.frame`
-2. Clean the two datasets
+        - Visit https://knb.ecoinformatics.org/#data and search for 'oceanak'
+        - Click the following dataset:
+        
+        >  Andrew Munro and Eric Volk. 2017. **Summary of Pacific Salmon Escapement Goals in Alaska with a Review of Escapements from 2007 to 2015**. Knowledge Network for Biocomplexity.
+                
+        - Right-click and copy address for the file `ADFG_firstAttempt_reformatted.csv`
+    
+2. Clean
     1. Clean the escapement goals dataset
         1. Filter to just the Bristol Bay region and the Sockeye salmon species
         2. Check whether the column types are wrong and fix any issues (Hint: One column has the wrong type)
     2. Clean the escapement counts dataset
         1. Filter to just the Bristol Bay region and the Sockeye salmon species
-        2. Filter to just stocks we have goals for
+        2. Filter to just stocks we have escapement goals for
         3. Create new columns for the year, month, and day so we can calculate total escapements by year and stock
       4. Calculate annual total escapements for each stock
 3. Integrate
@@ -54,6 +63,8 @@ Note: This need not be the exaxct order your code is written in.
 4. Analyze
     - Make a table listing annual total escapements and whether they were in the escapement goal range or not
     - Calculate the proportion of years, for each stock, total escapement was within the escapement goal range
+
+## Visual steps:
 
 Make this:
 
@@ -70,7 +81,7 @@ Nushagak River  370000   900000
   Togiak River  120000   270000
 ```
 
-and this:
+and then make this:
 
 ```
      Location  Year Escapement
@@ -86,7 +97,7 @@ Igushik River  2015     651172
 Igushik River  2016     469230
 ```
 
-and make them into this:
+and join them together to make this:
 
 ```
      Location  Year Escapement  Lower   Upper is_in_range
@@ -104,6 +115,10 @@ Igushik River  2016     469230 150000  400000       FALSE
 
 ## Full solution
 
+Warning: Spoilers!
+
+First we'll load our packages:
+
 ```{r}
 suppressPackageStartupMessages({
   library(dplyr)
@@ -111,6 +126,20 @@ suppressPackageStartupMessages({
   library(DT) # Just for display purposes
 })
 ```
+
+Then download our two data files and save them as `data.frame`s:
+
+```{r, cache=TRUE}
+# https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47
+# Search "OceanAK"
+esc <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", stringsAsFactors = FALSE)
+
+# https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e
+# Search "escapement goals", choose 2007-2015 dataset
+goals <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.1", stringsAsFactors = FALSE)
+```
+
+First, we'll clean up the escapement goals `data.frame` to have just the rows and columns we need and display it:
 
 ```{r}
 bb_sockeye_goals <- goals %>% 
@@ -121,6 +150,8 @@ bb_sockeye_goals <- goals %>%
 
 datatable(bb_sockeye_goals)
 ```
+
+Then we'll clean up and summarize the escapement counts `data.frame`, join the escapement goals `data.frame` onto it, and calculate whether goals have been met:
 
 ```{r}
 bb_sockeye_escapements <- esc %>% 
