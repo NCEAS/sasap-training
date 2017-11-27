@@ -18,7 +18,8 @@ do
     cd "materials/$book"
     Rscript -e "devtools::install_deps('.')" # Installs book-specific R deps
                                              # defined in DESCRIPTION file
-    Rscript -e "bookdown::render_book('index.Rmd', c('bookdown::gitbook', 'bookdown::pdf_book', 'bookdown::epub_book'))"
+    Rscript -e "bookdown::render_book('index.Rmd', c('bookdown::gitbook'))"
+    #Rscript -e "bookdown::render_book('index.Rmd', c('bookdown::gitbook', 'bookdown::pdf_book', 'bookdown::epub_book'))"
     cp -r _book "$TOP/public/materials/$book"
     cd "$TOP"
 done
