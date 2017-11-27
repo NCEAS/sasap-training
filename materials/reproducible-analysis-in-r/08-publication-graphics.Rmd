@@ -3,21 +3,17 @@ time_slot: 2 hours
 ---
 # Publication Graphics with ggplot2
 
-Instructor: Bryce Mecum
-
 ## Learning Objectives
 
 In this lesson, you will learn:
 
 - The basics of the `ggplot2` package
 - How to use `ggplot2`'s theming abilities to create publication-grade graphics
-
-## Lesson
+- How to create multi-panel plots
 
 ## Overview
 
 ggplot2 is a popular package for visualizing data in R.
-
 From the [home page](http://ggplot2.tidyverse.org/):
 
 > ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
@@ -32,7 +28,7 @@ This lesson will introduce you to the basic components of working with ggplot2.
 R provides **many** ways to get your data into a plot.
 Three common ones are,
 
-- "base graphics" (`plot`, `hist`, etc`)
+- "base graphics" (`plot()`, `hist()`, etc`)
 - lattice
 - ggplot2
 
@@ -47,21 +43,16 @@ ggplot2 excels at making complicated plots easy and easy plots simple enough.
 To demonstrate ggplot2, we're going to work with two example datasets
 
 ```{r}
-library(ggplot2)
-library(tidyr)
-library(dplyr)
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(tidyr)
+  library(dplyr)
+})
 
 # https://knb.ecoinformatics.org/#view/urn:uuid:e05865d7-678d-4513-9061-2ab7d979f8e7
 # Search 'permit value'
 permits <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Aa3c58bd6-481e-4c64-aa93-795df10a4664",
                     stringsAsFactors = FALSE)
-
-# https://knb.ecoinformatics.org/#view/df35b.304.2
-# Search: 'salmon catch'
-catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
-                  stringsAsFactors = FALSE) %>% 
-  select(-All, -notesRegCode) %>% 
-  gather(Species, Catch, -Region, -Year)
 ```
 
 ### Geoms / Aesthetics
@@ -70,14 +61,14 @@ Every graphic you make in ggplot2 will have at least one aesthetic and at least 
 The aesthetic maps your data to your geometry (layer).
 Your geometry specifies the type of plot we're making (point, bar, etc.).
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev)) + 
   geom_point()
 ```
 
 What makes ggplot really powerful is how quickly we can make this plot visualize more aspects of our data. Coloring each point by class (compact, van, pickup, etc.) is just a quick extra bit of code:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point()
 ```
@@ -90,7 +81,7 @@ Challenge: Find another aesthetic mapping `geom_point` can take and add add it t
 What if we just wanted the color of the points to be blue?
 Maybe we'd do this:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = "blue")) +
   geom_point()
 ```
@@ -102,7 +93,7 @@ This is the difference between **setting** and **mapping** in ggplot.
 The `aes` function **only** takes mappings from our data onto our geom.
 If we want to make all the points blue, we need to **set** it inside the geom:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev)) +
   geom_point(color = "blue")
 ```
@@ -111,7 +102,7 @@ ggplot(permits, aes(Value, StdDev)) +
 
 Sizing each point by the range of the permit values is only a small change to the code:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear, size = Range)) +
   geom_point()
 ```
@@ -128,7 +119,7 @@ ggplot(permits, aes(Value)) +
 
 You'll see with a warning (red text):
 
-> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+> `stat_bin() using bins = 30. Pick better value with binwidth`.
 
 ggplot2 can calculate statistics on our data such as frequencies and, in this case, it's doing that on our `hwy` column with the `stat_bin` function.
 Binning data requires choosing a bin size and the choice of bin size can completely change our histogram (possibly resulting in misleading conclusions about how the values are distributed).
@@ -143,14 +134,14 @@ ggplot(permits, aes(Value)) +
 
 I'm a big fan of box plots and ggplot2 can plot these too:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Gear, Value)) + 
   geom_boxplot()
 ```
 
 Another type of visualization I use a lot for seeing my distributions is the violin plot:
 
-```{r}
+```{r, warning=FALSE}
 permits_ci <- permits %>%
   filter(Region == "Cook Inlet")
 
@@ -161,7 +152,7 @@ ggplot(permits_ci, aes(Gear, Value)) +
 So far we've made really simple plots: One geometry per plot.
 Let's layer multiple geometries on top of one another to show the raw points on top of the violins:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits_ci, aes(Gear, Value)) +
     geom_violin() +
     geom_point(shape = 1, position = "jitter")
@@ -170,7 +161,7 @@ ggplot(permits_ci, aes(Gear, Value)) +
 Some geoms can do even more than just show us our data.
 ggplot2 also helps us do some quick-and-dirty modeling:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev)) + 
   geom_point() +
   geom_smooth()
@@ -178,13 +169,13 @@ ggplot(permits, aes(Value, StdDev)) +
 
 Notice the mesage in red text
 
-> `geom_smooth()` using method = 'loess'
+> `geom_smooth() using method = 'loess'`
 
 geom_smooth defaulted here to using a LOESS smoother.
 But `geom_smooth()` is pretty configurable.
 Here we set the method to `lm` instead of the default `loess`:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev)) + 
   geom_point() +
   geom_smooth(method = "lm")
@@ -259,14 +250,14 @@ We'll use scales in ggplot2 very often!
 
 For example, how do we override the default colors ggplot2 uses here?
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point()
 ```
 
 **Tip:** Most scales follow the format `scale_{aesthetic}_{method} where aesthetic are our aesthetic mappings such as color, fill, shape and method is how the colors, fill colors, and shapes are chosen.
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() + 
     scale_color_manual(values = c("red", "orange", "yellow", "green", "blue", "purple", "violet")) # ROYGBIV
@@ -275,7 +266,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
 
 I'm sure that was a ton of fun to type out but we can make things easier on ourselves:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() + 
   scale_color_hue(h = c(270, 360)) # blue to red
@@ -284,7 +275,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
 Above we were using scales to scale the `color` aesthetic.
 We can also use scales to rescale our data.
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() + 
   scale_x_log10()
@@ -294,10 +285,8 @@ Scales can also be used to change our axes.
 For example, we can override the labels:
 
 ```{r}
-
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point()
-
 
 permits %>%
   group_by(Gear) %>% 
@@ -325,7 +314,7 @@ http://www.latimes.com/local/lanow/la-me-g-california-drought-map-htmlstory.html
 I use small multiples all the time when I have a variable like a site or year and I want to quickly compare across years. 
 Let's create a graphical comparison of the permit prices in Cook Inlet over time:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits_ci, aes(Year, Value)) +
   geom_point() +
   geom_line() +
@@ -334,7 +323,7 @@ ggplot(permits_ci, aes(Year, Value)) +
 
 `facet_wrap()` chose a layout for us but, in this case, it aids comparison if we stack eachpanel on top of one another:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits_ci, aes(Year, Value)) +
   geom_point() +
   geom_line() +
@@ -354,7 +343,7 @@ ggplot(permits, aes(Year, Value, group = Region)) +
 Note that I also added `group = Region` to the `aes()` call, which tells `geom_line()` to draw one line per Region instead.
 Allowing the Y scales to differ across panels makes things much easier to see:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Year, Value)) +
   geom_line(aes(group = Region)) +
   facet_wrap(~ Gear, scales = "free_y")
@@ -367,18 +356,19 @@ ggplot2 offers us a very highly level of customizability in, what I think, is a 
 ggplot2 comes with a set of themes which are a quick way to get a different look to your plots.
 Let's use another theme than the default:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() +
   theme_classic()
 ```
 
-**Challenge:** Find another theme and use it instead
+**Challenge:** Find another theme and use it instead.
+Hint: Built-in themes are functions that start with `theme_`.
 
 The legend in ggplot2 is a thematic element.
 Let's change the way the legend displays:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) + 
   geom_point() +
   theme_classic() +
@@ -390,7 +380,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
 
 Let's adjust our axis labels and title:
 
-```{r}
+```{r, warning=FALSE}
 ggplot(permits, aes(Value, StdDev, color = Gear)) +
   geom_point() +
   theme_classic() +
@@ -407,7 +397,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
 In this case, we've put together a theme by adding it to our plot code with a `+` symbol.
 It turns out that we can save our theme to a variable and add it to any plot we want:
 
-```{r}
+```{r, warning=FALSE}
 my_theme <- theme_bw() +
   theme(legend.title = element_blank(),
         panel.grid.major = element_line(size = 1, linetype = 4),
@@ -427,14 +417,14 @@ More themes are available in a user-contributed package called [ggthemes]( https
 Let's save that great plot we just made.
 Saving plots in ggplot is done with the `ggsave()` function:
 
-```{r}
+```{r, eval=FALSE}
 ggsave("permit_stddev_vs_value.png")
 ```
 
 `ggsave` automatically chooses the format based on your file extension and guesses a default image size.
 We can customize the size with the `width` and `height` arguments:
 
-```{r}
+```{r, eval=FALSE}
 ggsave("permit_stddev_vs_value.png", width = 6, height = 6)
 ```
 
@@ -452,8 +442,10 @@ You can remedy this in a few ways:
 Often times, we outgrow the small multiples (facet) paradigm.
 For example, we might want a line plot and a box plot to appear in the same graphic.
 
-```{r}
-library(gridExtra)
+```{r, warning=FALSE}
+suppressPackageStartupMessages({
+  library(gridExtra)
+})
 
 p1 <- ggplot(permits_se_seine, aes(Year, Value)) +
   geom_point() + 
@@ -468,7 +460,9 @@ grid.arrange(p1, p2)
 
 
 ```{r}
-library(cowplot)
+suppressPackageStartupMessages({
+  library(cowplot)
+})
 
 plot_grid(p1, p2, align = "hv", ncol = 1)
 ```
