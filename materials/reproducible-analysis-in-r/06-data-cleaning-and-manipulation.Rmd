@@ -4,8 +4,6 @@ time_slot: 1.5 hours
 
 # Data Cleaning and Manipulation
 
-Instructor: Bryce Mecum
-
 ## Learning Objectives
 
 In this lesson, you will learn:
