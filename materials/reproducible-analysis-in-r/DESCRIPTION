@@ -5,6 +5,8 @@ Version: 0.0.1
 Imports: 
     bookdown,
     cowplot,
+    dataone,
+    datapack,
     dplyr,
     DT,
     ggplot2,
@@ -13,5 +15,6 @@ Imports:
     kableExtra,
     knitr,
     leaflet,
-    readxl
+    readxl,
+    redland
 Remotes: rstudio/bookdown
