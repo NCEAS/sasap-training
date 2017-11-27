@@ -4,16 +4,132 @@ time_slot: 1 hour
 
 # Hands On: Clean and Integrate Datasets
 
-Instructor: Bryce Mecum (+ Matt Jones)
-
 ## Learning Objectives
 
 In this lesson, you will learn:
 
-- How to conduct a reproducible analysis from start to finish
-
+- How to clean and integrate datasets using dplyr and tidyr
 
 ## Outline
 
-[These are mainly notes for Bryce and will be turned into a proper lesson later]
+In this one hour block, you will load two datasets into R,
 
+- [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47)
+- [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e)
+
+and then clean, and integrate them together to answer a research question:
+
+> Are Sockeye salmon escapement goals being met in recent years in Bristol Bay?
+
+To do this, you will have to use what you've just learned in the previous lesson on `dplyr` and `tidyr`.
+
+```{r}
+# https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47
+# Search "OceanAK"
+esc <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", stringsAsFactors = FALSE)
+
+# https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e
+# Search "escapement goals", choose 2007-2015 dataset
+goals <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.1", stringsAsFactors = FALSE)
+```
+
+## High-level steps
+
+Note: This need not be the exaxct order your code is written in.
+
+1. Load our two datasets
+  1. Load the escapement goals CSV into R as a `data.frame`
+  2. Load the escapement counts CSV into R as a `data.frame`
+2. Clean the two datasets
+  1. Clean the escapement goals dataset
+    1. Filter to just the Bristol Bay region and the Sockeye salmon species
+    2. Check whether the column types are wrong and fix any issues (Hint: One column has the wrong type)
+  2. Clean the escapement counts dataset
+    1. Filter to just the Bristol Bay region and the Sockeye salmon species
+    2. Filter to just stocks we have goals for
+    3. Create new columns for the year, month, and day so we can calculate total escapements by year and stock
+    4. Calculate annual total escapements for each stock
+3. Integrate
+  - Join the escapement goal lower and upper bounds onto the annual total escapement counts (Hint: We don't need all the columns)
+4. Analyze
+  - Make a table listing annual total escapements and whether they were in the escapement goal range or not
+  - Calculate the proportion of years, for each stock, total escapement was within the escapement goal range
+
+Make this
+
+```
+        System   Lower    Upper
+ Kvichak River 2000000 10000000
+  Naknek River  800000  2000000
+  Egegik River  800000  2000000
+ Ugashik River  500000  1400000
+    Wood River  700000  1800000
+ Igushik River  150000   400000
+Nushagak River  260000   760000
+Nushagak River  370000   900000
+  Togiak River  120000   270000
+```
+
+and this
+
+```
+     Location  Year Escapement
+ Egegik River  2012    1233900
+ Egegik River  2013    1113630
+ Egegik River  2014    1382466
+ Egegik River  2015    2160792
+ Egegik River  2016    1837260
+Igushik River  2012     193326
+Igushik River  2013     387744
+Igushik River  2014     340590
+Igushik River  2015     651172
+Igushik River  2016     469230
+```
+
+and make this
+
+```
+     Location  Year Escapement  Lower   Upper is_in_range
+ Egegik River  2012    1233900 800000 2000000        TRUE
+ Egegik River  2013    1113630 800000 2000000        TRUE
+ Egegik River  2014    1382466 800000 2000000        TRUE
+ Egegik River  2015    2160792 800000 2000000       FALSE
+ Egegik River  2016    1837260 800000 2000000        TRUE
+Igushik River  2012     193326 150000  400000        TRUE
+Igushik River  2013     387744 150000  400000        TRUE
+Igushik River  2014     340590 150000  400000        TRUE
+Igushik River  2015     651172 150000  400000       FALSE
+Igushik River  2016     469230 150000  400000       FALSE
+```
+
+## Full solution
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(DT) # Just for display purposes
+```
+
+```{r}
+bb_sockeye_goals <- goals %>% 
+  filter(Region == "Bristol Bay", Species == "Sockeye") %>% 
+  mutate(Lower = as.integer(Lower)) %>% 
+  select(System, Lower, Upper) %>% 
+  drop_na()
+
+datatable(bb_sockeye_goals)
+```
+
+```{r}
+bb_sockeye_escapements <- esc %>% 
+  filter(SASAP.Region == "Bristol Bay", 
+         Species == "Sockeye",
+         Location %in% bb_sockeye_goals$System) %>%
+  separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
+  group_by(Location, Year) %>% 
+  summarize(Escapement = sum(DailyCount)) %>% 
+  left_join(bb_sockeye_goals %>% select(System, Lower, Upper), by = c("Location" = "System")) %>% 
+  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper)
+
+datatable(bb_sockeye_escapements)
+```
