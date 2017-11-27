@@ -60,9 +60,9 @@ transformation, integration, analysis, and visualization.
 knitr::include_graphics("images/workflow.png")
 ```
 
-Workflows can range in detail from simple flowcharts such as \@ref(fig:worflow) 
-to fully executable scripts. R scripts and python scripts are a textual forms 
-of a workflow, and when researchers save specific versions of the scripts and 
+Workflows can range in detail from simple flowcharts (\@ref(fig:workflow))
+to fully executable scripts. R scripts and python scripts are a textual form 
+of a workflow, and when researchers publish specific versions of the scripts and 
 data used in an analysis, it becomes far easier to repeat their computations and 
 understand the provenance of their conclusions.
 
