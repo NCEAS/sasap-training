@@ -64,16 +64,3 @@ Finally, check to make sure everything looks correct by entering this line, whic
 ```
 git config --global --list
 ```
-
-## File management?
-
-[Draft outline (Bryce jotting things down for others to see) (not complete):]
-
-- Get familiar RStudio
-  - Using R Projects so you can be happy
-  - How to structure your analysis in a folder. Show examples.
-  
-  The idea is that we don't want to teach just "how to use package X", we're teaching how to use packages together in an analysis.
-  We'll need to talk about conventions for where stuff (R scripts, raw data, processed data) should go.
-  
-
