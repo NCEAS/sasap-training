@@ -38,24 +38,24 @@ goals <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.
 Note: This need not be the exaxct order your code is written in.
 
 1. Load our two datasets
-  1. Load the escapement goals CSV into R as a `data.frame`
-  2. Load the escapement counts CSV into R as a `data.frame`
+    - Load the escapement goals CSV into R as a `data.frame`
+    - Load the escapement counts CSV into R as a `data.frame`
 2. Clean the two datasets
-  1. Clean the escapement goals dataset
-    1. Filter to just the Bristol Bay region and the Sockeye salmon species
-    2. Check whether the column types are wrong and fix any issues (Hint: One column has the wrong type)
-  2. Clean the escapement counts dataset
-    1. Filter to just the Bristol Bay region and the Sockeye salmon species
-    2. Filter to just stocks we have goals for
-    3. Create new columns for the year, month, and day so we can calculate total escapements by year and stock
-    4. Calculate annual total escapements for each stock
+    1. Clean the escapement goals dataset
+        1. Filter to just the Bristol Bay region and the Sockeye salmon species
+        2. Check whether the column types are wrong and fix any issues (Hint: One column has the wrong type)
+    2. Clean the escapement counts dataset
+        1. Filter to just the Bristol Bay region and the Sockeye salmon species
+        2. Filter to just stocks we have goals for
+        3. Create new columns for the year, month, and day so we can calculate total escapements by year and stock
+      4. Calculate annual total escapements for each stock
 3. Integrate
-  - Join the escapement goal lower and upper bounds onto the annual total escapement counts (Hint: We don't need all the columns)
+    - Join the escapement goal lower and upper bounds onto the annual total escapement counts (Hint: We don't need all the columns)
 4. Analyze
-  - Make a table listing annual total escapements and whether they were in the escapement goal range or not
-  - Calculate the proportion of years, for each stock, total escapement was within the escapement goal range
+    - Make a table listing annual total escapements and whether they were in the escapement goal range or not
+    - Calculate the proportion of years, for each stock, total escapement was within the escapement goal range
 
-Make this
+Make this:
 
 ```
         System   Lower    Upper
@@ -70,7 +70,7 @@ Nushagak River  370000   900000
   Togiak River  120000   270000
 ```
 
-and this
+and this:
 
 ```
      Location  Year Escapement
@@ -86,7 +86,7 @@ Igushik River  2015     651172
 Igushik River  2016     469230
 ```
 
-and make this
+and make them into this:
 
 ```
      Location  Year Escapement  Lower   Upper is_in_range
@@ -105,9 +105,11 @@ Igushik River  2016     469230 150000  400000       FALSE
 ## Full solution
 
 ```{r}
-library(dplyr)
-library(tidyr)
-library(DT) # Just for display purposes
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(tidyr)
+  library(DT) # Just for display purposes
+})
 ```
 
 ```{r}
