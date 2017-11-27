@@ -467,3 +467,6 @@ suppressPackageStartupMessages({
 plot_grid(p1, p2, align = "hv", ncol = 1)
 ```
 
+## Bonus 2:
+
+- https://ggsci.net
