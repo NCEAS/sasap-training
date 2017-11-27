@@ -4,8 +4,6 @@ time_slot: 1 hour
 
 # Publishing Analyses to the Web
 
-Instructor: Bryce Mecum
-
 ## Learning Objectives
 
 In this lesson, you will learn:
@@ -14,24 +12,50 @@ In this lesson, you will learn:
 
 ## Outline
 
-[These are mainly notes for Bryce which will be removed at a later date]
+Sharing your work with others in engaging ways is an important part of the scientific process.
+So far in this course, we've introduced a small set of powerful tools for doing open science:
 
-Main goal: Participants will publish their hands-on activity as to GH Pages
+- R and its many packages
+- RStudio
+- git
+- GiHub
+- RMarkdown
 
-Steps:
+RMarkdown, in particular, is amazingly powerful for creating scientific reports but, so far, we haven't tapped its full potential for sharing our work with others.
 
-- [Pre] Participants will already have a repo on GitHub with, at least, an RMarkdown document in it
-- Get the students to render their Rmd to HTML
-- Preview locally
-- Commit the change and push to GitHub
-- Turn on GH Pages for the master branch on GitHub
-- View the resulting URL
-- Do another change
-- Commit and push
-- See result
+In this lesson, we're going to take an existing GitHub repository and turn it into a beautiful and easy to read web page using the tools listed above.
 
-Idealy, the RMd would have:
+### Minimal example
 
-- Some prose
-- One or more plots
-- One map w/ Leaflet
+- Locate the local copy of the GitHub repository you created yesteray in the git/GitHub lesson
+
+    We're going to modify this repository by turning on GitHub Pages and knitting and commiting RMarkdown files rendered as HTML
+  
+- Add a new file at the top level called `index.Rmd`
+- Open `index.Rmd` (if it isn't already open)
+- Press Knit
+
+    Observe the renderd output
+    Notice the new file in the same directory `index.html`.
+    This is our RMarkdown file rendered as HTML (a web page)
+- Commit your changes (to both index.Rmd and index.html)
+- Open your web browser to the GitHub.com page for your repository
+- Go to Settings > GitHub Pages and turn on GitHub Pages for the `master` branch
+- Go to https://amoeba.github.io/rmd-test/ (Note the trailing `/`)
+    Observe the awesome rendered output
+    
+Observing changes...
+
+- Go back to our `index.Rmd`
+- Delete all the content, except the YAML frontmatter
+- Type "Hello world"
+- Commit, push
+- Go back to https://amoeba.github.io/rmd-test/
+
+### Making it good
+
+TODO
+
+- Add some data
+- Add a ggplot
+- Add a leaflet map
