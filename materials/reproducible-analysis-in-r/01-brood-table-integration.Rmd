@@ -27,7 +27,7 @@ Sometimes other columns are included, such as return years in this example (agai
 
 ![](images/CoghillHeader.png)
 
-If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented make integrating multiple brood tables a big challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape a set brood tables from around the state of Alaska. These datasets were gathered as part of the SASAP research from a number of different ADFG offices. We will start with the raw (unmodified) data for each stock, run each stock’s brood table through a separate R script to normalize the format, integrate all of the brood tables together, and finally do an exploratory analysis across stocks.
+If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented make integrating multiple brood tables a big challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape a set of brood tables from around the state of Alaska. These datasets were gathered as part of the [SASAP working group](https://alaskasalmonandpeople.org/) research from a number of different ADFG offices. We will start with the raw (unmodified) data for each stock, run each stock’s brood table through a separate R script to normalize the format, integrate all of the brood tables together, and finally do an exploratory analysis across stocks.
 
 ## Datasets
 
@@ -311,7 +311,7 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 
 ### Relationship between 1.2s and 1.3s by Region
 
-It is possible to add a tendency line to the plot. In this case we used a linear model, in this case we used *geom_smoth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
+It is possible to add a trend line to the plot. In this case we used a linear model, and we used *geom_smoth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
 The $R^2$ value for the correlation is shown in each plot.
 
 ```{r, warning=FALSE}
@@ -334,8 +334,8 @@ Note that the scales are not fixed so comparing slopes across panels does not ma
 
 ### Relationship between 1.2s and 1.3s by Region
 
-This section makes the same plots than before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes region by region, fit a linear model forcing the intercept to be 0, and then create the plot.
-*Because this is very repetitive, we only select 3 Regions to be ploted*.
+This section makes the same plots as before. Now instead of making them all in the same image using the option *facet_wrap*, we define a loop that goes region by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+*Because this is very repetitive, we only select 3 Regions to be plotted*.
 
 We use $R^2$ obtained with the function *lm* to change the color from blue to red, if $>0.5$.  
 
