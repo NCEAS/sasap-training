@@ -12,7 +12,6 @@ In this lesson, you will learn:
 
 - How to check to make sure your RStudio environment is set up properly for analysis
 - How to set up git
-- Best practices for file management
 
 
 
