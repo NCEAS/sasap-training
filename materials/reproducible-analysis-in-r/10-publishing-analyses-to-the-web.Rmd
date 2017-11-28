@@ -25,7 +25,7 @@ RMarkdown, in particular, is amazingly powerful for creating scientific reports 
 
 In this lesson, we're going to take an existing GitHub repository and turn it into a beautiful and easy to read web page using the tools listed above.
 
-### A Minimal Example
+## A Minimal Example
 
 - Create a new repository on GitHub
 - Initialize the repository on GitHub without any files in it
@@ -63,7 +63,7 @@ Now that we've successfully published a web page from an RMarkdown document, let
 - Commit, push
 - Go back to https://amoeba.github.io/rmd-test/
 
-### A Less Minimal Example
+## A Less Minimal Example
 
 Now that we've seen how to create a web page from RMarkdown, let's create a website that uses some of the cool functionality available to us.
 We'll use the same git repository and RStudio Project as above, but we'll be adding some files to the repository and modifying `index.Rmd`.

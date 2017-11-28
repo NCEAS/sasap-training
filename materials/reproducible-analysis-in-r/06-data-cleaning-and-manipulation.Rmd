@@ -114,7 +114,7 @@ In this lesson we're going to walk through the functions you'll most commonly us
     - `extract()`
     - `separate()`
 
-## Walkthrough
+## Setup
 
 Let's start going over the most common functions you'll use from the `dplyr` package.
 To demonstrate, we'll be working with a tidied up version of a dataset from ADF&G containing commercial catch data from 1878-1997.
@@ -149,7 +149,7 @@ Note: I copied the URL from the Download button on https://knb.ecoinformatics.or
 This dataset is relatively clean and easy to interpret as-is.
 But while it may be clean, it's in a shape that makes it hard to use for some types of analyses so we'll want to fix that first.
 
-### Selecting/removing columns: `select()`
+## Selecting/removing columns: `select()`
 
 The first issue is the extra columns `All` and `notesRegCode`.
 Let's remove those columns:
@@ -177,7 +177,7 @@ catch <- catch %>%
   select(-All, -notesRegCode)
 ```
 
-### Changing shape: `gather()` and `spread()`
+## Changing shape: `gather()` and `spread()`
 
 The next issue is that the data are in a wide format and, we want the data in a tall format instead.
 `gather()` from the `tidyr` package helps us do just this conversion:
@@ -202,7 +202,7 @@ catch %>%
   head()
 ```
 
-### Renaming columns with `rename()`
+## Renaming columns with `rename()`
 
 If you scan through the data, you may notice the values in the `catch` column are very small (these are supposed to be annual catches).
 If we look at [the metadata](https://knb.ecoinformatics.org/#view/df35b.304.2) we can see that the `catch` column is in thousands of fish so let's convert it before moving on.
@@ -216,7 +216,7 @@ catch <- catch %>%
 head(catch)
 ```
 
-### Adding columns: `mutate()`
+## Adding columns: `mutate()`
 
 Now let's create a new column called `catch` with units of fish (instead of thousands of fish):
 
@@ -298,7 +298,7 @@ head(catch)
 
 We're now ready to start analyzing the data.
 
-### `group_by` and `summarise`
+## `group_by` and `summarise`
 
 As I outlined in the Introduction, `dplyr` lets us employ the Split-Apply-Combine strategy and this is exemplified through the use of the `group_by()` and `summarise()` functions:
 
@@ -320,7 +320,7 @@ catch %>%
   summarize(n = n())
 ```
 
-### filter()
+## Filtering rows: `filter()`
 
 `filter()` is the verb we use to filter our `data.frame` to rows matching some condition.
 It's similar to `subset()` from base R.
@@ -336,7 +336,7 @@ catch %>%
 - **Exercise:** Filter to just catches of over one million fish.
 - **Exercise:** Filter to just SSE Chinook
 
-### Sorting your data: arrange()
+## Sorting your data: `arrange()`
 
 `arrange()` is how we sort the rows of a `data.frame`.
 In my experience, I use `arrange()` in two common cases:
@@ -363,7 +363,7 @@ catch %>%
   arrange(desc(mean_catch))
 ```
 
-### Joining in dplyr
+## Joins in dplyr
 
 So now that we're awesome at manipulating single `data.frame`s, where do we go from here?
 Manipulating **multiple** `data.frame`s.
@@ -390,7 +390,7 @@ Note: `left_join` and the other join functions can often guess the shared column
 Now our catches have the auxiliary information from the region definitions file alongside them.
 Note: `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti, not just left_join.
 
-### separate() and unite()
+## separate() and unite()
 
 `separate()` and its complement, `unite()` allow us to easily split a single column into numerous (or numerous into a single).
 This can come in really handle when we have a date column and we want to group by year or month.
