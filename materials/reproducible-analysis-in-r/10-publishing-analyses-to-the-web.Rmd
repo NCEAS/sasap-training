@@ -10,7 +10,7 @@ In this lesson, you will learn:
 
 - How to use git, GitHub (+Pages), and (R)Markdown to publish an analysis to the web
 
-## Outline
+## Introduction
 
 Sharing your work with others in engaging ways is an important part of the scientific process.
 So far in this course, we've introduced a small set of powerful tools for doing open science:

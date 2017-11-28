@@ -390,7 +390,7 @@ Note: `left_join` and the other join functions can often guess the shared column
 Now our catches have the auxiliary information from the region definitions file alongside them.
 Note: `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti, not just left_join.
 
-## separate() and unite()
+## `separate()` and `unite()`
 
 `separate()` and its complement, `unite()` allow us to easily split a single column into numerous (or numerous into a single).
 This can come in really handle when we have a date column and we want to group by year or month.
