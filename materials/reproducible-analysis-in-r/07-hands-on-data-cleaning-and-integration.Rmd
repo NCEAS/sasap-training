@@ -31,6 +31,11 @@ I suggest two strategies:
 
 ## High-level steps
 
+The goal here is for you to have to come up with the functions to do the analysis with minimal guidance.
+This is supposed to be hard.
+Below is a set of high-level steps you can follow to answer our research question.
+After the list is a schematic of the steps in table form which I expect will be useful in guiding your code.
+
 Note: This need not be the exaxct order your code is written in.
 
 1. Load our two datasets
