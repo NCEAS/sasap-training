@@ -330,10 +330,11 @@ Let's go back to our original `data.frame` and do some `filter()`ing:
 ```{r}
 catch %>% 
   filter(Region == "SSE") %>% 
-  head() # Show just the first 6 rows
+  head() # head() Show just the first n (default:  6) rows
 ```
 
 - **Exercise:** Filter to just catches of over one million fish.
+- **Exercise:** Filter to just SSE Chinook
 
 ### Sorting your data: arrange()
 
