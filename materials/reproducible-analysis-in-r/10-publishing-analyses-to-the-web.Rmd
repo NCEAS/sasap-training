@@ -70,5 +70,6 @@ Observing changes...
 TODO
 
 - Add some data
+- Add DT::datatable
 - Add a ggplot
 - Add a leaflet map
