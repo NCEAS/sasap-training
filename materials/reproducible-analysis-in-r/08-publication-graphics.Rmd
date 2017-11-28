@@ -470,6 +470,18 @@ suppressPackageStartupMessages({
 plot_grid(p1, p2, align = "hv", ncol = 1)
 ```
 
-## Bonus 2:
+## Bonus: Round two
 
-- https://ggsci.net
+If we have time, we'll walk through some ways we can augment our ggplot2 knowledge with packages that build on top of ggplot.
+
+- [ggplot extensions](http://www.ggplot2-exts.org/gallery/)
+- [ggmap](https://github.com/dkahle/ggmap)
+    > ggmap makes it easy to retrieve raster map tiles from popular online mapping services like Google Maps, OpenStreetMap, Stamen Maps, and plot them using the ggplot2 framework
+    
+- [ggsci](https://ggsci.net)
+
+    > ggsci offers a collection of ggplot2 color palettes inspired by scientific journals, data visualization libraries, science fiction movies, and TV shows.
+
+- [ggbeeswarm](https://github.com/eclarke/ggbeeswarm)
+- [waffle](https://github.com/hrbrmstr/waffle)
+
