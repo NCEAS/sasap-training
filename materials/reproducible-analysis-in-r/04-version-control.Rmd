@@ -15,7 +15,6 @@ In this lesson, you will learn:
 - How to use __GitHub__ to collaborate with others
 - How to structure your commits so your changes are clear to others
 - How to write effective commit messages
-- How to tag a release of your work for later reference
 
 ## The problem with filenames
 
