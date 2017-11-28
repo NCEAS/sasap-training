@@ -76,7 +76,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
 Aside: How did I know to write `color = class`?
 `aes` will pass its arguments on to any geoms you use and we can find out what aesthetic mappings geom_point takes with `?geom_point` (see section "Aesthetics")
 
-Challenge: Find another aesthetic mapping `geom_point` can take and add add it to the plot.
+- **Exercise:** Find another aesthetic mapping `geom_point` can take and add add it to the plot.
 
 What if we just wanted the color of the points to be blue?
 Maybe we'd do this:
@@ -98,7 +98,7 @@ ggplot(permits, aes(Value, StdDev)) +
   geom_point(color = "blue")
 ```
 
-**Challenge:** Using the aesthetic you discovered and tried above, **set** another aesthetic onto our points.
+- **Exercise:** Using the aesthetic you discovered and tried above, **set** another aesthetic onto our points.
 
 Sizing each point by the range of the permit values is only a small change to the code:
 
@@ -130,7 +130,7 @@ ggplot(permits, aes(Value)) +
   geom_histogram(binwidth = 1e4)
 ```
 
-**Challenge:** Find an aesthetic `geom_histogram` supports and try it out.
+- **Exercise:** Find an aesthetic `geom_histogram` supports and try it out.
 
 I'm a big fan of box plots and ggplot2 can plot these too:
 
@@ -362,7 +362,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
   theme_classic()
 ```
 
-**Challenge:** Find another theme and use it instead.
+- **Exercise:** Find another theme and use it instead.
 Hint: Built-in themes are functions that start with `theme_`.
 
 The legend in ggplot2 is a thematic element.
@@ -408,7 +408,10 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
   my_theme
 ```
 
-**Challenge:** Look at the help for ?theme and try changing something else about the above plot.
+```{r}
+```
+
+- **Exercise:** Look at the help for ?theme and try changing something else about the above plot.
 
 More themes are available in a user-contributed package called [ggthemes]( https://github.com/jrnold/ggthemes).
 
