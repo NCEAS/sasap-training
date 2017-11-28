@@ -16,10 +16,10 @@ canonifyURLs = true
     name = "Events"
     url = "/events"
     weight = 2
-# [[menu.main]]
-#     name = "Materials"
-#     url = "/materials"
-#     weight = 5
+[[menu.main]]
+    name = "Materials"
+    url = "/materials"
+    weight = 5
 
 
 [params]
