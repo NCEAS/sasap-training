@@ -50,7 +50,7 @@ Note: This need not be the exaxct order your code is written in.
         - Visit https://knb.ecoinformatics.org/#data and search for 'oceanak'
         - Click the following dataset:
         
-        >  Andrew Munro and Eric Volk. 2017. **Summary of Pacific Salmon Escapement Goals in Alaska with a Review of Escapements from 2007 to 2015**. Knowledge Network for Biocomplexity.
+        >  Alaska Department of Fish and Game. 2017. **Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017**. Knowledge Network for Biocomplexity.
                 
         - Right-click and copy address for the file `ADFG_firstAttempt_reformatted.csv`
     
