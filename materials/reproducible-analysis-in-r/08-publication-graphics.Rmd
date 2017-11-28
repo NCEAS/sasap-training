@@ -38,7 +38,7 @@ I use ggplot2 for most everything else.
 
 ggplot2 excels at making complicated plots easy and easy plots simple enough.
 
-## Setup
+### Setup
 
 To demonstrate ggplot2, we're going to work with two example datasets
 
