@@ -18,9 +18,9 @@ In this lesson, you will learn:
 The data we get to work with are rarely, if ever, in the format we need to do our analyses.
 It's often the case that one package requires data in one format, while another package requires the data to be in another format.
 To be efficient analysts, we should have good tools for reformatting data for our needs so we can do our actual work like making plots and fitting models.
-The `dplyr` and `tidyr` R packages provide a fairly complete and extremely powerful set of functions for us to do this formatting quickly and learning these tools well will greatly increase your efficiency as an analyst.
+The `dplyr` and `tidyr` R packages provide a fairly complete and extremely powerful set of functions for us to do this reformatting quickly and learning these tools well will greatly increase your efficiency as an analyst.
 
-Analyses take many shapes, but they often conform to what is known as the Split-Apply-Combine strategy
+Analyses take many shapes, but they often conform to what is known as the Split-Apply-Combine strategy.
 This strategy follows a usual set of steps:
 
 - **Split**: Split the data into logical groups (e.g., area, stock, year)
@@ -67,10 +67,10 @@ Let's look at an example table that is in what we will call "wide" format:
 | ...    | ...  | ...  | ... | ...  |
 | dredge | 100  | 118  | ... | 112  |
 
-You may be very familiar with data in the above format, where values of the variable being observed are spread out across year columns.
-Another way of thinking about this is that there is more than one measuremnt per row.
+You are probably quite familiar with data in the above format, where values of the variable being observed are spread out across columns (Here: columns for each year).
+Another way of describing this is that there is more than one measurement per row.
 This wide format works well for data entry and sometimes works well for analysis but we quickly outgrow it when using R.
-For example, how would you fit a model with Year as a predictor variable?
+For example, how would you fit a model with year as a predictor variable?
 In an ideal world, we'd be able to just run:
 
 ```{r eval = FALSE}
@@ -78,10 +78,16 @@ lm(length ~ year)
 ```
 
 But this won't work on our wide data because `lm` needs `length` and `year` to be columns in our table.
+
 Or how would we make a separate plot for each year?
-We could call `plot` one time for each year but this is tedious and hard to maintain as we add more years of data to our dataset.
+We could call `plot` one time for each year but this is tedious if we have many years of data and hard to maintain as we add more years of data to our dataset.
 
 The `tidyr` package allows us to quickly switch between wide format and what is called tall format using the `gather` function:
+
+```{r, eval=FALSE}
+site_data %>% 
+  gather(year, length, -site)
+```
 
 | site   | year | length |
 |--------|------|-------:|
@@ -100,7 +106,7 @@ In this lesson we're going to walk through the functions you'll most commonly us
     - `select()`
     - `filter()`
     - `arrange()`
-    - `*_join()` (at least one, perhaps `left_join()`)
+    - `left_join()`
     - `rename()`
 - `tidyr`
     - `gather()`
@@ -132,7 +138,7 @@ suppressPackageStartupMessages({
 
 Then let's read in the data and take a look at it:
 
-```{r}
+```{r, cache=TRUE}
 catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
                   stringsAsFactors = FALSE)
 head(catch)
@@ -155,8 +161,8 @@ catch %>%
 ```
 
 Much beter!
-In the above example, we pass unquoted column names preceded by `-` signs to specify which columns we dont want.
-`select()` also allows us to specify which columns we do want:
+In the above example, we pass unquoted column names preceded by minus (-) signs to specify which columns we dont want.
+`select()` also allows us to specify which columns we **do** want:
 
 ```{r}
 catch %>% 
@@ -187,7 +193,7 @@ The syntax we used above for `gather()` might be a bit confusing so let's look a
 
 ![annotated gather code](images/gather_annotated.png)
 
-The first two arguments to `gather()` are the names of new columns that will be created and the other arguments with `-` symbols in front of them are columns to ignore in this process.
+The first two arguments to `gather()` are the names of new columns that will be created and the other arguments with `-` symbols in front of them are columns to keep around in this process.
 The opposite of `gather()`, `spread()`, works in a similar declarative fashion:
 
 ```{r}
@@ -199,13 +205,15 @@ catch %>%
 ### Renaming columns with `rename()`
 
 If you scan through the data, you may notice the values in the `catch` column are very small (these are supposed to be annual catches).
-If we look at [the metadata](https://knb.ecoinformatics.org/#view/df35b.304.2) we can see that the `catch` column is in thousands of fish.
+If we look at [the metadata](https://knb.ecoinformatics.org/#view/df35b.304.2) we can see that the `catch` column is in thousands of fish so let's convert it before moving on.
 
 Let's first rename the `catch` column to be called `catch_thousands`:
 
 ```{r}
 catch <- catch %>% 
   rename(catch_thousands = catch)
+
+head(catch)
 ```
 
 ### Adding columns: `mutate()`
@@ -276,7 +284,9 @@ summary(catch)
 Let's remove the `catch_thousands` column for now since we don't need it:
 
 ```{r}
-catch <- catch %>% select(-catch_thousands)
+catch <- catch %>% 
+  select(-catch_thousands)
+
 head(catch)
 ```
 
@@ -293,9 +303,11 @@ catch %>%
   summarise(mean(catch))
 ```
 
-**Exercise:** Find another grouping and statistic to calculate for each group.
+- **Exercise:** Find another grouping and statistic to calculate for each group.
+- **Exercise:** Find out if you can group by multiple variables.
 
-Another common use of `group_by()` followed by `summarize()` is to count the number of rows in each group:
+Another common use of `group_by()` followed by `summarize()` is to count the number of rows in each group.
+We have to use a special function from `dplyr`, `n()`.
 
 ```{r}
 catch %>% 
@@ -306,7 +318,7 @@ catch %>%
 ### filter()
 
 `filter()` is the verb we use to filter our `data.frame` to rows matching some condition.
-It's similar to `subset()`.
+It's similar to `subset()` from base R.
 
 Let's go back to our original `data.frame` and do some `filter()`ing:
 
@@ -316,7 +328,7 @@ catch %>%
   head() # Show just the first 6 rows
 ```
 
-**Exercise:** Filter to just catches of over one million fish.
+- **Exercise:** Filter to just catches of over one million fish.
 
 ### Sorting your data: arrange()
 
@@ -350,14 +362,14 @@ catch %>%
 So now that we're awesome at manipulating single `data.frame`s, where do we go from here?
 Manipulating **multiple** `data.frame`s.
 
-If you've ever used a database, you may have heard of or used what's called a "join", which allows us to to intelligently merge two tables together into a single table.
-We've already covered joins in Data Modeling & Tidy Data so let's see how it's done with `dplyr`.
+If you've ever used a database, you may have heard of or used what's called a "join", which allows us to to intelligently merge two tables together into a single table based upon a shared column between the two.
+We've already covered joins in [Data Modeling & Tidy Data] so let's see how it's done with `dplyr`.
 
 The dataset we're working with, https://knb.ecoinformatics.org/#view/df35b.304.2, contains a second CSV which has the definition of each `Region` code.
 This is a really common way of storing auxiliary information about our dataset of interest (catch) but, for analylitcal purposes, we often want them in the same `data.frame`.
 Joins let us do that easily:
 
-```{r}
+```{r, cache=TRUE}
 region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
                         stringsAsFactors = FALSE)
 
@@ -390,7 +402,7 @@ dates_df %>%
   separate(date, c("month", "day", "year"), "/")
 ```
 
-**Exercise:** Split the `city` column in the following `data.frame` into `city` and `state_code` columns:
+- **Exercise:** Split the `city` column in the following `data.frame` into `city` and `state_code` columns:
 
 ```{r}
 cities_df <- data.frame(city = c("Juneau AK", 
@@ -401,7 +413,7 @@ cities_df <- data.frame(city = c("Juneau AK",
 # Write your solution here
 ```
 
-`united()` does just the reverse of `separate()`:
+`unite()` does just the reverse of `separate()`:
 
 ```{r}
 dates_df %>% 
@@ -409,7 +421,7 @@ dates_df %>%
   unite(date, month, day, year, sep = "/")
 ```
 
-**Exercise:** Use `united()` on your solution above to combine the `cities_df` back to its original form with just one column, `city`:
+- **Exercise:** Use `unite()` on your solution above to combine the `cities_df` back to its original form with just one column, `city`:
 
 ```{r}
 # Write your solution here
@@ -417,10 +429,10 @@ dates_df %>%
 
 ## Summary
 
-We just ran through the various things we can do with `dplyr` and `tidyr` but if you're wondering how this migth look in a real analysis.
+We just ran through the various things we can do with `dplyr` and `tidyr` but if you're wondering how this might look in a real analysis.
 Let's look at that now:
 
-```{r}
+```{r, catch=TRUE}
 catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
                   stringsAsFactors = FALSE)
 region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
