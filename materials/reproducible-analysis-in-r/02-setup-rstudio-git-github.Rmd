@@ -4,16 +4,12 @@ time_slot: 30 minutes
 
 # RStudio and Git/GitHub Setup
 
-Instructor: Jeanette Clark
-
 ## Learning Objectives
 
 In this lesson, you will learn:
 
 - How to check to make sure your RStudio environment is set up properly for analysis
 - How to set up git
-
-
 
 ## Checking the RStudio environment
 
@@ -33,33 +29,42 @@ Run the following lines to check that all of the packages we need for the traini
 
 ```{r}
 packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "tidyr")
-for (package in packages) { if (!(package %in% installed.packages())) { install.packages(package) } }
-rm(package, packages) #remove variables from workspace
+
+for (package in packages) { 
+  if (!(package %in% installed.packages())) { 
+    install.packages(package) 
+  } 
+}
+
+rm(packages) #remove variables from workspace
 ```
 
 If you haven't installed all of the packages, this will automatically start installing them. If they are installed, it won't do anything.
 
-Next, create a new R Markdown (File -> New File -> R Markdown). If you have never made an R markdown document before, a dialog box will pop up asking if you wish to install the required packages. Click yes.
+Next, create a new R Markdown (File -> New File -> R Markdown). If you have never made an R Markdown document before, a dialog box will pop up asking if you wish to install the required packages. Click yes.
 
 ## Setting up git
 
 If you haven't already, go to [github.com](http://github.com) and create an account. If you haven't downloaded git already, you can download it [here](https://git-scm.com/downloads).
 
-
 Before using git, you need to tell it who you are, also known as setting the global options. The only way to do this is through the command line. Newer versions of RStudio have a nice feature where you can open a terminal window in your RStudio session. Do this by selecting Tools -> Terminal -> New Terminal.
 
 A terminal tab should now be open where your console usually is. To set the global options, type the following into the command prompt, with your actual name, and press enter:
+
 ```
 git config --global user.name "Your Name"
 ```
 
-Next, enter the following line, with the email address you used when you created your account on github.com
+Next, enter the following line, with the email address you used when you created your account on github.com:
+
 ```
 git config --global user.email "yourEmail@emaildomain.com"
 ```
+
 Note that these lines need to be run one at a time.
 
 Finally, check to make sure everything looks correct by entering this line, which will return the options that you have set.
+
 ```
 git config --global --list
 ```
