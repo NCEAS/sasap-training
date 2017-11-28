@@ -4,8 +4,6 @@ time_slot: 1 hour
 
 # Data Documentation and Publishing 
 
-Instructor: Matt Jones
-
 ## Learning Objectives
 
 In this lesson, you will learn:

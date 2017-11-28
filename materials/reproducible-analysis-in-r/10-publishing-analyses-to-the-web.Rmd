@@ -10,7 +10,7 @@ In this lesson, you will learn:
 
 - How to use git, GitHub (+Pages), and (R)Markdown to publish an analysis to the web
 
-## Outline
+## Introduction
 
 Sharing your work with others in engaging ways is an important part of the scientific process.
 So far in this course, we've introduced a small set of powerful tools for doing open science:
@@ -25,14 +25,14 @@ RMarkdown, in particular, is amazingly powerful for creating scientific reports 
 
 In this lesson, we're going to take an existing GitHub repository and turn it into a beautiful and easy to read web page using the tools listed above.
 
-TODO: Add more background/examples here
+## A Minimal Example
 
-### Minimal example
-
-- Locate the local copy of the GitHub repository you created yesteray in the git/GitHub lesson
-
-    We're going to modify this repository by turning on GitHub Pages and knitting and commiting RMarkdown files rendered as HTML
-  
+- Create a new repository on GitHub
+- Initialize the repository on GitHub without any files in it
+- In RStudio,
+    - Create a new Project
+    - When creating, select the option to create from Version Control -> Git
+    - Enter your repository's clone URL in the Repository URL field and fill in the rest of the details
 - Add a new file at the top level called `index.Rmd`
 - Open `index.Rmd` (if it isn't already open)
 - Press Knit
@@ -55,9 +55,7 @@ TODO: Add more background/examples here
 - Go to https://{username}.github.io/{repo_name}/ (Note the trailing `/`)
     Observe the awesome rendered output
     
-   
-    
-Observing changes...
+Now that we've successfully published a web page from an RMarkdown document, let's make a change to our RMarkdown document and follow the steps to actually publish the change on the web:
 
 - Go back to our `index.Rmd`
 - Delete all the content, except the YAML frontmatter
@@ -65,10 +63,93 @@ Observing changes...
 - Commit, push
 - Go back to https://amoeba.github.io/rmd-test/
 
-### Making it good
+## A Less Minimal Example
 
-TODO
+Now that we've seen how to create a web page from RMarkdown, let's create a website that uses some of the cool functionality available to us.
+We'll use the same git repository and RStudio Project as above, but we'll be adding some files to the repository and modifying `index.Rmd`.
 
-- Add some data
-- Add a ggplot
-- Add a leaflet map
+First, let's get some data.
+We'll re-use the salmon escapement data from the ADF&G OceanAK database we used earlier.
+
+- Navigate to https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47 (or visit the KNB and search for 'oceanak') and copy the Download URL for the `ADFG_firstAttempt_reformatted.csv` file
+- Make a folder in the top level of your repository to store the file called `data`
+- Download that file into the `data` folder with the filename `escapement_counts.csv`
+
+    Note that this is different than how we've been downloading data in earlier lessons because we're actually going to commit the data file into git this time.
+
+- Calculate median annual escapement by species using the `dplyr` package
+- Display it in an interactive table with the `datatable` function from the `DT` package
+- Make a bar plot of the median annual escapement by species using the `ggplot2` package
+
+And lastly, let's make an interactive, Google Maps-like map of the escapement sampling locations.
+To do this, we'll use the [`leaflet`](https://rstudio.github.io/leaflet/) package to create an interactive map with markers for all the sampling locations:
+
+First, let's load the packages we'll need:
+
+```{r}
+suppressPackageStartupMessages({
+  library(leaflet)
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+  library(DT)
+})
+```
+
+Then, let's create the `data.frame` we're going to use to plot:
+
+```{r, cache=TRUE}
+download.file("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", 
+              "data/escapement_counts.csv")
+
+esc <- read.csv("data/escapement_counts.csv", 
+                stringsAsFactors = FALSE)
+
+```
+
+Now that we have the data loaded, let's calculate median annual escapement by species:
+
+```{r}
+median_esc <- esc %>% 
+  separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
+  group_by(Species, Year, Location) %>% 
+  summarize(escapement = sum(DailyCount)) %>% 
+  group_by(Species) %>% 
+  summarize(median_escapement = median(escapement))
+```
+
+```{r}
+ggplot(median_esc, aes(Species, median_escapement)) +
+  geom_col() +
+  coord_flip()
+```
+
+Calculate median annual escapement by species using the `dplyr` package
+Let's convert the escapement data into a table of just the unique locations:
+
+```{r}
+locations <- esc %>% 
+  distinct(Location, Latitude, Longitude) %>% 
+  drop_na()
+```
+
+And display it as an interactive table:
+
+```{r}
+datatable(locations)
+```
+
+Then making a leaflet map is only a couple of lines of code:
+
+```{r}
+leaflet(locations) %>% 
+  addTiles() %>% 
+  addMarkers(~ Longitude, ~ Latitude, popup = ~ Location)
+```
+
+
+The `addTiles()` function gets a base layer of tiles from [OpenStreetMap](https://www.openstreetmap.org/) which is an open alternative to Google Maps.
+`addMarkers` use a bit of an odd syntax in that it looks kind of like `ggplot2` code but uses `~` before the column names.
+This is similar to how the `lm` function (and others) work but you'll have to make sure you type the `~` for your map to work.
+
+While we can cleary see there are some serious isues with our data (note the points in Russia), this map hopefully gives you an idea of how powerful RMarkdown can be.

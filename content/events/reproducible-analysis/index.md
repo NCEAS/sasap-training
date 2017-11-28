@@ -156,9 +156,7 @@ In particular, check out:
 |Kari	Fenske	|kari.fenske@noaa.gov|
 |Elizabeth	Figus	|ecfigus@alaska.edu|
 |William 	Gaeuman	|william.gaeuman@alaska.gov|
-|Scott	Gende	|scott_gende@nps.gov|
 |Tania	Lewis	|lupineluna@gmail.com|
-|Kevin 	McNeel	|kevin.mcneel@alaska.gov|
 |Megan	McPhee	|mvmcphee@alaska.edu|
 |Sara	Miller	|Saramiller50@hotmail.com|
 |Todd	Miller	|todd.miller@noaa.gov|

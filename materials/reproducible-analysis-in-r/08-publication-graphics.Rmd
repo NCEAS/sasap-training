@@ -21,9 +21,7 @@ From the [home page](http://ggplot2.tidyverse.org/):
 It's been around for years and has pretty good documentation and tons of example code around the web (like on [StackOverflow](https://stackoverflow.com/questions/tagged/ggplot2)).
 This lesson will introduce you to the basic components of working with ggplot2.
 
-## Lesson
-
-### ggplot vs base vs lattice vs XYZ...
+## ggplot vs base vs lattice vs XYZ...
 
 R provides **many** ways to get your data into a plot.
 Three common ones are,
@@ -55,7 +53,7 @@ permits <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auu
                     stringsAsFactors = FALSE)
 ```
 
-### Geoms / Aesthetics
+## Geoms / Aesthetics
 
 Every graphic you make in ggplot2 will have at least one aesthetic and at least one geom (layer).
 The aesthetic maps your data to your geometry (layer).
@@ -76,7 +74,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
 Aside: How did I know to write `color = class`?
 `aes` will pass its arguments on to any geoms you use and we can find out what aesthetic mappings geom_point takes with `?geom_point` (see section "Aesthetics")
 
-Challenge: Find another aesthetic mapping `geom_point` can take and add add it to the plot.
+- **Exercise:** Find another aesthetic mapping `geom_point` can take and add add it to the plot.
 
 What if we just wanted the color of the points to be blue?
 Maybe we'd do this:
@@ -98,7 +96,7 @@ ggplot(permits, aes(Value, StdDev)) +
   geom_point(color = "blue")
 ```
 
-**Challenge:** Using the aesthetic you discovered and tried above, **set** another aesthetic onto our points.
+- **Exercise:** Using the aesthetic you discovered and tried above, **set** another aesthetic onto our points.
 
 Sizing each point by the range of the permit values is only a small change to the code:
 
@@ -130,7 +128,7 @@ ggplot(permits, aes(Value)) +
   geom_histogram(binwidth = 1e4)
 ```
 
-**Challenge:** Find an aesthetic `geom_histogram` supports and try it out.
+- **Exercise:** Find an aesthetic `geom_histogram` supports and try it out.
 
 I'm a big fan of box plots and ggplot2 can plot these too:
 
@@ -183,7 +181,7 @@ ggplot(permits, aes(Value, StdDev)) +
 
 More on geoms here: http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms
 
-### Setting plot limits
+## Setting plot limits
 
 Plot limits can be controlled one of three ways:
 
@@ -243,7 +241,7 @@ ggplot(permits_se_seine, aes(Year, Value)) +
 Note the **slight* difference when using `coord_cartesian`: ggplot didn't put a buffer around our values.
 Sometimes we want this and sometimes we don't and it's good to know this difference.
 
-### Scales
+## Scales
 
 The usual use case is to do things like changing scale limits or change the **way** our data are mapped onto our geom.
 We'll use scales in ggplot2 very often!
@@ -305,7 +303,7 @@ ggplot(permits_se_seine, aes(Year, Value)) +
   scale_x_continuous(breaks = c(1990, 2010))
 ```
 
-### Facets
+## Facets
 
 Facets allow us to create a powerful visualization called a small multiple:
 
@@ -333,7 +331,6 @@ ggplot(permits_ci, aes(Year, Value)) +
 Note that the X and Y limits are shared across panels which is often a good default to stick with.
 For example, if we plot permit value over time by gear type, we don't get a very readable plot due to differences in permit values across gear types:
 
-
 ```{r}
 ggplot(permits, aes(Year, Value, group = Region)) +
   geom_line() +
@@ -349,7 +346,7 @@ ggplot(permits, aes(Year, Value)) +
   facet_wrap(~ Gear, scales = "free_y")
 ```
 
-### Plot customization
+## Plot customization w/ themes
 
 ggplot2 offers us a very highly level of customizability in, what I think, is a fairly easy to discover and remember way with the `theme` function and pre-set themes.
 
@@ -362,7 +359,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
   theme_classic()
 ```
 
-**Challenge:** Find another theme and use it instead.
+- **Exercise:** Find another theme and use it instead.
 Hint: Built-in themes are functions that start with `theme_`.
 
 The legend in ggplot2 is a thematic element.
@@ -408,11 +405,11 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
   my_theme
 ```
 
-**Challenge:** Look at the help for ?theme and try changing something else about the above plot.
+- **Exercise:** Look at the help for ?theme and try changing something else about the above plot.
 
 More themes are available in a user-contributed package called [ggthemes]( https://github.com/jrnold/ggthemes).
 
-### Saving plots
+## Saving plots
 
 Let's save that great plot we just made.
 Saving plots in ggplot is done with the `ggsave()` function:
@@ -467,6 +464,18 @@ suppressPackageStartupMessages({
 plot_grid(p1, p2, align = "hv", ncol = 1)
 ```
 
-## Bonus 2:
+## Bonus: Round two
 
-- https://ggsci.net
+If we have time, we'll walk through some ways we can augment our ggplot2 knowledge with packages that build on top of ggplot.
+
+- [ggplot extensions](http://www.ggplot2-exts.org/gallery/)
+- [ggmap](https://github.com/dkahle/ggmap)
+    > ggmap makes it easy to retrieve raster map tiles from popular online mapping services like Google Maps, OpenStreetMap, Stamen Maps, and plot them using the ggplot2 framework
+    
+- [ggsci](https://ggsci.net)
+
+    > ggsci offers a collection of ggplot2 color palettes inspired by scientific journals, data visualization libraries, science fiction movies, and TV shows.
+
+- [ggbeeswarm](https://github.com/eclarke/ggbeeswarm)
+- [waffle](https://github.com/hrbrmstr/waffle)
+
