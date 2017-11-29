@@ -137,8 +137,6 @@ Next, modify the metadata file associated with the package to set yourself as th
 
 ```{r modify-eml, eval=FALSE}
 library(EML)
-# devtools::install_github("NCEAS/arcticdatautils")
-#library(arcticdatautils)
 source("misc/eml_helpers.R")
 
 # Load the EML file into R
@@ -161,7 +159,8 @@ R objects or existing on a DataONE repository, will be informally referred to as
 to prepare and upload a package to DataONE using the `uploadDataPackage` method 
 will be shown. A complete script that uses these steps is shown here.
 
-In the first section, we create a 'DataPackage as a container for our data and metadata and scripts:
+In the first section, we create a 'DataPackage as a container for our data and metadata and scripts.
+It starts out as empty.
 
 ```{r data-package, eval=FALSE}
 library(dataone)
@@ -173,8 +172,11 @@ dp <- new("DataPackage")
 show(dp)
 ```
 
-We then add a metadata file, data file, R script and output data file to this package:
-```{r build-package, eval=FALSE}
+We then add a metadata file, data file, R script and output data file to this package.
+Our first order is to generate identifiers for the files that are part of the 
+package, and add EML metadata that references those identifiers.
+
+```{r entity-metadata, eval=FALSE}
 # Generate identifiers for our data and program objects, and add them to the metadata
 sourceId <- paste0("urn:uuid:", uuid::UUIDgenerate())
 progId <- paste0("urn:uuid:", uuid::UUIDgenerate())
@@ -191,7 +193,13 @@ doc@dataset@otherEntity[[3]]@physical[[1]]@distribution[[1]]@online@url <-
   new("url", paste0(repo_obj_service, outputId))
 
 write_eml(doc, emlFile)
+```
 
+Now we have a full metadata document ready be uploaded.  In the next section, we'll
+add the data files and metadata to a `DataPackage`, and then upload that to a
+test repository.
+
+```{r build-package, eval=FALSE}
 # Add the metadata document to the package
 metadataObj <- new("DataObject", 
                    format="eml://ecoinformatics.org/eml-2.1.1", 
