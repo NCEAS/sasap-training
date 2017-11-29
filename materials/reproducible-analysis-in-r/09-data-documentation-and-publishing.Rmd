@@ -136,6 +136,19 @@ the *Submit Dataset* button at the bottom.  If there are errors or missing field
 they will be highlighted.  Correct those, and then try submitting again.
 
 ![](images/metadata-editor.png)
+### Workflow provenance
+
+Understanding the relationships between files in a package is critically important,
+especially as the number of files grows.  Raw data are transformed and integrated
+to produce derived data, that are often then used in analysis and visualization code
+to produce final outputs.  In DataONE, we support structured descriptions of these
+relationships, so one can see the flow of data from raw data to derived to outputs.
+Here's an example from a 
+[hydrocarbon dataset](https://search.dataone.org/index.html#view/urn:uuid:3249ada0-afe3-4dd6-875e-0f7928a4c171) 
+in Prince William Sound:
+
+![](images/provenance.png)
+
 
 ## Publishing data from R
 
