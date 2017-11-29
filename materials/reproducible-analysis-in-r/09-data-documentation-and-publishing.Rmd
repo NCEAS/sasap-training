@@ -26,6 +26,7 @@ In this lesson, you will learn:
 - List of data repositories: http://re3data.org
 
 ![](images/RepoLogos.png)
+
 ## Metadata
 
 Metadata are documentation describing the content, context, and structure of 
@@ -106,14 +107,18 @@ than visiting each of the currently 43 repositories one at a time.
 
 - Walk through web submission UI on https://test.arcticdata.io
 
+![](images/metadata-editor.png)
+
 ## Publishing data from R
 
 Now lets see how to use the *dataone* and *datapack* R packages to upload data to DataONE
 member repositories like the [KNB Data Repository](https://knb.ecoinformatics.org) and the [Arctic Data Center](https://arcticdata.io).
 
-The *dataone* R package provides methods to enable R scripts to interact with DataONE to search for, download, upload and update data and metadata. The *dataone* R package represents the set of files in a data set as a `datapack::DataPackage`.  We will create a `DataPackage` locally, and then upload it to a test version of the Arctic Data Center repository using `dataone`.
+The *dataone* R package provides methods to enable R scripts to interact with DataONE to search for, download, upload and update data and metadata. The purpose of uploading data from R is to automate the repetitive tasks for large data sets with many files.  For small data sets, the web submission for will certainly be simpler.
 
-## Logging in
+The *dataone* R package represents the set of files in a data set as a `datapack::DataPackage`.  We will create a `DataPackage` locally, and then upload it to a test version of the Arctic Data Center repository using `dataone`.
+
+### Logging in
 Before uploading any data to a DataONE repository, you must login to get an *authentication token*, which is a character string used to identify yourself. This token can be retrieved by logging into the test repository and copying the token into your R session.
 
 ### Obtain an ORCID
@@ -127,7 +132,7 @@ Once you are logged in, navigate to your Profile Settings, and locate the "Authe
 ![](images/adc-authtoken.png)
 Finally, paste the token into the R Console to register it as an option for this R session.  You are now logged in.  But note that you need to keep this token private; don't paste it into scripts or check it into Git, as it is just as sensitive as your password.
 
-## Modifying metadata
+### Modifying metadata
 Next, modify the metadata file associated with the package to set yourself as the owner.  This will help us differentiate the test data later.  Open the `strix-pacific-northwest.xml` file in RStudio, and change the `givenName` and `surName` fields at the top to your name.
 
 ```{r modify-eml, eval=FALSE}
@@ -150,7 +155,7 @@ doc@dataset@abstract <- as(set_TextType("data/strix/better-abstract.md"), "abstr
 write_eml(doc, emlFile)
 ```
 
-## Uploading A Package Using R with `uploadDataPackage`
+### Uploading A Package Using R with `uploadDataPackage`
 Datasets and metadata can be uploaded individually or as a collection. Such a collection, whether contained in local 
 R objects or existing on a DataONE repository, will be informally referred to as a `package`. The steps necessary to
 to prepare and upload a package to DataONE using the `uploadDataPackage` method 
