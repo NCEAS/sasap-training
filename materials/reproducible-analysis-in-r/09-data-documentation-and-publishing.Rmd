@@ -116,7 +116,7 @@ providing metadata.  With repositories like the KNB Data Repository and the
 Arctic Data Center, we provide some easy to use web forms for editing and submitting
 a data package.  Let's walk through a web submission to see what you might expect.
 
-### First, download the data to be used for the tutorial
+### Download the data to be used for the tutorial
 
 I've already uploaded the test data package, and so you can access the data here:
 
@@ -124,10 +124,14 @@ I've already uploaded the test data package, and so you can access the data here
 
 Grab both CSV files, and the R script, and store them in a convenient folder.
 
-We will walk through web submission UI on https://test.arcticdata.io, and start 
+### Login via ORCID
+
+We will walk through web submission on https://test.arcticdata.io, and start 
 by logging in with an ORCID account. ORCID provides a common account for sharing
 scholarly data, so if you don't have one, you can create one when you are redirected
 to ORCID from the *Sign In* button.
+
+### Create and submit the data set
 
 After signing in, you can access the data submission form using the *Submit* button.
 Once on the form, drag your two csv files and R script into the package, and then provide 
@@ -136,7 +140,8 @@ the *Submit Dataset* button at the bottom.  If there are errors or missing field
 they will be highlighted.  Correct those, and then try submitting again.
 
 ![](images/metadata-editor.png)
-### Workflow provenance
+
+### Add workflow provenance
 
 Understanding the relationships between files in a package is critically important,
 especially as the number of files grows.  Raw data are transformed and integrated
