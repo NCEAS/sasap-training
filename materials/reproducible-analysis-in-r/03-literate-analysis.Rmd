@@ -108,7 +108,7 @@ a project in a new directory:
 
 ![](images/new-project.png)
 
-Then, from withing RStudio choose *File | New File | RMarkdown file*, and name
+Then, from within RStudio choose *File | New File | RMarkdown file*, and name
 the file `practice.Rmd`
 
 ![](images/new-rmd.png)
