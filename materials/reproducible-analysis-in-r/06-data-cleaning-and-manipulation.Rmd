@@ -139,7 +139,7 @@ suppressPackageStartupMessages({
 Then let's read in the data and take a look at it:
 
 ```{r, cache=TRUE}
-catch_df <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
+catch_df <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1", method = "libcurl"),
                     stringsAsFactors = FALSE)
 head(catch_df)
 ```
@@ -376,7 +376,7 @@ This is a really common way of storing auxiliary information about our dataset o
 Joins let us do that easily:
 
 ```{r, cache=TRUE}
-region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
+region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
                         stringsAsFactors = FALSE)
 
 catch_df %>% 
@@ -439,9 +439,9 @@ We just ran through the various things we can do with `dplyr` and `tidyr` but if
 Let's look at that now:
 
 ```{r, catch=TRUE}
-catch_df <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
+catch_df <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1", method = "libcurl"),
                   stringsAsFactors = FALSE)
-region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
+region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
                         stringsAsFactors = FALSE)
 
 catch_df %>%

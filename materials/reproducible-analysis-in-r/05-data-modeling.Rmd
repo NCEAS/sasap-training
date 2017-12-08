@@ -142,14 +142,14 @@ That site includes metadata describing the full data set, including column defin
 
 ```{r catch, cache=TRUE, echo=FALSE}
 library(DT)
-catch <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1",
+catch <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1", method = "libcurl"),
                   stringsAsFactors = FALSE)
 datatable(catch)
 ```
 
 And here's the `region_defs` table:
 ```{r regions, cache=TRUE, echo=FALSE}
-region_defs <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1",
+region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
                         stringsAsFactors = FALSE)
 datatable(region_defs)
 ```

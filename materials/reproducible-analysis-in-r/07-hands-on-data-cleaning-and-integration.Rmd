@@ -137,11 +137,13 @@ Then download our two data files and save them as `data.frame`s:
 ```{r, cache=TRUE}
 # https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47
 # Search "OceanAK"
-esc <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", stringsAsFactors = FALSE)
+esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", method = "libcurl"), 
+                    stringsAsFactors = FALSE)
 
 # https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e
 # Search "escapement goals", choose 2007-2015 dataset
-goals <- read.csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.1", stringsAsFactors = FALSE)
+goals <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.1", method = "libcurl"),
+                  stringsAsFactors = FALSE)
 ```
 
 First, we'll clean up the escapement goals `data.frame` to have just the rows and columns we need and display it:
