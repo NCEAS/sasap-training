@@ -28,7 +28,7 @@ both for publications and the web.
 ## Registration instructions
 
 - [Register online]()
-- Space is limited to 30-35 people, so higher priority to earlier registrants
+- Space is limited to ~25 people, so higher priority to earlier registrants
 - If interest exceeds capacity, we will create a waitlist
 
 ## Agenda (draft)
