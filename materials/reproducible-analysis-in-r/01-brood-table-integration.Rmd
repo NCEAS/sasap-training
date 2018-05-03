@@ -59,7 +59,7 @@ m
 
 ```
 
-Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) [CC-BY-SA](https://creativecommons.org/licenses/by-sa/3.0/), available at [Phylopic](http://phylopic.org/)
+Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) [CC-BY-SA](https://creativecommons.org/licenses/by-sa/3.0/), available at [Phylopic](http://phylopic.org/).
 
 ## Reformatting
 

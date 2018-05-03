@@ -252,7 +252,7 @@ and tables that are embedded directly in the narrative.
 
 While an RMarkdown document is a single, linear exposition of a project, you can still
 modularize your code with functions and packages to make the code both more readable
-and more more re-usable.  While one can certainly define functions within an
+and more re-usable.  While one can certainly define functions within an
 RMarkdown document, for most analyses of even moderate complexity, we recommend separating
 functions into separate files and packages that can be defined and reused.  The 
 package `rrtools` [@marwick_rrtools_010] provides a convenient convention for 
