@@ -83,7 +83,7 @@ data and metadata that a researcher wants to preserve.  Sometimes a data package
 represents all of the data from a particular experiment, while at other times it
 might be all of the data from a grant, or on a topic, or associated with a paper.
 Whatever the extent, we define a data package as having one or more data files,
-softare files, and other scientific products such as graphs and images, all tied
+software files, and other scientific products such as graphs and images, all tied
 together with a descriptive metadata document.
 
 ![](images/data-package.png)
