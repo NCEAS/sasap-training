@@ -15,8 +15,8 @@ In this lesson, you will:
 
 In this one hour block, you will load data from the following two datasets into R,
 
-- [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47)
-- [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e)
+- [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:c14d3e59-e5e3-4696-996d-558446b577fd)
+- [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:a417f995-6bc3-40fd-bb2c-73aec816e402)
 
 and then clean, and integrate them together to answer a research question:
 
