@@ -178,7 +178,7 @@ b$`Return/spawner` <- NULL
 b$Stock.ID <- 139
 b$Species <- 'Sockeye'
 b$Stock <- 'Coghill'
-b$Region <- 'PWS'
+b$Region <- 'PWS'?
 b$Sub.Region <- 'PWS'
 b$Use <- 1
 
@@ -353,7 +353,7 @@ Below, I show two sets of scatterplots of the number of age 1.3 fish against the
 
 ### Relationship between 1.2s and 1.3s by Region
 
-It is possible to add a trend line to the plot. In this case we used a linear model, and we used *geom_smoth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
+It is possible to add a trend line to the plot. In this case we used a linear model, and we used *geom_smooth* with method "lm", only fitting the slope and forcing the intercept to be 0 *(formula = "y ~ 0 + x")*. 
 The $R^2$ value for the correlation is shown in each plot.
 
 ```{r, warning=FALSE}
