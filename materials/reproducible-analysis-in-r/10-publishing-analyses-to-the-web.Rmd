@@ -109,7 +109,7 @@ Now that we have the data loaded, let's calculate median annual escapement by sp
 ```{r}
 median_esc <- esc %>% 
   separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
-  group_by(Species, Year, Location) %>% 
+  group_by(Species, SASAP.Region, Year, Location) %>% 
   summarize(escapement = sum(DailyCount)) %>% 
   group_by(Species) %>% 
   summarize(median_escapement = median(escapement))
