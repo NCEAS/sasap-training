@@ -37,7 +37,7 @@ In this lesson, we're going to take an existing GitHub repository and turn it in
 - Open `index.Rmd` (if it isn't already open)
 - Press Knit
 
-    Observe the renderd output
+    Observe the rendered output
     Notice the new file in the same directory `index.html`.
     This is our RMarkdown file rendered as HTML (a web page)
 - Commit your changes (to both index.Rmd and index.html)
