@@ -15,8 +15,8 @@ In this lesson, you will:
 
 In this one hour block, you will load data from the following two datasets into R,
 
-- [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47)
-- [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e)
+- [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:c14d3e59-e5e3-4696-996d-558446b577fd)
+- [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:a417f995-6bc3-40fd-bb2c-73aec816e402)
 
 and then clean, and integrate them together to answer a research question:
 
@@ -152,7 +152,7 @@ First, we'll clean up the escapement goals `data.frame` to have just the rows an
 bb_sockeye_goals <- goals %>% 
   filter(Region == "Bristol Bay", Species == "Sockeye") %>% 
   mutate(Lower = as.integer(Lower)) %>% 
-  select(System, Lower, Upper) %>% 
+  select(System, Lower, Upper, Initial.Year) %>% 
   drop_na()
 
 datatable(bb_sockeye_goals)
@@ -168,8 +168,10 @@ bb_sockeye_escapements <- esc %>%
   separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
   group_by(Location, Year) %>% 
   summarize(Escapement = sum(DailyCount)) %>% 
-  left_join(bb_sockeye_goals %>% select(System, Lower, Upper), by = c("Location" = "System")) %>% 
-  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper)
+  left_join(bb_sockeye_goals %>% select(System, Lower, Upper, Initial.Year), 
+            by = c("Location" = "System")) %>% 
+  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper,
+         drop_by_year = Year >= Initial.Year)
 
 datatable(bb_sockeye_escapements)
 ```

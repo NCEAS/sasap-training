@@ -457,6 +457,9 @@ grid.arrange(p1, p2)
 
 
 ```{r}
+# Install package (run if needed)
+# install.packages("cowplot")
+
 suppressPackageStartupMessages({
   library(cowplot)
 })

@@ -21,20 +21,17 @@ First, lets make sure everyone's RStudio is up to date. Run the following in you
 RStudio.Version()$version
 ```
 
-If the output of this does not say `1.1.383`, you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
+If the output of this does not say `1.1.447`, you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
 
 ### Package installation
 
 Run the following lines to check that all of the packages we need for the training are installed on your computer.
 
 ```{r}
-packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "tidyr")
 
-for (package in packages) { 
-  if (!(package %in% installed.packages())) { 
-    install.packages(package) 
-  } 
-}
+packages <- c( "devtools", "dplyr", "DT", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "remotes", "tidyr")
+for (package in packages) { if (!(package %in% installed.packages())) { install.packages(package) } }
+
 
 rm(packages) #remove variables from workspace
 ```

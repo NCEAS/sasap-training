@@ -4,8 +4,6 @@ time_slot: 1 hour
 
 # Version Control With git and GitHub
 
-Instructor: Matt Jones
-
 ## Learning Objectives
 
 In this lesson, you will learn:
@@ -195,7 +193,7 @@ be present, including a *Git* tab and the normal *Files* tab listing the files t
 had been created in the remote repository.
 
 ![](images/rstudio-sasap-test.png)
-You'll not that there is one new file `sasap-test.Rproj`, and three files that we
+You'll note that there is one new file `sasap-test.Rproj`, and three files that we
 created earlier on GitHub (`.gitignore`, `LICENSE`, and `README.md`).
 
 In the *Git* tab, you'll note that two files are listed.  This is the status pane

@@ -1,3 +1,29 @@
+--- 
+title: "Reproducible Analysis With R"
+date: "November 28-29, 2017"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Practical open science approaches to salmon data management, analysis, and synthesis"
+always_allow_html: yes
+---
+
+# Introduction
+
+Placeholder
+
+
+## The Reproducibility Crisis
+## What is needed for computational reproducibility?
+## Conceptualizing workflows
+## Course Objectives
+## Course details
+
+<!--chapter:end:index.Rmd-->
+
 # Example: Brood Table Analysis
 
 ```{r package loading, echo = FALSE, warning = FALSE, message = FALSE}
@@ -458,7 +484,7 @@ for (i in 1:nrow(brood_s)) {
 We then plot Simpson diversity index over time. We included the linear equation in each plot. This information can be easily exported as a CSV file to be used in other analysis.
 
 ```{r, warning=FALSE}
-ggplot(brood_s, aes(BroodYear, Simpson)) + 
+ggplot(brood_s, aes(BroodYear, as.numeric(Simpson))) + 
   geom_point(size = 0.1) + 
   geom_smooth(method = "lm", 
               formula = "y ~ x", 
@@ -471,3 +497,185 @@ ggplot(brood_s, aes(BroodYear, Simpson)) +
    theme(axis.text.y = element_text(angle = 0), 
         axis.text.x = element_text(angle = 90, hjust = 1))
 ```
+
+<!--chapter:end:01-brood-table-integration.Rmd-->
+
+
+# RStudio and Git/GitHub Setup
+
+Placeholder
+
+
+## Learning Objectives
+## Checking the RStudio environment
+### R Studio Version
+### Package installation
+## Setting up git
+
+<!--chapter:end:02-setup-rstudio-git-github.Rmd-->
+
+
+# Literate Analysis with RMarkdown
+
+Placeholder
+
+
+## Learning Objectives
+## What is (R)Markdown?
+## What's possible with RMarkdown
+## RMarkdown overview
+### Knitting the file
+### Basic formatting
+### Links
+### Images
+### R Code Chunks
+### Inline R expressions and equations
+### Plots
+### Tables
+## Literate analysis with RMarkdown
+## Organizing a reproducible research folder
+
+<!--chapter:end:03-literate-analysis.Rmd-->
+
+
+# Version Control With git and GitHub
+
+Placeholder
+
+
+## Learning Objectives
+## The problem with filenames
+## Version control and Collaboration using Git and GitHub
+## Let's look at a GitHub repository
+## The Git lifecycle
+## Create a remote repository on GitHub
+## Working locally with Git via RStudio
+## Git from RStudio
+## On good commit messages
+## Collaboration and conflict free workflows
+## Exercise
+## Advanced topics
+
+<!--chapter:end:04-version-control.Rmd-->
+
+
+# Data Modeling & Tidy Data
+
+Placeholder
+
+
+## Learning Objectives
+## Benefits of relational data systems
+## Data Organization
+## Multiple tables
+## Inconsistent observations
+## Inconsistent variables
+## Marginal sums and statistics
+## Good enough data modeling
+### Denormalized data
+### Tabular data
+## Primary and Foreign Keys
+## Entity-Relationship Model (ER)
+## Merging data
+## Simple Guidelines for Effective Data
+## Data modeling exercise
+## Related resources
+
+<!--chapter:end:05-data-modeling.Rmd-->
+
+
+# Data Cleaning and Manipulation
+
+Placeholder
+
+
+## Learning Objectives
+## Introduction
+## Setup
+## Selecting/removing columns: `select()`
+## Changing shape: `gather()` and `spread()`
+## Renaming columns with `rename()`
+## Adding columns: `mutate()`
+## `group_by` and `summarise`
+## Filtering rows: `filter()`
+## Sorting your data: `arrange()`
+## Joins in dplyr
+## `separate()` and `unite()`
+## Summary
+
+<!--chapter:end:06-data-cleaning-and-manipulation.Rmd-->
+
+
+# Hands On: Clean and Integrate Datasets
+
+Placeholder
+
+
+## Learning Objectives
+## Outline
+## High-level steps
+### Visual schematic of steps
+## Full solution
+
+<!--chapter:end:07-hands-on-data-cleaning-and-integration.Rmd-->
+
+
+# Publication Graphics with ggplot2
+
+Placeholder
+
+
+## Learning Objectives
+## Overview
+## ggplot vs base vs lattice vs XYZ...
+## Setup
+## Geoms / Aesthetics
+## Setting plot limits
+## Scales
+## Facets
+## Plot customization w/ themes
+## Saving plots
+## Bonus: Multi-panel plots: Beyond facets
+## Bonus: Round two
+
+<!--chapter:end:08-publication-graphics.Rmd-->
+
+
+# Data Documentation and Publishing 
+
+Placeholder
+
+
+## Learning Objectives
+## Data sharing and preservation
+## Data repositories: built for data (and code)
+## Metadata
+## Structure of a data package
+## DataONE Federation
+## Publishing data from the web
+### Download the data to be used for the tutorial
+### Login via ORCID
+### Create and submit the data set
+### Add workflow provenance
+## Publishing data from R
+### Logging in
+### Obtain an ORCID
+### Log in to the test repository and copy your token
+### Modifying metadata
+### Uploading A Package Using R with `uploadDataPackage`
+
+<!--chapter:end:09-data-documentation-and-publishing.Rmd-->
+
+
+# Publishing Analyses to the Web
+
+Placeholder
+
+
+## Learning Objectives
+## Introduction
+## A Minimal Example
+## A Less Minimal Example
+
+<!--chapter:end:10-publishing-analyses-to-the-web.Rmd-->
+
