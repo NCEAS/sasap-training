@@ -21,7 +21,7 @@ First, lets make sure everyone's RStudio is up to date. Run the following in you
 RStudio.Version()$version
 ```
 
-If the output of this does not say `1.1.383`, you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
+If the output of this does not say `1.1.447`, you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
 
 ### Package installation
 
