@@ -1,5 +1,5 @@
 ---
-title: "May 2018: Reproducible analysis with R"
+title: 'May 2018: Reproducible analysis with R'
 ---
 
 [![sasap_banner](/images/banner_test.jpg)](https://alaskasalmonandpeople.org)
@@ -88,12 +88,9 @@ We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sur
     
 - **R packages:** Please be sure you have installed or updated the following packages:
 
-    - dataone
-    - datapack
     - devtools
     - dplyr
     - DT
-    - EML
     - ggplot2
     - ggpmisc
     - kableExtra
@@ -104,7 +101,7 @@ We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sur
     You can install these packages quickly by running the following two code snippets:
 
     ```r
-    packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "tidyr")
+    packages <- c("devtools", "dplyr", "DT", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "tidyr")
     ```
     
     ```r
