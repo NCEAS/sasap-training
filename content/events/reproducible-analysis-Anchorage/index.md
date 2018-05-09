@@ -114,6 +114,25 @@ We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sur
       }
     }
     ```
+    
+    We'll be using the following package versions:
+    
+    - devtools: version 1.13.5
+    - dplyr: version 0.7.4
+    - DT: version 0.4
+    - ggplot2: version 2.2.1
+    - ggpmisc: version 0.2.17
+    - kableExtra: version 0.8.0
+    - leaflet: version 2.0.0
+    - remotes: version 1.1.1
+    - readxl: version 1.1.0
+    - tidyr: version 0.8.0
+    
+    Ideally, you should have the same versions installed. ...but as long as your versions are not too far off, you should be okay. To check your versions, you can run the following snippet:
+    
+    ```r
+    for (p in packages) {sprintf("%s: version %s", p, packageVersion(p)) %>% print()}
+    ```
 
 - **git:** [Download git](https://git-scm.com/downloads) and install it on your system.
 - **GitHub:** We will be using [GitHub](https://github.com) so you will need create (or remember your existing) GitHub login
