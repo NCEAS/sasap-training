@@ -71,7 +71,7 @@ We'll use the same git repository and RStudio Project as above, but we'll be add
 First, let's get some data.
 We'll re-use the salmon escapement data from the ADF&G OceanAK database we used earlier.
 
-- Navigate to https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47 (or visit the KNB and search for 'oceanak') and copy the Download URL for the `ADFG_firstAttempt_reformatted.csv` file
+- Navigate to [Escapement Counts](https://knb.ecoinformatics.org/#view/urn:uuid:c14d3e59-e5e3-4696-996d-558446b577fd) (or visit the KNB and search for 'oceanak') and copy the Download URL for the `ADFG_firstAttempt_reformatted.csv` file
 - Make a folder in the top level of your repository to store the file called `data`
 - Download that file into the `data` folder with the filename `escapement_counts.csv`
 
