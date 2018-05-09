@@ -145,5 +145,27 @@ In particular, check out:
 
 |Name         | Email              |
 |-------------|--------------------|
-| 	| |
+|	Leslie	Jones	|	lajones12@alaska.edu	|
+|	Amanda	Droghini	|	adroghini@alaska.edu	|
+|	Timm	Nawrocki	|	twnawrocki@alaska.edu	|
+|	Trang	Tran	|	tctran@alaska.edu	|
+|	xinxian	zhang	|	xinxian.zhang@alaska.gov	|
+|	Benjamin	Meyer	|	bemeyer@alaska.edu	|
+|	Jennifer	Marsh	|	jmmarsh@alaska.edu	|
+|	Greg	Buck	|	gregory.buck@alaska.gov	|
+|	Daniel	Prince	|	dan.prince@alaska.gov	|
+|	Miles	Spathelf	|	miles.spathelf@alaska.gov	|
+|	Katie	Howard	|	kathrine.howard@alaska.gov	|
+|	Sabrina	Garcia	|	sabrina.garcia@alaska.gov	|
+|	Ben	Buzzee	|	benjamin.buzzee@alaska.gov	|
+|	Andy	Barclay	|	andy.barclay@alaska.gov	|
+|	Tyler	Dann	|	tyler.dann@alaska.gov	|
+|	Chuck	Frost	|	charles_frost@fws.gov	|
+|	Courtney	Carothers	|	clcarothers@alaska.edu	|
+|	Joel	Reynolds	|	joel_reynolds@nps.gov	|
+|	Courtney	Amundson	|	camundson@usgs.gov	|
+|	Sarah	Thompson	|	sjthompson@usgs.gov	|
+|	Anthony	Fischbach	|	afischbach@usgs.gov	|
+|	Paul	Schuette	|	paschuette@alaska.edu	|
+|	Jennifer	Schmidt	|	jischmidt0@gmail.com	|
 
