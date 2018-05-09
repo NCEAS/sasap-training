@@ -266,6 +266,9 @@ could be used to organize and structure the project in a standard way. To start
 a project with RRtools, use:
 
 ```{r rrtools, eval=FALSE, echo=TRUE}
+# Install package (run if needed)
+# remotes::install_github("benmarwick/rrtools")
+
 rrtools::use_compendium("sasap_training")
 
 # Then, from within the created package, run:
