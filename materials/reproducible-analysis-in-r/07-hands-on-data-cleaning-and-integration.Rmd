@@ -152,7 +152,7 @@ First, we'll clean up the escapement goals `data.frame` to have just the rows an
 bb_sockeye_goals <- goals %>% 
   filter(Region == "Bristol Bay", Species == "Sockeye") %>% 
   mutate(Lower = as.integer(Lower)) %>% 
-  select(System, Lower, Upper) %>% 
+  select(System, Lower, Upper, Initial.Year) %>% 
   drop_na()
 
 datatable(bb_sockeye_goals)
@@ -168,8 +168,10 @@ bb_sockeye_escapements <- esc %>%
   separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
   group_by(Location, Year) %>% 
   summarize(Escapement = sum(DailyCount)) %>% 
-  left_join(bb_sockeye_goals %>% select(System, Lower, Upper), by = c("Location" = "System")) %>% 
-  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper)
+  left_join(bb_sockeye_goals %>% select(System, Lower, Upper, Initial.Year), 
+            by = c("Location" = "System")) %>% 
+  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper,
+         drop_by_year = Year >= Initial.Year)
 
 datatable(bb_sockeye_escapements)
 ```
