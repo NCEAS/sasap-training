@@ -153,7 +153,9 @@ But while it may be clean, it's in a shape that makes it hard to use for some ty
 
 Before we jump into learning `tidyr` and `dplyr`, we first need to explain the `%>%`.
 
-Both the `tidyr` and the `dplyr` packages use the pipe operator - `%>%`, which may look unfamiliar. The pipe is a powerful way to efficiently chain together operations. Say you want to both filter out rows of a dataset, and select certain columns. Instead of writing
+Both the `tidyr` and the `dplyr` packages use the pipe operator - `%>%`, which may look unfamiliar. The pipe is a powerful way to efficiently chain together operations. The pipe will take the output of a previous statement, and use it as the input to the next statement.
+
+Say you want to both `filter` out rows of a dataset, and `select` certain columns. Instead of writing
 
 ```
 df_filtered <- filter(df, ...)
@@ -394,8 +396,8 @@ catch_df %>%
 
 ## Joins in dplyr
 
-So now that we're awesome at manipulating single `data.frame`s, where do we go from here?
-Manipulating **multiple** `data.frame`s.
+So now that we're awesome at manipulating a single `data.frame`, where do we go from here?
+Manipulating **more than one** `data.frame`.
 
 If you've ever used a database, you may have heard of or used what's called a "join", which allows us to to intelligently merge two tables together into a single table based upon a shared column between the two.
 We've already covered joins in [Data Modeling & Tidy Data] so let's see how it's done with `dplyr`.
