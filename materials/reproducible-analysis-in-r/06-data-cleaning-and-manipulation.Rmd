@@ -11,7 +11,7 @@ In this lesson, you will learn:
 - What the Split-Apply-Combine strategy is and how it applies to data
 - The difference between wide vs. tall table formats and how to convert between them
 - How to use `dplyr` and `tidyr` to clean and manipulate data for analysis
-- How to join multiple `data.frame`s together usingn `dplyr`
+- How to join multiple `data.frame`s together using `dplyr`
 
 ## Introduction
 
@@ -149,6 +149,35 @@ Note: I copied the URL from the Download button on https://knb.ecoinformatics.or
 This dataset is relatively clean and easy to interpret as-is.
 But while it may be clean, it's in a shape that makes it hard to use for some types of analyses so we'll want to fix that first.
 
+## About the pipe (`%>%`) operator
+
+Before we jump into learning `tidyr` and `dplyr`, we first need to explain the `%>%`.
+
+Both the `tidyr` and the `dplyr` packages use the pipe operator - `%>%`, which may look unfamiliar. The pipe is a powerful way to efficiently chain together operations. Say you want to both filter out rows of a dataset, and select certain columns. Instead of writing
+
+```
+df_filtered <- filter(df, ...)
+df_selected <- select(df_filtered, ...)
+```
+
+You can write
+
+```
+df_cleaned <- df %>% 
+              filter(...) %>%
+              select(...)
+```
+
+If you think of the assignment operator (`<-`) as reading like "gets", then the pipe operator would read like "then."
+
+So you might think of the above chunk being translated as:
+
+The cleaned dataframe gets the original data, and then a filter (of the original data), and then a select (of the filtered data).
+
+The benefits to using pipes are that you don't have to keep track of (or overwrite) intermediate data frames. The drawbacks are that it can be more difficult to explain the reasoning behind each step, especially when many operations are chained together. It is good to strike a balance between writing efficient code (chaining operations), while ensuring that you are still clearly explaining, both to your future self and others, what you are doing and why you are doing it.
+
+RStudio has a keyboard shortcut for `%>%` : Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).
+
 ## Selecting/removing columns: `select()`
 
 The first issue is the extra columns `All` and `notesRegCode`.
@@ -160,7 +189,7 @@ catch_df %>%
   head()
 ```
 
-Much beter!
+Much better!
 In the above example, we pass unquoted column names preceded by minus (-) signs to specify which columns we dont want.
 `select()` also allows us to specify which columns we **do** want:
 
