@@ -183,21 +183,21 @@ RStudio has a keyboard shortcut for `%>%` : Ctrl + Shift + M (Windows), Cmd + Sh
 ## Selecting/removing columns: `select()`
 
 The first issue is the extra columns `All` and `notesRegCode`.
-Let's remove those columns:
-
-```{r}
-catch_df %>% 
-  select(-All, -notesRegCode) %>% 
-  head()
-```
-
-Much better!
-In the above example, we pass unquoted column names preceded by minus (-) signs to specify which columns we dont want.
-`select()` also allows us to specify which columns we **do** want:
+Let's select only the columns we want:
 
 ```{r}
 catch_df %>% 
   select(Region, Year, Chinook, Sockeye, Coho, Pink, Chum) %>% 
+  head()
+```
+
+Much better!
+
+`select` also allows you to say which columns you *don't* want, by passing unquoted column names preceded by minus (-) signs:
+
+```{r}
+catch_df %>% 
+  select(-All, -notesRegCode) %>% 
   head()
 ```
 
