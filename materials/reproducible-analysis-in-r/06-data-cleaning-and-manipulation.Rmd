@@ -406,16 +406,21 @@ The dataset we're working with, https://knb.ecoinformatics.org/#view/df35b.304.2
 This is a really common way of storing auxiliary information about our dataset of interest (catch) but, for analylitcal purposes, we often want them in the same `data.frame`.
 Joins let us do that easily. 
 
+Let's look at a preview of what our join will do by looking at a simplified version of our data:
+
+![Visualisation of our `left_join`](images/left_join_catchdata.png)
+
+
+First, let's read in the region definitions data table.
+
 
 ```{r, cache=TRUE}
 region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
                         stringsAsFactors = FALSE)
 ```
 
-Let's look at a preview of what our join will do:
 
-![`left_join` example](images/left_join_catchdata.png)
-
+If you examine the `region_defs` `data.frame`, you'll see that the column names don't exactly match the image above. If the names of the key columns are not the same, you can explicitly specify which are the key columns in the left and right side as shown below:
 
 ```{r}
 catch_df %>% 
@@ -424,7 +429,19 @@ catch_df %>%
   left_join(region_defs, by = c("Region" = "code"))
 ```
 
-Note: `left_join` and the other join functions can often guess the shared column name but, in this case, the column names differed between the two `data.frame`s so we had to be explicit.
+Another way is to use `rename` to change the column name `code` to `Region` in the `region_defs` `data.frame`, and run the `left_join` this way:
+
+```{r, eval = F}
+region_defs <- region_defs %>% 
+  rename(Region = code, mgmtArea = Region_Name)
+
+catch_df %>% 
+  group_by(Region) %>% 
+  summarise(total_catch = sum(catch)) %>% 
+  left_join(region_defs, by = c("Region"))
+```
+
+
 
 Now our catches have the auxiliary information from the region definitions file alongside them.
 Note: `dplyr` provides a complete set of joins: inner, left, right, full, semi, anti, not just left_join.
