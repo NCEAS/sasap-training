@@ -99,8 +99,7 @@ suppressPackageStartupMessages({
 Then, let's create the `data.frame` we're going to use to plot:
 
 ```{r, cache=TRUE}
-esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", method = "libcurl"), 
-                stringsAsFactors = FALSE)
+esc <- read.csv("data/escapement_counts.csv", stringsAsFactors = FALSE)
 
 ```
 
