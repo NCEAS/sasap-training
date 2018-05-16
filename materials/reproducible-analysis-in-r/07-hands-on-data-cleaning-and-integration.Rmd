@@ -173,9 +173,9 @@ datatable(bb_sockeye_escapements)
 Finally join the two tables and display the final table:
 
 ```{r}
-bb_escapement_with_goals <- left_join(bb_sockeye_escapements, bb_sockeye_goals, 
-            by = c("Location" = "System")) %>% 
-          mutate(is_in_range = Escapement >= Lower & Escapement <= Upper,
-            drop_by_year = Year >= Initial.Year)
+bb_escapement_with_goals <- 
+  left_join(bb_sockeye_escapements, bb_sockeye_goals, by = c("Location" = "System")) %>% 
+  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper,
+         drop_by_year = Year >= Initial.Year)
 datatable(bb_escapement_with_goals)
 ```
