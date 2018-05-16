@@ -404,12 +404,20 @@ We've already covered joins in [Data Modeling & Tidy Data] so let's see how it's
 
 The dataset we're working with, https://knb.ecoinformatics.org/#view/df35b.304.2, contains a second CSV which has the definition of each `Region` code.
 This is a really common way of storing auxiliary information about our dataset of interest (catch) but, for analylitcal purposes, we often want them in the same `data.frame`.
-Joins let us do that easily:
+Joins let us do that easily. 
+
 
 ```{r, cache=TRUE}
 region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
                         stringsAsFactors = FALSE)
+```
 
+Let's look at a preview of what our join will do:
+
+![`left_join` example](images/left_join_catchdata.png)
+
+
+```{r}
 catch_df %>% 
   group_by(Region) %>% 
   summarise(total_catch = sum(catch)) %>% 
