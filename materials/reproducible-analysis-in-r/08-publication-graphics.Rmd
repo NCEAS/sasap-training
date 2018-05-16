@@ -385,7 +385,7 @@ ggplot(permits, aes(Value, StdDev, color = Gear)) +
         legend.justification = c(1,1),
         legend.direction = "horizontal",
         legend.title = element_blank()) +
-  xlab("Permit Value (unadjusted USD") +
+  xlab("Permit Value (unadjusted USD)") +
   ylab("Permit Std. Dev. (unadjusted USD)") +
   ggtitle("Permit Standard Deviation against Permit Value by Gear Type",
           "or: I wish I owned a seine permit")
