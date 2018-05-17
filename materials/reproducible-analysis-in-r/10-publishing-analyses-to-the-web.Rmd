@@ -144,12 +144,36 @@ datatable(locations)
 
 Then making a leaflet map is only a couple of lines of code:
 
-```{r}
+```{r eval=FALSE}
 leaflet(locations) %>% 
   addTiles() %>% 
   addMarkers(~ Longitude, ~ Latitude, popup = ~ Location)
 ```
 
+```{r, include=FALSE}
+# Use a custom marker so Leaflet doesn't try to grab the marker images from 
+# its CDN (this was brought up in 
+# https://github.com/NCEAS/sasap-training/issues/22)
+markerIcon <- makeIcon(
+  iconUrl = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+  iconWidth = 25, iconHeight = 41,
+  iconAnchorX = 12, iconAnchorY = 41,
+  shadowUrl = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
+  shadowWidth = 41, shadowHeight = 41,
+  shadowAnchorX = 13, shadowAnchorY = 41
+)
+```
+
+```{r, echo=FALSE}
+# The above code chunk that looks a lot like this code chunk is what the user
+# sees in the rendered copy and this code chunk actually makes the map. This is
+# all a workaround for leaflet's CDN having certificate issues that prevent
+# Chrome (and probably other browsers) from loading the marker images
+# See: https://github.com/NCEAS/sasap-training/issues/22)
+leaflet(locations) %>% 
+  addTiles() %>% 
+  addMarkers(~ Longitude, ~ Latitude, popup = ~ Location, icon = markerIcon)
+```
 
 The `addTiles()` function gets a base layer of tiles from [OpenStreetMap](https://www.openstreetmap.org/) which is an open alternative to Google Maps.
 `addMarkers` use a bit of an odd syntax in that it looks kind of like `ggplot2` code but uses `~` before the column names.
