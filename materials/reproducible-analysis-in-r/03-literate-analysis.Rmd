@@ -269,7 +269,7 @@ a project with RRtools, use:
 # Install package (run if needed)
 # remotes::install_github("benmarwick/rrtools")
 
-rrtools::use_compendium("sasap_training")
+rrtools::use_compendium("~/Desktop/sasapexample")
 
 # Then, from within the created package, run:
 rrtools::use_readme_rmd()
