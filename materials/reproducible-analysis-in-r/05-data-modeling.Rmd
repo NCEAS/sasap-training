@@ -47,15 +47,14 @@ In the above example, each row has measurements about both the `site` at which o
 occurred, as well as observations of two individuals of possibly different species
 found at that site.  This is *not normalized* data.
 
-People often refer to this as *wide* format, because the observatiions are spread across a
+People often refer to this as *wide* format, because the observations are spread across a
 wide number of columns.  Note that, should one encounter a new species in the survey, we
 wold have to add new columns to the table.  This is difficult to analyze, understand, and
 maintain.
 
 ### Tabular data
 
-__Observations__. A better way to model data is to organize the observations about each type of entity
-in its own table.  This results in:
+__Observations__. A better way to model data is to organize the observations about each type of entity in its own table.  This results in:
 
 - Separate tables for each type of entity measured
 - Each row represents a single observed entity
@@ -67,6 +66,7 @@ __Variables__. In addition, for normalized data, we expect the variables to be o
 
 - All values in a column are of the same type
 - All columns pertain to the same observed entity (e.g., row)
+- Each column represents either an identifying variable or a measured variable
 
 Here's an example of tidy (normalized) data in which the top table is the collection
 of observations about individuals of several species, and the bottom table are the
@@ -111,11 +111,11 @@ on how the rows of one table are merged with the rows of the other.
 
 When conceptualizing merges, one can think of two tables, one on the *left* and
 one on the *right*. The most common (and often useful) join is when you merge the subset 
-of the rows from the left table with their matching rows from the right table: 
-this is called an *INNER JOIN*.  Other types of join are possible as well, including
-a *LEFT JOIN* and a *RIGHT JOIN*.  
+of rows that have matches in both the left table and the right table: 
+this is called an *INNER JOIN*.  Other types of join are possible as well. 
+A *LEFT JOIN* takes all of the rows from the left table, and merges on the data from matching rows in the right table.  A *RIGHT JOIN* is the same, except that all of the rows from the right table are included with matching data from the left. Finally, a *FULL OUTER JOIN* includes all data from all rows in both tables (and is rarely practical).
 
-![](images/sql-joins-venn.png)
+![](images/sql-joins.png)
 In the figure above, the blue regions show the set of rows that are included in the result.
 For the INNER join, the rows returned are all rows in A that have a matching row in B.
 
