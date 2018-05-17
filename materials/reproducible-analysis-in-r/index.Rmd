@@ -1,6 +1,6 @@
 --- 
 title: "Reproducible Analysis With R"
-date: "November 28-29, 2017"
+date: "May 17-18, 2018"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -28,7 +28,7 @@ he wrote that "Most Research Findings Are False for Most Research Designs
 and for Most Fields". Ioannidis outlined ways in which the research process
 has lead to inflated effect sizes and hypothesis tests that codify existing biases.
 Subsequent research has confirmed that reproducibility is low across many fields,
-including genetics [@ioannidis_repeatability_2009] and 
+including genetics [@ioannidis_repeatability_2009], ecology [@fraser_questionable_2018], and 
 psychology [@open_science_collaboration_estimating_2015], among others.  For example,
 effect size has been shown to significantly decrease in repeated experiments in 
 psychology (\@ref(fig:effectsize)).
@@ -68,10 +68,19 @@ understand the provenance of their conclusions.
 
 Within many science disciplines, researchers are seeing the power of building reproducible
 workflows.  For example, within fisheries science, the [ICES Transparent Assessment Framework (TAF)](http://ices.dk/marine-data/tools/Pages/transparent-assessment-framework.aspx) is
-being developed to help researchers share stock assessments consistently and completely.
+being developed to help researchers share stock assessments consistently and completely (\@ref(fig:ices)).
 
-![](images/ices-taf.png)
+```{r ices, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'ICES Transparent Assessment Framework'}
+knitr::include_graphics("images/ices-taf.png")
+```
 
+## Credit where credit is due
+
+A major advantage of preserving the details of scientific workflows (data, inputs, outputs, and code) is that data citations become so much more effective.  Today, driver data sets like global environmental variables, code libraries, and simulated data are critical to many scientific outcomes, but are rarely if ever cited.  By preserving scientific workflows, a citation to a highly derived product can be traced back through its chain of provenance to give credit to the researchers and analysts that created those critical precursor products (\@ref(fig:transitive)).  Which also helps with a full understanding of just how conclusions were made in an analysis.
+
+```{r transitive, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Scientific workflows provenance allows credit to be assigned to precursor data and analytical work.'}
+knitr::include_graphics("images/workflow-citation.png")
+```
 
 ## Course Objectives
 
@@ -80,7 +89,7 @@ This event will cover techniques for building reproducible analysis workflows us
 - Literate analysis using RMarkdown
 - Version control for managing scientific code
 - Data modeling, cleaning, and integration
-- Publishing data and code
+- Publishing data and **code**
 - Data visualization for the web
 
 ## Course details
