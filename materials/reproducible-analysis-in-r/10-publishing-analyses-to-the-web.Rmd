@@ -100,8 +100,15 @@ Then, let's create the `data.frame` we're going to use to plot:
 
 ```{r, cache=TRUE}
 esc <- read.csv("data/escapement_counts.csv", stringsAsFactors = FALSE)
-
 ```
+
+If you haven't saved the data locally, you can load it directly from the KNB using this line:
+
+```{r, eval=FALSE}
+esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", method = "libcurl"), 
+                stringsAsFactors = FALSE)
+```
+
 
 Now that we have the data loaded, let's calculate median annual escapement by species:
 
