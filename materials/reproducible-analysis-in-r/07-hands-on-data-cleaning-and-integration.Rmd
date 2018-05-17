@@ -74,16 +74,15 @@ Note: This need not be the exaxct order your code is written in.
 Make this:
 
 ```
-        System   Lower    Upper
- Kvichak River 2000000 10000000
-  Naknek River  800000  2000000
-  Egegik River  800000  2000000
- Ugashik River  500000  1400000
-    Wood River  700000  1800000
- Igushik River  150000   400000
-Nushagak River  260000   760000
-Nushagak River  370000   900000
-  Togiak River  120000   270000
+        System	  Lower	    Upper	  Initial.Year
+ Kvichak River	2000000	 10000000	  2010
+  Naknek River	 800000	  2000000	  2015
+  Egegik River	 800000	  2000000	  2015
+ Ugashik River	 500000	  1400000	  2015
+    Wood River	 700000	  1800000	  2015
+ Igushik River	 150000	  400000	  2015
+Nushagak River   260000	  760000	  2012
+Nushagak River   370000	  900000	  2015
 ```
 
 and then make this:
@@ -148,10 +147,10 @@ goals <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92
 
 First, we'll clean up the escapement goals `data.frame` to have just the rows and columns we need and display it:
 
-```{r}
+```{r warning=F}
 bb_sockeye_goals <- goals %>% 
   filter(Region == "Bristol Bay", Species == "Sockeye") %>% 
-  mutate(Lower = as.integer(Lower)) %>% 
+  mutate(Lower = as.integer(Lower), Initial.Year = as.integer(Initial.Year)) %>% 
   select(System, Lower, Upper, Initial.Year) %>% 
   drop_na()
 
@@ -167,11 +166,16 @@ bb_sockeye_escapements <- esc %>%
          Location %in% bb_sockeye_goals$System) %>%
   separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
   group_by(Location, Year) %>% 
-  summarize(Escapement = sum(DailyCount)) %>% 
-  left_join(bb_sockeye_goals %>% select(System, Lower, Upper, Initial.Year), 
-            by = c("Location" = "System")) %>% 
+  summarize(Escapement = sum(DailyCount))
+datatable(bb_sockeye_escapements)
+```
+
+Finally join the two tables and display the final table:
+
+```{r}
+bb_escapement_with_goals <- 
+  left_join(bb_sockeye_escapements, bb_sockeye_goals, by = c("Location" = "System")) %>% 
   mutate(is_in_range = Escapement >= Lower & Escapement <= Upper,
          drop_by_year = Year >= Initial.Year)
-
-datatable(bb_sockeye_escapements)
+datatable(bb_escapement_with_goals)
 ```

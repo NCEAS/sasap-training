@@ -90,7 +90,7 @@ While working on whatever chapter(s) you want to work on, you may want to previe
 You *can* use the Knit button in RStudio, but it's maybe even nice to use Bookdown's live-reloading functionality:
 
 ```
-bookdown::serve_book(".)
+bookdown::serve_book(".")
 ```
 
 As you edit and save your work, the Viewer Pane in RStudio should automatically update with your rendered changes.
