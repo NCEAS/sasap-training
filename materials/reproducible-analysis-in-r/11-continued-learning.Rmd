@@ -8,20 +8,20 @@ Now that you've learned about reproducible data analysis in R, you'll want a lis
 
 ## References
 
-- The materials from this course
-- RStudio built in documentation
-- git-scm.com tutorials and documentation
-- cheat-sheets
+- The [materials](https://nceas.github.io/sasap-training/materials/) from this course
+- RStudio built in documentation (help tab, .etc)
+- [git-scm.com](git-scm.com) tutorials and documentation
+- cheat-sheets (RStudio -> Help -> Cheatsheets)
 
 ## Where to Find Help
 
-- [stackoverflow](https://stackoverflow.com/)
+- [stackoverflow](https://stackoverflow.com/): a great set of websites for finding well vetted answers to specific problems.
 - [The R Inferno](http://www.burns-stat.com/documents/books/the-r-inferno/)
 - [aRrgh: a newcomer’s (angry) guide to R](http://arrgh.tim-smith.us/)
 
 ## Other helpful and/or cool stuff
 
-- Jupyter Lab: an alternative to RMarkdown that also works with Python and other programming languages
+- [Jupyter Lab](https://github.com/jupyterlab/jupyterlab): an alternative to RMarkdown that also works with Python and other programming languages. Part of [Project Jupyter](jupyter.org).
 
 <!-- This is going to get too wordy. ...but maybe we want it in there at some point?
 ## Choosing Which Library to Use
