@@ -179,7 +179,7 @@ leaflet(locations) %>%
 
 This map hopefully gives you an idea of how powerful the combination of RMarkdown and GitHub pages can be. ...and it makes a problem with these data much more obvious than in tabular form. Do you see all those points way over in Russia? This is an Alaskan data set. Those aren't supposed to be there. Can you guess why they're showing up over there? If you glance through the coordinates in the `locations` table above it should become obvious. Here's how to fix it:
 
-```{r fix_the_locations, eval=FALSE, include=FALSE}
+```{r fix_the_locations}
 locs <- locations %>% mutate(Longitude = abs(Longitude) * -1)
 
 leaflet(locs) %>% 
