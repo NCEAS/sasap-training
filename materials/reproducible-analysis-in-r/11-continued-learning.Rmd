@@ -10,14 +10,14 @@ Now that you've learned about reproducible data analysis in R, you'll want a lis
 
 - The [materials](https://nceas.github.io/sasap-training/materials/) from this course
 - RStudio built in documentation (help tab, .etc)
-- [git-scm.com](git-scm.com) tutorials and documentation
+- [git-scm.com](https://git-scm.com/) tutorials and documentation
 - cheat-sheets (RStudio -> Help -> Cheatsheets)
 
 ## Where to Find Help
 
 - [stackoverflow](https://stackoverflow.com/): a great set of websites for finding well vetted answers to specific problems.
-- [The R Inferno](http://www.burns-stat.com/documents/books/the-r-inferno/)
-- [aRrgh: a newcomer’s (angry) guide to R](http://arrgh.tim-smith.us/)
+- [The R Inferno](http://www.burns-stat.com/documents/books/the-r-inferno/): a humorous and useful exploration of the quirks of R
+- [aRrgh: a newcomer’s (angry) guide to R](http://arrgh.tim-smith.us/): an angry and useful exploration of the same and other quirks
 
 ## Other helpful and/or cool stuff
 
