@@ -179,6 +179,39 @@ ggplot(permits, aes(Value, StdDev)) +
   geom_smooth(method = "lm")
 ```
 
+Sometimes we want to show more than one factor, say in a bar plot.
+
+First we summarize over years, calculating the mean permit value by Region and Gear.
+```{r}
+permits_sum <- permits %>% 
+  group_by(Gear, Region) %>% 
+  summarize(mean_value = mean(Value, na.rm = T))
+```
+
+Now we show the mean value of permits by gear and region using `geom_bar` and the `fill` aesthetic.
+
+```{r}
+ggplot(permits_sum, aes(x = Gear, y = mean_value, fill = Region)) +
+  geom_bar(position = "stack", stat = "identity")
+```
+
+The `position = "stack"` argument tells `geom_bar` to stack the regions in each gear bar, and the `stat = "identity"` argument tells it to map the y aesthetic (mean_value) to the y axis, as opposed to the count of rows calculated for unique values in the Gear and Region columns.
+
+For this dataset, the stack doesn't make sense if we want to look at relative mean permit values. `position = "dodge"` makes more sense:
+
+```{r}
+ggplot(permits_sum, aes(x = Gear, y = mean_value, fill = Region)) +
+  geom_bar(position = "dodge", stat = "identity")
+```
+
+
+If you want to instead compare percentages (which doesn't make much sense with this data, but we show the example anyway), you set `position = "fill"`
+
+```{r}
+ggplot(permits_sum, aes(x = Gear, y = mean_value, fill = Region)) +
+  geom_bar(position = "fill", stat = "identity")
+```
+
 More on geoms here: http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms
 
 ## Setting plot limits
