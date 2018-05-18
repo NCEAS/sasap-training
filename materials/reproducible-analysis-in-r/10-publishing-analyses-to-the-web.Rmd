@@ -142,15 +142,21 @@ And display it as an interactive table:
 datatable(locations)
 ```
 
-Then making a leaflet map is only a couple of lines of code:
+Then making a leaflet map is (generally) only a couple of lines of code:
 
-```{r eval=FALSE}
+```{r simple_map}
 leaflet(locations) %>% 
   addTiles() %>% 
   addMarkers(~ Longitude, ~ Latitude, popup = ~ Location)
 ```
 
-```{r, include=FALSE}
+The `addTiles()` function gets a base layer of tiles from [OpenStreetMap](https://www.openstreetmap.org/) which is an open alternative to Google Maps.
+`addMarkers` use a bit of an odd syntax in that it looks kind of like `ggplot2` code but uses `~` before the column names.
+This is similar to how the `lm` function (and others) work but you'll have to make sure you type the `~` for your map to work.
+
+When you knit and view the results of this cell locally (on your own computer), you will see a map with icons marking the locations. However, when you push the html to GitHub and view your page there, you'll see a map with no icons (as of the date of this training). This appears to be due to a certificate issue with server that provides the leaflet icons. There is a workaround, but it adds several more lines of code
+
+```{r fix_icons}
 # Use a custom marker so Leaflet doesn't try to grab the marker images from 
 # its CDN (this was brought up in 
 # https://github.com/NCEAS/sasap-training/issues/22)
@@ -164,19 +170,20 @@ markerIcon <- makeIcon(
 )
 ```
 
-```{r, echo=FALSE}
-# The above code chunk that looks a lot like this code chunk is what the user
-# sees in the rendered copy and this code chunk actually makes the map. This is
-# all a workaround for leaflet's CDN having certificate issues that prevent
-# Chrome (and probably other browsers) from loading the marker images
-# See: https://github.com/NCEAS/sasap-training/issues/22)
+```{r fixed_map}
 leaflet(locations) %>% 
   addTiles() %>% 
   addMarkers(~ Longitude, ~ Latitude, popup = ~ Location, icon = markerIcon)
 ```
 
-The `addTiles()` function gets a base layer of tiles from [OpenStreetMap](https://www.openstreetmap.org/) which is an open alternative to Google Maps.
-`addMarkers` use a bit of an odd syntax in that it looks kind of like `ggplot2` code but uses `~` before the column names.
-This is similar to how the `lm` function (and others) work but you'll have to make sure you type the `~` for your map to work.
 
-While we can cleary see there are some serious isues with our data (note the points in Russia), this map hopefully gives you an idea of how powerful RMarkdown can be.
+This map hopefully gives you an idea of how powerful the combination of RMarkdown and GitHub pages can be. ...and it makes a problem with these data much more obvious than in tabular form. Do you see all those points way over in Russia? This is an Alaskan data set. Those aren't supposed to be there. Can you guess why they're showing up over there? If you glance through the coordinates in the `locations` table above it should become obvious. Here's how to fix it:
+
+```{r fix_the_locations, eval=FALSE, include=FALSE}
+locs <- locations %>% mutate(Longitude = abs(Longitude) * -1)
+
+leaflet(locs) %>% 
+  addTiles() %>% 
+  addMarkers(~ Longitude, ~ Latitude, popup = ~ Location, icon = markerIcon)
+```
+
