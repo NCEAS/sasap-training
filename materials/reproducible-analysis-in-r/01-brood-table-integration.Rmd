@@ -45,7 +45,7 @@ These stocks range geographically from Washington to Alaska. Although temporal c
 
 Figure 2.1 indicates the approximate location of the salmon stocks in Table 2.1.
 
-```{r, echo = FALSE}
+```{r}
 salmon = makeIcon('images/salmon_tiny.png',
                   'images/salmon_big.png',
                   26, 14)
