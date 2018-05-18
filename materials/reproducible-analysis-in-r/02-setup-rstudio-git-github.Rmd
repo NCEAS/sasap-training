@@ -65,3 +65,7 @@ Finally, check to make sure everything looks correct by entering this line, whic
 ```
 git config --global --list
 ```
+
+### Note for Windows Users
+
+If you get "command not found" (or similar) when you try these steps through the RStudio terminal tab, you may need to set the type of terminal that gets launched by RStudio. Under some git install senerios, the git executable may not be available to the default terminal type.
