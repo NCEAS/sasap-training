@@ -48,7 +48,7 @@ If you haven't installed all of the packages, this will automatically start inst
 
 Next, create a new R Markdown (File -> New File -> R Markdown). If you have never made an R Markdown document before, a dialog box will pop up asking if you wish to install the required packages. Click yes.
 
-## Checking your package versions
+### Checking your package versions
 
 We'll be using the following package versions:
     
