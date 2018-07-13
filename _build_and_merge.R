@@ -12,27 +12,32 @@ if (dir.exists(paste0("public/materials/", dir_names)) == FALSE){
 
 # Build all books in the books subdir
 
+if (exists("dir_names") == FALSE){
+  print("NO DIRECTORY NAMES")
+}
 
-  print(paste("Building book ", tag_list))
+print(paste("Building book ", tag_list))
 
-  checkout(".", tag_list)
+checkout(".", tag_list)
 
-    if (getwd() != "materials/reproducible-analysis-in-r"){
-      setwd("materials/reproducible-analysis-in-r")
-    }
+if (getwd() != "materials/reproducible-analysis-in-r"){
+  setwd("materials/reproducible-analysis-in-r")
+}
 
-  devtools::install_deps('.') # Installs book-specific R deps
-  # defined in DESCRIPTION file
-  bookdown::render_book('index.Rmd', c('bookdown::gitbook'))
+devtools::install_deps('.') # Installs book-specific R deps
+# defined in DESCRIPTION file
+bookdown::render_book('index.Rmd', c('bookdown::gitbook'))
 
-  fls <- list.files("_book")
+fls <- list.files("_book")
 
-  this_path <- paste0("../../public/materials/", dir_names)
+dir_names <- Sys.getenv("dir_names")
+this_path <- paste0("../../public/materials/", dir_names)
 
-  file.copy(paste0("_book/",fls), this_path, recursive = T, overwrite = T, copy.mode = T)
+file.copy(paste0("_book/",fls), this_path, recursive = T, overwrite = T, copy.mode = T)
 
-  unlink("_book", recursive = T)
+unlink("_book", recursive = T)
 
-  setwd("../..");
+setwd("../..")
+
 
 
