@@ -2,17 +2,17 @@
 library(git2r)
 
 tag_list <- Sys.getenv("tag_list")
-dir_names <- Sys.getenv("dir_names")
+this_is_the_directory_object <- Sys.getenv("dir_names")
 
 
-if (dir.exists(paste0("public/materials/", dir_names)) == FALSE){
-    dir.create(paste0("public/materials/", dir_names), recursive = T)
+if (dir.exists(paste0("public/materials/", this_is_the_directory_object)) == FALSE){
+    dir.create(paste0("public/materials/", this_is_the_directory_object), recursive = T)
 }
 
 
 # Build all books in the books subdir
 
-if (exists("dir_names") == FALSE){
+if (exists("this_is_the_directory_objec") == FALSE){
   print("NO DIRECTORY NAMES")
 }
 
@@ -31,7 +31,7 @@ bookdown::render_book('index.Rmd', c('bookdown::gitbook'))
 fls <- list.files("_book")
 
 dir_names <- Sys.getenv("dir_names")
-this_path <- paste0("../../public/materials/", dir_names)
+this_path <- paste0("../../public/materials/", this_is_the_directory_object)
 
 file.copy(paste0("_book/",fls), this_path, recursive = T, overwrite = T, copy.mode = T)
 
