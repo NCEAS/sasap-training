@@ -27,7 +27,9 @@ if (dir.exists(paste0("public/materials/", dir_names)) == FALSE){
 
   fls <- list.files("_book")
 
-  file.copy(paste0("_book/",fls), paste0("../../public/materials/", dir_names), recursive = T, overwrite = T, copy.mode = T)
+  this_path <- paste0("../../public/materials/", dir_names)
+
+  file.copy(paste0("_book/",fls), this_path, recursive = T, overwrite = T, copy.mode = T)
 
   unlink("_book", recursive = T)
 
