@@ -15,20 +15,19 @@ for (zz in 1:length(tag_list)) {
 
   print(paste("Building book ", tag_list[zz]))
   checkout(".", tag_list[zz])
-
-  setwd("materials/reproducible-analysis-in-r")
+  if (getwd() != "materials/reproducible-analysis-in-r"){
+    setwd("materials/reproducible-analysis-in-r")
+  }
   devtools::install_deps('.') # Installs book-specific R deps
   # defined in DESCRIPTION file
   bookdown::render_book('index.Rmd', c('bookdown::gitbook'))
   #Rscript -e "bookdown::render_book('index.Rmd', c('bookdown::gitbook', 'bookdown::pdf_book', 'bookdown::epub_book'))"
-  setwd(".."); setwd("..")
-
   fls <- list.files("_book")
 
   file.copy(paste0("_book/",fls), paste0("../../public/materials/", dir_names[zz]), recursive = T, overwrite = T, copy.mode = T)
 
   unlink("_book", recursive = T)
 
-  setwd("../..")
+  setwd("../..");
 }
 
