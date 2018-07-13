@@ -20,8 +20,6 @@ for (zz in 1:length(tag_list)) {
   devtools::install_deps('.') # Installs book-specific R deps
   # defined in DESCRIPTION file
   bookdown::render_book('index.Rmd', c('bookdown::gitbook'))
-  #Rscript -e "bookdown::render_book('index.Rmd', c('bookdown::gitbook', 'bookdown::pdf_book', 'bookdown::epub_book'))"
-  setwd(".."); setwd("..")
 
   fls <- list.files("_book")
 
