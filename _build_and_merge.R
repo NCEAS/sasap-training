@@ -1,7 +1,8 @@
 #build and merge
 library(git2r)
 
-Sys.getenv()
+tag_list <- Sys.getenv("tag_list")
+dir_names <- Sys.getenv("dir_names")
 
 
 if (dir.exists(paste0("public/materials/", dir_names)) == FALSE){
