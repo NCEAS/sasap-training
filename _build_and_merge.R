@@ -2,7 +2,7 @@
 library(git2r)
 
 tag_list <- names(tags())
-dir_names <- c("Reproducible research in R: Juneau", "Reproducible research in R: Anchorage")
+dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
 if (dir.exists("public/materials") == FALSE){
   dir.create("public/materials", recursive = T)
