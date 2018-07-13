@@ -2,7 +2,6 @@
 library(git2r)
 
 tag_list <- names(tags())
-dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
 for (n in dir_names){
   if (dir.exists(paste0("public/materials/", n)) == FALSE){
@@ -13,6 +12,8 @@ for (n in dir_names){
 
 # Build all books in the books subdir
 for (zz in 1:length(tag_list)) {
+
+  dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
   print(paste("Building book ", tag_list[zz]))
   checkout(".", tag_list[zz])
