@@ -1,7 +1,5 @@
 #build and merge
-
-
-
+library(git2r)
 
 tag_list <- names(tags())
 dir_names <- c("Reproducible research in R: Juneau", "Reproducible research in R: Anchorage")
