@@ -1,39 +1,35 @@
 #build and merge
 library(git2r)
 
-tag_list <- Sys.getenv("tag_list")
-dir_names <- Sys.getenv("dir_names")
+tag_list <- names(tags())
+these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
-
-if (dir.exists(paste0("public/materials/", dir_names)) == FALSE){
-    dir.create(paste0("public/materials/", dir_names), recursive = T)
+for (n in these_are_dir_names){
+  if (dir.exists(paste0("public/materials/", n)) == FALSE){
+    dir.create(paste0("public/materials/", n), recursive = T)
+  }
 }
 
 
 # Build all books in the books subdir
-  print(paste("Building book ", tag_list))
+for (zz in 1:length(tag_list)) {
 
-  checkout(".", tag_list)
-
-    if (getwd() != "materials/reproducible-analysis-in-r"){
-      setwd("materials/reproducible-analysis-in-r")
-    }
-
+  print(paste("Building book ", tag_list[zz]))
+  checkout(".", tag_list[zz])
+  if (getwd() != "materials/reproducible-analysis-in-r"){
+    setwd("materials/reproducible-analysis-in-r")
+  }
   devtools::install_deps('.') # Installs book-specific R deps
   # defined in DESCRIPTION file
   bookdown::render_book('index.Rmd', c('bookdown::gitbook'))
 
-
-  dir_names <- Sys.getenv("dir_names")
-
   fls <- list.files("_book")
 
-  this_path <- paste0("../../public/materials/", dir_names)
+  these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
-  file.copy(paste0("_book/",fls), this_path, recursive = T, overwrite = T, copy.mode = T)
+  file.copy(paste0("_book/",fls), paste0("../../public/materials/", these_are_dir_names), recursive = T, overwrite = T, copy.mode = T)
 
   unlink("_book", recursive = T)
 
-  setwd("../..");
-
-
+  setwd("../..")
+}
