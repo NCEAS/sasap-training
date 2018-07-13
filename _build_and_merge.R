@@ -1,7 +1,8 @@
 #build and merge
 library(git2r)
 
-tag_list <- names(tags())
+tag_list <<- names(tags())
+dir_names <<- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
 for (n in dir_names){
   if (dir.exists(paste0("public/materials/", n)) == FALSE){
