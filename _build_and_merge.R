@@ -11,7 +11,7 @@ if (dir.exists("public/materials") == FALSE){
 # Build all books in the books subdir
 for (i in 1:length(tag_list)) {
 
-  print(paste("Building book in", tag_list[i]))
+  print(paste("Building book ", tag_list[i]))
   checkout(".", tag_list[i])
   setwd("materials/reproducible-analysis-in-r")
   devtools::install_deps('.') # Installs book-specific R deps
