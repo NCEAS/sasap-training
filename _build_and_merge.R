@@ -2,8 +2,8 @@
 library(git2r)
 
 
-build_directory <- Sys.getenv("$TRAVIS_BUILD_DIR")
-print(build_directory)
+build_path <- Sys.getenv("build_path")
+print(build_path)
 
 tag_list <- names(tags())
 these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
@@ -18,7 +18,7 @@ for (n in these_are_dir_names){
 # Build all books in the books subdir
 for (zz in 1:2) {
 
-  setwd(build_directory)
+  setwd(build_path)
 
   if (getwd() != "materials/reproducible-analysis-in-r"){
     setwd("materials/reproducible-analysis-in-r")

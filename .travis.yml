@@ -10,6 +10,9 @@ addons:
 r_packages:
     - blogdown
     - git2r
+env:
+  global:
+    - build_path=${TRAVIS_BUILD_DIR}
 before_script:
     - Rscript -e 'blogdown::install_hugo(version = "0.29")'
 script:
