@@ -31,5 +31,7 @@ for (zz in 1:length(tag_list)) {
 
   unlink("_book", recursive = T)
 
+  warnings()
+
   setwd("../..")
 }
