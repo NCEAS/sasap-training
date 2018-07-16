@@ -13,7 +13,7 @@ for (n in these_are_dir_names){
 
 # Build all books in the books subdir
 for (zz in 1:2) {
-  setwd("~/")
+  setwd("~/sasap-training/")
 
   tag_list <- names(tags())
 
