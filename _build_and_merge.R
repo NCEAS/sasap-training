@@ -30,11 +30,11 @@ for (zz in 1:length(tag_list)) {
 
   these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
-  if (dir.exists(paste0("../../public/materials/", these_are_dir_names[zz])) == FALSE){
-    dir.create(paste0("../../public/materials/", these_are_dir_names[zz]), recursive = T)
+  if (dir.exists(paste0("/home/travis/build/jeanetteclark/sasap-training/public/materials/", these_are_dir_names[zz])) == FALSE){
+    dir.create(paste0("/home/travis/build/jeanetteclark/sasap-training/public/materials/", these_are_dir_names[zz]), recursive = T)
   }
 
-  t <- lapply(paste0("_book/",fls), file.copy, to = paste0("../../public/materials/", these_are_dir_names[zz]),
+  t <- lapply(paste0("_book/",fls), file.copy, to = paste0("/home/travis/build/jeanetteclark/sasap-training/public/materials/", these_are_dir_names[zz]),
                  recursive = T, overwrite = T, copy.mode = T)
   print(t)
 
@@ -45,4 +45,5 @@ for (zz in 1:length(tag_list)) {
 }
 
 setwd(build_path)
-print(list.files("public/materials/reproducible-research-in-r-juneau"))
+
+print(list.files("/home/travis/build/jeanetteclark/sasap-training/public/materials/reproducible-research-in-r-juneau"))
