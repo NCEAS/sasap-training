@@ -30,11 +30,11 @@ for (zz in 1:length(tag_list)) {
 
   these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
-  if (dir.exists(paste0("public/materials/", these_are_dir_names[zz])) == FALSE){
-    dir.create(paste0("public/materials/", these_are_dir_names[zz]), recursive = T)
+  if (dir.exists(paste0("../../public/materials/", these_are_dir_names[zz])) == FALSE){
+    dir.create(paste0("../../public/materials/", these_are_dir_names[zz]), recursive = T)
   }
 
-  t <- file.copy(paste0("_book/",fls), paste0("../../public/materials/", these_are_dir_names[zz]),
+  t <- lapply(paste0("_book/",fls), file.copy, to = paste0("../../public/materials/", these_are_dir_names[zz]),
                  recursive = T, overwrite = T, copy.mode = T)
   print(t)
 
