@@ -18,9 +18,6 @@ for (n in these_are_dir_names){
 # Build all books in the books subdir
 for (zz in 1:length(tag_list)) {
 
-  if (getwd() != "materials/reproducible-analysis-in-r"){
-    setwd("materials/reproducible-analysis-in-r")
-  }
 
   tag_list <- names(tags())
 
