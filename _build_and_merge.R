@@ -5,7 +5,7 @@ library(git2r)
 build_path <- Sys.getenv("build_path")
 print(build_path)
 
-tag_list <- names(tags())
+tag_list <- c("v1.0", "v2.0")
 print(tag_list)
 
 these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
@@ -21,7 +21,7 @@ for (n in these_are_dir_names){
 for (zz in 1:length(tag_list)) {
 
 
-  tag_list <- names(tags())
+  tag_list <- c("v1.0", "v2.0")
 
   print(paste("Building book ", tag_list[zz]))
   checkout(".", tag_list[zz])
