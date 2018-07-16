@@ -39,7 +39,7 @@ for (zz in 1:length(tag_list)) {
   these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
   t <- file.copy(paste0("_book/",fls), paste0("../../public/materials/", these_are_dir_names[zz]),
-                 recursive = T, overwrite = T, copy.mode = T, showWarnings = T)
+                 recursive = T, overwrite = T, copy.mode = T)
   print(t)
 
   unlink("_book", recursive = T)
