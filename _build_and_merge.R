@@ -1,6 +1,10 @@
 #build and merge
 library(git2r)
 
+
+build_directory <- Sys.getenv("$TRAVIS_BUILD_DIR")
+print(build_directory)
+
 tag_list <- names(tags())
 these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
@@ -13,12 +17,18 @@ for (n in these_are_dir_names){
 
 # Build all books in the books subdir
 for (zz in 1:2) {
-  setwd("~/sasap-training/")
+
+  setwd(build_directory)
+
+  if (getwd() != "materials/reproducible-analysis-in-r"){
+    setwd("materials/reproducible-analysis-in-r")
+  }
 
   tag_list <- names(tags())
 
   print(paste("Building book ", tag_list[zz]))
   checkout(".", tag_list[zz])
+
   if (getwd() != "materials/reproducible-analysis-in-r"){
     setwd("materials/reproducible-analysis-in-r")
   }
