@@ -13,6 +13,9 @@ for (n in these_are_dir_names){
 
 # Build all books in the books subdir
 for (zz in 1:2) {
+  setwd("~/")
+
+  tag_list <- names(tags())
 
   print(paste("Building book ", tag_list[zz]))
   checkout(".", tag_list[zz])
