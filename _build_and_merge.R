@@ -6,6 +6,8 @@ build_path <- Sys.getenv("build_path")
 print(build_path)
 
 tag_list <- names(tags())
+print(tag_list)
+
 these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
 for (n in these_are_dir_names){
@@ -35,11 +37,13 @@ for (zz in 1:length(tag_list)) {
 
   these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
 
-  file.copy(paste0("_book/",fls), paste0("../../public/materials/", these_are_dir_names[zz]), recursive = T, overwrite = T, copy.mode = T)
+  t <- file.copy(paste0("_book/",fls), paste0("../../public/materials/", these_are_dir_names[zz]), recursive = T, overwrite = T, copy.mode = T)
+  print(t)
 
   unlink("_book", recursive = T)
 
   setwd(build_path)
 }
 
-print(warnings())
+setwd(build_path)
+print(list.files("public/materials/reproducible-research-in-r-juneau"))
