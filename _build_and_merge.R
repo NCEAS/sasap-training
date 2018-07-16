@@ -24,6 +24,7 @@ for (zz in 1:length(tag_list)) {
   tag_list <- c("v1.0", "v2.0")
 
   print(paste("Building book ", tag_list[zz]))
+
   checkout(".", tag_list[zz])
 
   if (getwd() != "materials/reproducible-analysis-in-r"){

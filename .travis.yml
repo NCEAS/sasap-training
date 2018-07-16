@@ -1,5 +1,8 @@
 language: r
 cache: packages
+install:
+  - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+  - cd $TRAVIS_REPO_SLUG
 branches:
   only:
   - master
