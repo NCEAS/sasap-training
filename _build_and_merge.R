@@ -19,6 +19,9 @@ releases <- gh::gh("/repos/nceas/sasap-training/releases")
 tag_list <- vapply(releases, "[[", "", "tag_name")
 tag_names <- vapply(vapply(releases, "[[", "", "name"), slugify, "")
 
+url_base <- gsub("[0-9]", "", tag_names)
+url_base <- paste0("reproducible_research_in_r_", gsub("-", "", url_base))
+
 if (!dir.exists(file.path(top, "public", "materials"))) {
   dir.create(file.path(top, "public", "materials"), recursive = TRUE)
 }
@@ -37,8 +40,8 @@ for (zz in 1:length(tag_list)) {
   # defined in DESCRIPTION file
   bookdown::render_book('index.Rmd', c('bookdown::gitbook'), clean_envir = F)
 
-  message("Copying _book folder from ", getwd(), " to ", file.path(top, "public", "materials", tag_names[zz]))
-  copy_dest <- file.path(top, "public", "materials", tag_names[zz])
+  message("Copying _book folder from ", getwd(), " to ", file.path(top, "public", "materials", url_base[zz]))
+  copy_dest <- file.path(top, "public", "materials", url_base[zz])
   system2("cp", c("-r", "_book", copy_dest))
 
   message("Materials folder contains:", dir(file.path(top, "public", "materials")))

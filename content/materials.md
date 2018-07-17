@@ -1,4 +1,4 @@
 ## Materials
 
-- [Juneau: Reproducible Analysis in R](/materials/anchorage-03-2018)
-- [Anchorage: Reproducible Analysis in R](/materials/juneau-11-2017)
+- [Juneau: Reproducible Analysis in R](/materials/reproducible_research_in_r_juneau)
+- [Anchorage: Reproducible Analysis in R](/materials/reproducible_research_in_r_juneau)
