@@ -1,19 +1,30 @@
 #build and merge
 library(git2r)
 
+top <- getwd()
 
-build_path <- Sys.getenv("build_path")
-print(build_path)
 
-tag_list <- c("v1.0", "v2.0")
-print(tag_list)
+#' Turn ordinary strings into valid "slugs" so we can use them in URLs
+#' @param content (character) The string to slugify
+slugify <- function(content) {
+  gsub("[^a-z0-9]", "-", tolower(content))
+}
 
+
+
+#' First, we determine which tags are available to build and what their human-
+#' readable names are. GitHub's tag naming feature is used to control the human-
+#' readable name.
+releases <- gh::gh("/repos/nceas/sasap-training/releases")
+tag_list <- vapply(releases, "[[", "", "tag_name")
+tag_names <- vapply(vapply(releases, "[[", "", "name"), slugify, "")
+
+if (!dir.exists(file.path(top, "public", "materials"))) {
+  dir.create(file.path(top, "public", "materials"), recursive = TRUE)
+}
 
 # Build all books in the books subdir
 for (zz in 1:length(tag_list)) {
-
-
-  tag_list <- c("v1.0", "v2.0")
 
   print(paste("Building book ", tag_list[zz]))
 
@@ -22,28 +33,17 @@ for (zz in 1:length(tag_list)) {
   if (getwd() != "materials/reproducible-analysis-in-r"){
     setwd("materials/reproducible-analysis-in-r")
   }
-  devtools::install_deps('.') # Installs book-specific R deps
+  remotes::install_deps('.') # Installs book-specific R deps
   # defined in DESCRIPTION file
   bookdown::render_book('index.Rmd', c('bookdown::gitbook'), clean_envir = F)
 
-  fls <- list.files("_book")
+  message("Copying _book folder from ", getwd(), " to ", file.path(top, "public", "materials", tag_names[zz]))
+  copy_dest <- file.path(top, "public", "materials", tag_names[zz])
+  system2("cp", c("-r", "_book", copy_dest))
 
-  these_are_dir_names <- c("reproducible-research-in-r-juneau", "reproducible-research-in-r-anchorage")
-
-  if (dir.exists(paste0("/home/travis/build/jeanetteclark/sasap-training/public/materials/", these_are_dir_names[zz])) == FALSE){
-    dir.create(paste0("/home/travis/build/jeanetteclark/sasap-training/public/materials/", these_are_dir_names[zz]), recursive = T)
-  }
-
-  t <- lapply(paste0("_book/",fls), file.copy, to = paste0("/home/travis/build/jeanetteclark/sasap-training/public/materials/", these_are_dir_names[zz]),
-                 recursive = T, overwrite = T, copy.mode = T)
-  print(t)
+  message("Materials folder contains:", dir(file.path(top, "public", "materials")))
 
   unlink("_book", recursive = T)
-  rm(fls)
 
-  setwd(build_path)
+  setwd(top)
 }
-
-setwd(build_path)
-
-print(list.files("/home/travis/build/jeanetteclark/sasap-training/public/materials/reproducible-research-in-r-juneau"))

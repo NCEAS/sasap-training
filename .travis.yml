@@ -1,8 +1,7 @@
 language: r
 cache: packages
-install:
-  - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
-  - cd $TRAVIS_REPO_SLUG
+git:
+  depth: false
 branches:
   only:
   - master
@@ -12,10 +11,9 @@ addons:
     - librdf0-dev
 r_packages:
     - blogdown
+    - gh
     - git2r
-env:
-  global:
-    - build_path=${TRAVIS_BUILD_DIR}
+    - remotes
 before_script:
     - Rscript -e 'blogdown::install_hugo(version = "0.29")'
 script:
