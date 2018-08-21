@@ -31,30 +31,9 @@ both for publications and the web.
 - Space is limited to 20-25 people, so higher priority to earlier registrants
 - If interest exceeds capacity, we will create a waitlist
 
-## Agenda (draft)
+## Agenda
 
-### Day 1, October 16, 2018
-
-- Welcome and introductions [30 mins]
-- Block 1
-    - Literate analysis with RMarkdown [1hr]
-    - RStudio and git/GitHub setup [30 mins]
-    - Version control with git and GitHub [1hr]
-        
-- Block 2
-    - Data cleaning and integration
-        - Data modeling (tidy data) [30 minutes]
-        - Cleaning and manipulating data with dplyr & tidyr [1.5 hr]
-        - Hands on: Clean and integrate 2 data sets in Rmd w/ dplyr [1 hr]
-
-### Day 2, October 17, 2018
-
-- Block 3
-    - Publication graphics with ggplot2 [2 hr]
-    - Data documentation and publishing [1 hr]
-- Block 4
-    - Publishing analyses to the web
-        - RMarkdown, Leaflet, and GitHub Pages
+Coming soon...
 
 ## Organizers
 
