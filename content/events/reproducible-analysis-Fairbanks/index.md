@@ -6,7 +6,7 @@ title: "Fairbanks, Oct 2018: Reproducible analysis with R"
 
 __Dates__: October 16-17, 2018<br>
 __Location__: Fairbanks, AK<br>
-__Venue__: International Arctic Research Center
+__Venue__: UAF, International Arctic Research Center
 
 This event will cover techniques for building reproducible analysis workflows using
 the R programming language through a series of hands-on coding sessions.  We will
