@@ -416,7 +416,7 @@ for (i in 1:nrow(brood_s)) {
 We then plot Simpson diversity index over time. We included the linear equation in each plot. This information can be easily exported as a CSV file to be used in other analysis.
 
 ```{r, warning=FALSE}
-ggplot(brood_s, aes(BroodYear, Simpson)) + 
+ggplot(brood_s, aes(BroodYear, as.numeric(Simpson))) + 
   geom_point(size = 0.1) + 
   geom_smooth(method = "lm", 
               formula = "y ~ x", 
