@@ -6,7 +6,7 @@ title: "Fairbanks, Oct 2018: Reproducible analysis with R"
 
 __Dates__: October 16-17, 2018<br>
 __Location__: Fairbanks, AK<br>
-__Venue__: UAF, International Arctic Research Center
+__Venue__: UAF, International Arctic Research Center, room 417
 
 This event will cover techniques for building reproducible analysis workflows using
 the R programming language through a series of hands-on coding sessions.  We will
@@ -33,7 +33,29 @@ both for publications and the web.
 
 ## Agenda
 
-Coming soon...
+|                      |                               |
+|:---------------------|:------------------------------|
+|**Tuesday, Oct. 16**  |                               |
+|8:30 - 9:30           |Introduction and Motivation    |
+|9:30 - 10:00          |R, RStudio, git Setup          |
+|10:00 - 10:30         |Break                          |
+|10:30 - 11:30         |RMarkdown                      |
+|11:30 - 12:30         |git/GitHub                     |
+|12:30 - 1:30          |Lunch                          |
+|1:30 - 2:30           |Data Modeling                  |
+|2:30 - 3:30           |Tidyverse                      |
+|3:30 - 4:00           |Break                          |
+|4:00 - 5:00           |Tidyverse contd.               |
+|**Wednesday, Oct. 17**|                               |
+|8:30 - 10:00          |Hands-On Data Tidying          |
+|10:00 - 10:30         |Break                          |
+|10:30 - 12:00         |Data Visualization             |
+|12:00 - 1:00          |Lunch                          |
+|1:00 - 2:00           |Data Visualization contd.      |
+|2:00 - 3:00           |Data Documentation/Publishing  |
+|3:00 - 3:30           |Break                          |
+|3:30 - 5:00           |Publishing Analysis to the Web |
+
 
 ## Organizers
 
@@ -42,7 +64,7 @@ Coming soon...
 |Matthew Jones| jones@nceas.ucsb.edu |
 |Jeanette Clark| jclark@nceas.ucsb.edu |
 |Jorge Cornejo| cornejo@nceas.ucsb.edu |
-|Madeline Jovanovich| mjovanovich@alaska.edu |
+
 
 ## Acknowledgements
 
@@ -79,11 +101,15 @@ We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sur
     - leaflet
     - readxl
     - tidyr
+    - ggmap
+    - sf
+    - raster
     
     You can install these packages quickly by running the following two code snippets:
 
     ```r
-    packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "tidyr")
+    packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", 
+                  "kableExtra", "leaflet", "readxl", "tidyr", "ggmap", "sf", "raster")
     ```
     
     ```r
