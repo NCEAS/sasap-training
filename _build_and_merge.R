@@ -3,6 +3,8 @@ library(git2r)
 
 top <- getwd()
 
+file.create(".nojekyll")
+
 #' First, we determine which tags are available to build and what their human-
 #' readable names are. GitHub's tag naming feature is used to control the human-
 #' readable name.
