@@ -124,7 +124,7 @@ I've already uploaded the test data package, and so you can access the data here
 
 Grab both CSV files, and the R script, and store them in a convenient folder.
 
-![](images/hatfield-KNB-01.png)
+![](images/hatfield-knb-01.png)
 
 ### Login via ORCID
 
