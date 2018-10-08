@@ -3,24 +3,13 @@ library(git2r)
 
 top <- getwd()
 
-
-#' Turn ordinary strings into valid "slugs" so we can use them in URLs
-#' @param content (character) The string to slugify
-slugify <- function(content) {
-  gsub("[^a-z0-9]", "-", tolower(content))
-}
-
-
-
 #' First, we determine which tags are available to build and what their human-
 #' readable names are. GitHub's tag naming feature is used to control the human-
 #' readable name.
-releases <- gh::gh("/repos/nceas/sasap-training/releases")
-tag_list <- vapply(releases, "[[", "", "tag_name")
-tag_names <- vapply(vapply(releases, "[[", "", "name"), slugify, "")
+tag_list <- c("Jnu_2017", "Anc_2018", "Fai_2018")
+tag_names <- c("juneau", "anchorage", "fairbanks")
 
-url_base <- gsub("[0-9]", "", tag_names)
-url_base <- paste0("reproducible_research_in_r_", gsub("-", "", url_base))
+url_base <- paste0("reproducible_research_in_r_", tag_names)
 
 if (!dir.exists(file.path(top, "public", "materials"))) {
   dir.create(file.path(top, "public", "materials"), recursive = TRUE)
