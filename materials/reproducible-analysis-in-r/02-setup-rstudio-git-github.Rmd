@@ -15,7 +15,7 @@ In this lesson, you will learn:
 
 ### R Version
 
-We will use R version 3.5.0, which you can download and install from [CRAN](https://cran.rstudio.com). To check your version, run this in your RStudio console:
+We will use R version 3.5.1, which you can download and install from [CRAN](https://cran.rstudio.com). To check your version, run this in your RStudio console:
 
 ```
 R.version$version.string
@@ -29,7 +29,7 @@ First, lets make sure everyone's RStudio is up to date. Run the following in you
 RStudio.Version()$version
 ```
 
-If the output of this does not say `1.1.447`, you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
+If the output of this does not say at least 1.1.4XX (current version is `1.1.456`), you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
 
 ### Package installation
 
