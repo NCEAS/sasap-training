@@ -89,12 +89,10 @@ We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sur
     
 - **R packages:** Please be sure you have installed or updated the following packages:
 
-    - dataone
     - datapack
     - devtools
     - dplyr
     - DT
-    - EML
     - ggplot2
     - ggpmisc
     - kableExtra
@@ -105,19 +103,20 @@ We will primarily be using a web browser, `R`, RStudio, and `git`. Please be sur
     - sf
     - raster
     
-    You can install these packages quickly by running the following two code snippets:
+    You can install these packages quickly by running the following code snippet:
 
     ```r
-    packages <- c("dataone", "datapack", "devtools", "dplyr", "DT", "EML", "ggplot2", "ggpmisc", 
-                  "kableExtra", "leaflet", "readxl", "tidyr", "ggmap", "sf", "raster")
-    ```
-    
-    ```r
-    for (package in packages) {
-      if (!(package %in% installed.packages())) {
-        install.packages(package)
-      }
+
+    packages <- c( "devtools", "dplyr", "DT", "ggplot2", "ggpmisc", 
+                   "kableExtra", "leaflet", "readxl", "remotes", "tidyr",
+                   "ggmap", "sf", "raster")
+    for (package in packages) { 
+        if (!(package %in% installed.packages())) {install.packages(package)} 
+        else if (package %in% old.packages()){install.packages(package)}
     }
+    
+    
+    rm(packages) #remove variables from workspace
     ```
 
 - **git:** [Download git](https://git-scm.com/downloads) and install it on your system.
