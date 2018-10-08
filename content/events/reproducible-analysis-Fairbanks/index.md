@@ -56,26 +56,6 @@ both for publications and the web.
 |3:00 - 3:30           |Break                          |
 |3:30 - 5:00           |Publishing Analysis to the Web |
 
-
-## Organizers
-
-|Name         | Email              |
-|-------------|--------------------|
-|Matthew Jones| jones@nceas.ucsb.edu |
-|Jeanette Clark| jclark@nceas.ucsb.edu |
-|Jorge Cornejo| cornejo@nceas.ucsb.edu |
-
-
-## Acknowledgements
-
-These training events were supported by:
-
-The [Gordon and Betty Moore Foundation](https://www.moore.org), __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
-<img src="/images/moore-logo-color.jpg" id="moorelogo"/>
-<img src="/images/nceas.png" id="nceaslogo"/>
-
-Additional support was provided for collaboration by the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu), a Center funded by the University of California, Santa Barbara, and the State of California.
-
 ## Preparing for the Workshop
 
 ### Required software
@@ -145,5 +125,23 @@ In particular, check out:
 * R Markdown Reference Guide 
 * The leaflet package
 
-## Participants
+
+## Organizers
+
+|Name         | Email              |
+|-------------|--------------------|
+|Matthew Jones| jones@nceas.ucsb.edu |
+|Jeanette Clark| jclark@nceas.ucsb.edu |
+|Jorge Cornejo| cornejo@nceas.ucsb.edu |
+
+
+## Acknowledgements
+
+These training events were supported by:
+
+The [Gordon and Betty Moore Foundation](https://www.moore.org), __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
+<img src="/images/moore-logo-color.jpg" id="moorelogo"/>
+<img src="/images/nceas.png" id="nceaslogo"/>
+
+Additional support was provided for collaboration by the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu), a Center funded by the University of California, Santa Barbara, and the State of California.
 
