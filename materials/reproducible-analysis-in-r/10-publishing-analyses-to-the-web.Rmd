@@ -71,7 +71,7 @@ We'll use the same git repository and RStudio Project as above, but we'll be add
 First, let's get some data.
 We'll re-use the salmon escapement data from the ADF&G OceanAK database we used earlier.
 
-- Navigate to [Escapement Counts](https://knb.ecoinformatics.org/#view/urn:uuid:c14d3e59-e5e3-4696-996d-558446b577fd) (or visit the KNB and search for 'oceanak') and copy the Download URL for the `ADFG_firstAttempt_reformatted.csv` file
+- Navigate to [Escapement Counts](https://doi.org/10.5063/F1TX3CKH) (or visit the KNB and search for 'oceanak') and copy the Download URL for the `ADFG_firstAttempt_reformatted.csv` file
 - Make a folder in the top level of your repository to store the file called `data`
 - Download that file into the `data` folder with the filename `escapement_counts.csv`
 
@@ -87,13 +87,11 @@ To do this, we'll use the [`leaflet`](https://rstudio.github.io/leaflet/) packag
 First, let's load the packages we'll need:
 
 ```{r}
-suppressPackageStartupMessages({
-  library(leaflet)
-  library(dplyr)
-  library(tidyr)
-  library(ggplot2)
-  library(DT)
-})
+library(leaflet)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(DT)
 ```
 
 Then, let's create the `data.frame` we're going to use to plot:
@@ -105,7 +103,7 @@ esc <- read.csv("data/escapement_counts.csv", stringsAsFactors = FALSE)
 If you haven't saved the data locally, you can load it directly from the KNB using this line:
 
 ```{r, eval=FALSE}
-esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", method = "libcurl"), 
+esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e", method = "libcurl"), 
                 stringsAsFactors = FALSE)
 ```
 
@@ -177,13 +175,4 @@ leaflet(locations) %>%
 ```
 
 
-This map hopefully gives you an idea of how powerful the combination of RMarkdown and GitHub pages can be. ...and it makes a problem with these data much more obvious than in tabular form. Do you see all those points way over in Russia? This is an Alaskan data set. Those aren't supposed to be there. Can you guess why they're showing up over there? If you glance through the coordinates in the `locations` table above it should become obvious. Here's how to fix it:
-
-```{r fix_the_locations}
-locs <- locations %>% mutate(Longitude = abs(Longitude) * -1)
-
-leaflet(locs) %>% 
-  addTiles() %>% 
-  addMarkers(~ Longitude, ~ Latitude, popup = ~ Location, icon = markerIcon)
-```
-
+This map hopefully gives you an idea of how powerful the combination of RMarkdown and GitHub pages can be!
