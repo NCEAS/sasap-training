@@ -15,8 +15,8 @@ In this lesson, you will:
 
 In this one block, you will load data from the following two datasets into R,
 
-- Alaska Department of Fish and Game. 2017. Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017. Knowledge Network for Biocomplexity. doi:10.5063/F1TX3CKH. [http://doi.org/10.5063/F1TX3CKH](http://doi.org/10.5063/F1TX3CKH)
-- Andrew Munro and Eric Volk. 2017. Summary of Pacific Salmon Escapement Goals in Alaska with a Review of Escapements from 2007 to 2015. Knowledge Network for Biocomplexity. doi:10.5063/F1TQ5ZRG. [http://doi.org/10.5063/F1TQ5ZRG](http://doi.org/10.5063/F1TQ5ZRG)
+- Alaska Department of Fish and Game. 2017. Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017. Knowledge Network for Biocomplexity. [doi:10.5063/F1TX3CKH](http://doi.org/10.5063/F1TX3CKH)
+- Andrew Munro and Eric Volk. 2017. Summary of Pacific Salmon Escapement Goals in Alaska with a Review of Escapements from 2007 to 2015. Knowledge Network for Biocomplexity. [doi:10.5063/F1TQ5ZRG](http://doi.org/10.5063/F1TQ5ZRG)
 
 and then clean, and integrate them together to answer a research question:
 
