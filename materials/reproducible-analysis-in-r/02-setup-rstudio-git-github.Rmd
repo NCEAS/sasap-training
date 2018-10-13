@@ -15,7 +15,7 @@ In this lesson, you will learn:
 
 ### R Version
 
-We will use R version 3.5.0, which you can download and install from [CRAN](https://cran.rstudio.com). To check your version, run this in your RStudio console:
+We will use R version 3.5.1, which you can download and install from [CRAN](https://cran.rstudio.com). To check your version, run this in your RStudio console:
 
 ```
 R.version$version.string
@@ -29,16 +29,21 @@ First, lets make sure everyone's RStudio is up to date. Run the following in you
 RStudio.Version()$version
 ```
 
-If the output of this does not say `1.1.447`, you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
+If the output of this does not say at least 1.1.4XX (current version is `1.1.456`), you should update your RStudio. Do this by selecting Help -> Check for Updates and follow the prompts.
 
 ### Package installation
 
-Run the following lines to check that all of the packages we need for the training are installed on your computer.
+Run the following lines to check that all of the packages we need for the training are installed on your computer, and update packages that are out of date.
 
-```{r}
+```{r, eval = F}
 
-packages <- c( "devtools", "dplyr", "DT", "ggplot2", "ggpmisc", "kableExtra", "leaflet", "readxl", "remotes", "tidyr")
-for (package in packages) { if (!(package %in% installed.packages())) { install.packages(package) } }
+packages <- c( "devtools", "dplyr", "DT", "ggplot2", "ggpmisc", 
+               "kableExtra", "leaflet", "readxl", "remotes", "tidyr",
+               "ggmap", "sf", "raster")
+for (package in packages) { 
+    if (!(package %in% installed.packages())) {install.packages(package)} 
+    else if (package %in% old.packages()){install.packages(package)}
+}
 
 
 rm(packages) #remove variables from workspace
@@ -48,26 +53,6 @@ If you haven't installed all of the packages, this will automatically start inst
 
 Next, create a new R Markdown (File -> New File -> R Markdown). If you have never made an R Markdown document before, a dialog box will pop up asking if you wish to install the required packages. Click yes.
 
-### Checking your package versions
-
-We'll be using the following package versions:
-    
-- devtools: version 1.13.5
-- dplyr: version 0.7.4
-- DT: version 0.4
-- ggplot2: version 2.2.1
-- ggpmisc: version 0.2.17
-- kableExtra: version 0.8.0
-- leaflet: version 2.0.0
-- remotes: version 1.1.1
-- readxl: version 1.1.0
-- tidyr: version 0.8.0
-
-Ideally, you should have the same versions installed. ...but as long as your versions are not too far off, you should be okay. To check your versions, you can run the following snippet:
-
-```r
-for (p in packages) {sprintf("%s: version %s", p, packageVersion(p)) %>% print()}
-```
 
 ## Setting up git
 
