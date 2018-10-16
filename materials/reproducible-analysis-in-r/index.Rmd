@@ -102,7 +102,7 @@ While prior knowledge of R is a pre-requisite for the mini-course, participants
 enter with a range of experience with scientific computing in R.  We will try to
 accommodate this diversity, while maintaining a reasonable pace through the materials.
 
-![Fig 1.5: Class participants number of year using R (left) and expertise self evaluation (right).](images/r-experience.png)
+![Fig 1.5: Class participants: number of years using R (right) and expertise self evaluation (left).](images/r-experience.png)
 
 
 We will conduct the course in a supportive and friendly manner, working to build
