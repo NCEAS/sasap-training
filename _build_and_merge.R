@@ -23,7 +23,7 @@ for (zz in 1:length(tag_list)) {
   print(paste("Building book ", tag_list[zz]))
 
   #checkout(".", tag_list[zz])
-  system2("git checkout", c(tag_list[zz]))
+  system2("git", c("checkout", tag_list[zz]))
 
   if (getwd() != "materials/reproducible-analysis-in-r"){
     setwd("materials/reproducible-analysis-in-r")
