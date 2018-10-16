@@ -1,7 +1,6 @@
 language: r
 before_install:
   - echo -e "machine github.com login jeanetteclark $GITHUB_TOKEN" > ~/.netrc
-  - git lfs pull
 cache: packages
 git:
   depth: false
