@@ -1,6 +1,6 @@
 --- 
 title: "Reproducible Analysis With R"
-date: "May 17-18, 2018"
+date: "Oct 16-17, 2018"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
