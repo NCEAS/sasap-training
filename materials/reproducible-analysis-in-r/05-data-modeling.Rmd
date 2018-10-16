@@ -157,6 +157,10 @@ datatable(region_defs)
 
 - Draw an ER model for the tables
   - Indicate the primary and foreign keys
+- Is the `catch` table in normal (aka tidy) form?
+  - If so, what single type of entity was observed?
+  - If not, how might you restructure the data table to make it tidy?
+    - Draw a new ER diatram showing this re-designed data structure
 
 ![](images/ERD_Relationship_Symbols_Quick_Reference-1.png)
 
