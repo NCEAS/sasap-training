@@ -1,10 +1,10 @@
 language: r
-cache: packages
-git:
-  depth: false
 before_install:
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
   - git lfs pull
+cache: packages
+git:
+  depth: false
 branches:
   only:
   - master
