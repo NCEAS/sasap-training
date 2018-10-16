@@ -8,8 +8,11 @@ file.create(".nojekyll")
 #' First, we determine which tags are available to build and what their human-
 #' readable names are. GitHub's tag naming feature is used to control the human-
 #' readable name.
-tag_list <- c("Jnu_2017", "Anc_2018", "Fai_2018")
-tag_names <- c("juneau", "anchorage", "fairbanks")
+#tag_list <- c("Jnu_2017", "Anc_2018", "Fai_2018")
+#tag_names <- c("juneau", "anchorage", "fairbanks")
+
+tag_list <- c("Fai_2018")
+tag_names <- c("fairbanks")
 
 url_base <- paste0("reproducible_research_in_r_", tag_names)
 
