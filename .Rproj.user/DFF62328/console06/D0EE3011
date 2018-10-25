@@ -1,0 +1,971 @@
+]0;~/Documents/Projects Data/sasap-training[?1034hMacBook-Pro-7:sasap-training clark$ [KMacBook-Pro-7:sasap-training clark$ git checkout Fai_1018[K[K[K[K2018
+Branch Fai_2018 set up to track remote branch Fai_2018 from origin.
+Switched to a new branch 'Fai_2018'
+]0;~/Documents/Projects Data/sasap-trainingMacBook-Pro-7:sasap-training clark$ [KMacBook-Pro-7:sasap-training clark$ [KMacBook-Pro-7:sasap-training clark$ [KMacBook-Pro-7:sasap-training clark$ git checkout gh-ages[K[K[K[Kpages
+Branch gh-pages set up to track remote branch gh-pages from origin.
+Switched to a new branch 'gh-pages'
+]0;~/Documents/Projects Data/sasap-trainingMacBook-Pro-7:sasap-training clark$ [KMacBook-Pro-7:sasap-training clark$ git add materials/reproducible-analysis-in-r/*
+]0;~/Documents/Projects Data/sasap-trainingMacBook-Pro-7:sasap-training clark$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+[Kfuturama:sasap-training clark$ git remove =[K[K[K[Kte -v
+origin	https://github.com/NCEAS/sasap-training (fetch)
+origin	https://github.com/NCEAS/sasap-training (push)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git pull
+remote: Enumerating objects: 153, done.[K
+remote: Counting objects:   0% (1/153)   [Kremote: Counting objects:   1% (2/153)   [Kremote: Counting objects:   2% (4/153)   [Kremote: Counting objects:   3% (5/153)   [Kremote: Counting objects:   4% (7/153)   [Kremote: Counting objects:   5% (8/153)   [Kremote: Counting objects:   6% (10/153)   [Kremote: Counting objects:   7% (11/153)   [Kremote: Counting objects:   8% (13/153)   [Kremote: Counting objects:   9% (14/153)   [Kremote: Counting objects:  10% (16/153)   [Kremote: Counting objects:  11% (17/153)   [Kremote: Counting objects:  12% (19/153)   [Kremote: Counting objects:  13% (20/153)   [Kremote: Counting objects:  14% (22/153)   [Kremote: Counting objects:  15% (23/153)   [Kremote: Counting objects:  16% (25/153)   [Kremote: Counting objects:  17% (27/153)   [Kremote: Counting objects:  18% (28/153)   [Kremote: Counting objects:  19% (30/153)   [Kremote: Counting objects:  20% (31/153)   [Kremote: Counting objects:  21% (33/153)   [Kremote: Counting objects:  22% (34/153)   [Kremote: Counting objects:  23% (36/153)   [Kremote: Counting objects:  24% (37/153)   [Kremote: Counting objects:  25% (39/153)   [Kremote: Counting objects:  26% (40/153)   [Kremote: Counting objects:  27% (42/153)   remote: Counting objects:  28% (43/153)   [Kremote: Counting objects:  29% (45/153)   [Kremote: Counting objects:  30% (46/153)   [Kremote: Counting objects:  31% (48/153)   [Kremote: Counting objects:  32% (49/153)   [Kremote: Counting objects:  33% (51/153)   [Kremote: Counting objects:  34% (53/153)   [Kremote: Counting objects:  35% (54/153)   [Kremote: Counting objects:  36% (56/153)   [Kremote: Counting objects:  37% (57/153)   [Kremote: Counting objects:  38% (59/153)   [Kremote: Counting objects:  39% (60/153)   [Kremote: Counting objects:  40% (62/153)   [Kremote: Counting objects:  41% (63/153)   [Kremote: Counting objects:  42% (65/153)   [Kremote: Counting objects:  43% (66/153)   [Kremote: Counting objects:  44% (68/153)   [Kremote: Counting objects:  45% (69/153)   [Kremote: Counting objects:  46% (71/153)   [Kremote: Counting objects:  47% (72/153)   [Kremote: Counting objects:  48% (74/153)   [Kremote: Counting objects:  49% (75/153)   [Kremote: Counting objects:  50% (77/153)   [Kremote: Counting objects:  51% (79/153)   [Kremote: Counting objects:  52% (80/153)   [Kremote: Counting objects:  53% (82/153)   [Kremote: Counting objects:  54% (83/153)   [Kremote: Counting objects:  55% (85/153)   [Kremote: Counting objects:  56% (86/153)   [Kremote: Counting objects:  57% (88/153)   [Kremote: Counting objects:  58% (89/153)   [Kremote: Counting objects:  59% (91/153)   [Kremote: Counting objects:  60% (92/153)   [Kremote: Counting objects:  61% (94/153)   [Kremote: Counting objects:  62% (95/153)   [Kremote: Counting objects:  63% (97/153)   [Kremote: Counting objects:  64% (98/153)   [Kremote: Counting objects:  65% (100/153)   [Kremote: Counting objects:  66% (101/153)   [Kremote: Counting objects:  67% (103/153)   [Kremote: Counting objects:  68% (105/153)   [Kremote: Counting objects:  69% (106/153)   [Kremote: Counting objects:  70% (108/153)   [Kremote: Counting objects:  71% (109/153)   [Kremote: Counting objects:  72% (111/153)   [Kremote: Counting objects:  73% (112/153)   [Kremote: Counting objects:  74% (114/153)   [Kremote: Counting objects:  75% (115/153)   [Kremote: Counting objects:  76% (117/153)   [Kremote: Counting objects:  77% (118/153)   [Kremote: Counting objects:  78% (120/153)   [Kremote: Counting objects:  79% (121/153)   [Kremote: Counting objects:  80% (123/153)   [Kremote: Counting objects:  81% (124/153)   [Kremote: Counting objects:  82% (126/153)   [Kremote: Counting objects:  83% (127/153)   [Kremote: Counting objects:  84% (129/153)   [Kremote: Counting objects:  85% (131/153)   [Kremote: Counting objects:  86% (132/153)   [Kremote: Counting objects:  87% (134/153)   [Kremote: Counting objects:  88% (135/153)   [Kremote: Counting objects:  89% (137/153)   [Kremote: Counting objects:  90% (138/153)   [Kremote: Counting objects:  91% (140/153)   [Kremote: Counting objects:  92% (141/153)   [Kremote: Counting objects:  93% (143/153)   [Kremote: Counting objects:  94% (144/153)   [Kremote: Counting objects:  95% (146/153)   [Kremote: Counting objects:  96% (147/153)   [Kremote: Counting objects:  97% (149/153)   [Kremote: Counting objects:  98% (150/153)   [Kremote: Counting objects:  99% (152/153)   [Kremote: Counting objects: 100% (153/153)   [Kremote: Counting objects: 100% (153/153), done.[K
+remote: Compressing objects:   1% (1/85)   [Kremote: Compressing objects:   2% (2/85)   [Kremote: Compressing objects:   3% (3/85)   [Kremote: Compressing objects:   4% (4/85)   [Kremote: Compressing objects:   5% (5/85)   [Kremote: Compressing objects:   7% (6/85)   [Kremote: Compressing objects:   8% (7/85)   [Kremote: Compressing objects:   9% (8/85)   [Kremote: Compressing objects:  10% (9/85)   [Kremote: Compressing objects:  11% (10/85)   [Kremote: Compressing objects:  12% (11/85)   [Kremote: Compressing objects:  14% (12/85)   [Kremote: Compressing objects:  15% (13/85)   [Kremote: Compressing objects:  16% (14/85)   [Kremote: Compressing objects:  17% (15/85)   [Kremote: Compressing objects:  18% (16/85)   [Kremote: Compressing objects:  20% (17/85)   [Kremote: Compressing objects:  21% (18/85)   [Kremote: Compressing objects:  22% (19/85)   [Kremote: Compressing objects:  23% (20/85)   [Kremote: Compressing objects:  24% (21/85)   [Kremote: Compressing objects:  25% (22/85)   [Kremote: Compressing objects:  27% (23/85)   [Kremote: Compressing objects:  28% (24/85)   [Kremote: Compressing objects:  29% (25/85)   [Kremote: Compressing objects:  30% (26/85)   [Kremote: Compressing objects:  31% (27/85)   [Kremote: Compressing objects:  32% (28/85)   [Kremote: Compressing objects:  34% (29/85)   [Kremote: Compressing objects:  35% (30/85)   [Kremote: Compressing objects:  36% (31/85)   [Kremote: Compressing objects:  37% (32/85)   [Kremote: Compressing objects:  38% (33/85)   [Kremote: Compressing objects:  40% (34/85)   [Kremote: Compressing objects:  41% (35/85)   [Kremote: Compressing objects:  42% (36/85)   [Kremote: Compressing objects:  43% (37/85)   [Kremote: Compressing objects:  44% (38/85)   [Kremote: Compressing objects:  45% (39/85)   [Kremote: Compressing objects:  47% (40/85)   [Kremote: Compressing objects:  48% (41/85)   [Kremote: Compressing objects:  49% (42/85)   [Kremote: Compressing objects:  50% (43/85)   [Kremote: Compressing objects:  51% (44/85)   [Kremote: Compressing objects:  52% (45/85)   [Kremote: Compressing objects:  54% (46/85)   [Kremote: Compressing objects:  55% (47/85)   [Kremote: Compressing objects:  56% (48/85)   [Kremote: Compressing objects:  57% (49/85)   [Kremote: Compressing objects:  58% (50/85)   [Kremote: Compressing objects:  60% (51/85)   [Kremote: Compressing objects:  61% (52/85)   [Kremote: Compressing objects:  62% (53/85)   [Kremote: Compressing objects:  63% (54/85)   [Kremote: Compressing objects:  64% (55/85)   [Kremote: Compressing objects:  65% (56/85)   [Kremote: Compressing objects:  67% (57/85)   [Kremote: Compressing objects:  68% (58/85)   [Kremote: Compressing objects:  69% (59/85)   [Kremote: Compressing objects:  70% (60/85)   [Kremote: Compressing objects:  71% (61/85)   [Kremote: Compressing objects:  72% (62/85)   [Kremote: Compressing objects:  74% (63/85)   [Kremote: Compressing objects:  75% (64/85)   [Kremote: Compressing objects:  76% (65/85)   [Kremote: Compressing objects:  77% (66/85)   [Kremote: Compressing objects:  78% (67/85)   [Kremote: Compressing objects:  80% (68/85)   [Kremote: Compressing objects:  81% (69/85)   [Kremote: Compressing objects:  82% (70/85)   [Kremote: Compressing objects:  83% (71/85)   [Kremote: Compressing objects:  84% (72/85)   [Kremote: Compressing objects:  85% (73/85)   [Kremote: Compressing objects:  87% (74/85)   [Kremote: Compressing objects:  88% (75/85)   [Kremote: Compressing objects:  89% (76/85)   [Kremote: Compressing objects:  90% (77/85)   [Kremote: Compressing objects:  91% (78/85)   [Kremote: Compressing objects:  92% (79/85)   [Kremote: Compressing objects:  94% (80/85)   [Kremote: Compressing objects:  95% (81/85)   [Kremote: Compressing objects:  96% (82/85)   [Kremote: Compressing objects:  97% (83/85)   [Kremote: Compressing objects:  98% (84/85)   [Kremote: Compressing objects: 100% (85/85)   [Kremote: Compressing objects: 100% (85/85), done.[K
+Receiving objects:   0% (1/114)   Receiving objects:   1% (2/114)   Receiving objects:   2% (3/114)   Receiving objects:   3% (4/114)   Receiving objects:   4% (5/114)   Receiving objects:   5% (6/114)   Receiving objects:   6% (7/114)   Receiving objects:   7% (8/114)   Receiving objects:   8% (10/114)   Receiving objects:   9% (11/114)   Receiving objects:  10% (12/114)   Receiving objects:  11% (13/114)   Receiving objects:  12% (14/114)   Receiving objects:  13% (15/114)   Receiving objects:  14% (16/114)   Receiving objects:  15% (18/114)   Receiving objects:  16% (19/114)   Receiving objects:  17% (20/114)   Receiving objects:  18% (21/114)   Receiving objects:  19% (22/114)   Receiving objects:  20% (23/114)   Receiving objects:  21% (24/114)   Receiving objects:  22% (26/114)   Receiving objects:  23% (27/114)   Receiving objects:  24% (28/114)   Receiving objects:  25% (29/114)   Receiving objects:  26% (30/114)   Receiving objects:  27% (31/114)   Receiving objects:  28% (32/114)   Receiving objects:  29% (34/114)   Receiving objects:  30% (35/114)   Receiving objects:  31% (36/114)   Receiving objects:  32% (37/114)   Receiving objects:  33% (38/114)   Receiving objects:  34% (39/114)   Receiving objects:  35% (40/114)   Receiving objects:  36% (42/114)   Receiving objects:  37% (43/114)   Receiving objects:  38% (44/114)   Receiving objects:  39% (45/114)   Receiving objects:  40% (46/114)   Receiving objects:  41% (47/114)   Receiving objects:  42% (48/114)   Receiving objects:  43% (50/114)   Receiving objects:  44% (51/114)   Receiving objects:  45% (52/114)   Receiving objects:  46% (53/114)   Receiving objects:  47% (54/114)   Receiving objects:  48% (55/114)   Receiving objects:  49% (56/114)   Receiving objects:  50% (57/114)   Receiving objects:  51% (59/114)   Receiving objects:  52% (60/114)   Receiving objects:  53% (61/114)   Receiving objects:  54% (62/114)   Receiving objects:  55% (63/114)   Receiving objects:  56% (64/114)   Receiving objects:  57% (65/114)   Receiving objects:  58% (67/114)   Receiving objects:  59% (68/114)   Receiving objects:  60% (69/114)   Receiving objects:  61% (70/114)   Receiving objects:  62% (71/114)   Receiving objects:  63% (72/114)   Receiving objects:  64% (73/114)   Receiving objects:  65% (75/114)   Receiving objects:  66% (76/114)   Receiving objects:  67% (77/114)   Receiving objects:  68% (78/114)   Receiving objects:  69% (79/114)   Receiving objects:  70% (80/114)   Receiving objects:  71% (81/114)   Receiving objects:  72% (83/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  73% (84/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  74% (85/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  75% (86/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  76% (87/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  77% (88/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  78% (89/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  79% (91/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  80% (92/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  81% (93/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  82% (94/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  83% (95/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  84% (96/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  85% (97/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  86% (99/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  87% (100/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  88% (101/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  89% (102/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  90% (103/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  91% (104/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  92% (105/114), 2.80 MiB | 5.59 MiB/s   remote: Total 114 (delta 29), reused 108 (delta 23), pack-reused 0[K
+Receiving objects:  93% (107/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  94% (108/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  95% (109/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  96% (110/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  97% (111/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  98% (112/114), 2.80 MiB | 5.59 MiB/s   Receiving objects:  99% (113/114), 2.80 MiB | 5.59 MiB/s   Receiving objects: 100% (114/114), 2.80 MiB | 5.59 MiB/s   Receiving objects: 100% (114/114), 5.20 MiB | 6.35 MiB/s, done.
+Resolving deltas:   0% (0/29)   Resolving deltas:   3% (1/29)   Resolving deltas:  10% (3/29)   Resolving deltas:  13% (4/29)   Resolving deltas:  17% (5/29)   Resolving deltas:  20% (6/29)   Resolving deltas:  24% (7/29)   Resolving deltas:  27% (8/29)   Resolving deltas:  31% (9/29)   Resolving deltas:  34% (10/29)   Resolving deltas:  41% (12/29)   Resolving deltas:  48% (14/29)   Resolving deltas:  51% (15/29)   Resolving deltas:  55% (16/29)   Resolving deltas:  58% (17/29)   Resolving deltas:  62% (18/29)   Resolving deltas:  65% (19/29)   Resolving deltas:  68% (20/29)   Resolving deltas:  72% (21/29)   Resolving deltas:  75% (22/29)   Resolving deltas:  79% (23/29)   Resolving deltas:  82% (24/29)   Resolving deltas:  86% (25/29)   Resolving deltas:  89% (26/29)   Resolving deltas:  93% (27/29)   Resolving deltas:  96% (28/29)   Resolving deltas: 100% (29/29)   Resolving deltas: 100% (29/29), completed with 25 local objects.
+From https://github.com/NCEAS/sasap-training
+   3538f56..42b1790  Fai_2018   -> origin/Fai_2018
+   e63dba3..aaf4164  gh-pages   -> origin/gh-pages
+Already up-to-date.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ [Kfuturama:sasap-training clark$ gt [K[Kit checkout gh-pages
+Switched to branch 'gh-pages'
+Your branch is behind 'origin/gh-pages' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git unstage .
+git: 'unstage' is not a git command. See 'git --help'.
+
+The most similar command is
+	instaweb
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git --help
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git rm .
+fatal: not removing '.' recursively without -r
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git rm .[K
+usage: git rm [<options>] [--] <file>...
+
+    -n, --dry-run         dry run
+    -q, --quiet           do not list removed files
+    --cached              only remove from the index
+    -f, --force           override the up-to-date check
+    -r                    allow recursive removal
+    --ignore-unmatch      exit with a zero status even if nothing matched
+
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git rm -r
+usage: git rm [<options>] [--] <file>...
+
+    -n, --dry-run         dry run
+    -q, --quiet           do not list removed files
+    --cached              only remove from the index
+    -f, --force           override the up-to-date check
+    -r                    allow recursive removal
+    --ignore-unmatch      exit with a zero status even if nothing matched
+
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git rm -r[K[K-r .
+error: the following file has staged content different from both the
+file and the HEAD:
+    .Rproj.user/DFF62328/console06/D0EE3011
+(use -f to force removal)
+error: the following files have changes staged in the index:
+    .Rproj.user/DFF62328/console06/D0EE3011.env
+    .Rproj.user/DFF62328/console06/INDEX001
+    .Rproj.user/DFF62328/pcs/files-pane.pper
+    .Rproj.user/DFF62328/pcs/source-pane.pper
+    .Rproj.user/DFF62328/pcs/windowlayoutstate.pper
+    .Rproj.user/DFF62328/pcs/workbench-pane.pper
+    .Rproj.user/DFF62328/saved_source_markers
+    .Rproj.user/DFF62328/sources/prop/D772CCED
+    .Rproj.user/DFF62328/sources/prop/F4B8FE6C
+    .Rproj.user/DFF62328/sources/prop/INDEX
+    .Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE
+    .Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE-contents
+    .Rproj.user/DFF62328/sources/s-DAB67C37/lock_file
+    .Rproj.user/shared/notebooks/patch-chunk-names
+    .Rproj.user/shared/notebooks/paths
+(use --cached to keep the file, or -f to force removal)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git branch mas[K[K[K[K[K[K[K[K[K[Kcheckout master
+A	.Rproj.user/DFF62328/console06/D0EE3011
+A	.Rproj.user/DFF62328/console06/D0EE3011.env
+A	.Rproj.user/DFF62328/console06/INDEX001
+A	.Rproj.user/DFF62328/pcs/files-pane.pper
+A	.Rproj.user/DFF62328/pcs/source-pane.pper
+A	.Rproj.user/DFF62328/pcs/windowlayoutstate.pper
+A	.Rproj.user/DFF62328/pcs/workbench-pane.pper
+A	.Rproj.user/DFF62328/saved_source_markers
+A	.Rproj.user/DFF62328/sources/prop/D772CCED
+A	.Rproj.user/DFF62328/sources/prop/F4B8FE6C
+A	.Rproj.user/DFF62328/sources/prop/INDEX
+A	.Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE
+A	.Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE-contents
+A	.Rproj.user/DFF62328/sources/s-DAB67C37/lock_file
+A	.Rproj.user/shared/notebooks/patch-chunk-names
+A	.Rproj.user/shared/notebooks/paths
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mnew file:   .Rproj.user/DFF62328/console06/D0EE3011[m
+	[32mnew file:   .Rproj.user/DFF62328/console06/D0EE3011.env[m
+	[32mnew file:   .Rproj.user/DFF62328/console06/INDEX001[m
+	[32mnew file:   .Rproj.user/DFF62328/pcs/files-pane.pper[m
+	[32mnew file:   .Rproj.user/DFF62328/pcs/source-pane.pper[m
+	[32mnew file:   .Rproj.user/DFF62328/pcs/windowlayoutstate.pper[m
+	[32mnew file:   .Rproj.user/DFF62328/pcs/workbench-pane.pper[m
+	[32mnew file:   .Rproj.user/DFF62328/saved_source_markers[m
+	[32mnew file:   .Rproj.user/DFF62328/sources/prop/D772CCED[m
+	[32mnew file:   .Rproj.user/DFF62328/sources/prop/F4B8FE6C[m
+	[32mnew file:   .Rproj.user/DFF62328/sources/prop/INDEX[m
+	[32mnew file:   .Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE[m
+	[32mnew file:   .Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE-contents[m
+	[32mnew file:   .Rproj.user/DFF62328/sources/s-DAB67C37/lock_file[m
+	[32mnew file:   .Rproj.user/shared/notebooks/patch-chunk-names[m
+	[32mnew file:   .Rproj.user/shared/notebooks/paths[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rproj.user/DFF62328/console06/D0EE3011[m
+	[31mmodified:   .Rproj.user/DFF62328/sources/prop/INDEX[m
+
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git rm -r .
+error: the following files have staged content different from both the
+file and the HEAD:
+    .Rproj.user/DFF62328/console06/D0EE3011
+    .Rproj.user/DFF62328/sources/prop/INDEX
+(use -f to force removal)
+error: the following files have changes staged in the index:
+    .Rproj.user/DFF62328/console06/D0EE3011.env
+    .Rproj.user/DFF62328/console06/INDEX001
+    .Rproj.user/DFF62328/pcs/files-pane.pper
+    .Rproj.user/DFF62328/pcs/source-pane.pper
+    .Rproj.user/DFF62328/pcs/windowlayoutstate.pper
+    .Rproj.user/DFF62328/pcs/workbench-pane.pper
+    .Rproj.user/DFF62328/saved_source_markers
+    .Rproj.user/DFF62328/sources/prop/D772CCED
+    .Rproj.user/DFF62328/sources/prop/F4B8FE6C
+    .Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE
+    .Rproj.user/DFF62328/sources/s-DAB67C37/B4942CCE-contents
+    .Rproj.user/DFF62328/sources/s-DAB67C37/lock_file
+    .Rproj.user/shared/notebooks/patch-chunk-names
+    .Rproj.user/shared/notebooks/paths
+(use --cached to keep the file, or -f to force removal)
+]0;~/Documents/Projects Data/sasap-training[?1034hfuturama:sasap-training clark$ git git reset
+git: 'git' is not a git command. See 'git --help'.
+
+The most similar command is
+	init
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git git reset[1P reset[1P reset[1P reset[1Preset
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout gh-pages
+Switched to branch 'gh-pages'
+Your branch is behind 'origin/gh-pages' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ [Kfuturama:sasap-training clark$ git add /[Kmaterials/*
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git status
+On branch gh-pages
+Your branch is behind 'origin/gh-pages' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/continued-learning.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/data-cleaning-and-manipulation.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/data-documentation-and-publishing.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/data-modeling-tidy-data.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/example-brood-table-analysis.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/hands-on-clean-and-integrate-datasets.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/images/r-experience.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/index.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/literate-analysis-with-rmarkdown.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/publication-graphics-with-ggplot2.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/publishing-analyses-to-the-web.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/base-graphics-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/ggplot-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/randomplot-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-100-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-102-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-103-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-104-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-108-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-109-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-16-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-17-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-18-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-2.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-3.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-4.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-2.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-3.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-4.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-21-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-23-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-24-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-66-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-67-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-68-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-69-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-70-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-71-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-72-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-73-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-74-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-75-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-76-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-78-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-79-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-80-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-81-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-82-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-83-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-84-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-85-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-86-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-87-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-88-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-89-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-1.png[m
+	[32mdeleted:    materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-2.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-1.png[m
+	[32mnew file:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-2.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-92-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-93-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-94-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-95-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-96-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-97-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-98-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-99-1.png[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/rstudio-and-gitgithub-setup.html[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/search_index.json[m
+	[32mmodified:   materials/reproducible_research_in_r_fairbanks/version-control-with-git-and-github.html[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.Rproj.user/[m
+
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git commit
+[gh-pages c83004a] Updating materials in fairbanks folder to what we taught
+ 73 files changed, 1195 insertions(+), 1808 deletions(-)
+ rewrite materials/reproducible_research_in_r_fairbanks/images/r-experience.png (94%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/base-graphics-1.png (99%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/ggplot-1.png (99%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/randomplot-1.png (99%)
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-100-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-102-1.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-103-1.png (98%)
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-104-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-108-1.png
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-109-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-16-1.png
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-17-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-18-1.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-1.png (96%)
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-2.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-3.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-4.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-1.png (99%)
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-2.png
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-3.png
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-4.png
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-21-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-23-1.png
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-24-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-66-1.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-67-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-68-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-69-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-70-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-71-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-72-1.png (99%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-73-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-74-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-75-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-76-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-1.png (98%)
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-78-1.png
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-79-1.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-80-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-81-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-82-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-83-1.png (97%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-84-1.png (99%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-85-1.png (99%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-86-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-87-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-88-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-89-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-1.png (98%)
+ delete mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-2.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-1.png (99%)
+ create mode 100644 materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-2.png
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-92-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-93-1.png (97%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-94-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-95-1.png (97%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-96-1.png (96%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-97-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-98-1.png (98%)
+ rewrite materials/reproducible_research_in_r_fairbanks/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-99-1.png (98%)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git status
+On branch gh-pages
+Your branch and 'origin/gh-pages' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.Rproj.user/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git push origin gh-pages
+To https://github.com/NCEAS/sasap-training
+ ! [rejected]        gh-pages -> gh-pages (non-fast-forward)
+error: failed to push some refs to 'https://github.com/NCEAS/sasap-training'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git pull origin gh-pages
+From https://github.com/NCEAS/sasap-training
+ * branch            gh-pages   -> FETCH_HEAD
+Removing materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-2.png
+Removing materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-4.png
+Removing materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-3.png
+Removing materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-2.png
+Removing materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-109-1.png
+Auto-merging materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/leaflet.js
+Removing materials/reproducible-analysis-in-r/libs/kePrint-0.0.1/kePrint.js
+Auto-merging materials/reproducible-analysis-in-r/libs/htmlwidgets-0.9/htmlwidgets.js
+Removing materials/reproducible-analysis-in-r/libs/gitbook-2.6.7/css/plugin-table.css
+Merge made by the 'recursive' strategy.
+ events/reproducible-analysis-fairbanks/index.html                                                      |    2 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/assessment-report.html                                            |  288 [32m++++++[m
+ materials/reproducible-analysis-in-r/continued-learning.html                                           |  199 [32m+++[m[31m--[m
+ materials/reproducible-analysis-in-r/data-cleaning-and-manipulation.html                               |  576 [32m++++++[m[31m------[m
+ materials/reproducible-analysis-in-r/data-documentation-and-publishing.html                            |  758 [32m++++++++[m[31m--------[m
+ materials/reproducible-analysis-in-r/data-modeling-tidy-data.html                                      |  293 [32m++++[m[31m---[m
+ materials/reproducible-analysis-in-r/example-brood-table-analysis.html                                 |  604 [32m+++++++[m[31m------[m
+ materials/reproducible-analysis-in-r/git-collaboration-and-conflict-management.html                    |  523 [32m+++++++++++[m
+ materials/reproducible-analysis-in-r/hands-on-clean-and-integrate-datasets.html                        |  271 [32m+++[m[31m---[m
+ materials/reproducible-analysis-in-r/images/adc-authtoken.png                                          |  Bin [31m0[m -> [32m679896[m bytes
+ materials/reproducible-analysis-in-r/images/github-collaborators.png                                   |  Bin [31m0[m -> [32m367646[m bytes
+ materials/reproducible-analysis-in-r/images/markdown-preview.png                                       |  Bin [31m0[m -> [32m34873[m bytes
+ materials/reproducible-analysis-in-r/images/metadata-editor.png                                        |  Bin [31m0[m -> [32m651715[m bytes
+ materials/reproducible-analysis-in-r/images/provenance.png                                             |  Bin [31m0[m -> [32m274343[m bytes
+ materials/reproducible-analysis-in-r/images/rstudio-commit-push.png                                    |  Bin [31m0[m -> [32m504111[m bytes
+ materials/reproducible-analysis-in-r/images/rstudio-merge-conflict.png                                 |  Bin [31m0[m -> [32m662680[m bytes
+ materials/reproducible-analysis-in-r/images/sql-joins-venn.png                                         |  Bin [31m0[m -> [32m84857[m bytes
+ materials/reproducible-analysis-in-r/index.html                                                        |  246 [32m++++[m[31m--[m
+ materials/reproducible-analysis-in-r/libs/Proj4Leaflet-0.7.2/proj4-compressed.js                       |    3 [32m+[m
+ materials/reproducible-analysis-in-r/libs/Proj4Leaflet-0.7.2/proj4leaflet.js                           |  390 [32m+++++++++[m
+ materials/reproducible-analysis-in-r/libs/datatables-binding-0.2/datatables.js                         |  923 [32m+++++++++++++++++++[m
+ materials/reproducible-analysis-in-r/libs/dt-core-1.10.12/css/jquery.dataTables.extra.css              |    8 [32m+[m
+ materials/reproducible-analysis-in-r/libs/dt-core-1.10.12/css/jquery.dataTables.min.css                |    1 [32m+[m
+ materials/reproducible-analysis-in-r/libs/dt-core-1.10.12/js/jquery.dataTables.min.js                  |  166 [32m++++[m
+ materials/reproducible-analysis-in-r/libs/gitbook-2.6.7/css/plugin-bookdown.css                        |    4 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/libs/gitbook-2.6.7/css/plugin-fontsettings.css                    |    3 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/libs/gitbook-2.6.7/css/plugin-table.css                           |    1 [31m-[m
+ materials/reproducible-analysis-in-r/libs/gitbook-2.6.7/css/style.css                                  |    2 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/libs/{htmlwidgets-1.3 => htmlwidgets-0.9}/htmlwidgets.js          |    5 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/libs/htmlwidgets-1.2/htmlwidgets.js                               |  836 [32m++++++++++++++++++[m
+ materials/reproducible-analysis-in-r/libs/kePrint-0.0.1/kePrint.js                                     |    4 [31m-[m
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/1px.png                                 |  Bin [31m0[m -> [32m68[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/layers-2x.png                           |  Bin [31m0[m -> [32m2898[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/layers.png                              |  Bin [31m0[m -> [32m1502[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/marker-icon-2x.png                      |  Bin [31m0[m -> [32m4033[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/marker-icon.png                         |  Bin [31m0[m -> [32m1747[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/marker-shadow.png                       |  Bin [31m0[m -> [32m797[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/leaflet.css                                    |  479 [32m++++++++++[m
+ materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/leaflet.js                                     |    9 [32m+[m
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-1.1.0/leaflet.js                             | 2432 [32m+++++++++++++++++++++++++++++++++++++++++++++++++++[m
+ materials/reproducible-analysis-in-r/libs/{leaflet-binding-2.0.2 => leaflet-binding-2.0.0}/leaflet.js  |   41 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/cancel.png  |  Bin [31m0[m -> [32m397[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/cancel_@2X.png    |  Bin [31m0[m -> [32m762[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/check.png   |  Bin [31m0[m -> [32m387[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/check_@2X.png     |  Bin [31m0[m -> [32m692[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/focus.png   |  Bin [31m0[m -> [32m326[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/focus_@2X.png     |  Bin [31m0[m -> [32m462[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/rulers.png  |  Bin [31m0[m -> [32m192[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/rulers_@2X.png    |  Bin [31m0[m -> [32m277[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/start.png   |  Bin [31m0[m -> [32m491[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/start_@2X.png     |  Bin [31m0[m -> [32m1003[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/trash.png   |  Bin [31m0[m -> [32m279[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/trash_@2X.png     |  Bin [31m0[m -> [32m460[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/layers-2x.png       |  Bin [31m0[m -> [32m1259[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/layers.png          |  Bin [31m0[m -> [32m696[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/marker-icon-2x.png  |  Bin [31m0[m -> [32m2464[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/marker-icon.png     |  Bin [31m0[m -> [32m1466[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/marker-shadow.png   |  Bin [31m0[m -> [32m618[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/rstudio_leaflet/images/1px.png     |  Bin [31m0[m -> [32m68[m bytes
+ .../reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet-MiniMap/images/toggle.png    |  Bin [31m0[m -> [32m219[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-matte.png                |  Bin [31m0[m -> [32m14323[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-matte@2x.png             |  Bin [31m0[m -> [32m31113[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-plain.png                |  Bin [31m0[m -> [32m7946[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-shadow.png               |  Bin [31m0[m -> [32m535[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-shadow@2x.png            |  Bin [31m0[m -> [32m1469[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-soft.png                 |  Bin [31m0[m -> [32m56965[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-soft@2x.png              |  Bin [31m0[m -> [32m165517[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/leaflet-locationfilter/img/filter-icon.png                      |  Bin [31m0[m -> [32m1682[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/leaflet-locationfilter/img/move-handle.png                      |  Bin [31m0[m -> [32m1109[m bytes
+ .../libs/leaflet-binding-2.0.0/plugins/leaflet-locationfilter/img/resize-handle.png                    |  Bin [31m0[m -> [32m1017[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-label-0.2.2/images/death.png                         |  Bin [31m0[m -> [32m3386[m bytes
+ materials/reproducible-analysis-in-r/libs/leaflet-label-0.2.2/leaflet.label.css                        |  119 [32m+++[m
+ materials/reproducible-analysis-in-r/libs/leaflet-label-0.2.2/leaflet.label.js                         |    9 [32m+[m
+ materials/reproducible-analysis-in-r/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css                    |    5 [31m-[m
+ materials/reproducible-analysis-in-r/literate-analysis-with-rmarkdown.html                             |  679 [32m+++++++[m[31m-------[m
+ materials/reproducible-analysis-in-r/primary-and-foreign-keys.html                                     |  334 [32m+++++++[m
+ materials/reproducible-analysis-in-r/publication-graphics-with-ggplot2.html                            |  664 [32m+++++++[m[31m-------[m
+ materials/reproducible-analysis-in-r/publishing-analyses-to-the-web.html                               |  307 [32m++++[m[31m---[m
+ materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/ggplot-1.png       |  Bin [31m68434[m -> [32m67320[m bytes
+ materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/plot_regions-1.png |  Bin [31m0[m -> [32m169549[m bytes
+ materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/randomplot-1.png   |  Bin [31m68570[m -> [32m65887[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-1-1.png    |  Bin [31m0[m -> [32m69608[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-10-1.png   |  Bin [31m0[m -> [32m92311[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-100-1.png  |  Bin [31m124581[m -> [32m135299[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-101-1.png  |  Bin [31m0[m -> [32m135299[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-102-1.png  |  Bin [31m0[m -> [32m96889[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-103-1.png  |  Bin [31m89752[m -> [32m96834[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-104-1.png  |  Bin [31m96205[m -> [32m135299[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-108-1.png  |  Bin [31m0[m -> [32m135299[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-109-1.png  |  Bin [31m135279[m -> [32m0[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-11-1.png   |  Bin [31m0[m -> [32m130948[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-12-1.png   |  Bin [31m0[m -> [32m100740[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-124-1.png  |  Bin [31m0[m -> [32m90389[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-125-1.png  |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-126-1.png  |  Bin [31m0[m -> [32m96057[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-127-1.png  |  Bin [31m0[m -> [32m87772[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-128-1.png  |  Bin [31m0[m -> [32m146060[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-129-1.png  |  Bin [31m0[m -> [32m45855[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-13-1.png   |  Bin [31m0[m -> [32m108571[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-130-1.png  |  Bin [31m0[m -> [32m47347[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-131-1.png  |  Bin [31m0[m -> [32m71292[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-132-1.png  |  Bin [31m0[m -> [32m92311[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-133-1.png  |  Bin [31m0[m -> [32m130090[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-134-1.png  |  Bin [31m0[m -> [32m100740[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-135-1.png  |  Bin [31m0[m -> [32m108571[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-137-1.png  |  Bin [31m0[m -> [32m113925[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-138-1.png  |  Bin [31m0[m -> [32m116116[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-139-1.png  |  Bin [31m0[m -> [32m114707[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-140-1.png  |  Bin [31m0[m -> [32m76348[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-141-1.png  |  Bin [31m0[m -> [32m76574[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-142-1.png  |  Bin [31m0[m -> [32m72680[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-143-1.png  |  Bin [31m0[m -> [32m72792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-144-1.png  |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-145-1.png  |  Bin [31m0[m -> [32m127989[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-146-1.png  |  Bin [31m0[m -> [32m125563[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-147-1.png  |  Bin [31m0[m -> [32m128264[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-148-1.png  |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-148-2.png  |  Bin [31m0[m -> [32m58764[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-149-1.png  |  Bin [31m0[m -> [32m75917[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-15-1.png   |  Bin [31m0[m -> [32m113925[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-150-1.png  |  Bin [31m0[m -> [32m129240[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-151-1.png  |  Bin [31m0[m -> [32m128717[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-152-1.png  |  Bin [31m0[m -> [32m153792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-153-1.png  |  Bin [31m0[m -> [32m197990[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-154-1.png  |  Bin [31m0[m -> [32m114556[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-155-1.png  |  Bin [31m0[m -> [32m110894[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-156-1.png  |  Bin [31m0[m -> [32m141325[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-157-1.png  |  Bin [31m0[m -> [32m124009[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-16-1.png   |  Bin [31m0[m -> [32m166535[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-160-1.png  |  Bin [31m0[m -> [32m96889[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-161-1.png  |  Bin [31m0[m -> [32m96834[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-166-1.png  |  Bin [31m0[m -> [32m135299[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-17-1.png   |  Bin [31m150448[m -> [32m114707[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-18-1.png   |  Bin [31m0[m -> [32m214295[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-1.png   |  Bin [31m227390[m -> [32m55023[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-2.png   |  Bin [31m0[m -> [32m47317[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-3.png   |  Bin [31m0[m -> [32m45553[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-4.png   |  Bin [31m0[m -> [32m49224[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-2-1.png    |  Bin [31m0[m -> [32m90389[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-1.png   |  Bin [31m56516[m -> [32m227408[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-2.png   |  Bin [31m47229[m -> [32m0[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-3.png   |  Bin [31m44474[m -> [32m0[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-4.png   |  Bin [31m49945[m -> [32m0[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-21-1.png   |  Bin [31m277752[m -> [32m72792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-22-1.png   |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-23-1.png   |  Bin [31m0[m -> [32m234619[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-24-1.png   |  Bin [31m256623[m -> [32m125563[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-25-1.png   |  Bin [31m0[m -> [32m128264[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-26-1.png   |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-26-2.png   |  Bin [31m0[m -> [32m58764[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-27-1.png   |  Bin [31m0[m -> [32m75917[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-28-1.png   |  Bin [31m0[m -> [32m129240[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-29-1.png   |  Bin [31m0[m -> [32m128717[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-3-1.png    |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-30-1.png   |  Bin [31m0[m -> [32m153792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-31-1.png   |  Bin [31m0[m -> [32m197990[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-32-1.png   |  Bin [31m0[m -> [32m114556[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-33-1.png   |  Bin [31m0[m -> [32m110894[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-34-1.png   |  Bin [31m0[m -> [32m141325[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-35-1.png   |  Bin [31m0[m -> [32m124009[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-36-1.png   |  Bin [31m0[m -> [32m92311[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-37-1.png   |  Bin [31m0[m -> [32m130090[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-38-1.png   |  Bin [31m0[m -> [32m96889[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-39-1.png   |  Bin [31m0[m -> [32m96834[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-4-1.png    |  Bin [31m0[m -> [32m96057[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-41-1.png   |  Bin [31m0[m -> [32m113925[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-42-1.png   |  Bin [31m0[m -> [32m116116[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-43-1.png   |  Bin [31m0[m -> [32m114707[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-44-1.png   |  Bin [31m0[m -> [32m76348[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-45-1.png   |  Bin [31m0[m -> [32m76574[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-46-1.png   |  Bin [31m0[m -> [32m72680[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-47-1.png   |  Bin [31m0[m -> [32m72792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-48-1.png   |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-49-1.png   |  Bin [31m0[m -> [32m127989[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-5-1.png    |  Bin [31m0[m -> [32m87772[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-50-1.png   |  Bin [31m0[m -> [32m125563[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-51-1.png   |  Bin [31m0[m -> [32m128264[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-52-1.png   |  Bin [31m0[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-52-2.png   |  Bin [31m0[m -> [32m58764[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-53-1.png   |  Bin [31m0[m -> [32m75917[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-54-1.png   |  Bin [31m0[m -> [32m129240[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-55-1.png   |  Bin [31m0[m -> [32m128717[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-56-1.png   |  Bin [31m0[m -> [32m153792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-57-1.png   |  Bin [31m0[m -> [32m197990[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-58-1.png   |  Bin [31m0[m -> [32m114556[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-59-1.png   |  Bin [31m0[m -> [32m110894[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-6-1.png    |  Bin [31m0[m -> [32m146060[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-60-1.png   |  Bin [31m0[m -> [32m141325[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-61-1.png   |  Bin [31m0[m -> [32m124009[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-62-1.png   |  Bin [31m0[m -> [32m89119[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-63-1.png   |  Bin [31m0[m -> [32m90389[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-64-1.png   |  Bin [31m0[m -> [32m96889[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-65-1.png   |  Bin [31m0[m -> [32m96834[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-66-1.png   |  Bin [31m0[m -> [32m90389[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-67-1.png   |  Bin [31m89594[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-68-1.png   |  Bin [31m124567[m -> [32m96057[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-69-1.png   |  Bin [31m97799[m -> [32m87772[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-7-1.png    |  Bin [31m0[m -> [32m45855[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-70-1.png   |  Bin [31m99140[m -> [32m146060[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-71-1.png   |  Bin [31m143879[m -> [32m45855[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-72-1.png   |  Bin [31m45413[m -> [32m47347[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-73-1.png   |  Bin [31m44621[m -> [32m71292[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-74-1.png   |  Bin [31m65781[m -> [32m92311[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-75-1.png   |  Bin [31m89089[m -> [32m130090[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-76-1.png   |  Bin [31m128049[m -> [32m100740[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-76-2.png   |  Bin [31m0[m -> [32m52873[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-1.png   |  Bin [31m101295[m -> [32m108571[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-2.png   |  Bin [31m0[m -> [32m47317[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-3.png   |  Bin [31m0[m -> [32m45553[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-4.png   |  Bin [31m0[m -> [32m49224[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-78-1.png   |  Bin [31m108215[m -> [32m227408[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-79-1.png   |  Bin [31m0[m -> [32m113925[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-8-1.png    |  Bin [31m0[m -> [32m47347[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-80-1.png   |  Bin [31m94049[m -> [32m116116[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-80-2.png   |  Bin [31m0[m -> [32m52873[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-81-1.png   |  Bin [31m95799[m -> [32m114707[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-82-1.png   |  Bin [31m94737[m -> [32m76348[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-82-2.png   |  Bin [31m0[m -> [32m52873[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-83-1.png   |  Bin [31m75606[m -> [32m76574[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-83-2.png   |  Bin [31m0[m -> [32m58764[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-84-1.png   |  Bin [31m76553[m -> [32m72680[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-84-2.png   |  Bin [31m0[m -> [32m58764[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-85-1.png   |  Bin [31m72031[m -> [32m72792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-86-1.png   |  Bin [31m72181[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-86-2.png   |  Bin [31m0[m -> [32m52873[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-87-1.png   |  Bin [31m124567[m -> [32m127989[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-88-1.png   |  Bin [31m124683[m -> [32m125563[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-89-1.png   |  Bin [31m124252[m -> [32m128264[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-9-1.png    |  Bin [31m0[m -> [32m71292[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-1.png   |  Bin [31m128519[m -> [32m127083[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-2.png   |  Bin [31m0[m -> [32m58764[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-1.png   |  Bin [31m124567[m -> [32m75917[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-2.png   |  Bin [31m52335[m -> [32m0[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-92-1.png   |  Bin [31m74479[m -> [32m129240[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-93-1.png   |  Bin [31m131968[m -> [32m128717[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-94-1.png   |  Bin [31m129416[m -> [32m153792[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-95-1.png   |  Bin [31m159390[m -> [32m197990[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-96-1.png   |  Bin [31m201752[m -> [32m114556[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-97-1.png   |  Bin [31m114471[m -> [32m110894[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-98-1.png   |  Bin [31m111514[m -> [32m141325[m bytes
+ .../reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-99-1.png   |  Bin [31m142836[m -> [32m124009[m bytes
+ materials/reproducible-analysis-in-r/rstudio-and-gitgithub-setup.html                                  |  199 [32m+++[m[31m--[m
+ materials/reproducible-analysis-in-r/search_index.json                                                 |   13 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/version-control-with-git-and-github.html                          |  470 [32m++++++[m[31m----[m
+ 244 files changed, 9473 insertions(+), 2393 deletions(-)
+ create mode 100644 materials/reproducible-analysis-in-r/assessment-report.html
+ create mode 100644 materials/reproducible-analysis-in-r/git-collaboration-and-conflict-management.html
+ create mode 100644 materials/reproducible-analysis-in-r/images/adc-authtoken.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/github-collaborators.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/markdown-preview.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/metadata-editor.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/provenance.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/rstudio-commit-push.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/rstudio-merge-conflict.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/sql-joins-venn.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/Proj4Leaflet-0.7.2/proj4-compressed.js
+ create mode 100644 materials/reproducible-analysis-in-r/libs/Proj4Leaflet-0.7.2/proj4leaflet.js
+ create mode 100644 materials/reproducible-analysis-in-r/libs/datatables-binding-0.2/datatables.js
+ create mode 100644 materials/reproducible-analysis-in-r/libs/dt-core-1.10.12/css/jquery.dataTables.extra.css
+ create mode 100644 materials/reproducible-analysis-in-r/libs/dt-core-1.10.12/css/jquery.dataTables.min.css
+ create mode 100644 materials/reproducible-analysis-in-r/libs/dt-core-1.10.12/js/jquery.dataTables.min.js
+ delete mode 100644 materials/reproducible-analysis-in-r/libs/gitbook-2.6.7/css/plugin-table.css
+ rename materials/reproducible-analysis-in-r/libs/{htmlwidgets-1.3 => htmlwidgets-0.9}/htmlwidgets.js (99%)
+ create mode 100644 materials/reproducible-analysis-in-r/libs/htmlwidgets-1.2/htmlwidgets.js
+ delete mode 100644 materials/reproducible-analysis-in-r/libs/kePrint-0.0.1/kePrint.js
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/1px.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/layers-2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/layers.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/marker-icon-2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/marker-icon.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/images/marker-shadow.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/leaflet.css
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-0.7.7/leaflet.js
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-1.1.0/leaflet.js
+ rename materials/reproducible-analysis-in-r/libs/{leaflet-binding-2.0.2 => leaflet-binding-2.0.0}/leaflet.js (98%)
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/cancel.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/cancel_@2X.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/check.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/check_@2X.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/focus.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/focus_@2X.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/rulers.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/rulers_@2X.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/start.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/start_@2X.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/trash.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet-measure/images/trash_@2X.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/layers-2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/layers.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/marker-icon-2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/marker-icon.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/leaflet/images/marker-shadow.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/lib/rstudio_leaflet/images/1px.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet-MiniMap/images/toggle.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-matte.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-matte@2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-plain.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-shadow.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-shadow@2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-soft.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/Leaflet.awesome-markers/images/markers-soft@2x.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/leaflet-locationfilter/img/filter-icon.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/leaflet-locationfilter/img/move-handle.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-binding-2.0.0/plugins/leaflet-locationfilter/img/resize-handle.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-label-0.2.2/images/death.png
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-label-0.2.2/leaflet.label.css
+ create mode 100644 materials/reproducible-analysis-in-r/libs/leaflet-label-0.2.2/leaflet.label.js
+ create mode 100644 materials/reproducible-analysis-in-r/primary-and-foreign-keys.html
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/plot_regions-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-1-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-10-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-101-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-102-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-108-1.png
+ delete mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-109-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-11-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-12-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-124-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-125-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-126-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-127-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-128-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-129-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-13-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-130-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-131-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-132-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-133-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-134-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-135-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-137-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-138-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-139-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-140-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-141-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-142-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-143-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-144-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-145-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-146-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-147-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-148-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-148-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-149-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-15-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-150-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-151-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-152-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-153-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-154-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-155-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-156-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-157-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-16-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-160-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-161-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-166-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-18-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-3.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-4.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-2-1.png
+ delete mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-2.png
+ delete mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-3.png
+ delete mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-4.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-22-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-23-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-25-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-26-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-26-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-27-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-28-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-29-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-3-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-30-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-31-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-32-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-33-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-34-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-35-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-36-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-37-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-38-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-39-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-4-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-41-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-42-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-43-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-44-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-45-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-46-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-47-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-48-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-49-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-5-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-50-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-51-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-52-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-52-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-53-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-54-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-55-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-56-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-57-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-58-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-59-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-6-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-60-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-61-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-62-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-63-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-64-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-65-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-66-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-7-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-76-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-3.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-4.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-79-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-8-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-80-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-82-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-83-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-84-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-86-2.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-9-1.png
+ create mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-2.png
+ delete mode 100644 materials/reproducible-analysis-in-r/reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-2.png
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git status
+On branch gh-pages
+Your branch is ahead of 'origin/gh-pages' by 2 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.Rproj.user/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git push origin gh-pages
+Counting objects: 6, done.
+Delta compression using up to 8 threads.
+Compressing objects:  16% (1/6)   Compressing objects:  33% (2/6)   Compressing objects:  50% (3/6)   Compressing objects:  66% (4/6)   Compressing objects:  83% (5/6)   Compressing objects: 100% (6/6)   Compressing objects: 100% (6/6), done.
+Writing objects:  16% (1/6)   Writing objects:  33% (2/6)   Writing objects:  50% (3/6)   Writing objects:  66% (4/6)   Writing objects:  83% (5/6)   Writing objects: 100% (6/6)   Writing objects: 100% (6/6), 763 bytes | 763.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/4)   [Kremote: Resolving deltas:  25% (1/4)   [Kremote: Resolving deltas:  75% (3/4)   [Kremote: Resolving deltas: 100% (4/4)   [Kremote: Resolving deltas: 100% (4/4), completed with 3 local objects.[K
+To https://github.com/NCEAS/sasap-training
+   aaf4164..d1e8595  gh-pages -> gh-pages
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout Fai-2018
+error: pathspec 'Fai-2018' did not match any file(s) known to git.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout Fai-2018[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kpull Fai-2018
+fatal: 'Fai-2018' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git pull Fai-2018[4@checkout[C[C[C[C[C[C[C[C[C[2Pmasterpush origin gh-pagesstatus[Kpull origin gh-pages[K[K[K[K[K[K[K[KFai-2018
+fatal: Couldn't find remote ref Fai-2018
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout Fai_2018
+Switched to branch 'Fai_2018'
+Your branch is behind 'origin/Fai_2018' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git pull origin Fai_2018
+From https://github.com/NCEAS/sasap-training
+ * branch            Fai_2018   -> FETCH_HEAD
+Updating 3538f56..42b1790
+Fast-forward
+ materials/reproducible-analysis-in-r/09-git-collaboration-and-conflicts.Rmd                            | 145 [32m++++++++++++++++++++++++++++++++++++++++++++++++++++[m
+ .../{09-data-documentation-and-publishing.Rmd => 10-data-documentation-and-publishing.Rmd}             |   0
+ .../{10-publishing-analyses-to-the-web.Rmd => 11-publishing-analyses-to-the-web.Rmd}                   |   0
+ materials/reproducible-analysis-in-r/{11-continued-learning.Rmd => 12-continued-learning.Rmd}          |   0
+ materials/reproducible-analysis-in-r/images/github-collaborators.png                                   | Bin [31m0[m -> [32m367646[m bytes
+ materials/reproducible-analysis-in-r/images/rstudio-commit-push.png                                    | Bin [31m0[m -> [32m504111[m bytes
+ materials/reproducible-analysis-in-r/images/rstudio-merge-conflict.png                                 | Bin [31m0[m -> [32m662680[m bytes
+ 7 files changed, 145 insertions(+)
+ create mode 100644 materials/reproducible-analysis-in-r/09-git-collaboration-and-conflicts.Rmd
+ rename materials/reproducible-analysis-in-r/{09-data-documentation-and-publishing.Rmd => 10-data-documentation-and-publishing.Rmd} (100%)
+ rename materials/reproducible-analysis-in-r/{10-publishing-analyses-to-the-web.Rmd => 11-publishing-analyses-to-the-web.Rmd} (100%)
+ rename materials/reproducible-analysis-in-r/{11-continued-learning.Rmd => 12-continued-learning.Rmd} (100%)
+ create mode 100644 materials/reproducible-analysis-in-r/images/github-collaborators.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/rstudio-commit-push.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/rstudio-merge-conflict.png
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git [K[K[K[Kgit checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ [Kfuturama:sasap-training clark$ git pull
+remote: Enumerating objects: 39, done.[K
+remote: Counting objects:   2% (1/36)   [Kremote: Counting objects:   5% (2/36)   [Kremote: Counting objects:   8% (3/36)   [Kremote: Counting objects:  11% (4/36)   [Kremote: Counting objects:  13% (5/36)   [Kremote: Counting objects:  16% (6/36)   [Kremote: Counting objects:  19% (7/36)   [Kremote: Counting objects:  22% (8/36)   [Kremote: Counting objects:  25% (9/36)   [Kremote: Counting objects:  27% (10/36)   [Kremote: Counting objects:  30% (11/36)   [Kremote: Counting objects:  33% (12/36)   [Kremote: Counting objects:  36% (13/36)   [Kremote: Counting objects:  38% (14/36)   [Kremote: Counting objects:  41% (15/36)   [Kremote: Counting objects:  44% (16/36)   [Kremote: Counting objects:  47% (17/36)   [Kremote: Counting objects:  50% (18/36)   [Kremote: Counting objects:  52% (19/36)   [Kremote: Counting objects:  55% (20/36)   [Kremote: Counting objects:  58% (21/36)   [Kremote: Counting objects:  61% (22/36)   [Kremote: Counting objects:  63% (23/36)   [Kremote: Counting objects:  66% (24/36)   [Kremote: Counting objects:  69% (25/36)   [Kremote: Counting objects:  72% (26/36)   [Kremote: Counting objects:  75% (27/36)   [Kremote: Counting objects:  77% (28/36)   [Kremote: Counting objects:  80% (29/36)   [Kremote: Counting objects:  83% (30/36)   [Kremote: Counting objects:  86% (31/36)   [Kremote: Counting objects:  88% (32/36)   [Kremote: Counting objects:  91% (33/36)   [Kremote: Counting objects:  94% (34/36)   [Kremote: Counting objects:  97% (35/36)   [Kremote: Counting objects: 100% (36/36)   [Kremote: Counting objects: 100% (36/36), done.[K
+remote: Compressing objects:  12% (1/8)   [Kremote: Compressing objects:  25% (2/8)   [Kremote: Compressing objects:  37% (3/8)   [Kremote: Compressing objects:  50% (4/8)   [Kremote: Compressing objects:  62% (5/8)   [Kremote: Compressing objects:  75% (6/8)   [Kremote: Compressing objects:  87% (7/8)   [Kremote: Compressing objects: 100% (8/8)   [Kremote: Compressing objects: 100% (8/8), done.[K
+remote: Total 19 (delta 12), reused 18 (delta 11), pack-reused 0[K
+Unpacking objects:   5% (1/19)   Unpacking objects:  10% (2/19)   Unpacking objects:  15% (3/19)   Unpacking objects:  21% (4/19)   Unpacking objects:  26% (5/19)   Unpacking objects:  31% (6/19)   Unpacking objects:  36% (7/19)   Unpacking objects:  42% (8/19)   Unpacking objects:  47% (9/19)   Unpacking objects:  52% (10/19)   Unpacking objects:  57% (11/19)   Unpacking objects:  63% (12/19)   Unpacking objects:  68% (13/19)   Unpacking objects:  73% (14/19)   Unpacking objects:  78% (15/19)   Unpacking objects:  84% (16/19)   Unpacking objects:  89% (17/19)   Unpacking objects:  94% (18/19)   Unpacking objects: 100% (19/19)   Unpacking objects: 100% (19/19), done.
+From https://github.com/NCEAS/sasap-training
+   efb6cc2..c6b0e82  master     -> origin/master
+Updating efb6cc2..c6b0e82
+Fast-forward
+ materials/reproducible-analysis-in-r/02-setup-rstudio-git-github.Rmd                                   |      37 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/04-version-control.Rmd                                            |       4 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/05-data-modeling.Rmd                                              |       5 [32m+[m
+ materials/reproducible-analysis-in-r/07-hands-on-data-cleaning-and-integration.Rmd                     |      18 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/09-git-collaboration-and-conflicts.Rmd                            |     145 [32m+[m
+ .../{09-data-documentation-and-publishing.Rmd => 10-data-documentation-and-publishing.Rmd}             |     212 [32m+[m[31m-[m
+ .../{10-publishing-analyses-to-the-web.Rmd => 11-publishing-analyses-to-the-web.Rmd}                   |      27 [32m+[m[31m-[m
+ materials/reproducible-analysis-in-r/{11-continued-learning.Rmd => 12-continued-learning.Rmd}          |       0
+ materials/reproducible-analysis-in-r/data/escapement_counts.csv                                        | 1010840 [32m++++++++++++++++++++++++[m[31m------------------------[m
+ materials/reproducible-analysis-in-r/images/editor-knb-01.png                                          |     Bin [31m0[m -> [32m957913[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-02.png                                          |     Bin [31m0[m -> [32m1067961[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-03.png                                          |     Bin [31m0[m -> [32m1248702[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-04.png                                          |     Bin [31m0[m -> [32m393932[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-05.png                                          |     Bin [31m0[m -> [32m316261[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-06.png                                          |     Bin [31m0[m -> [32m1205036[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-07.png                                          |     Bin [31m0[m -> [32m1148408[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-08.png                                          |     Bin [31m0[m -> [32m1176208[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-09.png                                          |     Bin [31m0[m -> [32m1123364[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-10.png                                          |     Bin [31m0[m -> [32m1075471[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-11.png                                          |     Bin [31m0[m -> [32m1110064[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-12.png                                          |     Bin [31m0[m -> [32m481458[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-13.png                                          |     Bin [31m0[m -> [32m450162[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-14.png                                          |     Bin [31m0[m -> [32m504523[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-15.png                                          |     Bin [31m0[m -> [32m462562[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-16.png                                          |     Bin [31m0[m -> [32m713917[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-17.png                                          |     Bin [31m0[m -> [32m1383450[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-18.png                                          |     Bin [31m0[m -> [32m162443[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-19.png                                          |     Bin [31m0[m -> [32m425134[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-20.png                                          |     Bin [31m0[m -> [32m344943[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-21.png                                          |     Bin [31m0[m -> [32m110103[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-22.png                                          |     Bin [31m0[m -> [32m468266[m bytes
+ materials/reproducible-analysis-in-r/images/editor-knb-23.png                                          |     Bin [31m0[m -> [32m1209725[m bytes
+ materials/reproducible-analysis-in-r/images/github-collaborators.png                                   |     Bin [31m0[m -> [32m367646[m bytes
+ materials/reproducible-analysis-in-r/images/hatfield-knb-01.png                                        |     Bin [31m0[m -> [32m859072[m bytes
+ materials/reproducible-analysis-in-r/images/knb-authtoken.png                                          |     Bin [31m0[m -> [32m1207084[m bytes
+ materials/reproducible-analysis-in-r/images/knb-banner.png                                             |     Bin [31m0[m -> [32m544537[m bytes
+ materials/reproducible-analysis-in-r/images/orcid-login.png                                            |     Bin [31m0[m -> [32m616128[m bytes
+ materials/reproducible-analysis-in-r/images/r-experience.png                                           |     Bin [31m19429[m -> [32m48504[m bytes
+ materials/reproducible-analysis-in-r/images/rstudio-commit-push.png                                    |     Bin [31m0[m -> [32m504111[m bytes
+ materials/reproducible-analysis-in-r/images/rstudio-merge-conflict.png                                 |     Bin [31m0[m -> [32m662680[m bytes
+ materials/reproducible-analysis-in-r/index.Rmd                                                         |       4 [32m+[m[31m-[m
+ 41 files changed, 505798 insertions(+), 505494 deletions(-)
+ create mode 100644 materials/reproducible-analysis-in-r/09-git-collaboration-and-conflicts.Rmd
+ rename materials/reproducible-analysis-in-r/{09-data-documentation-and-publishing.Rmd => 10-data-documentation-and-publishing.Rmd} (60%)
+ rename materials/reproducible-analysis-in-r/{10-publishing-analyses-to-the-web.Rmd => 11-publishing-analyses-to-the-web.Rmd} (87%)
+ rename materials/reproducible-analysis-in-r/{11-continued-learning.Rmd => 12-continued-learning.Rmd} (100%)
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-01.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-02.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-03.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-04.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-05.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-06.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-07.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-08.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-09.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-10.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-11.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-12.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-13.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-14.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-15.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-16.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-17.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-18.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-19.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-20.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-21.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-22.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/editor-knb-23.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/github-collaborators.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/hatfield-knb-01.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/knb-authtoken.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/knb-banner.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/orcid-login.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/rstudio-commit-push.png
+ create mode 100644 materials/reproducible-analysis-in-r/images/rstudio-merge-conflict.png
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout gh-pages
+Switched to branch 'gh-pages'
+Your branch is up-to-date with 'origin/gh-pages'.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git add --force
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;~/Documents/Projects Data/sasap-trainingfuturama:sasap-training clark$ git add --force .

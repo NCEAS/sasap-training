@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reproducible Analysis With R</title>
+  <meta name="description" content="Practical open science approaches to salmon data management, analysis, and synthesis">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Reproducible Analysis With R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Reproducible Analysis With R" />
+  
+  <meta name="twitter:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="rstudio-and-gitgithub-setup.html">
+<link rel="next" href="version-control-with-git-and-github.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Reproducible Analysis With R</a></li>
+<li><a href="/sasap-training/">← Back to main website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>1.1</b> The Reproducibility Crisis</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-needed-for-computational-reproducibility"><i class="fa fa-check"></i><b>1.2</b> What is needed for computational reproducibility?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#conceptualizing-workflows"><i class="fa fa-check"></i><b>1.3</b> Conceptualizing workflows</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.4</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.5</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-details"><i class="fa fa-check"></i><b>1.6</b> Course details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html"><i class="fa fa-check"></i><b>2</b> Example: Brood Table Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#datasets"><i class="fa fa-check"></i><b>2.2</b> Datasets</a></li>
+<li class="chapter" data-level="2.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#reformatting"><i class="fa fa-check"></i><b>2.3</b> Reformatting</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#batch-reformatting"><i class="fa fa-check"></i><b>2.3.1</b> Batch Reformatting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#merging"><i class="fa fa-check"></i><b>2.4</b> Merging</a></li>
+<li class="chapter" data-level="2.5" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#quality-assurance"><i class="fa fa-check"></i><b>2.5</b> Quality Assurance</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#acceptable-values"><i class="fa fa-check"></i><b>2.5.1</b> Acceptable values</a></li>
+<li class="chapter" data-level="2.5.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#questionable-data"><i class="fa fa-check"></i><b>2.5.2</b> Questionable data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#analysis"><i class="fa fa-check"></i><b>2.6</b> Analysis</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region"><i class="fa fa-check"></i><b>2.6.1</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region-1"><i class="fa fa-check"></i><b>2.6.2</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-stock"><i class="fa fa-check"></i><b>2.6.3</b> Relationship between 1.2s and 1.3s by Stock</a></li>
+<li class="chapter" data-level="2.6.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#age-diversity"><i class="fa fa-check"></i><b>2.6.4</b> Age Diversity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html"><i class="fa fa-check"></i><b>3</b> RStudio and Git/GitHub Setup</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#learning-objectives"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#checking-the-rstudio-environment"><i class="fa fa-check"></i><b>3.2</b> Checking the RStudio environment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#r-version"><i class="fa fa-check"></i><b>3.2.1</b> R Version</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#rstudio-version"><i class="fa fa-check"></i><b>3.2.2</b> RStudio Version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#package-installation"><i class="fa fa-check"></i><b>3.2.3</b> Package installation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#checking-your-package-versions"><i class="fa fa-check"></i><b>3.2.4</b> Checking your package versions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#setting-up-git"><i class="fa fa-check"></i><b>3.3</b> Setting up git</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#note-for-windows-users"><i class="fa fa-check"></i><b>3.3.1</b> Note for Windows Users</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html"><i class="fa fa-check"></i><b>4</b> Literate Analysis with RMarkdown</a><ul>
+<li class="chapter" data-level="4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#learning-objectives-1"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>4.2</b> What is (R)Markdown?</a></li>
+<li class="chapter" data-level="4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#whats-possible-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> What’s possible with RMarkdown</a></li>
+<li class="chapter" data-level="4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#rmarkdown-overview"><i class="fa fa-check"></i><b>4.4</b> RMarkdown overview</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#knitting-the-file"><i class="fa fa-check"></i><b>4.4.1</b> Knitting the file</a></li>
+<li class="chapter" data-level="4.4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#basic-formatting"><i class="fa fa-check"></i><b>4.4.2</b> Basic formatting</a></li>
+<li class="chapter" data-level="4.4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#links"><i class="fa fa-check"></i><b>4.4.3</b> Links</a></li>
+<li class="chapter" data-level="4.4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#images"><i class="fa fa-check"></i><b>4.4.4</b> Images</a></li>
+<li class="chapter" data-level="4.4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><b>4.4.5</b> R Code Chunks</a></li>
+<li class="chapter" data-level="4.4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#inline-r-expressions-and-equations"><i class="fa fa-check"></i><b>4.4.6</b> Inline R expressions and equations</a></li>
+<li class="chapter" data-level="4.4.7" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#plots"><i class="fa fa-check"></i><b>4.4.7</b> Plots</a></li>
+<li class="chapter" data-level="4.4.8" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#tables"><i class="fa fa-check"></i><b>4.4.8</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#literate-analysis-with-rmarkdown-1"><i class="fa fa-check"></i><b>4.5</b> Literate analysis with RMarkdown</a></li>
+<li class="chapter" data-level="4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#organizing-a-reproducible-research-folder"><i class="fa fa-check"></i><b>4.6</b> Organizing a reproducible research folder</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>5</b> Version Control With git and GitHub</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-problem-with-filenames"><i class="fa fa-check"></i><b>5.2</b> The problem with filenames</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#version-control-and-collaboration-using-git-and-github"><i class="fa fa-check"></i><b>5.3</b> Version control and Collaboration using Git and GitHub</a></li>
+<li class="chapter" data-level="5.4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#lets-look-at-a-github-repository"><i class="fa fa-check"></i><b>5.4</b> Let’s look at a GitHub repository</a></li>
+<li class="chapter" data-level="5.5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-git-lifecycle"><i class="fa fa-check"></i><b>5.5</b> The Git lifecycle</a></li>
+<li class="chapter" data-level="5.6" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#create-a-remote-repository-on-github"><i class="fa fa-check"></i><b>5.6</b> Create a remote repository on GitHub</a></li>
+<li class="chapter" data-level="5.7" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#working-locally-with-git-via-rstudio"><i class="fa fa-check"></i><b>5.7</b> Working locally with Git via RStudio</a></li>
+<li class="chapter" data-level="5.8" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#on-good-commit-messages"><i class="fa fa-check"></i><b>5.8</b> On good commit messages</a></li>
+<li class="chapter" data-level="5.9" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#collaboration-and-conflict-free-workflows"><i class="fa fa-check"></i><b>5.9</b> Collaboration and conflict free workflows</a></li>
+<li class="chapter" data-level="5.10" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#exercise"><i class="fa fa-check"></i><b>5.10</b> Exercise</a></li>
+<li class="chapter" data-level="5.11" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#advanced-topics"><i class="fa fa-check"></i><b>5.11</b> Advanced topics</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html"><i class="fa fa-check"></i><b>6</b> Data Modeling &amp; Tidy Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#learning-objectives-3"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#benefits-of-relational-data-systems"><i class="fa fa-check"></i><b>6.2</b> Benefits of relational data systems</a></li>
+<li class="chapter" data-level="6.3" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-organization"><i class="fa fa-check"></i><b>6.3</b> Data Organization</a></li>
+<li class="chapter" data-level="6.4" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#multiple-tables"><i class="fa fa-check"></i><b>6.4</b> Multiple tables</a></li>
+<li class="chapter" data-level="6.5" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-observations"><i class="fa fa-check"></i><b>6.5</b> Inconsistent observations</a></li>
+<li class="chapter" data-level="6.6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-variables"><i class="fa fa-check"></i><b>6.6</b> Inconsistent variables</a></li>
+<li class="chapter" data-level="6.7" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#marginal-sums-and-statistics"><i class="fa fa-check"></i><b>6.7</b> Marginal sums and statistics</a></li>
+<li class="chapter" data-level="6.8" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#good-enough-data-modeling"><i class="fa fa-check"></i><b>6.8</b> Good enough data modeling</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#denormalized-data"><i class="fa fa-check"></i><b>6.8.1</b> Denormalized data</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#tabular-data"><i class="fa fa-check"></i><b>6.8.2</b> Tabular data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#primary-and-foreign-keys"><i class="fa fa-check"></i><b>6.9</b> Primary and Foreign Keys</a></li>
+<li class="chapter" data-level="6.10" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#entity-relationship-model-er"><i class="fa fa-check"></i><b>6.10</b> Entity-Relationship Model (ER)</a></li>
+<li class="chapter" data-level="6.11" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#merging-data"><i class="fa fa-check"></i><b>6.11</b> Merging data</a></li>
+<li class="chapter" data-level="6.12" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#simple-guidelines-for-effective-data"><i class="fa fa-check"></i><b>6.12</b> Simple Guidelines for Effective Data</a></li>
+<li class="chapter" data-level="6.13" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-modeling-exercise"><i class="fa fa-check"></i><b>6.13</b> Data modeling exercise</a></li>
+<li class="chapter" data-level="6.14" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#related-resources"><i class="fa fa-check"></i><b>6.14</b> Related resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data Cleaning and Manipulation</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#learning-objectives-4"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>7.2</b> Introduction</a></li>
+<li class="chapter" data-level="7.3" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#setup"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
+<li class="chapter" data-level="7.4" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#about-the-pipe-operator"><i class="fa fa-check"></i><b>7.4</b> About the pipe (<code>%&gt;%</code>) operator</a></li>
+<li class="chapter" data-level="7.5" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#selectingremoving-columns-select"><i class="fa fa-check"></i><b>7.5</b> Selecting/removing columns: <code>select()</code></a></li>
+<li class="chapter" data-level="7.6" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#changing-shape-gather-and-spread"><i class="fa fa-check"></i><b>7.6</b> Changing shape: <code>gather()</code> and <code>spread()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#renaming-columns-with-rename"><i class="fa fa-check"></i><b>7.7</b> Renaming columns with <code>rename()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#adding-columns-mutate"><i class="fa fa-check"></i><b>7.8</b> Adding columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="7.9" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#group_by-and-summarise"><i class="fa fa-check"></i><b>7.9</b> <code>group_by</code> and <code>summarise</code></a></li>
+<li class="chapter" data-level="7.10" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#filtering-rows-filter"><i class="fa fa-check"></i><b>7.10</b> Filtering rows: <code>filter()</code></a></li>
+<li class="chapter" data-level="7.11" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#sorting-your-data-arrange"><i class="fa fa-check"></i><b>7.11</b> Sorting your data: <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.12" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#joins-in-dplyr"><i class="fa fa-check"></i><b>7.12</b> Joins in dplyr</a></li>
+<li class="chapter" data-level="7.13" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#separate-and-unite"><i class="fa fa-check"></i><b>7.13</b> <code>separate()</code> and <code>unite()</code></a></li>
+<li class="chapter" data-level="7.14" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#summary"><i class="fa fa-check"></i><b>7.14</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html"><i class="fa fa-check"></i><b>8</b> Hands On: Clean and Integrate Datasets</a><ul>
+<li class="chapter" data-level="8.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#learning-objectives-5"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#outline"><i class="fa fa-check"></i><b>8.2</b> Outline</a></li>
+<li class="chapter" data-level="8.3" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#high-level-steps"><i class="fa fa-check"></i><b>8.3</b> High-level steps</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#visual-schematic-of-steps"><i class="fa fa-check"></i><b>8.3.1</b> Visual schematic of steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#full-solution"><i class="fa fa-check"></i><b>8.4</b> Full solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Publication Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="9.1" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#learning-objectives-6"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#overview"><i class="fa fa-check"></i><b>9.2</b> Overview</a></li>
+<li class="chapter" data-level="9.3" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#ggplot-vs-base-vs-lattice-vs-xyz"><i class="fa fa-check"></i><b>9.3</b> ggplot vs base vs lattice vs XYZ…</a></li>
+<li class="chapter" data-level="9.4" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setup-1"><i class="fa fa-check"></i><b>9.4</b> Setup</a></li>
+<li class="chapter" data-level="9.5" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#geoms-aesthetics"><i class="fa fa-check"></i><b>9.5</b> Geoms / Aesthetics</a></li>
+<li class="chapter" data-level="9.6" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setting-plot-limits"><i class="fa fa-check"></i><b>9.6</b> Setting plot limits</a></li>
+<li class="chapter" data-level="9.7" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>9.7</b> Scales</a></li>
+<li class="chapter" data-level="9.8" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>9.8</b> Facets</a></li>
+<li class="chapter" data-level="9.9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#plot-customization-w-themes"><i class="fa fa-check"></i><b>9.9</b> Plot customization w/ themes</a></li>
+<li class="chapter" data-level="9.10" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>9.10</b> Saving plots</a></li>
+<li class="chapter" data-level="9.11" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-multi-panel-plots-beyond-facets"><i class="fa fa-check"></i><b>9.11</b> Bonus: Multi-panel plots: Beyond facets</a></li>
+<li class="chapter" data-level="9.12" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-round-two"><i class="fa fa-check"></i><b>9.12</b> Bonus: Round two</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html"><i class="fa fa-check"></i><b>10</b> Data Documentation and Publishing</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#learning-objectives-7"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-sharing-and-preservation"><i class="fa fa-check"></i><b>10.2</b> Data sharing and preservation</a></li>
+<li class="chapter" data-level="10.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-repositories-built-for-data-and-code"><i class="fa fa-check"></i><b>10.3</b> Data repositories: built for data (and code)</a></li>
+<li class="chapter" data-level="10.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#metadata"><i class="fa fa-check"></i><b>10.4</b> Metadata</a></li>
+<li class="chapter" data-level="10.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#structure-of-a-data-package"><i class="fa fa-check"></i><b>10.5</b> Structure of a data package</a></li>
+<li class="chapter" data-level="10.6" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#dataone-federation"><i class="fa fa-check"></i><b>10.6</b> DataONE Federation</a></li>
+<li class="chapter" data-level="10.7" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-the-web"><i class="fa fa-check"></i><b>10.7</b> Publishing data from the web</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#download-the-data-to-be-used-for-the-tutorial"><i class="fa fa-check"></i><b>10.7.1</b> Download the data to be used for the tutorial</a></li>
+<li class="chapter" data-level="10.7.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#login-via-orcid"><i class="fa fa-check"></i><b>10.7.2</b> Login via ORCID</a></li>
+<li class="chapter" data-level="10.7.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#create-and-submit-the-data-set"><i class="fa fa-check"></i><b>10.7.3</b> Create and submit the data set</a></li>
+<li class="chapter" data-level="10.7.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#add-workflow-provenance"><i class="fa fa-check"></i><b>10.7.4</b> Add workflow provenance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-r"><i class="fa fa-check"></i><b>10.8</b> Publishing data from R</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#logging-in"><i class="fa fa-check"></i><b>10.8.1</b> Logging in</a></li>
+<li class="chapter" data-level="10.8.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#obtain-an-orcid"><i class="fa fa-check"></i><b>10.8.2</b> Obtain an ORCID</a></li>
+<li class="chapter" data-level="10.8.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#log-in-to-the-test-repository-and-copy-your-token"><i class="fa fa-check"></i><b>10.8.3</b> Log in to the test repository and copy your token</a></li>
+<li class="chapter" data-level="10.8.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#modifying-metadata"><i class="fa fa-check"></i><b>10.8.4</b> Modifying metadata</a></li>
+<li class="chapter" data-level="10.8.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#uploading-a-package-using-r-with-uploaddatapackage"><i class="fa fa-check"></i><b>10.8.5</b> Uploading A Package Using R with <code>uploadDataPackage</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html"><i class="fa fa-check"></i><b>11</b> Publishing Analyses to the Web</a><ul>
+<li class="chapter" data-level="11.1" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#learning-objectives-8"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#introduction-3"><i class="fa fa-check"></i><b>11.2</b> Introduction</a></li>
+<li class="chapter" data-level="11.3" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-minimal-example"><i class="fa fa-check"></i><b>11.3</b> A Minimal Example</a></li>
+<li class="chapter" data-level="11.4" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-less-minimal-example"><i class="fa fa-check"></i><b>11.4</b> A Less Minimal Example</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="continued-learning.html"><a href="continued-learning.html"><i class="fa fa-check"></i><b>12</b> Continued Learning</a><ul>
+<li class="chapter" data-level="12.1" data-path="continued-learning.html"><a href="continued-learning.html#references"><i class="fa fa-check"></i><b>12.1</b> References</a></li>
+<li class="chapter" data-level="12.2" data-path="continued-learning.html"><a href="continued-learning.html#where-to-find-help"><i class="fa fa-check"></i><b>12.2</b> Where to Find Help</a></li>
+<li class="chapter" data-level="12.3" data-path="continued-learning.html"><a href="continued-learning.html#other-helpful-andor-cool-stuff"><i class="fa fa-check"></i><b>12.3</b> Other helpful and/or cool stuff</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Analysis With R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="literate-analysis-with-rmarkdown" class="section level1">
+<h1><span class="header-section-number">4</span> Literate Analysis with RMarkdown</h1>
+<div id="learning-objectives-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
+<p>In this lesson, you will learn:</p>
+<ul>
+<li>How plain text, Markdown, and RMarkdown differ</li>
+<li>How to write reports using RMarkdown</li>
+<li>How to integrate RMarkdown into your projects</li>
+<li>How RMarkdown enables literate and reproducible analysis</li>
+</ul>
+</div>
+<div id="what-is-rmarkdown" class="section level2">
+<h2><span class="header-section-number">4.2</span> What is (R)Markdown?</h2>
+<p><strong>Markdown</strong> is a text format that embeds formatting directives in plain text documents
+in a natural way that doesn’t interfere with naturally reading the document as a text
+document. This is conducive to preservation, as text documents are excellent archival
+formats. For example, here is the start of a markdown document:</p>
+<pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu"># Assessment report </span>
+
+- <span class="fl">_Division_: Commercial Fisheries</span>
+<span class="fl">- _Date_: 2017-10-10</span></code></pre>
+<p>Plain text is a great way to write information down. Plain text has some major advantages:</p>
+<ul>
+<li>Works regardless of what decade you’re trying to read the file, i.e. computers have and will continue to speak plain text but MS Word formats will continue to be a pain in the neck forever</li>
+<li>Works perfectly with version control software like git. MS Word does not.</li>
+<li>Easy to read, easy to write</li>
+<li>Can embed code right in the narrative for seamless reproducibility</li>
+</ul>
+<p>Markdown is a plain text format that allows for common typesetting features including:</p>
+<ul>
+<li>Text formatting (bold, italic, etc.)</li>
+<li>Links</li>
+<li>Tables</li>
+<li>In-lined images</li>
+<li>Code</li>
+</ul>
+<p>Markdown minimized the need for spending time typesetting, which is tedious
+and usually unnecessary. So if we want those kinds of things, we might want to
+use Markdown.</p>
+<p><strong>RMarkdown</strong> is an extension to Markdown that allows several additional
+formatting directives, most notably code blocks that let you embed R
+code in your document. When the document is processed, the code blocks can be
+executed, so that code output like figures can be included directly in the
+formatted document. For example, here’s a code block that generates a simple
+graph of random data in R (don’t try this in Word!):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">y=</span><span class="kw">rnorm</span>(<span class="dv">100</span>)), <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/randomplot-1.png" width="672" /></p>
+<p>RMarkdown allows us to produce several kinds of output document (web, PDF, DOCX)
+based on this mix of Markdown and R code. This lets us write analyses in R as
+we already do but also write our reports/papers/etc. in R. Instead of the usual loop:</p>
+<ul>
+<li>Run analysis</li>
+<li>Copy and paste graphics and tables into Word
+<ul>
+<li>(forget where stuff came from)</li>
+</ul></li>
+<li>Edit/update report in Word</li>
+</ul>
+<p>The loop becomes:</p>
+<ul>
+<li>Edit RMarkdown</li>
+<li>Generate fully reproducible report</li>
+</ul>
+<p>Good resources:</p>
+<ul>
+<li><a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a></li>
+<li><a href="http://kbroman.org/knitr_knutshell/" class="uri">http://kbroman.org/knitr_knutshell/</a></li>
+</ul>
+</div>
+<div id="whats-possible-with-rmarkdown" class="section level2">
+<h2><span class="header-section-number">4.3</span> What’s possible with RMarkdown</h2>
+<p><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">RMarkdown</a>
+supports a number of formatting directives. Some of the more useful include:</p>
+<ul>
+<li>Headings (H1 - H6)</li>
+<li>Formatting (<strong>bold</strong>, <em>italics</em>, <del>strikethrough</del>, superscript<sup>1</sup>)</li>
+<li>Links: <a href="https://nceas.github.io/sasap-training/materials/reproducible-analysis-in-r">Reproducible Analysis</a></li>
+<li>Images</li>
+<li>Inline equations: <span class="math inline">\(A = \pi*r^{2}\)</span></li>
+<li>Lists</li>
+<li>Tables</li>
+<li>Code blocks</li>
+<li>Citations</li>
+</ul>
+<p>For example, the
+<a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">RMarkdown Reference Guide</a>
+by RStudio shows how several of these directives would be formatted:</p>
+<p><img src="images/rmarkdown.png" /></p>
+<p>We will review each of these by building a an RMarkdown document from scratch in RStudio.</p>
+</div>
+<div id="rmarkdown-overview" class="section level2">
+<h2><span class="header-section-number">4.4</span> RMarkdown overview</h2>
+<p>Let’s create a an RStudio project called <code>sasap-examples</code> to be used for the examples in
+this tutorial. From within RStudio choose <em>File | New Project…</em>, and create
+a project in a new directory:</p>
+<p><img src="images/new-project.png" /></p>
+<p>Then, from within RStudio choose <em>File | New File | RMarkdown file</em>, and name
+the file <code>practice.Rmd</code></p>
+<p><img src="images/new-rmd.png" />
+Then <em>Save</em> the file as <code>practice.Rmd</code>. You’ll note that RStudio filled in some
+example text in the Rmd file to get you started.</p>
+<div id="knitting-the-file" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Knitting the file</h3>
+<p>To see the rendered version of the file, hit the <em>Knit</em> button on the top of the
+editing pane, which will produce the formatted view of the file:</p>
+<p><img src="images/knitted-rmd.png" /></p>
+</div>
+<div id="basic-formatting" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Basic formatting</h3>
+<pre><code>Use __bold__, *italics*, and ~~strikethough~~, and many others.</code></pre>
+<p>Use <strong>bold</strong>, <em>italics</em>, and <del>strikethough</del>, and many others.</p>
+</div>
+<div id="links" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Links</h3>
+<pre><code>Links can be simply pasted in to show the whole URL like https://dataone.org, or
+can be linked to a specific chunk of text, e.g., to the [DataONE](https://dataone.org) project.</code></pre>
+<p>Links can be simply pasted in to show the whole URL like <a href="https://dataone.org" class="uri">https://dataone.org</a>, or
+can be linked to a specific chunk of text, e.g., to the <a href="https://dataone.org">DataONE</a> project.</p>
+</div>
+<div id="images" class="section level3">
+<h3><span class="header-section-number">4.4.4</span> Images</h3>
+<p>Images are like links, but prepended with an <code>!</code> exclamation point.</p>
+<pre><code>![](images/r-logo.png)</code></pre>
+<p><img src="images/r-logo.png" /></p>
+<p>Note how relative paths can be used to locate the file in the <code>images</code> folder.</p>
+</div>
+<div id="r-code-chunks" class="section level3">
+<h3><span class="header-section-number">4.4.5</span> R Code Chunks</h3>
+<p>Code chunks (also called fenced code blocks) are created using three sequential
+backticks to start the block, then the name of the interpreter to use to execute
+the code (usually <em>r</em>), and then three backticks to end the block. For example:</p>
+<pre><code>```{r chunk-name-no-spaces, eval=TRUE} 
+x <- 2
+print(x^3)
+```</code></pre>
+<pre><code>## [1] 8</code></pre>
+<p>There are a large variety of
+<a href="http://rmarkdown.rstudio.com/lesson-3.html">chunk options</a> for controlling the output.</p>
+</div>
+<div id="inline-r-expressions-and-equations" class="section level3">
+<h3><span class="header-section-number">4.4.6</span> Inline R expressions and equations</h3>
+<pre class="sourceCode r"><code class="sourceCode r">Just type what you want, like an equation like <span class="op">$</span>\sqrt{<span class="dv">2</span>}<span class="op">$</span><span class="st"> </span>that would be 
+calculated with R as <span class="st">`</span><span class="dt">r sqrt(2)</span><span class="st">`</span>.</code></pre>
+<p>Just type what you want, like an equation like <span class="math inline">\(\sqrt{2}\)</span> that would be
+calculated with R as 1.4142136.</p>
+<p>Formatting for equations uses <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax</a> to render even complicated equations nicely: <span class="math display">\[\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}\]</span></p>
+</div>
+<div id="plots" class="section level3">
+<h3><span class="header-section-number">4.4.7</span> Plots</h3>
+<p>The power of code chunks in RMarkdown lies in the ability to generate graphs and
+figures right inline. You can use base graphics, or more advanced libraries like
+<code>ggplot2</code> and <code>leaflet</code>.</p>
+<p>Base graphics: Just run <code>plot(1:10)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/base-graphics-1.png" width="672" /></p>
+<p>You can also use the full featues of <code>ggplot</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">y=</span><span class="kw">rnorm</span>(<span class="dv">100</span>)), <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/ggplot-1.png" width="672" /></p>
+<p>Customize output sizing with chunk options: <code>fig.width</code>, <code>fig.height</code>, etc.</p>
+</div>
+<div id="tables" class="section level3">
+<h3><span class="header-section-number">4.4.8</span> Tables</h3>
+<p>You can render a simple table inline:</p>
+<pre><code>|   x |   y |   z |
+|-----|-----|-----|
+|   1 |   2 |   3 |
+|   4 |   5 |   6 |</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>x</th>
+<th>y</th>
+<th>z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>However, more likely, you’ll want to format some data from a data frame as a
+table that is pageable, searchable, and sortable. One really nice way is to use
+<code>DT::datatable()</code>, like so:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;mpg&quot;</span>)
+DT<span class="op">::</span><span class="kw">datatable</span>(mpg, <span class="dt">caption=</span><span class="st">&quot;Mileage&quot;</span>)</code></pre>
+<div id="htmlwidget-a3cd66e11f90a0a02985" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a3cd66e11f90a0a02985">{"x":{"filter":"none","caption":"<caption>Mileage<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234"],["audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","audi","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","chevrolet","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","dodge","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","ford","honda","honda","honda","honda","honda","honda","honda","honda","honda","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","hyundai","jeep","jeep","jeep","jeep","jeep","jeep","jeep","jeep","land rover","land rover","land rover","land rover","lincoln","lincoln","lincoln","mercury","mercury","mercury","mercury","nissan","nissan","nissan","nissan","nissan","nissan","nissan","nissan","nissan","nissan","nissan","nissan","nissan","pontiac","pontiac","pontiac","pontiac","pontiac","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","subaru","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","toyota","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen","volkswagen"],["a4","a4","a4","a4","a4","a4","a4","a4 quattro","a4 quattro","a4 quattro","a4 quattro","a4 quattro","a4 quattro","a4 quattro","a4 quattro","a6 quattro","a6 quattro","a6 quattro","c1500 suburban 2wd","c1500 suburban 2wd","c1500 suburban 2wd","c1500 suburban 2wd","c1500 suburban 2wd","corvette","corvette","corvette","corvette","corvette","k1500 tahoe 4wd","k1500 tahoe 4wd","k1500 tahoe 4wd","k1500 tahoe 4wd","malibu","malibu","malibu","malibu","malibu","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","caravan 2wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","dakota pickup 4wd","durango 4wd","durango 4wd","durango 4wd","durango 4wd","durango 4wd","durango 4wd","durango 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","ram 1500 pickup 4wd","expedition 2wd","expedition 2wd","expedition 2wd","explorer 4wd","explorer 4wd","explorer 4wd","explorer 4wd","explorer 4wd","explorer 4wd","f150 pickup 4wd","f150 pickup 4wd","f150 pickup 4wd","f150 pickup 4wd","f150 pickup 4wd","f150 pickup 4wd","f150 pickup 4wd","mustang","mustang","mustang","mustang","mustang","mustang","mustang","mustang","mustang","civic","civic","civic","civic","civic","civic","civic","civic","civic","sonata","sonata","sonata","sonata","sonata","sonata","sonata","tiburon","tiburon","tiburon","tiburon","tiburon","tiburon","tiburon","grand cherokee 4wd","grand cherokee 4wd","grand cherokee 4wd","grand cherokee 4wd","grand cherokee 4wd","grand cherokee 4wd","grand cherokee 4wd","grand cherokee 4wd","range rover","range rover","range rover","range rover","navigator 2wd","navigator 2wd","navigator 2wd","mountaineer 4wd","mountaineer 4wd","mountaineer 4wd","mountaineer 4wd","altima","altima","altima","altima","altima","altima","maxima","maxima","maxima","pathfinder 4wd","pathfinder 4wd","pathfinder 4wd","pathfinder 4wd","grand prix","grand prix","grand prix","grand prix","grand prix","forester awd","forester awd","forester awd","forester awd","forester awd","forester awd","impreza awd","impreza awd","impreza awd","impreza awd","impreza awd","impreza awd","impreza awd","impreza awd","4runner 4wd","4runner 4wd","4runner 4wd","4runner 4wd","4runner 4wd","4runner 4wd","camry","camry","camry","camry","camry","camry","camry","camry solara","camry solara","camry solara","camry solara","camry solara","camry solara","camry solara","corolla","corolla","corolla","corolla","corolla","land cruiser wagon 4wd","land cruiser wagon 4wd","toyota tacoma 4wd","toyota tacoma 4wd","toyota tacoma 4wd","toyota tacoma 4wd","toyota tacoma 4wd","toyota tacoma 4wd","toyota tacoma 4wd","gti","gti","gti","gti","gti","jetta","jetta","jetta","jetta","jetta","jetta","jetta","jetta","jetta","new beetle","new beetle","new beetle","new beetle","new beetle","new beetle","passat","passat","passat","passat","passat","passat","passat"],[1.8,1.8,2,2,2.8,2.8,3.1,1.8,1.8,2,2,2.8,2.8,3.1,3.1,2.8,3.1,4.2,5.3,5.3,5.3,5.7,6,5.7,5.7,6.2,6.2,7,5.3,5.3,5.7,6.5,2.4,2.4,3.1,3.5,3.6,2.4,3,3.3,3.3,3.3,3.3,3.3,3.8,3.8,3.8,4,3.7,3.7,3.9,3.9,4.7,4.7,4.7,5.2,5.2,3.9,4.7,4.7,4.7,5.2,5.7,5.9,4.7,4.7,4.7,4.7,4.7,4.7,5.2,5.2,5.7,5.9,4.6,5.4,5.4,4,4,4,4,4.6,5,4.2,4.2,4.6,4.6,4.6,5.4,5.4,3.8,3.8,4,4,4.6,4.6,4.6,4.6,5.4,1.6,1.6,1.6,1.6,1.6,1.8,1.8,1.8,2,2.4,2.4,2.4,2.4,2.5,2.5,3.3,2,2,2,2,2.7,2.7,2.7,3,3.7,4,4.7,4.7,4.7,5.7,6.1,4,4.2,4.4,4.6,5.4,5.4,5.4,4,4,4.6,5,2.4,2.4,2.5,2.5,3.5,3.5,3,3,3.5,3.3,3.3,4,5.6,3.1,3.8,3.8,3.8,5.3,2.5,2.5,2.5,2.5,2.5,2.5,2.2,2.2,2.5,2.5,2.5,2.5,2.5,2.5,2.7,2.7,3.4,3.4,4,4.7,2.2,2.2,2.4,2.4,3,3,3.5,2.2,2.2,2.4,2.4,3,3,3.3,1.8,1.8,1.8,1.8,1.8,4.7,5.7,2.7,2.7,2.7,3.4,3.4,4,4,2,2,2,2,2.8,1.9,2,2,2,2,2.5,2.5,2.8,2.8,1.9,1.9,2,2,2.5,2.5,1.8,1.8,2,2,2.8,2.8,3.6],[1999,1999,2008,2008,1999,1999,2008,1999,1999,2008,2008,1999,1999,2008,2008,1999,2008,2008,2008,2008,2008,1999,2008,1999,1999,2008,2008,2008,2008,2008,1999,1999,1999,2008,1999,2008,2008,1999,1999,1999,1999,2008,2008,2008,1999,1999,2008,2008,2008,2008,1999,1999,2008,2008,2008,1999,1999,1999,2008,2008,2008,1999,2008,1999,2008,2008,2008,2008,2008,2008,1999,1999,2008,1999,1999,1999,2008,1999,1999,1999,2008,2008,1999,1999,1999,1999,1999,2008,1999,2008,1999,1999,2008,2008,1999,1999,2008,2008,2008,1999,1999,1999,1999,1999,2008,2008,2008,2008,1999,1999,2008,2008,1999,1999,2008,1999,1999,2008,2008,2008,2008,2008,2008,2008,1999,1999,2008,2008,2008,2008,1999,2008,2008,1999,1999,1999,2008,1999,2008,2008,1999,1999,1999,2008,2008,2008,2008,1999,1999,2008,1999,1999,2008,2008,1999,1999,1999,2008,2008,1999,1999,2008,2008,2008,2008,1999,1999,1999,1999,2008,2008,2008,2008,1999,1999,1999,1999,2008,2008,1999,1999,2008,2008,1999,1999,2008,1999,1999,2008,2008,1999,1999,2008,1999,1999,1999,2008,2008,1999,2008,1999,1999,2008,1999,1999,2008,2008,1999,1999,2008,2008,1999,1999,1999,1999,2008,2008,2008,2008,1999,1999,1999,1999,1999,1999,2008,2008,1999,1999,2008,2008,1999,1999,2008],[4,4,4,4,6,6,6,4,4,4,4,6,6,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,4,4,6,6,6,4,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,8,8,8,6,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,6,6,6,6,8,8,6,6,8,8,8,8,8,6,6,6,6,8,8,8,8,8,4,4,4,4,4,4,4,4,4,4,4,4,4,6,6,6,4,4,4,4,6,6,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,6,6,8,8,4,4,4,4,6,6,6,6,6,6,6,6,8,6,6,6,6,8,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,6,6,8,4,4,4,4,6,6,6,4,4,4,4,6,6,6,4,4,4,4,4,8,8,4,4,4,6,6,6,6,4,4,4,4,6,4,4,4,4,4,5,5,6,6,4,4,4,4,5,5,4,4,4,4,6,6,6],["auto(l5)","manual(m5)","manual(m6)","auto(av)","auto(l5)","manual(m5)","auto(av)","manual(m5)","auto(l5)","manual(m6)","auto(s6)","auto(l5)","manual(m5)","auto(s6)","manual(m6)","auto(l5)","auto(s6)","auto(s6)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","manual(m6)","auto(l4)","manual(m6)","auto(s6)","manual(m6)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(s6)","auto(l3)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(l6)","auto(l6)","manual(m6)","auto(l4)","auto(l4)","manual(m5)","auto(l5)","auto(l5)","auto(l5)","manual(m5)","auto(l4)","auto(l4)","auto(l5)","auto(l5)","auto(l5)","auto(l4)","auto(l5)","auto(l4)","manual(m6)","auto(l5)","auto(l5)","auto(l5)","manual(m6)","manual(m6)","auto(l4)","manual(m5)","auto(l5)","auto(l4)","auto(l4)","auto(l4)","auto(l6)","auto(l5)","manual(m5)","auto(l5)","auto(l5)","auto(l6)","auto(l4)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","manual(m5)","auto(l4)","manual(m5)","auto(l5)","auto(l4)","manual(m5)","manual(m5)","auto(l5)","manual(m6)","manual(m5)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","manual(m5)","auto(l5)","auto(l5)","manual(m6)","auto(l4)","manual(m5)","auto(l4)","manual(m5)","auto(l4)","manual(m5)","auto(l5)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","auto(l4)","manual(m6)","manual(m5)","auto(l5)","auto(l5)","auto(l4)","auto(l4)","auto(l5)","auto(l5)","auto(l5)","auto(l5)","auto(l4)","auto(s6)","auto(s6)","auto(l4)","auto(l4)","auto(l4)","auto(l6)","auto(l5)","auto(l5)","auto(l6)","auto(l4)","manual(m5)","auto(l4)","auto(av)","manual(m6)","manual(m6)","auto(av)","auto(l4)","manual(m5)","auto(av)","auto(l4)","manual(m5)","auto(l5)","auto(s5)","auto(l4)","auto(l4)","auto(l4)","auto(l4)","auto(s4)","manual(m5)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","auto(l4)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","auto(s4)","auto(s4)","manual(m5)","manual(m5)","manual(m5)","auto(l4)","auto(l4)","manual(m5)","auto(l5)","auto(l5)","manual(m5)","auto(l4)","manual(m5)","auto(l5)","auto(l4)","manual(m5)","auto(s6)","auto(l4)","manual(m5)","manual(m5)","auto(s5)","auto(l4)","manual(m5)","auto(s5)","auto(l3)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","auto(l4)","auto(s6)","manual(m5)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","manual(m6)","auto(l5)","manual(m5)","auto(l4)","manual(m6)","auto(s6)","manual(m5)","manual(m5)","manual(m5)","auto(l4)","auto(s6)","manual(m6)","auto(s6)","manual(m5)","auto(l4)","manual(m5)","manual(m5)","auto(l4)","manual(m5)","auto(l4)","manual(m5)","auto(s6)","manual(m5)","auto(l5)","auto(s6)","manual(m6)","auto(l5)","manual(m5)","auto(s6)"],["f","f","f","f","f","f","f","4","4","4","4","4","4","4","4","4","4","4","r","r","r","r","r","r","r","r","r","r","4","4","4","4","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","r","r","r","4","4","4","4","4","4","4","4","4","4","4","4","4","r","r","r","r","r","r","r","r","r","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","4","4","4","4","4","4","4","4","4","4","4","4","r","r","r","4","4","4","4","f","f","f","f","f","f","f","f","f","4","4","4","4","f","f","f","f","f","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","4","4","4","4","4","4","4","4","4","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f"],[18,21,20,21,16,18,18,18,16,20,19,15,17,17,15,15,17,16,14,11,14,13,12,16,15,16,15,15,14,11,11,14,19,22,18,18,17,18,17,16,16,17,17,11,15,15,16,16,15,14,13,14,14,14,9,11,11,13,13,9,13,11,13,11,12,9,13,13,12,9,11,11,13,11,11,11,12,14,15,14,13,13,13,14,14,13,13,13,11,13,18,18,17,16,15,15,15,15,14,28,24,25,23,24,26,25,24,21,18,18,21,21,18,18,19,19,19,20,20,17,16,17,17,15,15,14,9,14,13,11,11,12,12,11,11,11,12,14,13,13,13,21,19,23,23,19,19,18,19,19,14,15,14,12,18,16,17,18,16,18,18,20,19,20,18,21,19,19,19,20,20,19,20,15,16,15,15,16,14,21,21,21,21,18,18,19,21,21,21,22,18,18,18,24,24,26,28,26,11,13,15,16,17,15,15,15,16,21,19,21,22,17,33,21,19,22,21,21,21,16,17,35,29,21,19,20,20,21,18,19,21,16,18,17],[29,29,31,30,26,26,27,26,25,28,27,25,25,25,25,24,25,23,20,15,20,17,17,26,23,26,25,24,19,14,15,17,27,30,26,29,26,24,24,22,22,24,24,17,22,21,23,23,19,18,17,17,19,19,12,17,15,17,17,12,17,16,18,15,16,12,17,17,16,12,15,16,17,15,17,17,18,17,19,17,19,19,17,17,17,16,16,17,15,17,26,25,26,24,21,22,23,22,20,33,32,32,29,32,34,36,36,29,26,27,30,31,26,26,28,26,29,28,27,24,24,24,22,19,20,17,12,19,18,14,15,18,18,15,17,16,18,17,19,19,17,29,27,31,32,27,26,26,25,25,17,17,20,18,26,26,27,28,25,25,24,27,25,26,23,26,26,26,26,25,27,25,27,20,20,19,17,20,17,29,27,31,31,26,26,28,27,29,31,31,26,26,27,30,33,35,37,35,15,18,20,20,22,17,19,18,20,29,26,29,29,24,44,29,26,29,29,29,29,23,24,44,41,29,26,28,29,29,29,28,29,26,26,26],["p","p","p","p","p","p","p","p","p","p","p","p","p","p","p","p","p","p","r","e","r","r","r","p","p","p","p","p","r","e","r","d","r","r","r","r","r","r","r","r","r","r","r","e","r","r","r","r","r","r","r","r","r","r","e","r","r","r","r","e","r","r","r","r","r","e","r","r","r","e","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","p","r","r","r","p","r","r","r","c","p","r","r","r","r","r","r","r","r","r","r","r","r","r","r","d","r","r","r","e","r","r","p","p","r","r","p","r","p","r","r","r","r","r","r","r","r","r","p","p","r","r","p","r","r","p","p","r","p","r","r","p","r","r","r","p","r","p","r","r","r","r","p","r","p","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","r","p","p","r","d","r","r","p","p","r","r","r","r","d","d","r","r","r","r","p","p","p","p","p","p","p"],["compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","midsize","midsize","midsize","suv","suv","suv","suv","suv","2seater","2seater","2seater","2seater","2seater","suv","suv","suv","suv","midsize","midsize","midsize","midsize","midsize","minivan","minivan","minivan","minivan","minivan","minivan","minivan","minivan","minivan","minivan","minivan","pickup","pickup","pickup","pickup","pickup","pickup","pickup","pickup","pickup","suv","suv","suv","suv","suv","suv","suv","pickup","pickup","pickup","pickup","pickup","pickup","pickup","pickup","pickup","pickup","suv","suv","suv","suv","suv","suv","suv","suv","suv","pickup","pickup","pickup","pickup","pickup","pickup","pickup","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","midsize","midsize","midsize","midsize","midsize","midsize","midsize","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","suv","compact","compact","midsize","midsize","midsize","midsize","midsize","midsize","midsize","suv","suv","suv","suv","midsize","midsize","midsize","midsize","midsize","suv","suv","suv","suv","suv","suv","subcompact","subcompact","subcompact","subcompact","compact","compact","compact","compact","suv","suv","suv","suv","suv","suv","midsize","midsize","midsize","midsize","midsize","midsize","midsize","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","suv","suv","pickup","pickup","pickup","pickup","pickup","pickup","pickup","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","compact","subcompact","subcompact","subcompact","subcompact","subcompact","subcompact","midsize","midsize","midsize","midsize","midsize","midsize","midsize"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>manufacturer<\/th>\n      <th>model<\/th>\n      <th>displ<\/th>\n      <th>year<\/th>\n      <th>cyl<\/th>\n      <th>trans<\/th>\n      <th>drv<\/th>\n      <th>cty<\/th>\n      <th>hwy<\/th>\n      <th>fl<\/th>\n      <th>class<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,8,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>If you search around, there are tons of ways to do this. The simplest way is
+with the <code>kable</code> function from the <code>knitr</code> package, which is bare-bones but effective:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;mpg&quot;</span>)
+knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(mpg))</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+manufacturer
+</th>
+<th style="text-align:left;">
+model
+</th>
+<th style="text-align:right;">
+displ
+</th>
+<th style="text-align:right;">
+year
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:left;">
+trans
+</th>
+<th style="text-align:left;">
+drv
+</th>
+<th style="text-align:right;">
+cty
+</th>
+<th style="text-align:right;">
+hwy
+</th>
+<th style="text-align:left;">
+fl
+</th>
+<th style="text-align:left;">
+class
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+audi
+</td>
+<td style="text-align:left;">
+a4
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+auto(l5)
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+compact
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+audi
+</td>
+<td style="text-align:left;">
+a4
+</td>
+<td style="text-align:right;">
+1.8
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+manual(m5)
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+compact
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+audi
+</td>
+<td style="text-align:left;">
+a4
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+manual(m6)
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+compact
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+audi
+</td>
+<td style="text-align:left;">
+a4
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+auto(av)
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+compact
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+audi
+</td>
+<td style="text-align:left;">
+a4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+auto(l5)
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+compact
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+audi
+</td>
+<td style="text-align:left;">
+a4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+manual(m5)
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+compact
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="literate-analysis-with-rmarkdown-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> Literate analysis with RMarkdown</h2>
+<p>The idea behind <strong>literate analysis</strong> is to interleave the narrative of a scientific
+project with its methods and code to seamlessly document the exact relationships
+among the prose, the figures and tables, the code that produced them, and the data
+that was used by the code. Literate analysis is the inverse of <em>commenting your code</em>,
+as it lets you turn your paper into a <em>living, executable analysis</em>. A literate analysis
+using RMarkdown is fully reproducible, in that everything needed to understand the
+analysis and reproduce it is directly in the document. When done well, a user
+should be able to trace from the raw data through all data cleaning, integration,
+analysis, modeing, and visualization steps that lead to the final set of figures
+and tables that are embedded directly in the narrative.</p>
+<p>While an RMarkdown document is a single, linear exposition of a project, you can still
+modularize your code with functions and packages to make the code both more readable
+and more re-usable. While one can certainly define functions within an
+RMarkdown document, for most analyses of even moderate complexity, we recommend separating
+functions into separate files and packages that can be defined and reused. The
+package <code>rrtools</code> <span class="citation">(Marwick <a href="#ref-marwick_rrtools_010">2017</a>)</span> provides a convenient convention for
+organizing code into reusable modules using R’s standard package layout.</p>
+</div>
+<div id="organizing-a-reproducible-research-folder" class="section level2">
+<h2><span class="header-section-number">4.6</span> Organizing a reproducible research folder</h2>
+<p>The <code>rrtools</code> package creates a folder convention for keeping code, data, and research
+results organized. For a project named <code>sasap_training</code>, the <code>rrtools</code> package
+could be used to organize and structure the project in a standard way. To start
+a project with RRtools, use:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install package (run if needed)</span>
+<span class="co"># remotes::install_github(&quot;benmarwick/rrtools&quot;)</span>
+
+rrtools<span class="op">::</span><span class="kw">use_compendium</span>(<span class="st">&quot;~/Desktop/sasapexample&quot;</span>)
+
+<span class="co"># Then, from within the created package, run:</span>
+rrtools<span class="op">::</span><span class="kw">use_readme_rmd</span>()
+rrtools<span class="op">::</span><span class="kw">use_analysis</span>()</code></pre>
+<p>which produces a new RStudio project with specific folders for each type of data and
+code for the analysis with the following layout:</p>
+<pre><code>sasap_training
+├── CONDUCT.md
+├── CONTRIBUTING.md
+├── DESCRIPTION
+├── R
+│   ├── data_load.R
+│   ├── diversity_functions.R
+│   ├── stock_functions.R
+├── README.Rmd
+├── analysis
+│   ├── data
+│   │   ├── derived_data
+│   │   │   ├── salmon_asl_integrated.csv
+│   │   └── raw_data
+│   │   │   ├── salmon_asl_southeast.csv
+│   │   │   ├── salmon_asl_central.csv
+│   │   │   ├── salmon_asl_kuskokwim.csv
+│   ├── figures
+│   │   │   ├── figure_01.png
+│   ├── paper
+│   │   ├── journal-of-archaeological-science.csl
+│   │   ├── paper.Rmd
+│   │   └── references.bib
+└── salmonstock.Rproj</code></pre>
+<p>In this structure, untouched raw data would go in the <code>analysis/data/raw_data</code> folder,
+re-usable code functions go in the <code>R</code> folder, and the Rmd file associated with
+the manuscript goes into <code>analysis/paper/paper.Rmd</code> along with associated bibliographic
+files. Note that the data in <code>derived_data</code> would ideally be produced by running
+the code in <code>paper.Rmd</code>, which would execute functions from <code>data_load.R</code> to create
+the derived data file, which in turn would be analyzed and visualized by other functions
+found in the <code>R</code> folder. In this way, the complete analysis from raw data through to a
+completely formatted manuscript would be represented by the <code>paper.Rmd</code>, with all
+data and dependencies fully specified. This is truly a reproducible computation.</p>
+<ul>
+<li>Further reading: <span class="citation">(Marwick, Boettiger, and Mullen <a href="#ref-marwick_packaging_2017">2017</a>)</span></li>
+</ul>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-marwick_rrtools_010">
+<p>Marwick, Ben. 2017. <em>Rrtools: Creates a Reproducible Research Compendium</em>. <a href="https://github.com/benmarwick/rrtools" class="uri">https://github.com/benmarwick/rrtools</a>.</p>
+</div>
+<div id="ref-marwick_packaging_2017">
+<p>Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2017. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” <em>PeerJ Preprints</em> 5 (August): e3192v1. <a href="https://doi.org/10.7287/peerj.preprints.3192v1" class="uri">https://doi.org/10.7287/peerj.preprints.3192v1</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rstudio-and-gitgithub-setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="version-control-with-git-and-github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

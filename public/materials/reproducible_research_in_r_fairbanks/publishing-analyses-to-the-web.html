@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reproducible Analysis With R</title>
+  <meta name="description" content="Practical open science approaches to salmon data management, analysis, and synthesis">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Reproducible Analysis With R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Reproducible Analysis With R" />
+  
+  <meta name="twitter:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-documentation-and-publishing.html">
+<link rel="next" href="continued-learning.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Reproducible Analysis With R</a></li>
+<li><a href="/sasap-training/">← Back to main website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>1.1</b> The Reproducibility Crisis</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-needed-for-computational-reproducibility"><i class="fa fa-check"></i><b>1.2</b> What is needed for computational reproducibility?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#conceptualizing-workflows"><i class="fa fa-check"></i><b>1.3</b> Conceptualizing workflows</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.4</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.5</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-details"><i class="fa fa-check"></i><b>1.6</b> Course details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html"><i class="fa fa-check"></i><b>2</b> Example: Brood Table Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#datasets"><i class="fa fa-check"></i><b>2.2</b> Datasets</a></li>
+<li class="chapter" data-level="2.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#reformatting"><i class="fa fa-check"></i><b>2.3</b> Reformatting</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#batch-reformatting"><i class="fa fa-check"></i><b>2.3.1</b> Batch Reformatting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#merging"><i class="fa fa-check"></i><b>2.4</b> Merging</a></li>
+<li class="chapter" data-level="2.5" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#quality-assurance"><i class="fa fa-check"></i><b>2.5</b> Quality Assurance</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#acceptable-values"><i class="fa fa-check"></i><b>2.5.1</b> Acceptable values</a></li>
+<li class="chapter" data-level="2.5.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#questionable-data"><i class="fa fa-check"></i><b>2.5.2</b> Questionable data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#analysis"><i class="fa fa-check"></i><b>2.6</b> Analysis</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region"><i class="fa fa-check"></i><b>2.6.1</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region-1"><i class="fa fa-check"></i><b>2.6.2</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-stock"><i class="fa fa-check"></i><b>2.6.3</b> Relationship between 1.2s and 1.3s by Stock</a></li>
+<li class="chapter" data-level="2.6.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#age-diversity"><i class="fa fa-check"></i><b>2.6.4</b> Age Diversity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html"><i class="fa fa-check"></i><b>3</b> RStudio and Git/GitHub Setup</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#learning-objectives"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#checking-the-rstudio-environment"><i class="fa fa-check"></i><b>3.2</b> Checking the RStudio environment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#r-version"><i class="fa fa-check"></i><b>3.2.1</b> R Version</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#rstudio-version"><i class="fa fa-check"></i><b>3.2.2</b> RStudio Version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#package-installation"><i class="fa fa-check"></i><b>3.2.3</b> Package installation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#setting-up-git"><i class="fa fa-check"></i><b>3.3</b> Setting up git</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#note-for-windows-users"><i class="fa fa-check"></i><b>3.3.1</b> Note for Windows Users</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html"><i class="fa fa-check"></i><b>4</b> Literate Analysis with RMarkdown</a><ul>
+<li class="chapter" data-level="4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#learning-objectives-1"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>4.2</b> What is (R)Markdown?</a></li>
+<li class="chapter" data-level="4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#whats-possible-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> What’s possible with RMarkdown</a></li>
+<li class="chapter" data-level="4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#rmarkdown-overview"><i class="fa fa-check"></i><b>4.4</b> RMarkdown overview</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#knitting-the-file"><i class="fa fa-check"></i><b>4.4.1</b> Knitting the file</a></li>
+<li class="chapter" data-level="4.4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#basic-formatting"><i class="fa fa-check"></i><b>4.4.2</b> Basic formatting</a></li>
+<li class="chapter" data-level="4.4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#links"><i class="fa fa-check"></i><b>4.4.3</b> Links</a></li>
+<li class="chapter" data-level="4.4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#images"><i class="fa fa-check"></i><b>4.4.4</b> Images</a></li>
+<li class="chapter" data-level="4.4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><b>4.4.5</b> R Code Chunks</a></li>
+<li class="chapter" data-level="4.4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#inline-r-expressions-and-equations"><i class="fa fa-check"></i><b>4.4.6</b> Inline R expressions and equations</a></li>
+<li class="chapter" data-level="4.4.7" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#plots"><i class="fa fa-check"></i><b>4.4.7</b> Plots</a></li>
+<li class="chapter" data-level="4.4.8" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#tables"><i class="fa fa-check"></i><b>4.4.8</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#literate-analysis-with-rmarkdown-1"><i class="fa fa-check"></i><b>4.5</b> Literate analysis with RMarkdown</a></li>
+<li class="chapter" data-level="4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#organizing-a-reproducible-research-folder"><i class="fa fa-check"></i><b>4.6</b> Organizing a reproducible research folder</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>5</b> Version Control With git and GitHub</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-problem-with-filenames"><i class="fa fa-check"></i><b>5.2</b> The problem with filenames</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#version-control-and-collaboration-using-git-and-github"><i class="fa fa-check"></i><b>5.3</b> Version control and Collaboration using Git and GitHub</a></li>
+<li class="chapter" data-level="5.4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#lets-look-at-a-github-repository"><i class="fa fa-check"></i><b>5.4</b> Let’s look at a GitHub repository</a></li>
+<li class="chapter" data-level="5.5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-git-lifecycle"><i class="fa fa-check"></i><b>5.5</b> The Git lifecycle</a></li>
+<li class="chapter" data-level="5.6" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#create-a-remote-repository-on-github"><i class="fa fa-check"></i><b>5.6</b> Create a remote repository on GitHub</a></li>
+<li class="chapter" data-level="5.7" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#working-locally-with-git-via-rstudio"><i class="fa fa-check"></i><b>5.7</b> Working locally with Git via RStudio</a></li>
+<li class="chapter" data-level="5.8" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#on-good-commit-messages"><i class="fa fa-check"></i><b>5.8</b> On good commit messages</a></li>
+<li class="chapter" data-level="5.9" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#collaboration-and-conflict-free-workflows"><i class="fa fa-check"></i><b>5.9</b> Collaboration and conflict free workflows</a></li>
+<li class="chapter" data-level="5.10" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#exercise"><i class="fa fa-check"></i><b>5.10</b> Exercise</a></li>
+<li class="chapter" data-level="5.11" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#advanced-topics"><i class="fa fa-check"></i><b>5.11</b> Advanced topics</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html"><i class="fa fa-check"></i><b>6</b> Data Modeling &amp; Tidy Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#learning-objectives-3"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#benefits-of-relational-data-systems"><i class="fa fa-check"></i><b>6.2</b> Benefits of relational data systems</a></li>
+<li class="chapter" data-level="6.3" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-organization"><i class="fa fa-check"></i><b>6.3</b> Data Organization</a></li>
+<li class="chapter" data-level="6.4" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#multiple-tables"><i class="fa fa-check"></i><b>6.4</b> Multiple tables</a></li>
+<li class="chapter" data-level="6.5" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-observations"><i class="fa fa-check"></i><b>6.5</b> Inconsistent observations</a></li>
+<li class="chapter" data-level="6.6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-variables"><i class="fa fa-check"></i><b>6.6</b> Inconsistent variables</a></li>
+<li class="chapter" data-level="6.7" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#marginal-sums-and-statistics"><i class="fa fa-check"></i><b>6.7</b> Marginal sums and statistics</a></li>
+<li class="chapter" data-level="6.8" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#good-enough-data-modeling"><i class="fa fa-check"></i><b>6.8</b> Good enough data modeling</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#denormalized-data"><i class="fa fa-check"></i><b>6.8.1</b> Denormalized data</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#tabular-data"><i class="fa fa-check"></i><b>6.8.2</b> Tabular data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#primary-and-foreign-keys"><i class="fa fa-check"></i><b>6.9</b> Primary and Foreign Keys</a></li>
+<li class="chapter" data-level="6.10" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#entity-relationship-model-er"><i class="fa fa-check"></i><b>6.10</b> Entity-Relationship Model (ER)</a></li>
+<li class="chapter" data-level="6.11" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#merging-data"><i class="fa fa-check"></i><b>6.11</b> Merging data</a></li>
+<li class="chapter" data-level="6.12" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#simple-guidelines-for-effective-data"><i class="fa fa-check"></i><b>6.12</b> Simple Guidelines for Effective Data</a></li>
+<li class="chapter" data-level="6.13" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-modeling-exercise"><i class="fa fa-check"></i><b>6.13</b> Data modeling exercise</a></li>
+<li class="chapter" data-level="6.14" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#related-resources"><i class="fa fa-check"></i><b>6.14</b> Related resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data Cleaning and Manipulation</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#learning-objectives-4"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>7.2</b> Introduction</a></li>
+<li class="chapter" data-level="7.3" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#setup"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
+<li class="chapter" data-level="7.4" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#about-the-pipe-operator"><i class="fa fa-check"></i><b>7.4</b> About the pipe (<code>%&gt;%</code>) operator</a></li>
+<li class="chapter" data-level="7.5" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#selectingremoving-columns-select"><i class="fa fa-check"></i><b>7.5</b> Selecting/removing columns: <code>select()</code></a></li>
+<li class="chapter" data-level="7.6" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#changing-shape-gather-and-spread"><i class="fa fa-check"></i><b>7.6</b> Changing shape: <code>gather()</code> and <code>spread()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#renaming-columns-with-rename"><i class="fa fa-check"></i><b>7.7</b> Renaming columns with <code>rename()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#adding-columns-mutate"><i class="fa fa-check"></i><b>7.8</b> Adding columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="7.9" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#group_by-and-summarise"><i class="fa fa-check"></i><b>7.9</b> <code>group_by</code> and <code>summarise</code></a></li>
+<li class="chapter" data-level="7.10" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#filtering-rows-filter"><i class="fa fa-check"></i><b>7.10</b> Filtering rows: <code>filter()</code></a></li>
+<li class="chapter" data-level="7.11" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#sorting-your-data-arrange"><i class="fa fa-check"></i><b>7.11</b> Sorting your data: <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.12" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#joins-in-dplyr"><i class="fa fa-check"></i><b>7.12</b> Joins in dplyr</a></li>
+<li class="chapter" data-level="7.13" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#separate-and-unite"><i class="fa fa-check"></i><b>7.13</b> <code>separate()</code> and <code>unite()</code></a></li>
+<li class="chapter" data-level="7.14" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#summary"><i class="fa fa-check"></i><b>7.14</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html"><i class="fa fa-check"></i><b>8</b> Hands On: Clean and Integrate Datasets</a><ul>
+<li class="chapter" data-level="8.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#learning-objectives-5"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#outline"><i class="fa fa-check"></i><b>8.2</b> Outline</a></li>
+<li class="chapter" data-level="8.3" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#high-level-steps"><i class="fa fa-check"></i><b>8.3</b> High-level steps</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#visual-schematic-of-steps"><i class="fa fa-check"></i><b>8.3.1</b> Visual schematic of steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#full-solution"><i class="fa fa-check"></i><b>8.4</b> Full solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Publication Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="9.1" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#learning-objectives-6"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#overview"><i class="fa fa-check"></i><b>9.2</b> Overview</a></li>
+<li class="chapter" data-level="9.3" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#ggplot-vs-base-vs-lattice-vs-xyz"><i class="fa fa-check"></i><b>9.3</b> ggplot vs base vs lattice vs XYZ…</a></li>
+<li class="chapter" data-level="9.4" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setup-1"><i class="fa fa-check"></i><b>9.4</b> Setup</a></li>
+<li class="chapter" data-level="9.5" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#geoms-aesthetics"><i class="fa fa-check"></i><b>9.5</b> Geoms / Aesthetics</a></li>
+<li class="chapter" data-level="9.6" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setting-plot-limits"><i class="fa fa-check"></i><b>9.6</b> Setting plot limits</a></li>
+<li class="chapter" data-level="9.7" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>9.7</b> Scales</a></li>
+<li class="chapter" data-level="9.8" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>9.8</b> Facets</a></li>
+<li class="chapter" data-level="9.9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#plot-customization-w-themes"><i class="fa fa-check"></i><b>9.9</b> Plot customization w/ themes</a></li>
+<li class="chapter" data-level="9.10" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>9.10</b> Saving plots</a></li>
+<li class="chapter" data-level="9.11" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-multi-panel-plots-beyond-facets"><i class="fa fa-check"></i><b>9.11</b> Bonus: Multi-panel plots: Beyond facets</a></li>
+<li class="chapter" data-level="9.12" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-round-two"><i class="fa fa-check"></i><b>9.12</b> Bonus: Round two</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html"><i class="fa fa-check"></i><b>10</b> Data Documentation and Publishing</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#learning-objectives-7"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-sharing-and-preservation"><i class="fa fa-check"></i><b>10.2</b> Data sharing and preservation</a></li>
+<li class="chapter" data-level="10.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-repositories-built-for-data-and-code"><i class="fa fa-check"></i><b>10.3</b> Data repositories: built for data (and code)</a></li>
+<li class="chapter" data-level="10.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#metadata"><i class="fa fa-check"></i><b>10.4</b> Metadata</a></li>
+<li class="chapter" data-level="10.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#structure-of-a-data-package"><i class="fa fa-check"></i><b>10.5</b> Structure of a data package</a></li>
+<li class="chapter" data-level="10.6" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#dataone-federation"><i class="fa fa-check"></i><b>10.6</b> DataONE Federation</a></li>
+<li class="chapter" data-level="10.7" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-the-web"><i class="fa fa-check"></i><b>10.7</b> Publishing data from the web</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#download-the-data-to-be-used-for-the-tutorial"><i class="fa fa-check"></i><b>10.7.1</b> Download the data to be used for the tutorial</a></li>
+<li class="chapter" data-level="10.7.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#login-via-orcid"><i class="fa fa-check"></i><b>10.7.2</b> Login via ORCID</a></li>
+<li class="chapter" data-level="10.7.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#create-and-submit-the-data-set"><i class="fa fa-check"></i><b>10.7.3</b> Create and submit the data set</a></li>
+<li class="chapter" data-level="10.7.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#file-and-variable-level-metadata"><i class="fa fa-check"></i><b>10.7.4</b> File and variable level metadata</a></li>
+<li class="chapter" data-level="10.7.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#add-workflow-provenance"><i class="fa fa-check"></i><b>10.7.5</b> Add workflow provenance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-r"><i class="fa fa-check"></i><b>10.8</b> Publishing data from R</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#logging-in"><i class="fa fa-check"></i><b>10.8.1</b> Logging in</a></li>
+<li class="chapter" data-level="10.8.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#obtain-an-orcid"><i class="fa fa-check"></i><b>10.8.2</b> Obtain an ORCID</a></li>
+<li class="chapter" data-level="10.8.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#log-in-to-the-test-repository-and-copy-your-token"><i class="fa fa-check"></i><b>10.8.3</b> Log in to the test repository and copy your token</a></li>
+<li class="chapter" data-level="10.8.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#modifying-metadata"><i class="fa fa-check"></i><b>10.8.4</b> Modifying metadata</a></li>
+<li class="chapter" data-level="10.8.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#uploading-a-package-using-r-with-uploaddatapackage"><i class="fa fa-check"></i><b>10.8.5</b> Uploading A Package Using R with <code>uploadDataPackage</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html"><i class="fa fa-check"></i><b>11</b> Publishing Analyses to the Web</a><ul>
+<li class="chapter" data-level="11.1" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#learning-objectives-8"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#introduction-3"><i class="fa fa-check"></i><b>11.2</b> Introduction</a></li>
+<li class="chapter" data-level="11.3" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-minimal-example"><i class="fa fa-check"></i><b>11.3</b> A Minimal Example</a></li>
+<li class="chapter" data-level="11.4" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-less-minimal-example"><i class="fa fa-check"></i><b>11.4</b> A Less Minimal Example</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="continued-learning.html"><a href="continued-learning.html"><i class="fa fa-check"></i><b>12</b> Continued Learning</a><ul>
+<li class="chapter" data-level="12.1" data-path="continued-learning.html"><a href="continued-learning.html#references"><i class="fa fa-check"></i><b>12.1</b> References</a></li>
+<li class="chapter" data-level="12.2" data-path="continued-learning.html"><a href="continued-learning.html#where-to-find-help"><i class="fa fa-check"></i><b>12.2</b> Where to Find Help</a></li>
+<li class="chapter" data-level="12.3" data-path="continued-learning.html"><a href="continued-learning.html#other-helpful-andor-cool-stuff"><i class="fa fa-check"></i><b>12.3</b> Other helpful and/or cool stuff</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Analysis With R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="publishing-analyses-to-the-web" class="section level1">
+<h1><span class="header-section-number">11</span> Publishing Analyses to the Web</h1>
+<div id="learning-objectives-8" class="section level2">
+<h2><span class="header-section-number">11.1</span> Learning Objectives</h2>
+<p>In this lesson, you will learn:</p>
+<ul>
+<li>How to use git, GitHub (+Pages), and (R)Markdown to publish an analysis to the web</li>
+</ul>
+</div>
+<div id="introduction-3" class="section level2">
+<h2><span class="header-section-number">11.2</span> Introduction</h2>
+<p>Sharing your work with others in engaging ways is an important part of the scientific process. So far in this course, we’ve introduced a small set of powerful tools for doing open science:</p>
+<ul>
+<li>R and its many packages</li>
+<li>RStudio</li>
+<li>git</li>
+<li>GiHub</li>
+<li>RMarkdown</li>
+</ul>
+<p>RMarkdown, in particular, is amazingly powerful for creating scientific reports but, so far, we haven’t tapped its full potential for sharing our work with others.</p>
+<p>In this lesson, we’re going to take an existing GitHub repository and turn it into a beautiful and easy to read web page using the tools listed above.</p>
+</div>
+<div id="a-minimal-example" class="section level2">
+<h2><span class="header-section-number">11.3</span> A Minimal Example</h2>
+<ul>
+<li>Create a new repository on GitHub</li>
+<li>Initialize the repository on GitHub without any files in it</li>
+<li>In RStudio,
+<ul>
+<li>Create a new Project</li>
+<li>When creating, select the option to create from Version Control -&gt; Git</li>
+<li>Enter your repository’s clone URL in the Repository URL field and fill in the rest of the details</li>
+</ul></li>
+<li>Add a new file at the top level called <code>index.Rmd</code>. The easiest way to do this is through the RStudio menu. Choose File -&gt; New File -&gt; RMarkdown… This will bring up a dialog box. You should create a “Document” in “HTML” format. These are the default options.</li>
+<li>Open <code>index.Rmd</code> (if it isn’t already open)</li>
+<li><p>Press Knit</p>
+Observe the rendered output Notice the new file in the same directory <code>index.html</code>. This is our RMarkdown file rendered as HTML (a web page)</li>
+<li>Commit your changes (to both index.Rmd and index.html)</li>
+<li>Open your web browser to the GitHub.com page for your repository</li>
+<li><p>Go to Settings &gt; GitHub Pages and turn on GitHub Pages for the <code>master</code> branch</p>
+<p>Now, the rendered website version of your repo will show up at a special URL.</p>
+<p>GitHub Pages follows a convention like this:</p>
+<div class="figure">
+<img src="images/github_pages.png" alt="github pages url pattern" />
+<p class="caption">github pages url pattern</p>
+</div>
+<p>Note that it will no longer be at github.com but github.io</p></li>
+<li><p>Go to <a href="https://%7Busername%7D.github.io/%7Brepo_name%7D/" class="uri">https://{username}.github.io/{repo_name}/</a> (Note the trailing <code>/</code>) Observe the awesome rendered output</p></li>
+</ul>
+<p>Now that we’ve successfully published a web page from an RMarkdown document, let’s make a change to our RMarkdown document and follow the steps to actually publish the change on the web:</p>
+<ul>
+<li>Go back to our <code>index.Rmd</code></li>
+<li>Delete all the content, except the YAML frontmatter</li>
+<li>Type “Hello world”</li>
+<li>Commit, push</li>
+<li>Go back to <a href="https://%7Busername%7D.github.io/%7Brepo_name%7D/" class="uri">https://{username}.github.io/{repo_name}/</a></li>
+</ul>
+</div>
+<div id="a-less-minimal-example" class="section level2">
+<h2><span class="header-section-number">11.4</span> A Less Minimal Example</h2>
+<p>Now that we’ve seen how to create a web page from RMarkdown, let’s create a website that uses some of the cool functionality available to us. We’ll use the same git repository and RStudio Project as above, but we’ll be adding some files to the repository and modifying <code>index.Rmd</code>.</p>
+<p>First, let’s get some data. We’ll re-use the salmon escapement data from the ADF&amp;G OceanAK database we used earlier.</p>
+<ul>
+<li>Navigate to <a href="https://doi.org/10.5063/F1TX3CKH">Escapement Counts</a> (or visit the KNB and search for ‘oceanak’) and copy the Download URL for the <code>ADFG_firstAttempt_reformatted.csv</code> file</li>
+<li>Make a folder in the top level of your repository to store the file called <code>data</code></li>
+<li><p>Download that file into the <code>data</code> folder with the filename <code>escapement_counts.csv</code></p>
+<p>Note that this is different than how we’ve been downloading data in earlier lessons because we’re actually going to commit the data file into git this time.</p></li>
+<li>Calculate median annual escapement by species using the <code>dplyr</code> package</li>
+<li>Display it in an interactive table with the <code>datatable</code> function from the <code>DT</code> package</li>
+<li><p>Make a bar plot of the median annual escapement by species using the <code>ggplot2</code> package</p></li>
+</ul>
+<p>And lastly, let’s make an interactive, Google Maps-like map of the escapement sampling locations. To do this, we’ll use the <a href="https://rstudio.github.io/leaflet/"><code>leaflet</code></a> package to create an interactive map with markers for all the sampling locations:</p>
+<p>First, let’s load the packages we’ll need:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(leaflet)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DT)</code></pre></div>
+<p>Then, let’s create the <code>data.frame</code> we’re going to use to plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">esc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/escapement_counts.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>If you haven’t saved the data locally, you can load it directly from the KNB using this line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">esc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;libcurl&quot;</span>), 
+                <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Now that we have the data loaded, let’s calculate median annual escapement by species:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">median_esc &lt;-<span class="st"> </span>esc <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(sampleDate, <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;Day&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Species, SASAP.Region, Year, Location) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">escapement =</span> <span class="kw">sum</span>(DailyCount)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">median_escapement =</span> <span class="kw">median</span>(escapement))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(median_esc, <span class="kw">aes</span>(Species, median_escapement)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>Calculate median annual escapement by species using the <code>dplyr</code> package Let’s convert the escapement data into a table of just the unique locations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locations &lt;-<span class="st"> </span>esc <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">distinct</span>(Location, Latitude, Longitude) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">drop_na</span>()</code></pre></div>
+<p>And display it as an interactive table:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">datatable</span>(locations)</code></pre></div>
+<div id="htmlwidget-49786bca20936e37c330" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-49786bca20936e37c330">{"x":{"filter":"none","data":[["1","4","6","7","8","9","10","12","13","14","15","18","20","23","27","29","30","35","36","37","38","43","45","46","50","57","58","60","62","70","74","76","77","78","79","80","84","85","87","88","89","91","92","97","99","101","102","103","104","106","109","111","116","118","119","122","129","130","133","134","136","137","138","139","140","141","142","147"],["Akalura Creek","Anvik River","Ayakulik River","Bear Creek","Bear River","Big Bay Creek","Big Kitoi Creek","Black Lake","Buskin River","Chelatna Lake","Chignik River","Coghill River","Crescent River","Dog Salmon Creek","Eagle Sonar (Yukon/Canadian Border)","Egegik River","Eshamy River","Frazer Lake","Frosty Creek","George River","Goodnews River (Middle Fork)","Horse Marine Stream","Igushik River","Ilnik River","Judd Lake","Kanektok River","Karluk","Kasilof River","Kenai River","Kogrukluk River","Kvichak River","Lake Louise","Larson Lake","Litnik","Little Kitoi","Little River","Little Waterfall","Malina Creek","McLees","Middle Lagoon","Miles Lake","Morris Cove","Mortensens Creek","Naknek River","Nelson River","Nushagak River","Orzinski River","Pasagshak River","Pauls Bay","Pilot Station Sonar","Portage","Red Lake","Salmon River (Aniak)","Saltery Creek","Sandy River","Seal Bay Creek","Sturgeon River","Summer Bay","Takotna River","Tatlawiksuk River","Telaquana River","Thin Point Cove","Thorsheim","Togiak River","Uganik River","Ugashik River","Upper Station","Wood River"],[57.1641,62.7,57.1956,56.0389,56.0389,58.5426,58.1915,56.392,57.7768,62.4731,56.2623,61.0726,60.2252,57.1289,64.8,58.2461,60.4528,57.2027,55.1944,61.9,59.1,57.112,58.7132,55.8141,61.5706,59.8,57.563,60.3865,60.548,60.8,58.7969,57.7605,62.3387,58.0815,58.1963,57.7784,58.3955,58.173,54.0002,55.0827,60.6798,53.9167,55.1469,58.7173,55.8141,58.8677,55.731,57.4734,58.3898,62,56.2896,57.2648,61.1,57.5263,56.2163,58.3388,57.3388,53.8963,63,61.9,61.1,55.0109,58.2765,59.0722,57.6696,57.4881,57.0581,59.0523],[-154.2287,-160.2,-154.529,-160.2734,-160.2734,-152.5683,-152.3754,-158.937,-152.5372,-151.4545,-158.7054,-147.9109,-152.5585,-154.0287,-141,-157.6254,-148.1,-154.0573,-162.8535,-157.7,-161.5,-153.95,-158.8739,-161.2349,-151.5575,-161.9,-154.3843,-151.3001,-151.2642,-157.8,-157.0993,-152.5055,-149.892,-152.8286,-152.3681,-153.6666,-152.5058,-153.2158,-166.7281,-163.2164,-144.6684,-166.463,-162.6372,-157.053,-161.2349,-158.605,-160.0934,-152.4627,-152.3405,-162.9,-152.4284,-154.3573,-159.2,-152.7619,-160.055,-152.2238,-154.6931,-166.4596,-155.6,-156.2,-154.4,-162.6734,-152.8367,-160.3363,-153.3737,-157.5958,-154.3569,-158.4141]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Location<\/th>\n      <th>Latitude<\/th>\n      <th>Longitude<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Then making a leaflet map is (generally) only a couple of lines of code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">leaflet</span>(locations) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">addMarkers</span>(<span class="op">~</span><span class="st"> </span>Longitude, <span class="op">~</span><span class="st"> </span>Latitude, <span class="dt">popup =</span> <span class="op">~</span><span class="st"> </span>Location)</code></pre></div>
+<div id="htmlwidget-6cb2c4689a4e6744f141" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6cb2c4689a4e6744f141">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[57.1641,62.7,57.1956,56.0389,56.0389,58.5426,58.1915,56.392,57.7768,62.4731,56.2623,61.0726,60.2252,57.1289,64.8,58.2461,60.4528,57.2027,55.1944,61.9,59.1,57.112,58.7132,55.8141,61.5706,59.8,57.563,60.3865,60.548,60.8,58.7969,57.7605,62.3387,58.0815,58.1963,57.7784,58.3955,58.173,54.0002,55.0827,60.6798,53.9167,55.1469,58.7173,55.8141,58.8677,55.731,57.4734,58.3898,62,56.2896,57.2648,61.1,57.5263,56.2163,58.3388,57.3388,53.8963,63,61.9,61.1,55.0109,58.2765,59.0722,57.6696,57.4881,57.0581,59.0523],[-154.2287,-160.2,-154.529,-160.2734,-160.2734,-152.5683,-152.3754,-158.937,-152.5372,-151.4545,-158.7054,-147.9109,-152.5585,-154.0287,-141,-157.6254,-148.1,-154.0573,-162.8535,-157.7,-161.5,-153.95,-158.8739,-161.2349,-151.5575,-161.9,-154.3843,-151.3001,-151.2642,-157.8,-157.0993,-152.5055,-149.892,-152.8286,-152.3681,-153.6666,-152.5058,-153.2158,-166.7281,-163.2164,-144.6684,-166.463,-162.6372,-157.053,-161.2349,-158.605,-160.0934,-152.4627,-152.3405,-162.9,-152.4284,-154.3573,-159.2,-152.7619,-160.055,-152.2238,-154.6931,-166.4596,-155.6,-156.2,-154.4,-162.6734,-152.8367,-160.3363,-153.3737,-157.5958,-154.3569,-158.4141],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Akalura Creek","Anvik River","Ayakulik River","Bear Creek","Bear River","Big Bay Creek","Big Kitoi Creek","Black Lake","Buskin River","Chelatna Lake","Chignik River","Coghill River","Crescent River","Dog Salmon Creek","Eagle Sonar (Yukon/Canadian Border)","Egegik River","Eshamy River","Frazer Lake","Frosty Creek","George River","Goodnews River (Middle Fork)","Horse Marine Stream","Igushik River","Ilnik River","Judd Lake","Kanektok River","Karluk","Kasilof River","Kenai River","Kogrukluk River","Kvichak River","Lake Louise","Larson Lake","Litnik","Little Kitoi","Little River","Little Waterfall","Malina Creek","McLees","Middle Lagoon","Miles Lake","Morris Cove","Mortensens Creek","Naknek River","Nelson River","Nushagak River","Orzinski River","Pasagshak River","Pauls Bay","Pilot Station Sonar","Portage","Red Lake","Salmon River (Aniak)","Saltery Creek","Sandy River","Seal Bay Creek","Sturgeon River","Summer Bay","Takotna River","Tatlawiksuk River","Telaquana River","Thin Point Cove","Thorsheim","Togiak River","Uganik River","Ugashik River","Upper Station","Wood River"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[53.8963,64.8],"lng":[-166.7281,-141]}},"evals":[],"jsHooks":[]}</script>
+<p>The <code>addTiles()</code> function gets a base layer of tiles from <a href="https://www.openstreetmap.org/">OpenStreetMap</a> which is an open alternative to Google Maps. <code>addMarkers</code> use a bit of an odd syntax in that it looks kind of like <code>ggplot2</code> code but uses <code>~</code> before the column names. This is similar to how the <code>lm</code> function (and others) work but you’ll have to make sure you type the <code>~</code> for your map to work.</p>
+<p>When you knit and view the results of this cell locally (on your own computer), you will see a map with icons marking the locations. However, when you push the html to GitHub and view your page there, you’ll see a map with no icons (as of the date of this training). This appears to be due to a certificate issue with server that provides the leaflet icons. There is a workaround, but it adds several more lines of code</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use a custom marker so Leaflet doesn&#39;t try to grab the marker images from </span>
+<span class="co"># its CDN (this was brought up in </span>
+<span class="co"># https://github.com/NCEAS/sasap-training/issues/22)</span>
+markerIcon &lt;-<span class="st"> </span><span class="kw">makeIcon</span>(
+  <span class="dt">iconUrl =</span> <span class="st">&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png&quot;</span>,
+  <span class="dt">iconWidth =</span> <span class="dv">25</span>, <span class="dt">iconHeight =</span> <span class="dv">41</span>,
+  <span class="dt">iconAnchorX =</span> <span class="dv">12</span>, <span class="dt">iconAnchorY =</span> <span class="dv">41</span>,
+  <span class="dt">shadowUrl =</span> <span class="st">&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png&quot;</span>,
+  <span class="dt">shadowWidth =</span> <span class="dv">41</span>, <span class="dt">shadowHeight =</span> <span class="dv">41</span>,
+  <span class="dt">shadowAnchorX =</span> <span class="dv">13</span>, <span class="dt">shadowAnchorY =</span> <span class="dv">41</span>
+)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">leaflet</span>(locations) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">addMarkers</span>(<span class="op">~</span><span class="st"> </span>Longitude, <span class="op">~</span><span class="st"> </span>Latitude, <span class="dt">popup =</span> <span class="op">~</span><span class="st"> </span>Location, <span class="dt">icon =</span> markerIcon)</code></pre></div>
+<div id="htmlwidget-32468b8e2713d469699a" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-32468b8e2713d469699a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[57.1641,62.7,57.1956,56.0389,56.0389,58.5426,58.1915,56.392,57.7768,62.4731,56.2623,61.0726,60.2252,57.1289,64.8,58.2461,60.4528,57.2027,55.1944,61.9,59.1,57.112,58.7132,55.8141,61.5706,59.8,57.563,60.3865,60.548,60.8,58.7969,57.7605,62.3387,58.0815,58.1963,57.7784,58.3955,58.173,54.0002,55.0827,60.6798,53.9167,55.1469,58.7173,55.8141,58.8677,55.731,57.4734,58.3898,62,56.2896,57.2648,61.1,57.5263,56.2163,58.3388,57.3388,53.8963,63,61.9,61.1,55.0109,58.2765,59.0722,57.6696,57.4881,57.0581,59.0523],[-154.2287,-160.2,-154.529,-160.2734,-160.2734,-152.5683,-152.3754,-158.937,-152.5372,-151.4545,-158.7054,-147.9109,-152.5585,-154.0287,-141,-157.6254,-148.1,-154.0573,-162.8535,-157.7,-161.5,-153.95,-158.8739,-161.2349,-151.5575,-161.9,-154.3843,-151.3001,-151.2642,-157.8,-157.0993,-152.5055,-149.892,-152.8286,-152.3681,-153.6666,-152.5058,-153.2158,-166.7281,-163.2164,-144.6684,-166.463,-162.6372,-157.053,-161.2349,-158.605,-160.0934,-152.4627,-152.3405,-162.9,-152.4284,-154.3573,-159.2,-152.7619,-160.055,-152.2238,-154.6931,-166.4596,-155.6,-156.2,-154.4,-162.6734,-152.8367,-160.3363,-153.3737,-157.5958,-154.3569,-158.4141],{"iconUrl":{"data":"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png","index":0},"iconWidth":25,"iconHeight":41,"iconAnchorX":12,"iconAnchorY":41,"shadowUrl":{"data":"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png","index":0},"shadowWidth":41,"shadowHeight":41,"shadowAnchorX":13,"shadowAnchorY":41},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Akalura Creek","Anvik River","Ayakulik River","Bear Creek","Bear River","Big Bay Creek","Big Kitoi Creek","Black Lake","Buskin River","Chelatna Lake","Chignik River","Coghill River","Crescent River","Dog Salmon Creek","Eagle Sonar (Yukon/Canadian Border)","Egegik River","Eshamy River","Frazer Lake","Frosty Creek","George River","Goodnews River (Middle Fork)","Horse Marine Stream","Igushik River","Ilnik River","Judd Lake","Kanektok River","Karluk","Kasilof River","Kenai River","Kogrukluk River","Kvichak River","Lake Louise","Larson Lake","Litnik","Little Kitoi","Little River","Little Waterfall","Malina Creek","McLees","Middle Lagoon","Miles Lake","Morris Cove","Mortensens Creek","Naknek River","Nelson River","Nushagak River","Orzinski River","Pasagshak River","Pauls Bay","Pilot Station Sonar","Portage","Red Lake","Salmon River (Aniak)","Saltery Creek","Sandy River","Seal Bay Creek","Sturgeon River","Summer Bay","Takotna River","Tatlawiksuk River","Telaquana River","Thin Point Cove","Thorsheim","Togiak River","Uganik River","Ugashik River","Upper Station","Wood River"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[53.8963,64.8],"lng":[-166.7281,-141]}},"evals":[],"jsHooks":[]}</script>
+<p>This map hopefully gives you an idea of how powerful the combination of RMarkdown and GitHub pages can be!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-documentation-and-publishing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="continued-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

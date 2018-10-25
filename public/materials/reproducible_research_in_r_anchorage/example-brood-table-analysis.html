@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reproducible Analysis With R</title>
+  <meta name="description" content="Practical open science approaches to salmon data management, analysis, and synthesis">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Reproducible Analysis With R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Reproducible Analysis With R" />
+  
+  <meta name="twitter:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="rstudio-and-gitgithub-setup.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Reproducible Analysis With R</a></li>
+<li><a href="/sasap-training/">← Back to main website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>1.1</b> The Reproducibility Crisis</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-needed-for-computational-reproducibility"><i class="fa fa-check"></i><b>1.2</b> What is needed for computational reproducibility?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#conceptualizing-workflows"><i class="fa fa-check"></i><b>1.3</b> Conceptualizing workflows</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.4</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.5</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-details"><i class="fa fa-check"></i><b>1.6</b> Course details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html"><i class="fa fa-check"></i><b>2</b> Example: Brood Table Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#datasets"><i class="fa fa-check"></i><b>2.2</b> Datasets</a></li>
+<li class="chapter" data-level="2.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#reformatting"><i class="fa fa-check"></i><b>2.3</b> Reformatting</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#batch-reformatting"><i class="fa fa-check"></i><b>2.3.1</b> Batch Reformatting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#merging"><i class="fa fa-check"></i><b>2.4</b> Merging</a></li>
+<li class="chapter" data-level="2.5" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#quality-assurance"><i class="fa fa-check"></i><b>2.5</b> Quality Assurance</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#acceptable-values"><i class="fa fa-check"></i><b>2.5.1</b> Acceptable values</a></li>
+<li class="chapter" data-level="2.5.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#questionable-data"><i class="fa fa-check"></i><b>2.5.2</b> Questionable data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#analysis"><i class="fa fa-check"></i><b>2.6</b> Analysis</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region"><i class="fa fa-check"></i><b>2.6.1</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region-1"><i class="fa fa-check"></i><b>2.6.2</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-stock"><i class="fa fa-check"></i><b>2.6.3</b> Relationship between 1.2s and 1.3s by Stock</a></li>
+<li class="chapter" data-level="2.6.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#age-diversity"><i class="fa fa-check"></i><b>2.6.4</b> Age Diversity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html"><i class="fa fa-check"></i><b>3</b> RStudio and Git/GitHub Setup</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#learning-objectives"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#checking-the-rstudio-environment"><i class="fa fa-check"></i><b>3.2</b> Checking the RStudio environment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#r-version"><i class="fa fa-check"></i><b>3.2.1</b> R Version</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#rstudio-version"><i class="fa fa-check"></i><b>3.2.2</b> RStudio Version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#package-installation"><i class="fa fa-check"></i><b>3.2.3</b> Package installation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#checking-your-package-versions"><i class="fa fa-check"></i><b>3.2.4</b> Checking your package versions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#setting-up-git"><i class="fa fa-check"></i><b>3.3</b> Setting up git</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#note-for-windows-users"><i class="fa fa-check"></i><b>3.3.1</b> Note for Windows Users</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html"><i class="fa fa-check"></i><b>4</b> Literate Analysis with RMarkdown</a><ul>
+<li class="chapter" data-level="4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#learning-objectives-1"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>4.2</b> What is (R)Markdown?</a></li>
+<li class="chapter" data-level="4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#whats-possible-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> What’s possible with RMarkdown</a></li>
+<li class="chapter" data-level="4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#rmarkdown-overview"><i class="fa fa-check"></i><b>4.4</b> RMarkdown overview</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#knitting-the-file"><i class="fa fa-check"></i><b>4.4.1</b> Knitting the file</a></li>
+<li class="chapter" data-level="4.4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#basic-formatting"><i class="fa fa-check"></i><b>4.4.2</b> Basic formatting</a></li>
+<li class="chapter" data-level="4.4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#links"><i class="fa fa-check"></i><b>4.4.3</b> Links</a></li>
+<li class="chapter" data-level="4.4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#images"><i class="fa fa-check"></i><b>4.4.4</b> Images</a></li>
+<li class="chapter" data-level="4.4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><b>4.4.5</b> R Code Chunks</a></li>
+<li class="chapter" data-level="4.4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#inline-r-expressions-and-equations"><i class="fa fa-check"></i><b>4.4.6</b> Inline R expressions and equations</a></li>
+<li class="chapter" data-level="4.4.7" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#plots"><i class="fa fa-check"></i><b>4.4.7</b> Plots</a></li>
+<li class="chapter" data-level="4.4.8" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#tables"><i class="fa fa-check"></i><b>4.4.8</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#literate-analysis-with-rmarkdown-1"><i class="fa fa-check"></i><b>4.5</b> Literate analysis with RMarkdown</a></li>
+<li class="chapter" data-level="4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#organizing-a-reproducible-research-folder"><i class="fa fa-check"></i><b>4.6</b> Organizing a reproducible research folder</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>5</b> Version Control With git and GitHub</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-problem-with-filenames"><i class="fa fa-check"></i><b>5.2</b> The problem with filenames</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#version-control-and-collaboration-using-git-and-github"><i class="fa fa-check"></i><b>5.3</b> Version control and Collaboration using Git and GitHub</a></li>
+<li class="chapter" data-level="5.4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#lets-look-at-a-github-repository"><i class="fa fa-check"></i><b>5.4</b> Let’s look at a GitHub repository</a></li>
+<li class="chapter" data-level="5.5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-git-lifecycle"><i class="fa fa-check"></i><b>5.5</b> The Git lifecycle</a></li>
+<li class="chapter" data-level="5.6" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#create-a-remote-repository-on-github"><i class="fa fa-check"></i><b>5.6</b> Create a remote repository on GitHub</a></li>
+<li class="chapter" data-level="5.7" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#working-locally-with-git-via-rstudio"><i class="fa fa-check"></i><b>5.7</b> Working locally with Git via RStudio</a></li>
+<li class="chapter" data-level="5.8" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#on-good-commit-messages"><i class="fa fa-check"></i><b>5.8</b> On good commit messages</a></li>
+<li class="chapter" data-level="5.9" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#collaboration-and-conflict-free-workflows"><i class="fa fa-check"></i><b>5.9</b> Collaboration and conflict free workflows</a></li>
+<li class="chapter" data-level="5.10" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#exercise"><i class="fa fa-check"></i><b>5.10</b> Exercise</a></li>
+<li class="chapter" data-level="5.11" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#advanced-topics"><i class="fa fa-check"></i><b>5.11</b> Advanced topics</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html"><i class="fa fa-check"></i><b>6</b> Data Modeling &amp; Tidy Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#learning-objectives-3"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#benefits-of-relational-data-systems"><i class="fa fa-check"></i><b>6.2</b> Benefits of relational data systems</a></li>
+<li class="chapter" data-level="6.3" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-organization"><i class="fa fa-check"></i><b>6.3</b> Data Organization</a></li>
+<li class="chapter" data-level="6.4" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#multiple-tables"><i class="fa fa-check"></i><b>6.4</b> Multiple tables</a></li>
+<li class="chapter" data-level="6.5" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-observations"><i class="fa fa-check"></i><b>6.5</b> Inconsistent observations</a></li>
+<li class="chapter" data-level="6.6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-variables"><i class="fa fa-check"></i><b>6.6</b> Inconsistent variables</a></li>
+<li class="chapter" data-level="6.7" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#marginal-sums-and-statistics"><i class="fa fa-check"></i><b>6.7</b> Marginal sums and statistics</a></li>
+<li class="chapter" data-level="6.8" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#good-enough-data-modeling"><i class="fa fa-check"></i><b>6.8</b> Good enough data modeling</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#denormalized-data"><i class="fa fa-check"></i><b>6.8.1</b> Denormalized data</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#tabular-data"><i class="fa fa-check"></i><b>6.8.2</b> Tabular data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#primary-and-foreign-keys"><i class="fa fa-check"></i><b>6.9</b> Primary and Foreign Keys</a></li>
+<li class="chapter" data-level="6.10" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#entity-relationship-model-er"><i class="fa fa-check"></i><b>6.10</b> Entity-Relationship Model (ER)</a></li>
+<li class="chapter" data-level="6.11" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#merging-data"><i class="fa fa-check"></i><b>6.11</b> Merging data</a></li>
+<li class="chapter" data-level="6.12" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#simple-guidelines-for-effective-data"><i class="fa fa-check"></i><b>6.12</b> Simple Guidelines for Effective Data</a></li>
+<li class="chapter" data-level="6.13" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-modeling-exercise"><i class="fa fa-check"></i><b>6.13</b> Data modeling exercise</a></li>
+<li class="chapter" data-level="6.14" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#related-resources"><i class="fa fa-check"></i><b>6.14</b> Related resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data Cleaning and Manipulation</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#learning-objectives-4"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>7.2</b> Introduction</a></li>
+<li class="chapter" data-level="7.3" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#setup"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
+<li class="chapter" data-level="7.4" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#about-the-pipe-operator"><i class="fa fa-check"></i><b>7.4</b> About the pipe (<code>%&gt;%</code>) operator</a></li>
+<li class="chapter" data-level="7.5" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#selectingremoving-columns-select"><i class="fa fa-check"></i><b>7.5</b> Selecting/removing columns: <code>select()</code></a></li>
+<li class="chapter" data-level="7.6" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#changing-shape-gather-and-spread"><i class="fa fa-check"></i><b>7.6</b> Changing shape: <code>gather()</code> and <code>spread()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#renaming-columns-with-rename"><i class="fa fa-check"></i><b>7.7</b> Renaming columns with <code>rename()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#adding-columns-mutate"><i class="fa fa-check"></i><b>7.8</b> Adding columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="7.9" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#group_by-and-summarise"><i class="fa fa-check"></i><b>7.9</b> <code>group_by</code> and <code>summarise</code></a></li>
+<li class="chapter" data-level="7.10" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#filtering-rows-filter"><i class="fa fa-check"></i><b>7.10</b> Filtering rows: <code>filter()</code></a></li>
+<li class="chapter" data-level="7.11" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#sorting-your-data-arrange"><i class="fa fa-check"></i><b>7.11</b> Sorting your data: <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.12" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#joins-in-dplyr"><i class="fa fa-check"></i><b>7.12</b> Joins in dplyr</a></li>
+<li class="chapter" data-level="7.13" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#separate-and-unite"><i class="fa fa-check"></i><b>7.13</b> <code>separate()</code> and <code>unite()</code></a></li>
+<li class="chapter" data-level="7.14" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#summary"><i class="fa fa-check"></i><b>7.14</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html"><i class="fa fa-check"></i><b>8</b> Hands On: Clean and Integrate Datasets</a><ul>
+<li class="chapter" data-level="8.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#learning-objectives-5"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#outline"><i class="fa fa-check"></i><b>8.2</b> Outline</a></li>
+<li class="chapter" data-level="8.3" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#high-level-steps"><i class="fa fa-check"></i><b>8.3</b> High-level steps</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#visual-schematic-of-steps"><i class="fa fa-check"></i><b>8.3.1</b> Visual schematic of steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#full-solution"><i class="fa fa-check"></i><b>8.4</b> Full solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Publication Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="9.1" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#learning-objectives-6"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#overview"><i class="fa fa-check"></i><b>9.2</b> Overview</a></li>
+<li class="chapter" data-level="9.3" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#ggplot-vs-base-vs-lattice-vs-xyz"><i class="fa fa-check"></i><b>9.3</b> ggplot vs base vs lattice vs XYZ…</a></li>
+<li class="chapter" data-level="9.4" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setup-1"><i class="fa fa-check"></i><b>9.4</b> Setup</a></li>
+<li class="chapter" data-level="9.5" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#geoms-aesthetics"><i class="fa fa-check"></i><b>9.5</b> Geoms / Aesthetics</a></li>
+<li class="chapter" data-level="9.6" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setting-plot-limits"><i class="fa fa-check"></i><b>9.6</b> Setting plot limits</a></li>
+<li class="chapter" data-level="9.7" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>9.7</b> Scales</a></li>
+<li class="chapter" data-level="9.8" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>9.8</b> Facets</a></li>
+<li class="chapter" data-level="9.9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#plot-customization-w-themes"><i class="fa fa-check"></i><b>9.9</b> Plot customization w/ themes</a></li>
+<li class="chapter" data-level="9.10" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>9.10</b> Saving plots</a></li>
+<li class="chapter" data-level="9.11" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-multi-panel-plots-beyond-facets"><i class="fa fa-check"></i><b>9.11</b> Bonus: Multi-panel plots: Beyond facets</a></li>
+<li class="chapter" data-level="9.12" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-round-two"><i class="fa fa-check"></i><b>9.12</b> Bonus: Round two</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html"><i class="fa fa-check"></i><b>10</b> Data Documentation and Publishing</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#learning-objectives-7"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-sharing-and-preservation"><i class="fa fa-check"></i><b>10.2</b> Data sharing and preservation</a></li>
+<li class="chapter" data-level="10.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-repositories-built-for-data-and-code"><i class="fa fa-check"></i><b>10.3</b> Data repositories: built for data (and code)</a></li>
+<li class="chapter" data-level="10.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#metadata"><i class="fa fa-check"></i><b>10.4</b> Metadata</a></li>
+<li class="chapter" data-level="10.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#structure-of-a-data-package"><i class="fa fa-check"></i><b>10.5</b> Structure of a data package</a></li>
+<li class="chapter" data-level="10.6" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#dataone-federation"><i class="fa fa-check"></i><b>10.6</b> DataONE Federation</a></li>
+<li class="chapter" data-level="10.7" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-the-web"><i class="fa fa-check"></i><b>10.7</b> Publishing data from the web</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#download-the-data-to-be-used-for-the-tutorial"><i class="fa fa-check"></i><b>10.7.1</b> Download the data to be used for the tutorial</a></li>
+<li class="chapter" data-level="10.7.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#login-via-orcid"><i class="fa fa-check"></i><b>10.7.2</b> Login via ORCID</a></li>
+<li class="chapter" data-level="10.7.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#create-and-submit-the-data-set"><i class="fa fa-check"></i><b>10.7.3</b> Create and submit the data set</a></li>
+<li class="chapter" data-level="10.7.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#add-workflow-provenance"><i class="fa fa-check"></i><b>10.7.4</b> Add workflow provenance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-r"><i class="fa fa-check"></i><b>10.8</b> Publishing data from R</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#logging-in"><i class="fa fa-check"></i><b>10.8.1</b> Logging in</a></li>
+<li class="chapter" data-level="10.8.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#obtain-an-orcid"><i class="fa fa-check"></i><b>10.8.2</b> Obtain an ORCID</a></li>
+<li class="chapter" data-level="10.8.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#log-in-to-the-test-repository-and-copy-your-token"><i class="fa fa-check"></i><b>10.8.3</b> Log in to the test repository and copy your token</a></li>
+<li class="chapter" data-level="10.8.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#modifying-metadata"><i class="fa fa-check"></i><b>10.8.4</b> Modifying metadata</a></li>
+<li class="chapter" data-level="10.8.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#uploading-a-package-using-r-with-uploaddatapackage"><i class="fa fa-check"></i><b>10.8.5</b> Uploading A Package Using R with <code>uploadDataPackage</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html"><i class="fa fa-check"></i><b>11</b> Publishing Analyses to the Web</a><ul>
+<li class="chapter" data-level="11.1" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#learning-objectives-8"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#introduction-3"><i class="fa fa-check"></i><b>11.2</b> Introduction</a></li>
+<li class="chapter" data-level="11.3" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-minimal-example"><i class="fa fa-check"></i><b>11.3</b> A Minimal Example</a></li>
+<li class="chapter" data-level="11.4" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-less-minimal-example"><i class="fa fa-check"></i><b>11.4</b> A Less Minimal Example</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="continued-learning.html"><a href="continued-learning.html"><i class="fa fa-check"></i><b>12</b> Continued Learning</a><ul>
+<li class="chapter" data-level="12.1" data-path="continued-learning.html"><a href="continued-learning.html#references"><i class="fa fa-check"></i><b>12.1</b> References</a></li>
+<li class="chapter" data-level="12.2" data-path="continued-learning.html"><a href="continued-learning.html#where-to-find-help"><i class="fa fa-check"></i><b>12.2</b> Where to Find Help</a></li>
+<li class="chapter" data-level="12.3" data-path="continued-learning.html"><a href="continued-learning.html#other-helpful-andor-cool-stuff"><i class="fa fa-check"></i><b>12.3</b> Other helpful and/or cool stuff</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Analysis With R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-brood-table-analysis" class="section level1">
+<h1><span class="header-section-number">2</span> Example: Brood Table Analysis</h1>
+<div id="introduction-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>Brood tables, also called run reconstructions, utilize annual estimates of the total run (commercial catch plus escapement), and samples of ages, to estimate the number of recruits per age class. These data are useful for salmon biologists to understand salmon productivity and salmon life histories.</p>
+<p>These data can come in a number of different formats, but generally follow the pattern of:
+1. Rows for each brood year
+2. Columns for the estimated number of fish in each age class.</p>
+<p>See the example below, showing a Sockeye salmon brood table from the Goodnews River, Alaska:</p>
+<p><img src="images/GoodnewsHeader.png" /></p>
+<p>Sometimes other columns are included, such as return years in this example (again for Sockeye salmon) from Coghill Lake, Alaska:</p>
+<p><img src="images/CoghillHeader.png" /></p>
+<p>If you are interested in analysing trends across multiple stocks, the many different ways brood tables can be presented make integrating multiple brood tables a big challenge. In this exercise we will intoduce some ways to reformat, merge, and reshape a set of brood tables from around the state of Alaska. These datasets were gathered as part of the <a href="https://alaskasalmonandpeople.org/">SASAP working group</a> research from a number of different ADFG offices. We will start with the raw (unmodified) data for each stock, run each stock’s brood table through a separate R script to normalize the format, integrate all of the brood tables together, and finally do an exploratory analysis across stocks.</p>
+</div>
+<div id="datasets" class="section level2">
+<h2><span class="header-section-number">2.2</span> Datasets</h2>
+<p>As part of the SASAP project, brood tables for 48 Sockeye salmon stocks were collected. Table 2.1 shows a list of these stocks, along with other regional and location information.</p>
+<div id="htmlwidget-548162603d27fe4d1dc0" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-548162603d27fe4d1dc0">{"x":{"filter":"none","caption":"<caption>Stock information<\/caption>","data":[[101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,129,130,131,138,139,140,141,142,143,144,145,146,147,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165],["Washington","E.Stuart","Bowron","Fennell","Gates","Nadina","Pitt","Raft","Scotch","Seymour","Chilko","L.Stuart","Quesnel","Stellako","Birkenhead","Cultus","Harrison","L.Shuswap","Portage","Weaver","Great Central","Sproat","Long Lake","Owikeno Lake","Redoubt","Speel","Chilkoot","Copper","Coghill","Eshamy","Kenai","Kasilof","Crescent","Frazer","Ayakulik","E. Upper Station","L. Upper Station","Early Karluk","Late Karluk","Black Lake","Chignik Lake","Nelson","Bear","Ugashik","Egegik","Naknek","Alagnak","Kvichak","Nushagak","Wood","Igushik","Togiak","Goodnews","Early Russian River"],["WA","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","Fraser River","BC South","BC South","BC Central","BC Central","SEAK","SEAK","SEAK","PWS","PWS","PWS","Cook Inlet","Cook Inlet","Cook Inlet","Kodiak","Kodiak","Kodiak","Kodiak","Kodiak","Kodiak","Chignik","Chignik","AK Peninsula","AK Peninsula","Bristol Bay","Bristol Bay","Bristol Bay","Bristol Bay","Bristol Bay","Bristol Bay","Bristol Bay","Bristol Bay","Bristol Bay","AYK","Cook Inlet"],["WA","Fraser Early Stuart","Fraser Early Summer","Fraser Early Summer","Fraser Early Summer","Fraser Early Summer","Fraser Early Summer","Fraser Early Summer","Fraser Early Summer","Fraser Early Summer","Fraser Summer","Fraser Summer","Fraser Summer","Fraser Summer","Fraser Late","Fraser Late","Fraser Late","Fraser Late","Fraser Late","Fraser Late","Barkley Sound","Barkley Sound","BC Central","BC Central","SEAK","SEAK","SEAK","PWS","PWS","PWS","Upper Cook Inlet","Upper Cook Inlet","Upper Cook Inlet","Kodiak","Kodiak","Kodiak","Kodiak","Kodiak","Kodiak","Chignik","Chignik","AK Peninsula","AK Peninsula","Bristol Bay South","Bristol Bay South","Bristol Bay South","Bristol Bay South","Bristol Bay South","Bristol Bay North","Bristol Bay North","Bristol Bay North","Bristol Bay North","AYK","Upper Cook Inlet"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Stock.ID<\/th>\n      <th>Stock<\/th>\n      <th>Region<\/th>\n      <th>Sub.Region<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>These stocks range geographically from Washington to Alaska. Although temporal coverage varies by stock, many of the brood tables were updated in 2016, and some have reconstructions dating back to 1922.</p>
+<p>Figure 2.1 indicates the approximate location of the salmon stocks in Table 2.1.</p>
+<pre class="sourceCode r"><code class="sourceCode r">salmon =<span class="st"> </span><span class="kw">makeIcon</span>(<span class="st">&#39;images/salmon_tiny.png&#39;</span>,
+                  <span class="st">&#39;images/salmon_big.png&#39;</span>,
+                  <span class="dv">26</span>, <span class="dv">14</span>)
+
+m &lt;-<span class="st"> </span><span class="kw">leaflet</span>(stocks)  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">setView</span>(<span class="op">-</span><span class="kw">median</span>(stocks<span class="op">$</span>Lon), <span class="kw">median</span>(stocks<span class="op">$</span>Lat), <span class="dt">zoom =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">addMarkers</span>(<span class="op">~-</span>Lon, <span class="op">~</span>Lat, <span class="dt">icon =</span> salmon)
+
+m</code></pre>
+<div id="htmlwidget-bc981eb88eef02c440f4" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bc981eb88eef02c440f4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[56.28,-140.145],4,[]],"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[47.48,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.12,49.24,49.24,51.29,51.68,56.9,57.97,58.92,60.46,61.06,60.47,60.54,60.39,60.19,57.13,57.2,57.06,57.06,57.57,57.57,56.28,56.28,55.96,56.16,57.5,58.25,58.78,58.85,58.85,58.82,58.82,58.68,58.95,59.11,60.54],[-122.42,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-123.06,-124.82,-124.82,-127.68,-127.25,-135.33,-133.87,-135.23,-144.96,-147.94,-147.94,-151.28,-151.3,-152.66,-154.04,-154.54,-154.36,-154.36,-154.45,-154.45,-158.64,-158.64,-161.28,-160.45,-157.6,-157.38,-157.08,-158.5,-157.03,-158.49,-158.62,-158.8,-160.45,-161.62,-151.28],{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAZCAMAAAC2NtjTAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABsFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////7TzNgAAAAjnRSTlMAHsEwA37sF7rCB7IoOiCb+wmrV2fOI3A7+YwSJDRCQzMhuVwT5EELJ017qdX38qjwBT5zocrt/vq9ShuCYrE9hMfhYB1R7k8PmPyJ9eLT8ZcBS2VfVTzogzIOImO+wAKiei2gcTi2fBzl64XZNV4ugefmUG+0NkTNKmisnUfWdtLg3dS/DaUx3Kf9BjnDy+3WZgAAAAFiS0dEj/UCg/kAAAF9SURBVDjLY2DADxiZmHFJsbCysTMQBBx9nDhkuLj7+ngI6uft6+vjwy7F39cnIEjQACGgAcJYZUSAMqIE9YsJAJWJY5ORkATKSOEMHmkZWTl5BTFFJaCqPmUsKlRUQTJqmBLqGppa2jq6fUhATxGLAfogGQNDZCFBI2MTUzPzPkxgYclqBY8vaxsZIGkLlrCDaza0d3CU7MMLnEycXYAqXdnc3D3UPL3AYlpQV3ub+vQRBXyZ/Pr6/M3g/IBAsAFBfWQDcCzYBZNvQF8I0IBQSQoMAMdQmCqJusIjIqOiY2LBERYXD0oUCeYkaJdMVIcEflIyyO0pYHZqGvFGeKXDYz/DIbMvC8rWyM4h1gQm5DSfm4fg5Bf44dVYWAShi/FkPpmSUjfsutk8ywIDyyuALG4CGTi+sqoa3ZCaWkUWiItFfOukCZdiQJ/VVzc0NjW3CHGCDagIQ0i1MpAG2sAmxDKQDaSdwFmRfAMY2js6u/qaKTCAoZuhp9cTjzwAjJB9k7sZniYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMDMtMjlUMjE6NDE6MDgtMDc6MDDyknpoAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTAzLTI5VDIxOjQxOjA4LTA3OjAwg8/C1AAAAABJRU5ErkJggg==","index":0},"iconRetinaUrl":{"data":"data:image/png;base64,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","index":0},"iconWidth":26,"iconHeight":14},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[47.48,61.06],"lng":[-161.62,-122.42]}},"evals":[],"jsHooks":[]}</script>
+<p>Figure 2.1: Location of stocks used in this data integration. Salmonid icon by Servien (vectorized by T. Michael Keesey) <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>, available at <a href="http://phylopic.org/">Phylopic</a>.</p>
+</div>
+<div id="reformatting" class="section level2">
+<h2><span class="header-section-number">2.3</span> Reformatting</h2>
+<p>First we need to change the brood table column names so that they are in a consistent format. Here we show an example of how one of our source tables (Coghill Lake, from above) is reformatted. Prior to diving into reformatting, it is good to have an idea of what columns will be necessary in your merged data table. To identify different stocks, certainly a column will be needed for the stock name (usually a river name) and the species. If you wish to analyze across different regions or areas, you may want to have a column for region as well. Of course you will also need columns for brood year and all of the possible age classes you might encounter. A quality flag indicating whether data should be used in analysis or not based on set critera is also useful. Finally, it is also a good idea to have a unique identifier for each brood table that goes into the merged data table so that you can easily add data by stock, or summarize data by stock. With that in mind, we will be reformatting all of the brood tables so they have the following column names:</p>
+<pre><code>Stock.ID
+BroodYear
+Region
+Sub.Region
+UseFlag
+BroodYear
+TotalEscapement
+R0.1
+...
+R4.5</code></pre>
+<p>Now let’s read in the brood table. After a quick visual inspection in Excel, we can see that the header doesn’t start until the sixth row, so we should tell <code>read_excel</code> to skip the first six lines:</p>
+<pre class="sourceCode r"><code class="sourceCode r">coghill_brood &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&#39;data/original/112_COGHILL_BROOD_TABLE.xls&#39;</span>, <span class="dt">skip =</span> <span class="dv">6</span>)
+<span class="kw">colnames</span>(coghill_brood)</code></pre>
+<pre><code>##  [1] &quot;Year&quot;           &quot;Escpmt.&quot;        &quot;Year__1&quot;        &quot;1.1&quot;           
+##  [5] &quot;0.2&quot;            &quot;Year__2&quot;        &quot;0.3&quot;            &quot;Aged 1.2&quot;      
+##  [9] &quot;Aged 2.1&quot;       &quot;Year__3&quot;        &quot;Aged 1.3&quot;       &quot;Aged 2.2&quot;      
+## [13] &quot;Year__4&quot;        &quot;Aged 1.4&quot;       &quot;Aged 2.3&quot;       &quot;Year__5&quot;       
+## [17] &quot;Aged 2.4&quot;       &quot;Return&quot;         &quot;Year__6&quot;        &quot;Return__1&quot;     
+## [21] &quot;Return/spawner&quot;</code></pre>
+<p>There are definitely some redundant and confusing columns here that we need to remove, and some we need to add according to the list above. First we remove the columns we don’t want - namely all of the return years, the total return, and recruits/spawner. Note that we can always calculate these columns again later from the rest of the data.</p>
+<pre class="sourceCode r"><code class="sourceCode r">coghill_brood &lt;-<span class="st"> </span>coghill_brood <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Year__<span class="dv">1</span>,
+         <span class="op">-</span>Year__<span class="dv">2</span>, 
+         <span class="op">-</span>Year__<span class="dv">3</span>, 
+         <span class="op">-</span>Year__<span class="dv">4</span>,
+         <span class="op">-</span>Year__<span class="dv">5</span>, 
+         <span class="op">-</span>Year__<span class="dv">6</span>, 
+         <span class="op">-</span>Return, 
+         <span class="op">-</span>Return__<span class="dv">1</span>, 
+         <span class="op">-</span><span class="st">`</span><span class="dt">Return/spawner</span><span class="st">`</span>)</code></pre>
+<p>Now we need to fill in the information that is missing by adding columns:</p>
+<p><code>'Stock.ID', 'Species', 'Stock','Region','Sub.Region','UseFlag'</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#add stock information columns</span>
+coghill_brood<span class="op">$</span>Stock.ID &lt;-<span class="st"> </span><span class="dv">139</span> <span class="co">#preassigned Stock.ID</span>
+coghill_brood<span class="op">$</span>Species &lt;-<span class="st"> &#39;Sockeye&#39;</span>
+coghill_brood<span class="op">$</span>Stock &lt;-<span class="st"> &#39;Coghill&#39;</span>
+coghill_brood<span class="op">$</span>Region &lt;-<span class="st"> &#39;PWS&#39;</span>
+coghill_brood<span class="op">$</span>Sub.Region &lt;-<span class="st"> &#39;PWS&#39;</span>
+coghill_brood<span class="op">$</span>UseFlag &lt;-<span class="st"> </span><span class="dv">1</span></code></pre>
+<p>Note that since we have no reason to suspect any data are not up to quality standards yet, we fill the <code>UseFlag</code> columns with 1s.</p>
+<p>The rest of the columns are still not quite in the format that we decided on so we will rename them.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(coghill_brood) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BroodYear&quot;</span>, 
+                          <span class="st">&quot;TotalEscapement&quot;</span>, 
+                          <span class="st">&quot;R1.1&quot;</span>, 
+                          <span class="st">&quot;R0.2&quot;</span>, 
+                          <span class="st">&quot;R0.3&quot;</span>, 
+                          <span class="st">&quot;R1.2&quot;</span>, 
+                          <span class="st">&quot;R2.1&quot;</span>, 
+                          <span class="st">&quot;R1.3&quot;</span>, 
+                          <span class="st">&quot;R2.2&quot;</span>,  
+                          <span class="st">&quot;R1.4&quot;</span>,
+                          <span class="st">&quot;R2.3&quot;</span>,
+                          <span class="st">&quot;R2.4&quot;</span>,
+                          <span class="st">&quot;Stock.ID&quot;</span>,
+                          <span class="st">&quot;Species&quot;</span>,
+                          <span class="st">&#39;Stock&#39;</span>,
+                          <span class="st">&quot;Region&quot;</span>,
+                          <span class="st">&quot;Sub.Region&quot;</span>,
+                          <span class="st">&quot;UseFlag&quot;</span>)</code></pre>
+<p>Finally, you may want to reorder the columns into something more intuitive.</p>
+<pre class="sourceCode r"><code class="sourceCode r">coghill_brood &lt;-<span class="st"> </span>coghill_brood[,<span class="kw">c</span>(<span class="st">&#39;Stock.ID&#39;</span>, <span class="st">&#39;Species&#39;</span>, <span class="st">&#39;Stock&#39;</span>,<span class="st">&#39;Region&#39;</span>,<span class="st">&#39;Sub.Region&#39;</span>, <span class="st">&#39;UseFlag&#39;</span>,
+                                  <span class="st">&#39;BroodYear&#39;</span>,<span class="st">&#39;TotalEscapement&#39;</span>,<span class="st">&#39;R0.2&#39;</span>, <span class="st">&#39;R0.3&#39;</span>,
+                                  <span class="st">&#39;R1.1&#39;</span>,<span class="st">&#39;R1.2&#39;</span>,<span class="st">&#39;R1.3&#39;</span>,<span class="st">&#39;R1.4&#39;</span>, 
+                                  <span class="st">&#39;R2.1&#39;</span>,<span class="st">&#39;R2.2&#39;</span>,<span class="st">&#39;R2.3&#39;</span>,<span class="st">&#39;R2.4&#39;</span>)]</code></pre>
+<p>And very lastly, write the file to a new directory where all of the individually reformatted brood tables will be kept.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(coghill_brood, <span class="st">&#39;data/reformatted/Coghill_sockeye.csv&#39;</span>, <span class="dt">row.names =</span> F)</code></pre>
+<p>From top to bottom, here is what this reformatting script looks like:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Reformatting Coghill brood table data</span>
+<span class="kw">library</span>(readxl)
+b &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&#39;data/original/112_COGHILL_BROOD_TABLE.xls&#39;</span>, <span class="dt">skip =</span> <span class="dv">6</span>)
+b &lt;-<span class="st"> </span>b[<span class="dv">1</span><span class="op">:</span><span class="dv">53</span>, ]
+
+<span class="co">#get rid of the return year, total return, return/spawner columns, and two stray columns</span>
+b<span class="op">$</span>Year__<span class="dv">1</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Year__<span class="dv">2</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Year__<span class="dv">3</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Year__<span class="dv">4</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Year__<span class="dv">5</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Year__<span class="dv">6</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Return &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span>Return__<span class="dv">1</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b<span class="op">$</span><span class="st">`</span><span class="dt">Return/spawner</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+<span class="co">#colnames: Stock.ID Species Stock   Region  Sub.Region  Use BY  Escapement  R0.1    R0.2    R0.3    R0.4    R0.5    R1.1    R1.2    R1.3    R1.4    R1.5    R2.1    R2.2    R2.3    R2.4    R3.1    R3.2    R3.3    R3.4</span>
+<span class="co">#define the stock specific columns</span>
+b<span class="op">$</span>Stock.ID &lt;-<span class="st"> </span><span class="dv">139</span>
+b<span class="op">$</span>Species &lt;-<span class="st"> &#39;Sockeye&#39;</span>
+b<span class="op">$</span>Stock &lt;-<span class="st"> &#39;Coghill&#39;</span>
+b<span class="op">$</span>Region &lt;-<span class="st"> &#39;PWS&#39;</span>?
+b<span class="op">$</span>Sub.Region &lt;-<span class="st"> &#39;PWS&#39;</span>
+b<span class="op">$</span>Use &lt;-<span class="st"> </span><span class="dv">1</span>
+
+<span class="co">#rename all of the columns</span>
+<span class="kw">colnames</span>(b) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BroodYear&quot;</span>, <span class="st">&quot;TotalEscapement&quot;</span>,<span class="st">&quot;R1.1&quot;</span>,<span class="st">&quot;R0.2&quot;</span>,<span class="st">&quot;R0.3&quot;</span>,<span class="st">&quot;R1.2&quot;</span>,<span class="st">&quot;R2.1&quot;</span>,<span class="st">&quot;R1.3&quot;</span>,<span class="st">&quot;R2.2&quot;</span>,
+<span class="st">&quot;R1.4&quot;</span>,<span class="st">&quot;R2.3&quot;</span>,<span class="st">&quot;R2.4&quot;</span>,<span class="st">&quot;Stock.ID&quot;</span>,<span class="st">&quot;Species&quot;</span>,<span class="st">&#39;Stock&#39;</span>,<span class="st">&quot;Region&quot;</span>,<span class="st">&quot;Sub.Region&quot;</span>,<span class="st">&quot;UseFlag&quot;</span>)
+
+<span class="co">#create missing columns and fill with NA</span>
+b<span class="op">$</span>R0<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="dv">0</span>; b<span class="op">$</span>R0<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="dv">0</span>; b<span class="op">$</span>R0<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="dv">0</span>
+b<span class="op">$</span>R1<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="dv">0</span>
+b<span class="op">$</span>R3<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="dv">0</span>; b<span class="op">$</span>R3<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="dv">0</span>; b<span class="op">$</span>R3<span class="fl">.3</span>&lt;-<span class="st"> </span><span class="dv">0</span>; b<span class="op">$</span>R3<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="dv">0</span>
+
+<span class="co">#rearrange columns</span>
+b &lt;-<span class="st"> </span>b[, <span class="kw">c</span>(<span class="st">&#39;Stock.ID&#39;</span>, <span class="st">&#39;Species&#39;</span>, <span class="st">&#39;Stock&#39;</span>,<span class="st">&#39;Region&#39;</span>,<span class="st">&#39;Sub.Region&#39;</span>, <span class="st">&#39;UseFlag&#39;</span>,
+           <span class="st">&#39;BroodYear&#39;</span>,<span class="st">&#39;TotalEscapement&#39;</span>,<span class="st">&#39;R0.1&#39;</span>,<span class="st">&#39;R0.2&#39;</span>, <span class="st">&#39;R0.3&#39;</span>, <span class="st">&#39;R0.4&#39;</span>, <span class="st">&#39;R0.5&#39;</span>,
+           <span class="st">&#39;R1.1&#39;</span>,<span class="st">&#39;R1.2&#39;</span>,<span class="st">&#39;R1.3&#39;</span>,<span class="st">&#39;R1.4&#39;</span>, <span class="st">&#39;R1.5&#39;</span>,
+           <span class="st">&#39;R2.1&#39;</span>,<span class="st">&#39;R2.2&#39;</span>,<span class="st">&#39;R2.3&#39;</span>,<span class="st">&#39;R2.4&#39;</span>,
+           <span class="st">&#39;R3.1&#39;</span>,<span class="st">&#39;R3.2&#39;</span>,<span class="st">&#39;R3.3&#39;</span>,<span class="st">&#39;R3.4&#39;</span>)]
+
+<span class="co">#write file</span>
+<span class="kw">write.csv</span>(b, <span class="st">&#39;data/reformatted/Coghill_sockeye.csv&#39;</span>, <span class="dt">row.names =</span> F)</code></pre>
+<p>We write a script similar to this for each stock that we would like to integrate into the brood table analysis. Note that many of the original brood tables come in multi-tab spreadsheets containing multiple stocks with each tab corresponding to a unique stock, therefore some of these stock-specific scripts access the same original excel document, but different sheets. In the case where the sheets are all formatted the same (Bristol Bay), the script contains a function which processes each sheet and writes individual <code>.csv</code> files for each stock.</p>
+<p>Here is a listing of the original data files:</p>
+<pre><code>##  [1] &quot;112_COGHILL_BROOD_TABLE.xls&quot;                            
+##  [2] &quot;2016 Bristol Bay Updated Brood Table 11.4.16.xlsx&quot;      
+##  [3] &quot;Chilkoot Lake brood table 2016.xlsx&quot;                    
+##  [4] &quot;Copper_River_Catch_byAge_SOCKEYE.xls.xlsx&quot;              
+##  [5] &quot;Eshamy_Sockeye.csv&quot;                                     
+##  [6] &quot;Fraser_SX_brood_tables_July2017.xlsx&quot;                   
+##  [7] &quot;Kenai and Kasilof Sockeye Salmon Brood Tables.xlsx&quot;     
+##  [8] &quot;Lake WA Brood Table 2015.xlsx&quot;                          
+##  [9] &quot;Middle Fork Goodnews River Sockeye Brood Table.xlsx&quot;    
+## [10] &quot;Redoubt Lake - updated brood table_GR.xlsx&quot;             
+## [11] &quot;source_information.csv&quot;                                 
+## [12] &quot;Speel Lake sockeye run reconstruction 1986-2013_GR.xlsx&quot;
+## [13] &quot;StockInfo.csv&quot;                                          
+## [14] &quot;TogiakSockeye.xlsx&quot;                                     
+## [15] &quot;westward brood tables.xlsx&quot;</code></pre>
+<p>And of the reformatting scripts:</p>
+<pre><code>##  [1] &quot;BristolBay_formatting.R&quot;                       
+##  [2] &quot;Chilkoot_formatting.R&quot;                         
+##  [3] &quot;Coghill_formatting.R&quot;                          
+##  [4] &quot;Copper_formatting.R&quot;                           
+##  [5] &quot;Eshamy_formatting.R&quot;                           
+##  [6] &quot;FraserRiver_formatting.R&quot;                      
+##  [7] &quot;Goodnews_formatting.R&quot;                         
+##  [8] &quot;KenaiAndKasilof_Sheet1_Kenai_formatting.R&quot;     
+##  [9] &quot;KenaiAndKasilof_Sheet2_Kasilof_formatting.R&quot;   
+## [10] &quot;Redoubt_formatting.R&quot;                          
+## [11] &quot;Speel_formatting.R&quot;                            
+## [12] &quot;Togiak_formatting.R&quot;                           
+## [13] &quot;Washington_formatting.R&quot;                       
+## [14] &quot;Westward_Sheet1_Nelson_formatting.R&quot;           
+## [15] &quot;Westward_Sheet10_Ayakulik_formatting.R&quot;        
+## [16] &quot;Westward_Sheet2_Bear_formatting.R&quot;             
+## [17] &quot;Westward_Sheet3_ChignikLake_formatting.R&quot;      
+## [18] &quot;Westward_Sheet4_BlackLake_formatting.R&quot;        
+## [19] &quot;Westward_Sheet5_UpperStationLate_formatting.R&quot; 
+## [20] &quot;Westward_Sheet6_UpperStationEarly_formatting.R&quot;
+## [21] &quot;Westward_Sheet7_KarlukLate_formatting.R&quot;       
+## [22] &quot;Westward_Sheet8_KarlukEarly_formatting.R&quot;      
+## [23] &quot;Westward_Sheet9_Frazer_formatting.R&quot;</code></pre>
+<div id="batch-reformatting" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Batch Reformatting</h3>
+<p>Once a reformatting script has been written for all of the data files that are going to be incorporated, we can source all of the scripts within the reformatting folder and run them, which will create all of the reformatted data files.</p>
+<pre class="sourceCode r"><code class="sourceCode r">formatting_scripts &lt;-<span class="st"> </span><span class="kw">dir</span>(<span class="st">&quot;data/data_formatting_scripts/&quot;</span>, 
+                          <span class="dt">full.names =</span> <span class="ot">TRUE</span>, 
+                          <span class="dt">pattern =</span> <span class="st">&quot;*</span><span class="ch">\\</span><span class="st">.[rR]&quot;</span>)
+<span class="kw">sapply</span>(formatting_scripts, source)</code></pre>
+</div>
+</div>
+<div id="merging" class="section level2">
+<h2><span class="header-section-number">2.4</span> Merging</h2>
+<p>Now that all of the data tables have been reformatted, we can read them in and merge them into a single file. We use the function <code>bind_rows</code> here to merge the files together since some of these files have age classes that others don’t. The <code>bind_rows</code> function adds in all columns that exist, filling in the columns that don’t have values for a particular stock with <code>NA</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">path1 &lt;-<span class="st"> &#39;data/reformatted/&#39;</span>
+
+files &lt;-<span class="st"> </span><span class="kw">dir</span>(path1, <span class="dt">include.dirs =</span> <span class="ot">FALSE</span>)
+brood &lt;-<span class="st"> </span><span class="kw">do.call</span>(bind_rows,
+                 <span class="kw">lapply</span>(<span class="kw">file.path</span>(path1,files),
+                        read.csv, 
+                        <span class="dt">stringsAsFactors =</span> F))</code></pre>
+<p>Using <code>bind_rows</code> made the column order a little strange, so we’ll rearrange again.</p>
+<pre class="sourceCode r"><code class="sourceCode r">brood &lt;-<span class="st"> </span>brood[, <span class="kw">c</span>(<span class="st">&#39;Stock.ID&#39;</span>, <span class="st">&#39;Species&#39;</span>, <span class="st">&#39;Stock&#39;</span>,<span class="st">&#39;Region&#39;</span>,<span class="st">&#39;Sub.Region&#39;</span>, <span class="st">&#39;UseFlag&#39;</span>,<span class="st">&#39;BroodYear&#39;</span>,
+                   <span class="st">&#39;TotalEscapement&#39;</span>,<span class="st">&#39;R0.1&#39;</span>,<span class="st">&#39;R0.2&#39;</span>, <span class="st">&#39;R0.3&#39;</span>,<span class="st">&#39;R0.4&#39;</span>,  <span class="st">&#39;R0.5&#39;</span>,
+                   <span class="st">&#39;R1.1&#39;</span>,<span class="st">&#39;R1.2&#39;</span>,<span class="st">&#39;R1.3&#39;</span>,<span class="st">&#39;R1.4&#39;</span>,<span class="st">&#39;R1.5&#39;</span>, 
+                   <span class="st">&#39;R2.1&#39;</span>,<span class="st">&#39;R2.2&#39;</span>,<span class="st">&#39;R2.3&#39;</span>,<span class="st">&#39;R2.4&#39;</span>,
+                   <span class="st">&#39;R3.1&#39;</span>,<span class="st">&#39;R3.2&#39;</span>,<span class="st">&#39;R3.3&#39;</span>,<span class="st">&#39;R3.4&#39;</span>,
+                   <span class="st">&#39;R4.1&#39;</span>,<span class="st">&#39;R4.2&#39;</span> ,<span class="st">&#39;R4.3&#39;</span>)]</code></pre>
+</div>
+<div id="quality-assurance" class="section level2">
+<h2><span class="header-section-number">2.5</span> Quality Assurance</h2>
+<div id="acceptable-values" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Acceptable values</h3>
+<p>Now we should do some checks to make sure that the data are up to standards and that there were no errors during the reformatting process. Below is a list of expected values for this dataset that we can check for:</p>
+<ul>
+<li>Year values are numeric and within reasonable bounds (1900s to present), no <code>NA</code> values</li>
+<li>Age class columns are numeric with values greater than or equal to zero, <code>NA</code> allowed</li>
+<li>Age class columns are integers</li>
+<li>Escapement values are numeric and greater than 0, <code>NA</code> allowed</li>
+</ul>
+<p>These checks are very simple to make - we will simply use the <code>range</code> function on these three columns.</p>
+<div id="checking-broodyear" class="section level4">
+<h4><span class="header-section-number">2.5.1.1</span> Checking BroodYear</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(brood<span class="op">$</span>BroodYear)</code></pre>
+<pre><code>## [1] 1922 2016</code></pre>
+<p>The year data look good.</p>
+</div>
+<div id="checking-age-classes" class="section level4">
+<h4><span class="header-section-number">2.5.1.2</span> Checking Age Classes</h4>
+<p>Here we use the <code>select</code> function, combined with <code>matches</code> and a regular expression, to select only the age class columns.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(<span class="kw">select</span>(brood, <span class="kw">matches</span>(<span class="st">&quot;R[0-9].[0-9]&quot;</span>)), <span class="dt">na.rm =</span> T)</code></pre>
+<pre><code>## [1]        0 47748183</code></pre>
+<p>The data in all of the age class columns look good in terms of range. Now we check to see if the values look like integers.</p>
+<table class="table table-hover table-condensed table-responsive" style="font-size: 8px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+R0.1
+</th>
+<th style="text-align:center;">
+R0.2
+</th>
+<th style="text-align:center;">
+R0.3
+</th>
+<th style="text-align:center;">
+R0.4
+</th>
+<th style="text-align:center;">
+R0.5
+</th>
+<th style="text-align:center;">
+R1.1
+</th>
+<th style="text-align:center;">
+R1.2
+</th>
+<th style="text-align:center;">
+R1.3
+</th>
+<th style="text-align:center;">
+R1.4
+</th>
+<th style="text-align:center;">
+R1.5
+</th>
+<th style="text-align:center;">
+R2.1
+</th>
+<th style="text-align:center;">
+R2.2
+</th>
+<th style="text-align:center;">
+R2.3
+</th>
+<th style="text-align:center;">
+R2.4
+</th>
+<th style="text-align:center;">
+R3.1
+</th>
+<th style="text-align:center;">
+R3.2
+</th>
+<th style="text-align:center;">
+R3.3
+</th>
+<th style="text-align:center;">
+R3.4
+</th>
+<th style="text-align:center;">
+R4.1
+</th>
+<th style="text-align:center;">
+R4.2
+</th>
+<th style="text-align:center;">
+R4.3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.0000000
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+13499.399
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0.0000000
+</td>
+<td style="text-align:center;">
+0.0000016
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+13119.73
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+20219.16
+</td>
+<td style="text-align:center;">
+8577.297
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.0000002
+</td>
+<td style="text-align:center;">
+0.0000000
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+331300.0
+</td>
+<td style="text-align:center;">
+338122.23
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.0e+00
+</td>
+<td style="text-align:center;">
+286853.66
+</td>
+<td style="text-align:center;">
+50738.894
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+772.7989217
+</td>
+<td style="text-align:center;">
+1312.3211884
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+121361.3
+</td>
+<td style="text-align:center;">
+116448.34
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+8.1e-06
+</td>
+<td style="text-align:center;">
+166914.94
+</td>
+<td style="text-align:center;">
+43428.894
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.0000000
+</td>
+<td style="text-align:center;">
+0.0000000
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<p>Because much of these data were imported from Excel spreadsheets which use formulas to calculate the values in each cell for the recruits per age class, many of these recruit values contain real numbers as opposed to integers. Since the data were meant to be interpreted as integers (number of fish), we use the <code>trunc</code> function to round all of the values in the age class columns down to the nearest integer.</p>
+<p>This line runs the <code>trunc</code> function only the columns in the <code>brood</code> <code>data.frame</code> which match the pattern that defines the age class columns</p>
+<pre class="sourceCode r"><code class="sourceCode r">brood &lt;-<span class="st"> </span><span class="kw">mutate_at</span>(brood, <span class="kw">vars</span>(<span class="kw">matches</span>(<span class="st">&quot;R[0-9].[0-9]&quot;</span>)), trunc)</code></pre>
+</div>
+<div id="checking-escapement" class="section level4">
+<h4><span class="header-section-number">2.5.1.3</span> Checking Escapement</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(brood<span class="op">$</span>TotalEscapement, <span class="dt">na.rm =</span> T)</code></pre>
+<pre><code>## [1]        0 24325926</code></pre>
+<p>Some escapement data have a value of 0 - which does not make sense in this context. Let’s examine these 0 values,</p>
+<table class="table table-hover table-condensed table-responsive" style="font-size: 8px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Stock.ID
+</th>
+<th style="text-align:center;">
+Species
+</th>
+<th style="text-align:center;">
+Stock
+</th>
+<th style="text-align:center;">
+Region
+</th>
+<th style="text-align:center;">
+Sub.Region
+</th>
+<th style="text-align:center;">
+UseFlag
+</th>
+<th style="text-align:center;">
+BroodYear
+</th>
+<th style="text-align:center;">
+TotalEscapement
+</th>
+<th style="text-align:center;">
+R0.1
+</th>
+<th style="text-align:center;">
+R0.2
+</th>
+<th style="text-align:center;">
+R0.3
+</th>
+<th style="text-align:center;">
+R0.4
+</th>
+<th style="text-align:center;">
+R0.5
+</th>
+<th style="text-align:center;">
+R1.1
+</th>
+<th style="text-align:center;">
+R1.2
+</th>
+<th style="text-align:center;">
+R1.3
+</th>
+<th style="text-align:center;">
+R1.4
+</th>
+<th style="text-align:center;">
+R1.5
+</th>
+<th style="text-align:center;">
+R2.1
+</th>
+<th style="text-align:center;">
+R2.2
+</th>
+<th style="text-align:center;">
+R2.3
+</th>
+<th style="text-align:center;">
+R2.4
+</th>
+<th style="text-align:center;">
+R3.1
+</th>
+<th style="text-align:center;">
+R3.2
+</th>
+<th style="text-align:center;">
+R3.3
+</th>
+<th style="text-align:center;">
+R3.4
+</th>
+<th style="text-align:center;">
+R4.1
+</th>
+<th style="text-align:center;">
+R4.2
+</th>
+<th style="text-align:center;">
+R4.3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+Sockeye
+</td>
+<td style="text-align:center;">
+Togiak
+</td>
+<td style="text-align:center;">
+Bristol Bay
+</td>
+<td style="text-align:center;">
+Bristol Bay North
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1950
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+27842
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+Sockeye
+</td>
+<td style="text-align:center;">
+Togiak
+</td>
+<td style="text-align:center;">
+Bristol Bay
+</td>
+<td style="text-align:center;">
+Bristol Bay North
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1951
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+98113
+</td>
+<td style="text-align:center;">
+111
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+53034
+</td>
+<td style="text-align:center;">
+8569
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+104
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+Sockeye
+</td>
+<td style="text-align:center;">
+Togiak
+</td>
+<td style="text-align:center;">
+Bristol Bay
+</td>
+<td style="text-align:center;">
+Bristol Bay North
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1952
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+152473
+</td>
+<td style="text-align:center;">
+58318
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+8640
+</td>
+<td style="text-align:center;">
+5917
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+Sockeye
+</td>
+<td style="text-align:center;">
+Togiak
+</td>
+<td style="text-align:center;">
+Bristol Bay
+</td>
+<td style="text-align:center;">
+Bristol Bay North
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1953
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1114
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+31434
+</td>
+<td style="text-align:center;">
+84135
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+8369
+</td>
+<td style="text-align:center;">
+16206
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+Sockeye
+</td>
+<td style="text-align:center;">
+Togiak
+</td>
+<td style="text-align:center;">
+Bristol Bay
+</td>
+<td style="text-align:center;">
+Bristol Bay North
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1954
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+104
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+66
+</td>
+<td style="text-align:center;">
+19804
+</td>
+<td style="text-align:center;">
+145542
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+11957
+</td>
+<td style="text-align:center;">
+17007
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+2006
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+Sockeye
+</td>
+<td style="text-align:center;">
+Togiak
+</td>
+<td style="text-align:center;">
+Bristol Bay
+</td>
+<td style="text-align:center;">
+Bristol Bay North
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1955
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+135517
+</td>
+<td style="text-align:center;">
+189761
+</td>
+<td style="text-align:center;">
+508
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+9022
+</td>
+<td style="text-align:center;">
+38171
+</td>
+<td style="text-align:center;">
+213
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<p>These values appear to not be real 0 values (no spawners) but instead indicate that there are no data available. We can find and replace these values with <code>NA</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">brood<span class="op">$</span>TotalEscapement[<span class="kw">which</span>(brood<span class="op">$</span>TotalEscapement <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></code></pre>
+</div>
+</div>
+<div id="questionable-data" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Questionable data</h3>
+<p>Now that we have confirmed all of our values are within the acceptable bounds defined above, we can search for additional outliers that may fall within the acceptable range numerically but still should not be used in analysis. One way we can check for these outliers is by calculating the total recruits to spawner ratio, (<span class="math inline">\(R/S\)</span>), also called productivity. Typically stock productivity is less than 10. Values outside of these bounds could indicate that there are problems either with the age class recruit data, or the escapement data.</p>
+<p>First we calculate the total number of recruits by summing across all age class recruits in a row. Note that we need to use a customized function to calculate this sum, where if all values in the row are <code>NA</code> the total number of recruits is also <code>NA</code> (as opposed to 0). Otherwise, <code>NA</code> values are ignored in calculating the sum. The R/S value is calculated by dividing this value by the total number of spawners (TotalEscapement).</p>
+<pre class="sourceCode r"><code class="sourceCode r">nasum &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="cf">if</span> (<span class="kw">all</span>(<span class="kw">is.na</span>(x))) <span class="ot">NA</span> <span class="cf">else</span> <span class="kw">sum</span>(x,<span class="dt">na.rm=</span>T)
+
+brood<span class="op">$</span>TotalRecruits &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">select</span>(brood, <span class="kw">matches</span>(<span class="st">&quot;R[0-9].[0-9]&quot;</span>)), <span class="dv">1</span>, nasum)</code></pre>
+<p>Now we can look for outliers in productivity by examining at a boxplot of these values by stock.</p>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>There are certainly some extreme outliers in this dataset. Although it would be beneficial to look at the data individually by stock, as a first pass for this exercise we can change the UseFlag column to 0, indicating that data should not be used in analysis, if the recruits/spawner ratio is greater than 25. We will also change the UseFlag to 0 if either the TotalRecruits or TotalEscapement columns are <code>NA</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">brood<span class="op">$</span>UseFlag[<span class="kw">which</span>(brood<span class="op">$</span>TotalRecruits<span class="op">/</span>brood<span class="op">$</span>TotalEscapement <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>)] &lt;-<span class="st"> </span><span class="dv">0</span>
+brood<span class="op">$</span>UseFlag[<span class="kw">is.na</span>(brood<span class="op">$</span>TotalRecruits) <span class="op">==</span><span class="st"> </span>T <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(brood<span class="op">$</span>TotalEscapement) <span class="op">==</span><span class="st"> </span>T] &lt;-<span class="st"> </span><span class="dv">0</span></code></pre>
+</div>
+</div>
+<div id="analysis" class="section level2">
+<h2><span class="header-section-number">2.6</span> Analysis</h2>
+<p>Now that we’ve done all of the work to clean and integrate all of the individual brood tables into a single <code>data.frame</code>, we’re ready to start exploring how the regions, sub-regions, and individual stocks might differ.
+A very common use of brood table data is to produce run size forecasts using the information we obtained by splitting returns into individual age classes.
+This approach revolves around the idea that productivity (<span class="math inline">\(R/S\)</span>) for each age class is likely to be relatively more correlated within brood years than across brood years and that adults of some species of salmon (e.g., sockeye) have multiple return years for a given brood year.
+This lets us borrow information from the absolute number of earlier-returning (e.g., 1.2) individuals to make a guess about how many older individuals from that same brood year will return.</p>
+<p>Below, I show two sets of scatterplots of the number of age 1.3 fish against the number of age 1.2 fish. Each panel is overlaid with regressions about the origin.</p>
+<div id="relationship-between-1.2s-and-1.3s-by-region" class="section level3">
+<h3><span class="header-section-number">2.6.1</span> Relationship between 1.2s and 1.3s by Region</h3>
+<p>It is possible to add a trend line to the plot. In this case we used a linear model, and we used <em>geom_smooth</em> with method “lm”, only fitting the slope and forcing the intercept to be 0 <em>(formula = “y ~ 0 + x”)</em>.
+The <span class="math inline">\(R^2\)</span> value for the correlation is shown in each plot.</p>
+<pre class="sourceCode r"><code class="sourceCode r">formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">0</span>
+<span class="kw">ggplot</span>(brood_s, <span class="kw">aes</span>(R1<span class="fl">.2</span><span class="op">/</span><span class="dv">1000</span>, R1<span class="fl">.3</span><span class="op">/</span><span class="dv">1000</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, 
+              <span class="dt">formula =</span> <span class="st">&quot;y ~ 0 + x&quot;</span>, 
+              <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">xlab</span>(<span class="st">&quot;R1.2 x 1,000&quot;</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&quot;R1.3 x 1,000&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_poly_eq</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste</span>(..rr.label..)),
+                      <span class="dt">label.x.npc =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">label.y.npc =</span> <span class="st">&quot;bottom&quot;</span>, <span class="dt">formula =</span> formula, 
+                      <span class="dt">parse =</span> <span class="ot">TRUE</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Region,
+             <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.y =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">0</span>), <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Note that the scales are not fixed so comparing slopes across panels does not make sense. To compare the slopes in in graph we should fix <em>y</em> and <em>x</em> axis or export the slopes from the linear model.</p>
+</div>
+<div id="relationship-between-1.2s-and-1.3s-by-region-1" class="section level3">
+<h3><span class="header-section-number">2.6.2</span> Relationship between 1.2s and 1.3s by Region</h3>
+<p>This section makes the same plots as before. Now instead of making them all in the same image using the option <em>facet_wrap</em>, we define a loop that goes region by region, fit a linear model forcing the intercept to be 0, and then create the plot.
+<em>Because this is very repetitive, we only select 4 Regions to be plotted</em>.</p>
+<p>We use <span class="math inline">\(R^2\)</span> obtained with the function <em>lm</em> to change the color from blue to red, if <span class="math inline">\(&gt;0.5\)</span>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">region &lt;-<span class="st"> </span><span class="kw">unique</span>(brood_s<span class="op">$</span>Region)
+<span class="cf">for</span> (i <span class="cf">in</span> region[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])
+{
+  temp &lt;-<span class="st"> </span><span class="kw">filter</span>(brood_s, Region <span class="op">==</span><span class="st"> </span>i)
+  test &lt;-<span class="st"> </span><span class="kw">lm</span>(R1<span class="fl">.3</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>R1<span class="fl">.2</span>, <span class="dt">data =</span> temp)
+  r &lt;-<span class="st"> </span><span class="kw">summary</span>(test)<span class="op">$</span>r.squared
+  color &lt;-<span class="st"> &quot;red&quot;</span>
+  <span class="cf">if</span>(r<span class="op">&lt;</span><span class="fl">0.5</span>) {color &lt;-<span class="st"> &quot;blue&quot;</span>}
+  
+  p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp, <span class="kw">aes</span>(R1<span class="fl">.2</span>, R1<span class="fl">.3</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="kw">unique</span>(temp<span class="op">$</span>Region), ) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> <span class="st">&quot;y ~ 0 + x&quot;</span>, <span class="dt">color =</span> color, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">stat_fit_glance</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">formula =</span> <span class="st">&quot;y ~ 0 + x&quot;</span>),
+                    <span class="dt">geom =</span> <span class="st">&#39;text&#39;</span>, <span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste</span>(<span class="st">&quot;R^2 = &quot;</span>, <span class="kw">signif</span>(r, <span class="dt">digits =</span> <span class="dv">2</span>), 
+                                                     <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)), <span class="dt">label.x.npc =</span> <span class="st">&#39;right&#39;</span>, 
+                    <span class="dt">label.y.npc =</span> <span class="fl">0.35</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="st">&quot;16&quot;</span>))
+  <span class="kw">print</span>(p)
+}</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-1.png" width="288" /><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-2.png" width="288" /><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-3.png" width="288" /><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-19-4.png" width="288" /></p>
+</div>
+<div id="relationship-between-1.2s-and-1.3s-by-stock" class="section level3">
+<h3><span class="header-section-number">2.6.3</span> Relationship between 1.2s and 1.3s by Stock</h3>
+<p>The same type of plot can easily be produced for a different grouping level. For this we selected 20 stocks in the brood table from a set of regions:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">filter</span>(brood_s, Region <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Bristol Bay&quot;</span>, <span class="st">&quot;Kodiak&quot;</span>, <span class="st">&quot;PWS&quot;</span>, <span class="st">&quot;AK Peninsula&quot;</span>)), <span class="kw">aes</span>(R1<span class="fl">.2</span><span class="op">/</span><span class="dv">1000</span>, R1<span class="fl">.3</span><span class="op">/</span><span class="dv">1000</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, 
+              <span class="dt">formula =</span> <span class="st">&quot;y ~ 0 + x&quot;</span>, 
+              <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Stock, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">4</span>,
+             <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;R1.2 x 1,000&quot;</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&quot;R1.3 x 1,000&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">0</span>, <span class="dt">size =</span> <span class="dv">7</span>), 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">7</span>))</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Note that the scales are not fixed so comparing slopes across panels does not make sense.</p>
+</div>
+<div id="age-diversity" class="section level3">
+<h3><span class="header-section-number">2.6.4</span> Age Diversity</h3>
+<p>As an example on how to create and use a function in <em>R</em>, we ask how the diversity of age clases have changed over time for each region.</p>
+<p>For this we use the Simpson’s diveristy index, which measures the probability that two oragsnisms randomly selected from a sample will belong to the same age class. For this, the function <em>simpson</em> is defined as <span class="math inline">\(D = 1-\sum(\frac{n}{N})^2\)</span>, where <span class="math inline">\(n\)</span> is the total number of organisms in the age class <span class="math inline">\(i\)</span> and <span class="math inline">\(N\)</span> the total number or organisms in all the age classes.</p>
+<p>This function takes a vector containing the number of individual in each age class and returns the <em>Simpson</em> diversity index <span class="math inline">\(D\)</span>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">simpson &lt;-<span class="st"> </span><span class="cf">function</span>(ages) {
+  total &lt;-<span class="st"> </span><span class="kw">sum</span>(ages, <span class="dt">na.rm =</span> T)
+  res &lt;-<span class="st"> </span><span class="dv">0</span>
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(ages)) {
+    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(ages[i])) {
+      res &lt;-<span class="st"> </span>res <span class="op">+</span><span class="st"> </span>(ages[i] <span class="op">/</span><span class="st"> </span>total) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>
+    }
+  }
+  <span class="kw">return</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>res)
+}</code></pre>
+<p>A new column is created with the Simpson diversity index.</p>
+<pre class="sourceCode r"><code class="sourceCode r">brood_s<span class="op">$</span>Simpson &lt;-<span class="st"> </span><span class="ot">NA</span>
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(brood_s)) {
+  brood_s<span class="op">$</span>Simpson[i] &lt;-<span class="st"> </span><span class="kw">simpson</span>(brood_s[i,<span class="dv">9</span><span class="op">:</span><span class="dv">30</span>])
+}</code></pre>
+<p>We then plot Simpson diversity index over time. We included the linear equation in each plot. This information can be easily exported as a CSV file to be used in other analysis.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(brood_s, <span class="kw">aes</span>(BroodYear, <span class="kw">as.numeric</span>(Simpson))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, 
+              <span class="dt">formula =</span> <span class="st">&quot;y ~ x&quot;</span>, 
+              <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_poly_eq</span>(<span class="kw">aes</span>(<span class="dt">label =</span> ..eq.label..), 
+               <span class="dt">formula =</span> <span class="st">&quot;y ~ x&quot;</span>, 
+               <span class="dt">parse =</span> <span class="ot">TRUE</span>, 
+               <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Region, <span class="dt">ncol=</span><span class="dv">5</span>, <span class="dt">nrow=</span><span class="dv">2</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">theme</span>(<span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">0</span>), 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rstudio-and-gitgithub-setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
