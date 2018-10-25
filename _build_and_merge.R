@@ -1,47 +1,46 @@
-#build and merge
+# Build script for bookdown materials
+
+# This script will build bookdown materials from the head of a training branch (branch_name).
+# This is useful for when materials are in the process of being developed, to allow Travis
+# to build, without relying on the user to check in a whole bunch of bookdown files
+# for a simple change. After development is done (usually after the training ends) this
+# script should be turned off by commenting out the line that runs it in travis.yml. The
+# branch should be merged into master, and the built materials checked into public/materials
 library(git2r)
 
 top <- getwd()
 
 file.create(".nojekyll")
 
-#' First, we determine which tags are available to build and what their human-
-#' readable names are. GitHub's tag naming feature is used to control the human-
-#' readable name.
-#tag_list <- c("Jnu_2017", "Anc_2018", "Fai_2018")
-#tag_names <- c("juneau", "anchorage", "fairbanks")
-
-tag_list <- c("Fai_2018")
+# change this to reflect branch name, and give a tag name to append to URL
+branch_name <- c("Fai_2018")
 tag_names <- c("fairbanks")
 
 url_base <- paste0("reproducible_research_in_r_", tag_names)
 
-if (!dir.exists(file.path(top, "public", "materials"))) {
-  dir.create(file.path(top, "public", "materials"), recursive = TRUE)
+
+print(paste("Building book ", branch_name))
+
+# checkout branch
+system2("git", c("checkout", branch_name))
+
+# make sure wd is where the bookdown materials are
+if (getwd() != "materials/reproducible-analysis-in-r"){
+  setwd("materials/reproducible-analysis-in-r")
 }
 
-# Build all books in the books subdir
-for (zz in 1:length(tag_list)) {
+remotes::install_deps('.') # Installs book-specific R deps defined in DESCRIPTION file
+bookdown::render_book('index.Rmd', c('bookdown::gitbook'), clean_envir = F) # render book
 
-  print(paste("Building book ", tag_list[zz]))
+message("Copying _book folder from ", getwd(), " to ", file.path(top, "public", "materials", url_base))
 
-  #checkout(".", tag_list[zz])
-  system2("git", c("checkout", tag_list[zz]))
+# copy book over to public/materials/
+copy_dest <- file.path(top, "public", "materials", url_base)
+system2("cp", c("-r", "_book", copy_dest))
 
-  if (getwd() != "materials/reproducible-analysis-in-r"){
-    setwd("materials/reproducible-analysis-in-r")
-  }
-  remotes::install_deps('.') # Installs book-specific R deps
-  # defined in DESCRIPTION file
-  bookdown::render_book('index.Rmd', c('bookdown::gitbook'), clean_envir = F)
+message("Materials folder contains:", dir(file.path(top, "public", "materials")))
 
-  message("Copying _book folder from ", getwd(), " to ", file.path(top, "public", "materials", url_base[zz]))
-  copy_dest <- file.path(top, "public", "materials", url_base[zz])
-  system2("cp", c("-r", "_book", copy_dest))
+unlink("_book", recursive = T)
 
-  message("Materials folder contains:", dir(file.path(top, "public", "materials")))
+setwd(top)
 
-  unlink("_book", recursive = T)
-
-  setwd(top)
-}
