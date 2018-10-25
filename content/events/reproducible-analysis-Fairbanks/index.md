@@ -51,7 +51,7 @@ both for publications and the web.
 |10:00 - 10:30         |Break                          |
 |10:30 - 12:00         |Data Visualization             |
 |12:00 - 1:00          |Lunch                          |
-|1:00 - 2:00           |Data Visualization contd.      |
+|1:00 - 2:00           |Git: Collaboration and Conflict Management      |
 |2:00 - 3:00           |Data Documentation/Publishing  |
 |3:00 - 3:30           |Break                          |
 |3:30 - 5:00           |Publishing Analysis to the Web |
