@@ -13,10 +13,10 @@ In this lesson, you will:
 
 ## Outline
 
-In this one hour block, you will load data from the following two datasets into R,
+In this one block, you will load data from the following two datasets into R,
 
-- [ADFG salmon escapement data](https://knb.ecoinformatics.org/#view/urn:uuid:c14d3e59-e5e3-4696-996d-558446b577fd)
-- [ADFG salmon escapment goal data](https://knb.ecoinformatics.org/#view/urn:uuid:a417f995-6bc3-40fd-bb2c-73aec816e402)
+- Alaska Department of Fish and Game. 2017. Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017. Knowledge Network for Biocomplexity. [doi:10.5063/F1TX3CKH](http://doi.org/10.5063/F1TX3CKH)
+- Andrew Munro and Eric Volk. 2017. Summary of Pacific Salmon Escapement Goals in Alaska with a Review of Escapements from 2007 to 2015. Knowledge Network for Biocomplexity. [doi:10.5063/F1TQ5ZRG](http://doi.org/10.5063/F1TQ5ZRG)
 
 and then clean, and integrate them together to answer a research question:
 
@@ -134,12 +134,12 @@ suppressPackageStartupMessages({
 Then download our two data files and save them as `data.frame`s:
 
 ```{r, cache=TRUE}
-# https://knb.ecoinformatics.org/#view/urn:uuid:8809a404-f6e1-46a2-91c8-f094c3814b47
+# http://doi.org/10.5063/F1TX3CKH
 # Search "OceanAK"
-esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92020.1", method = "libcurl"), 
+esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e", method = "libcurl"), 
                     stringsAsFactors = FALSE)
 
-# https://knb.ecoinformatics.org/#view/urn:uuid:2c13bb02-6148-4ab6-8ad5-3a7c03f8642e
+# http://doi.org/10.5063/F1TQ5ZRG
 # Search "escapement goals", choose 2007-2015 dataset
 goals <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/knb.92014.1", method = "libcurl"),
                   stringsAsFactors = FALSE)
@@ -167,6 +167,7 @@ bb_sockeye_escapements <- esc %>%
   separate(sampleDate, c("Year", "Month", "Day"), sep = "-") %>% 
   group_by(Location, Year) %>% 
   summarize(Escapement = sum(DailyCount))
+
 datatable(bb_sockeye_escapements)
 ```
 
@@ -175,7 +176,8 @@ Finally join the two tables and display the final table:
 ```{r}
 bb_escapement_with_goals <- 
   left_join(bb_sockeye_escapements, bb_sockeye_goals, by = c("Location" = "System")) %>% 
-  mutate(is_in_range = Escapement >= Lower & Escapement <= Upper,
-         drop_by_year = Year >= Initial.Year)
+  mutate(is_goal_within = ifelse(Escapement < Upper & Escapement > Lower, TRUE, FALSE),
+         drop_by_year = ifelse(Year >= Initial.Year, FALSE, TRUE))
+         
 datatable(bb_escapement_with_goals)
 ```

@@ -186,7 +186,7 @@ maintain the correspondence.  You can choose any folder for your local copy, in
 my case I used my standard `development` folder.
 
 ![](images/rstudio-clone-repo.png)
-Once you hit `Create Project, a new RStudio windo will open with all of the files
+Once you hit `Create Project, a new RStudio window will open with all of the files
 from the remote repository copied locally.  Depending on how your version of RStudio
 is configured, the location and size of the panes may differ, but they should all
 be present, including a *Git* tab and the normal *Files* tab listing the files that 
@@ -227,7 +227,7 @@ easier.
 </code></pre>
 
 Once you save, you'll immediately see the *README.md* file show up in the Git
-tab, marks as a modification.  You can select the file in the Git tab, and click
+tab, marked as a modification.  You can select the file in the Git tab, and click
 *Diff* to see the differences that you saved (but which are not yet committed to
 your local repository).
 
