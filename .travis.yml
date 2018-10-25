@@ -1,6 +1,4 @@
 language: r
-before_install:
-  - echo -e "machine github.com login jeanetteclark $GITHUB_TOKEN" > ~/.netrc
 cache: packages
 git:
   depth: false
