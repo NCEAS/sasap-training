@@ -23,7 +23,7 @@ canonifyURLs = true
 
 
 [params]
-    description = "Introducción a ciencia abierta e investigación reproducible usando R y RMarkdown"
+    description = "Introducción a las proácticas de la ciencia abierta e investigación reproducible usando R y RMarkdown"
     custom_css = ["/css/sasap.css"]
 
     # options for highlight.js (version, additional languages, and theme)

@@ -1,5 +1,5 @@
 --- 
-title: "Intriducion a RMarkdown"
+title: "Intridución a RMarkdown"
 date: "???, 2019"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
