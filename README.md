@@ -1,37 +1,26 @@
-[![sasap_logo](https://alaskasalmonandpeople.org/wp-content/uploads/2016/06/banner_test.jpg)](https://alaskasalmonandpeople.org)
+[![IFOP_logo](https://www.ifop.cl/wp-content/uploads/2017/09/logo_ifop_sitio.jpg)](https://www.ifop.cl)
 <br>
 
-# Open science for salmon
+# Clase de RMarkdown para IFOP
 
-[![Build Status](https://travis-ci.org/NCEAS/sasap-training.svg?branch=master)](https://travis-ci.org/NCEAS/sasap-training)
+[![Build Status](https://travis-ci.org/cornejotux/claseRMarkdown.svg?branch=master)](https://travis-ci.org/cornejotux/claseRMarkodown)
 
-## Practical open science approaches to salmon data management, analysis, and synthesis
+## Introducción práctica al uso de RMarkdown en las actividades de IFOP
 
-- November 28-29, 2017
-- Juneau, AK
+- Fecha a definit
+- Valparaiso, Chile
 
-- Open Science Tools to support synthesis of salmon data and management
-- Effective data management for salmon data management, analysis, and synthesis
-- Practical open science skills for salmon management
+### Agradecimientos
 
-- Series of open science training workshops targeting:
-  - [First workshop](https://nceas.github.io/sasap-training/): Biostatisticians and modelers (this workshop, Juneau)
-  - Second workshop: Field biologists (Anchorage)
-  - Third workshop: TBD
-
-### Acknowledgements
-
-Work on this package was supported by:
-
-The Gordon and Betty Moore Foundation, __Salmon Data Task Force__ award to M. B. Jones and I. Dutton.
-
-[<img src="static/images/moore-logo-color.jpg" width="200px" />](https://www.moore.org)
-
-Additional support was provided for collaboration by the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu), a Center funded by the University of California, Santa Barbara, and the State of California.
+El presente curso esta basad en el trabajo del proyecto [SASAP](https://alaskasalmonandpeople.org/) desarrollado en 
+[NCEAS](https://www.nceas.ucsb.edu), un centro de investigacoin fundado por la [Universidad de California, Santa Barbara](https://www.ucsb.edu).
 
 [![nceas_footer](static/images/nceas.png)](http://www.nceas.ucsb.edu)
 
-## About this repository
+## Acerca de este repositorio
+
+** Hay que terminar de traducir **
+
 
 This repository is an integration of [Blogdown](https://github.com/rstudio/blogdown) and [Bookdown](https://bookdown.org).
 Some amount of wrangling was required to get all of this set up and not everything may be obvious to all viewers.
