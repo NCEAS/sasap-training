@@ -13,17 +13,17 @@ canonifyURLs = true
     post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    name = "Events"
+    name = "Eventos"
     url = "/events"
     weight = 2
 [[menu.main]]
-    name = "Materials"
+    name = "Materiales"
     url = "/materials"
     weight = 5
 
 
 [params]
-    description = "Introduccion a la ciencia abierta e investigacion reproducible usando R y RMarkdown"
+    description = "Introducción a ciencia abierta e investigación reproducible usando R y RMarkdown"
     custom_css = ["/css/sasap.css"]
 
     # options for highlight.js (version, additional languages, and theme)
