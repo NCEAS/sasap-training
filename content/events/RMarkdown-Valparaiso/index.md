@@ -8,6 +8,9 @@ __Dates__: May 17-18, 2018<br>
 __Location__: Anchorage, AK<br>
 __Venue__: Dena'ina Civic and Convention Center
 
+Describir un poco de que se tratará el curso!!!
+
+
 This event will cover techniques for building reproducible analysis workflows using
 the R programming language through a series of hands-on coding sessions.  We will
 use examples from integrating salmon brood data across the state of Alaska to show 
