@@ -7,7 +7,7 @@
 
 ## Introducción práctica al uso de RMarkdown en las actividades de IFOP
 
-- Fecha a definit
+- Fecha a definir
 - Valparaiso, Chile
 
 ### Agradecimientos
