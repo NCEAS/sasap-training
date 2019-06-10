@@ -1,6 +1,6 @@
-baseURL = "https://nceas.github.io/sasap-training"
+baseURL = "https://cornejotux.github.io/claseRMarkdown"
 languageCode = "en-us"
-title = "State of Alaska's Salmon and People"
+title = "Introduccion a RMarkdown"
 theme = "gohugo-theme-ananke"
 googleAnalytics = ""
 disqusShortname = ""
@@ -23,7 +23,7 @@ canonifyURLs = true
 
 
 [params]
-    description = "Tools and techniques for salmon data management and analysis"
+    description = "Introduccion a la ciencia abierta e investigacion reproducible usando R y RMarkdown"
     custom_css = ["/css/sasap.css"]
 
     # options for highlight.js (version, additional languages, and theme)
@@ -36,14 +36,14 @@ canonifyURLs = true
     MathJaxVersion = "2.7.1"
 
     facebook = ""
-    twitter = "https://twitter.com/nceas"
+    twitter = "https://twitter.com/cornejotux"
     instagram = ""
     youtube = ""
-    github = "https://github.com/NCEAS/sasap-training"
+    github = "https://github.com/cornejotux/claseRMarkdown"
     linkedin = ""
     # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
     background_color_class = "bg-black"
-    featured_image = "./images/underwater.jpg"
+    featured_image = "./images/Abate.png"
 
     [params.logo]
     url = "./images/logo.png"
