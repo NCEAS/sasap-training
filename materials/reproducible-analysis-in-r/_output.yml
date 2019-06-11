@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Reproducible Analysis With R</a></li>
-        <li><a href="/sasap-training/">← Back to main website</a></li>
+        <li><a href="./">Introduccion a RMarkdown</a></li>
+        <li><a href="/sasap-training/">← Sitio Principal</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>

@@ -1,15 +1,15 @@
-### Practical open science approaches to salmon data management, analysis, and synthesis
+### Clase de RMarkdown para IFOP
 
-This series of three training events in Alaska will present open and practical approaches
-for using open science to advance understanding and management of salmon
-in Alaska.  Workshops will focus on open data science techniques, and will cover
-topics in data management, data modeling, data sharing and preservation, reproducible 
-analysis and synthesis, and visualization, among others.
+Esta es una clase en desarrollo para fomentar el uso de R y RMarkdown como plataformas 
+de Ciencia Abierta (_Open Science_) e investigación reproducible dentre de [IFOP](https://www.ifop.cl)
+Este curso práctico esta en constante desarrollo y se espera pueda ser desarrollado en las 
+diferentes sedes regionales del instituto.
 
-The events will target researchers, managers, students, and community members with
-an interest in improving their skills in data science, data sharing, and 
-reproducible research.  The events will be developed for faculty and
-students from the UAF Fisheries Department, the Alaska Department of Fish and
-Game, the NOAA National Marine Fisheries Service, and other agencies and community
-members.  Each training event will target a specific community, and open calls for
-registration will be publicized before each event.
+Este curso cubre tópicos sobre ciencia abierta, investigación reproducible, manejo, modelamiento y
+preservación de datos, visuación y uso de GIT y GitHub para conservar versiones de nuestro trabajo.
+
+Los eventos en que se desarrollon estas actividades estan orientados a investigadores, evaluadores de stocks, 
+estudiantes y la comunidad IFOP en general y el objetivo es fomentar el interés por avanzar en la 
+ciencia abierta e investigación reproducible.
+
+Comentarios y sugerencias son bienvenidos y me ayudarán a mejorar este proyecto de curso.
