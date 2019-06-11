@@ -13,10 +13,10 @@ top <- getwd()
 file.create(".nojekyll")
 
 # change this to reflect branch name, and give a tag name to append to URL
-branch_name <- c("Valparaiso")
-tag_names <- c("valparaiso")
+branch_name <- c("Fai_2018")
+tag_names <- c("fairbanks")
 
-url_base <- paste0("claseRMarkdown-IFOP_", tag_names)
+url_base <- paste0("reproducible_research_in_r_", tag_names)
 
 
 print(paste("Building book ", branch_name))
@@ -25,15 +25,9 @@ print(paste("Building book ", branch_name))
 system2("git", c("checkout", branch_name))
 
 # make sure wd is where the bookdown materials are
-if (getwd() != "materials/claseRMarkdown-IFOP"){
-  setwd("materials/claseRMarkdown-IFOP")
+if (getwd() != "materials/reproducible-analysis-in-r"){
+  setwd("materials/reproducible-analysis-in-r")
 }
-
-#if (getwd() != "materials/reproducible-analysis-in-r"){
-#  setwd("materials/reproducible-analysis-in-r")
-#}
-
-
 
 remotes::install_deps('.') # Installs book-specific R deps defined in DESCRIPTION file
 bookdown::render_book('index.Rmd', c('bookdown::gitbook'), clean_envir = F) # render book

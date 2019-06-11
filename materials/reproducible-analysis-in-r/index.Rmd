@@ -1,25 +1,20 @@
 --- 
-title: "Intridución a RMarkdown"
-date: "???, 2019"
+title: "Reproducible Analysis With R"
+date: "Oct 16-17, 2018"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Una aproximación aplicada a la ciencia abierta, investigación reproducible y manejo de datos en R"
+description: "Practical open science approaches to salmon data management, analysis, and synthesis"
 always_allow_html: yes
 ---
 
-_**Reconocimiento**_: Gran parte de los documentos introductorios son una traducción libre desde al material preparado 
-y compartido por el grupo [SASAP](https://alaskasalmonandpeople.org/) del [NCEAS](https://www.nceas.ucsb.edu/) en su sitio [SASAP-Training](https://github.com/NCEAS/sasap-training) de en [GitHub](https://github.com/).
+# Introduction
 
-
-# Introducción
-
-La reproducibilidad es fundamental en la ciencia, ya que la ciencia está basada en observaciones empíricas acopladas a modelos explicativos. 
-
-While reproducibility encompasses 
+Reproducibility is the hallmark of science, which is based on empirical observations 
+coupled with explanatory models.  While reproducibility encompasses 
 the full science lifecycle, and includes issues such as methodological consistency and
 treatment of bias, in this course we will focus on **computational reproducibility**: 
 the ability to document data, analyses, and models sufficiently for other researchers 
