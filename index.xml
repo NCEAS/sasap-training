@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>State of Alaska&#39;s Salmon and People</title>
+    <link>https://nceas.github.io/sasap-training/</link>
+    <description>Recent content on State of Alaska&#39;s Salmon and People</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://nceas.github.io/sasap-training/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://nceas.github.io/sasap-training/materials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nceas.github.io/sasap-training/materials/</guid>
+      <description> Materials  Fairbanks: Reproducible Analysis in R Juneau: Reproducible Analysis in R Anchorage: Reproducible Analysis in R  </description>
+    </item>
+    
+    <item>
+      <title>Fairbanks, Oct 2018: Reproducible analysis with R</title>
+      <link>https://nceas.github.io/sasap-training/events/reproducible-analysis-fairbanks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nceas.github.io/sasap-training/events/reproducible-analysis-fairbanks/</guid>
+      <description>Dates: October 16-17, 2018
+Location: Fairbanks, AK
+Venue: UAF, International Arctic Research Center, room 417
+This event will cover techniques for building reproducible analysis workflows using the R programming language through a series of hands-on coding sessions. We will use examples from integrating salmon brood data across the state of Alaska to show how heterogeneous data can be cleaned, integrated, and documented through workflows written in RMarkdown. After an overview of the use of RMarkdown for literate analysis, we will dive into critical topics in data science, including version control, data modeling, cleaning, and integration, and then data visualization both for publications and the web.</description>
+    </item>
+    
+    <item>
+      <title>May 2018: Reproducible analysis with R</title>
+      <link>https://nceas.github.io/sasap-training/events/reproducible-analysis-anchorage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nceas.github.io/sasap-training/events/reproducible-analysis-anchorage/</guid>
+      <description>Dates: May 17-18, 2018
+Location: Anchorage, AK
+Venue: Dena&amp;rsquo;ina Civic and Convention Center
+This event will cover techniques for building reproducible analysis workflows using the R programming language through a series of hands-on coding sessions. We will use examples from integrating salmon brood data across the state of Alaska to show how heterogeneous data can be cleaned, integrated, and documented through workflows written in RMarkdown. After an overview of the use of RMarkdown for literate analysis, we will dive into critical topics in data science, including version control, data modeling, cleaning, and integration, and then data visualization both for publications and the web.</description>
+    </item>
+    
+    <item>
+      <title>Nov. 2017: Reproducible analysis with R</title>
+      <link>https://nceas.github.io/sasap-training/events/reproducible-analysis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nceas.github.io/sasap-training/events/reproducible-analysis/</guid>
+      <description>Dates: November 28-29, 2017
+Location: Juneau, AK
+Venue: UAF Fisheries Department
+This event will cover techniques for building reproducible analysis workflows using the R programming language through a series of hands-on coding sessions. We will use examples from integrating salmon brood data across the state of Alaska to show how heterogeneous data can be cleaned, integrated, and documented through workflows written in RMarkdown. After an overview of the use of RMarkdown for literate analysis, we will dive into critical topics in data science, including version control, data modeling, cleaning, and integration, and then data visualization both for publications and the web.</description>
+    </item>
+    
+  </channel>
+</rss>

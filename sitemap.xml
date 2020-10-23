@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/materials/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/events/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/events/reproducible-analysis-fairbanks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/events/reproducible-analysis-anchorage/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/events/reproducible-analysis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nceas.github.io/sasap-training/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

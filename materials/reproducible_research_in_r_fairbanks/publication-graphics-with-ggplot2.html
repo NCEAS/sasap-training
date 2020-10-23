@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reproducible Analysis With R</title>
+  <meta name="description" content="Practical open science approaches to salmon data management, analysis, and synthesis">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Reproducible Analysis With R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Reproducible Analysis With R" />
+  
+  <meta name="twitter:description" content="Practical open science approaches to salmon data management, analysis, and synthesis" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="hands-on-clean-and-integrate-datasets.html">
+<link rel="next" href="data-documentation-and-publishing.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Reproducible Analysis With R</a></li>
+<li><a href="/sasap-training/">← Back to main website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-reproducibility-crisis"><i class="fa fa-check"></i><b>1.1</b> The Reproducibility Crisis</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-needed-for-computational-reproducibility"><i class="fa fa-check"></i><b>1.2</b> What is needed for computational reproducibility?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#conceptualizing-workflows"><i class="fa fa-check"></i><b>1.3</b> Conceptualizing workflows</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.4</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.5</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-details"><i class="fa fa-check"></i><b>1.6</b> Course details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html"><i class="fa fa-check"></i><b>2</b> Example: Brood Table Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#datasets"><i class="fa fa-check"></i><b>2.2</b> Datasets</a></li>
+<li class="chapter" data-level="2.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#reformatting"><i class="fa fa-check"></i><b>2.3</b> Reformatting</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#batch-reformatting"><i class="fa fa-check"></i><b>2.3.1</b> Batch Reformatting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#merging"><i class="fa fa-check"></i><b>2.4</b> Merging</a></li>
+<li class="chapter" data-level="2.5" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#quality-assurance"><i class="fa fa-check"></i><b>2.5</b> Quality Assurance</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#acceptable-values"><i class="fa fa-check"></i><b>2.5.1</b> Acceptable values</a></li>
+<li class="chapter" data-level="2.5.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#questionable-data"><i class="fa fa-check"></i><b>2.5.2</b> Questionable data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#analysis"><i class="fa fa-check"></i><b>2.6</b> Analysis</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region"><i class="fa fa-check"></i><b>2.6.1</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.2" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-region-1"><i class="fa fa-check"></i><b>2.6.2</b> Relationship between 1.2s and 1.3s by Region</a></li>
+<li class="chapter" data-level="2.6.3" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#relationship-between-1.2s-and-1.3s-by-stock"><i class="fa fa-check"></i><b>2.6.3</b> Relationship between 1.2s and 1.3s by Stock</a></li>
+<li class="chapter" data-level="2.6.4" data-path="example-brood-table-analysis.html"><a href="example-brood-table-analysis.html#age-diversity"><i class="fa fa-check"></i><b>2.6.4</b> Age Diversity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html"><i class="fa fa-check"></i><b>3</b> RStudio and Git/GitHub Setup</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#learning-objectives"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#checking-the-rstudio-environment"><i class="fa fa-check"></i><b>3.2</b> Checking the RStudio environment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#r-version"><i class="fa fa-check"></i><b>3.2.1</b> R Version</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#rstudio-version"><i class="fa fa-check"></i><b>3.2.2</b> RStudio Version</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#package-installation"><i class="fa fa-check"></i><b>3.2.3</b> Package installation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#setting-up-git"><i class="fa fa-check"></i><b>3.3</b> Setting up git</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-and-gitgithub-setup.html"><a href="rstudio-and-gitgithub-setup.html#note-for-windows-users"><i class="fa fa-check"></i><b>3.3.1</b> Note for Windows Users</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html"><i class="fa fa-check"></i><b>4</b> Literate Analysis with RMarkdown</a><ul>
+<li class="chapter" data-level="4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#learning-objectives-1"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>4.2</b> What is (R)Markdown?</a></li>
+<li class="chapter" data-level="4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#whats-possible-with-rmarkdown"><i class="fa fa-check"></i><b>4.3</b> What’s possible with RMarkdown</a></li>
+<li class="chapter" data-level="4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#rmarkdown-overview"><i class="fa fa-check"></i><b>4.4</b> RMarkdown overview</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#knitting-the-file"><i class="fa fa-check"></i><b>4.4.1</b> Knitting the file</a></li>
+<li class="chapter" data-level="4.4.2" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#basic-formatting"><i class="fa fa-check"></i><b>4.4.2</b> Basic formatting</a></li>
+<li class="chapter" data-level="4.4.3" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#links"><i class="fa fa-check"></i><b>4.4.3</b> Links</a></li>
+<li class="chapter" data-level="4.4.4" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#images"><i class="fa fa-check"></i><b>4.4.4</b> Images</a></li>
+<li class="chapter" data-level="4.4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><b>4.4.5</b> R Code Chunks</a></li>
+<li class="chapter" data-level="4.4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#inline-r-expressions-and-equations"><i class="fa fa-check"></i><b>4.4.6</b> Inline R expressions and equations</a></li>
+<li class="chapter" data-level="4.4.7" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#plots"><i class="fa fa-check"></i><b>4.4.7</b> Plots</a></li>
+<li class="chapter" data-level="4.4.8" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#tables"><i class="fa fa-check"></i><b>4.4.8</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#literate-analysis-with-rmarkdown-1"><i class="fa fa-check"></i><b>4.5</b> Literate analysis with RMarkdown</a></li>
+<li class="chapter" data-level="4.6" data-path="literate-analysis-with-rmarkdown.html"><a href="literate-analysis-with-rmarkdown.html#organizing-a-reproducible-research-folder"><i class="fa fa-check"></i><b>4.6</b> Organizing a reproducible research folder</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>5</b> Version Control With git and GitHub</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-problem-with-filenames"><i class="fa fa-check"></i><b>5.2</b> The problem with filenames</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#version-control-and-collaboration-using-git-and-github"><i class="fa fa-check"></i><b>5.3</b> Version control and Collaboration using Git and GitHub</a></li>
+<li class="chapter" data-level="5.4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#lets-look-at-a-github-repository"><i class="fa fa-check"></i><b>5.4</b> Let’s look at a GitHub repository</a></li>
+<li class="chapter" data-level="5.5" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#the-git-lifecycle"><i class="fa fa-check"></i><b>5.5</b> The Git lifecycle</a></li>
+<li class="chapter" data-level="5.6" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#create-a-remote-repository-on-github"><i class="fa fa-check"></i><b>5.6</b> Create a remote repository on GitHub</a></li>
+<li class="chapter" data-level="5.7" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#working-locally-with-git-via-rstudio"><i class="fa fa-check"></i><b>5.7</b> Working locally with Git via RStudio</a></li>
+<li class="chapter" data-level="5.8" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#on-good-commit-messages"><i class="fa fa-check"></i><b>5.8</b> On good commit messages</a></li>
+<li class="chapter" data-level="5.9" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#collaboration-and-conflict-free-workflows"><i class="fa fa-check"></i><b>5.9</b> Collaboration and conflict free workflows</a></li>
+<li class="chapter" data-level="5.10" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#exercise"><i class="fa fa-check"></i><b>5.10</b> Exercise</a></li>
+<li class="chapter" data-level="5.11" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#advanced-topics"><i class="fa fa-check"></i><b>5.11</b> Advanced topics</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html"><i class="fa fa-check"></i><b>6</b> Data Modeling &amp; Tidy Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#learning-objectives-3"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#benefits-of-relational-data-systems"><i class="fa fa-check"></i><b>6.2</b> Benefits of relational data systems</a></li>
+<li class="chapter" data-level="6.3" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-organization"><i class="fa fa-check"></i><b>6.3</b> Data Organization</a></li>
+<li class="chapter" data-level="6.4" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#multiple-tables"><i class="fa fa-check"></i><b>6.4</b> Multiple tables</a></li>
+<li class="chapter" data-level="6.5" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-observations"><i class="fa fa-check"></i><b>6.5</b> Inconsistent observations</a></li>
+<li class="chapter" data-level="6.6" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#inconsistent-variables"><i class="fa fa-check"></i><b>6.6</b> Inconsistent variables</a></li>
+<li class="chapter" data-level="6.7" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#marginal-sums-and-statistics"><i class="fa fa-check"></i><b>6.7</b> Marginal sums and statistics</a></li>
+<li class="chapter" data-level="6.8" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#good-enough-data-modeling"><i class="fa fa-check"></i><b>6.8</b> Good enough data modeling</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#denormalized-data"><i class="fa fa-check"></i><b>6.8.1</b> Denormalized data</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#tabular-data"><i class="fa fa-check"></i><b>6.8.2</b> Tabular data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#primary-and-foreign-keys"><i class="fa fa-check"></i><b>6.9</b> Primary and Foreign Keys</a></li>
+<li class="chapter" data-level="6.10" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#entity-relationship-model-er"><i class="fa fa-check"></i><b>6.10</b> Entity-Relationship Model (ER)</a></li>
+<li class="chapter" data-level="6.11" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#merging-data"><i class="fa fa-check"></i><b>6.11</b> Merging data</a></li>
+<li class="chapter" data-level="6.12" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#simple-guidelines-for-effective-data"><i class="fa fa-check"></i><b>6.12</b> Simple Guidelines for Effective Data</a></li>
+<li class="chapter" data-level="6.13" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#data-modeling-exercise"><i class="fa fa-check"></i><b>6.13</b> Data modeling exercise</a></li>
+<li class="chapter" data-level="6.14" data-path="data-modeling-tidy-data.html"><a href="data-modeling-tidy-data.html#related-resources"><i class="fa fa-check"></i><b>6.14</b> Related resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data Cleaning and Manipulation</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#learning-objectives-4"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>7.2</b> Introduction</a></li>
+<li class="chapter" data-level="7.3" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#setup"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
+<li class="chapter" data-level="7.4" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#about-the-pipe-operator"><i class="fa fa-check"></i><b>7.4</b> About the pipe (<code>%&gt;%</code>) operator</a></li>
+<li class="chapter" data-level="7.5" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#selectingremoving-columns-select"><i class="fa fa-check"></i><b>7.5</b> Selecting/removing columns: <code>select()</code></a></li>
+<li class="chapter" data-level="7.6" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#changing-shape-gather-and-spread"><i class="fa fa-check"></i><b>7.6</b> Changing shape: <code>gather()</code> and <code>spread()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#renaming-columns-with-rename"><i class="fa fa-check"></i><b>7.7</b> Renaming columns with <code>rename()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#adding-columns-mutate"><i class="fa fa-check"></i><b>7.8</b> Adding columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="7.9" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#group_by-and-summarise"><i class="fa fa-check"></i><b>7.9</b> <code>group_by</code> and <code>summarise</code></a></li>
+<li class="chapter" data-level="7.10" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#filtering-rows-filter"><i class="fa fa-check"></i><b>7.10</b> Filtering rows: <code>filter()</code></a></li>
+<li class="chapter" data-level="7.11" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#sorting-your-data-arrange"><i class="fa fa-check"></i><b>7.11</b> Sorting your data: <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.12" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#joins-in-dplyr"><i class="fa fa-check"></i><b>7.12</b> Joins in dplyr</a></li>
+<li class="chapter" data-level="7.13" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#separate-and-unite"><i class="fa fa-check"></i><b>7.13</b> <code>separate()</code> and <code>unite()</code></a></li>
+<li class="chapter" data-level="7.14" data-path="data-cleaning-and-manipulation.html"><a href="data-cleaning-and-manipulation.html#summary"><i class="fa fa-check"></i><b>7.14</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html"><i class="fa fa-check"></i><b>8</b> Hands On: Clean and Integrate Datasets</a><ul>
+<li class="chapter" data-level="8.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#learning-objectives-5"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#outline"><i class="fa fa-check"></i><b>8.2</b> Outline</a></li>
+<li class="chapter" data-level="8.3" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#high-level-steps"><i class="fa fa-check"></i><b>8.3</b> High-level steps</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#visual-schematic-of-steps"><i class="fa fa-check"></i><b>8.3.1</b> Visual schematic of steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="hands-on-clean-and-integrate-datasets.html"><a href="hands-on-clean-and-integrate-datasets.html#full-solution"><i class="fa fa-check"></i><b>8.4</b> Full solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Publication Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="9.1" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#learning-objectives-6"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#overview"><i class="fa fa-check"></i><b>9.2</b> Overview</a></li>
+<li class="chapter" data-level="9.3" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#ggplot-vs-base-vs-lattice-vs-xyz"><i class="fa fa-check"></i><b>9.3</b> ggplot vs base vs lattice vs XYZ…</a></li>
+<li class="chapter" data-level="9.4" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setup-1"><i class="fa fa-check"></i><b>9.4</b> Setup</a></li>
+<li class="chapter" data-level="9.5" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#geoms-aesthetics"><i class="fa fa-check"></i><b>9.5</b> Geoms / Aesthetics</a></li>
+<li class="chapter" data-level="9.6" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#setting-plot-limits"><i class="fa fa-check"></i><b>9.6</b> Setting plot limits</a></li>
+<li class="chapter" data-level="9.7" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>9.7</b> Scales</a></li>
+<li class="chapter" data-level="9.8" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>9.8</b> Facets</a></li>
+<li class="chapter" data-level="9.9" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#plot-customization-w-themes"><i class="fa fa-check"></i><b>9.9</b> Plot customization w/ themes</a></li>
+<li class="chapter" data-level="9.10" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>9.10</b> Saving plots</a></li>
+<li class="chapter" data-level="9.11" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-multi-panel-plots-beyond-facets"><i class="fa fa-check"></i><b>9.11</b> Bonus: Multi-panel plots: Beyond facets</a></li>
+<li class="chapter" data-level="9.12" data-path="publication-graphics-with-ggplot2.html"><a href="publication-graphics-with-ggplot2.html#bonus-round-two"><i class="fa fa-check"></i><b>9.12</b> Bonus: Round two</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html"><i class="fa fa-check"></i><b>10</b> Data Documentation and Publishing</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#learning-objectives-7"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-sharing-and-preservation"><i class="fa fa-check"></i><b>10.2</b> Data sharing and preservation</a></li>
+<li class="chapter" data-level="10.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#data-repositories-built-for-data-and-code"><i class="fa fa-check"></i><b>10.3</b> Data repositories: built for data (and code)</a></li>
+<li class="chapter" data-level="10.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#metadata"><i class="fa fa-check"></i><b>10.4</b> Metadata</a></li>
+<li class="chapter" data-level="10.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#structure-of-a-data-package"><i class="fa fa-check"></i><b>10.5</b> Structure of a data package</a></li>
+<li class="chapter" data-level="10.6" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#dataone-federation"><i class="fa fa-check"></i><b>10.6</b> DataONE Federation</a></li>
+<li class="chapter" data-level="10.7" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-the-web"><i class="fa fa-check"></i><b>10.7</b> Publishing data from the web</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#download-the-data-to-be-used-for-the-tutorial"><i class="fa fa-check"></i><b>10.7.1</b> Download the data to be used for the tutorial</a></li>
+<li class="chapter" data-level="10.7.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#login-via-orcid"><i class="fa fa-check"></i><b>10.7.2</b> Login via ORCID</a></li>
+<li class="chapter" data-level="10.7.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#create-and-submit-the-data-set"><i class="fa fa-check"></i><b>10.7.3</b> Create and submit the data set</a></li>
+<li class="chapter" data-level="10.7.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#file-and-variable-level-metadata"><i class="fa fa-check"></i><b>10.7.4</b> File and variable level metadata</a></li>
+<li class="chapter" data-level="10.7.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#add-workflow-provenance"><i class="fa fa-check"></i><b>10.7.5</b> Add workflow provenance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#publishing-data-from-r"><i class="fa fa-check"></i><b>10.8</b> Publishing data from R</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#logging-in"><i class="fa fa-check"></i><b>10.8.1</b> Logging in</a></li>
+<li class="chapter" data-level="10.8.2" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#obtain-an-orcid"><i class="fa fa-check"></i><b>10.8.2</b> Obtain an ORCID</a></li>
+<li class="chapter" data-level="10.8.3" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#log-in-to-the-test-repository-and-copy-your-token"><i class="fa fa-check"></i><b>10.8.3</b> Log in to the test repository and copy your token</a></li>
+<li class="chapter" data-level="10.8.4" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#modifying-metadata"><i class="fa fa-check"></i><b>10.8.4</b> Modifying metadata</a></li>
+<li class="chapter" data-level="10.8.5" data-path="data-documentation-and-publishing.html"><a href="data-documentation-and-publishing.html#uploading-a-package-using-r-with-uploaddatapackage"><i class="fa fa-check"></i><b>10.8.5</b> Uploading A Package Using R with <code>uploadDataPackage</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html"><i class="fa fa-check"></i><b>11</b> Publishing Analyses to the Web</a><ul>
+<li class="chapter" data-level="11.1" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#learning-objectives-8"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#introduction-3"><i class="fa fa-check"></i><b>11.2</b> Introduction</a></li>
+<li class="chapter" data-level="11.3" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-minimal-example"><i class="fa fa-check"></i><b>11.3</b> A Minimal Example</a></li>
+<li class="chapter" data-level="11.4" data-path="publishing-analyses-to-the-web.html"><a href="publishing-analyses-to-the-web.html#a-less-minimal-example"><i class="fa fa-check"></i><b>11.4</b> A Less Minimal Example</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="continued-learning.html"><a href="continued-learning.html"><i class="fa fa-check"></i><b>12</b> Continued Learning</a><ul>
+<li class="chapter" data-level="12.1" data-path="continued-learning.html"><a href="continued-learning.html#references"><i class="fa fa-check"></i><b>12.1</b> References</a></li>
+<li class="chapter" data-level="12.2" data-path="continued-learning.html"><a href="continued-learning.html#where-to-find-help"><i class="fa fa-check"></i><b>12.2</b> Where to Find Help</a></li>
+<li class="chapter" data-level="12.3" data-path="continued-learning.html"><a href="continued-learning.html#other-helpful-andor-cool-stuff"><i class="fa fa-check"></i><b>12.3</b> Other helpful and/or cool stuff</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Analysis With R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="publication-graphics-with-ggplot2" class="section level1">
+<h1><span class="header-section-number">9</span> Publication Graphics with ggplot2</h1>
+<div id="learning-objectives-6" class="section level2">
+<h2><span class="header-section-number">9.1</span> Learning Objectives</h2>
+<p>In this lesson, you will learn:</p>
+<ul>
+<li>The basics of the <code>ggplot2</code> package</li>
+<li>How to use <code>ggplot2</code>’s theming abilities to create publication-grade graphics</li>
+<li>How to create multi-panel plots</li>
+</ul>
+</div>
+<div id="overview" class="section level2">
+<h2><span class="header-section-number">9.2</span> Overview</h2>
+<p>ggplot2 is a popular package for visualizing data in R. From the <a href="http://ggplot2.tidyverse.org/">home page</a>:</p>
+<blockquote>
+<p>ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.</p>
+</blockquote>
+<p>It’s been around for years and has pretty good documentation and tons of example code around the web (like on <a href="https://stackoverflow.com/questions/tagged/ggplot2">StackOverflow</a>). This lesson will introduce you to the basic components of working with ggplot2.</p>
+</div>
+<div id="ggplot-vs-base-vs-lattice-vs-xyz" class="section level2">
+<h2><span class="header-section-number">9.3</span> ggplot vs base vs lattice vs XYZ…</h2>
+<p>R provides <strong>many</strong> ways to get your data into a plot. Three common ones are,</p>
+<ul>
+<li>“base graphics” (<code>plot()</code>, <code>hist()</code>, etc`)</li>
+<li>lattice</li>
+<li>ggplot2</li>
+</ul>
+<p>All of them work! I use base graphics for simple, quick and dirty plots. I use ggplot2 for most everything else.</p>
+<p>ggplot2 excels at making complicated plots easy and easy plots simple enough.</p>
+</div>
+<div id="setup-1" class="section level2">
+<h2><span class="header-section-number">9.4</span> Setup</h2>
+<p>To demonstrate ggplot2, we’re going to work with two example datasets</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>({
+  <span class="kw">library</span>(ggplot2)
+  <span class="kw">library</span>(tidyr)
+  <span class="kw">library</span>(dplyr)
+})
+
+<span class="co"># https://knb.ecoinformatics.org/#view/urn:uuid:e05865d7-678d-4513-9061-2ab7d979f8e7</span>
+<span class="co"># Search &#39;permit value&#39;</span>
+permits &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Aa3c58bd6-481e-4c64-aa93-795df10a4664&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;libcurl&quot;</span>),
+                    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+</div>
+<div id="geoms-aesthetics" class="section level2">
+<h2><span class="header-section-number">9.5</span> Geoms / Aesthetics</h2>
+<p>Every graphic you make in ggplot2 will have at least one aesthetic and at least one geom (layer). The aesthetic maps your data to your geometry (layer). Your geometry specifies the type of plot we’re making (point, bar, etc.).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p>What makes ggplot really powerful is how quickly we can make this plot visualize more aspects of our data. Coloring each point by class (compact, van, pickup, etc.) is just a quick extra bit of code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>Aside: How did I know to write <code>color = class</code>? <code>aes</code> will pass its arguments on to any geoms you use and we can find out what aesthetic mappings geom_point takes with <code>?geom_point</code> (see section “Aesthetics”)</p>
+<ul>
+<li><strong>Exercise:</strong> Find another aesthetic mapping <code>geom_point</code> can take and add add it to the plot.</li>
+</ul>
+<p>What if we just wanted the color of the points to be blue? Maybe we’d do this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>Well that’s weird – why are the points red?</p>
+<p>What happened here? This is the difference between <strong>setting</strong> and <strong>mapping</strong> in ggplot. The <code>aes</code> function <strong>only</strong> takes mappings from our data onto our geom. If we want to make all the points blue, we need to <strong>set</strong> it inside the geom:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<ul>
+<li><strong>Exercise:</strong> Using the aesthetic you discovered and tried above, <strong>set</strong> another aesthetic onto our points.</li>
+</ul>
+<p>Sizing each point by the range of the permit values is only a small change to the code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear, <span class="dt">size =</span> Range)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>So it’s clear we can make scatter and bubble plots. What other kinds of plots can we make? (Hint: <a href="http://ggplot2.tidyverse.org/reference/#section-layer-geoms">Tons</a>)</p>
+<p>Let’s make a histogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 14 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>You’ll see with a warning (red text):</p>
+<blockquote>
+<p><code>stat_bin() using bins = 30. Pick better value with binwidth</code>.</p>
+</blockquote>
+<p>ggplot2 can calculate statistics on our data such as frequencies and, in this case, it’s doing that on our <code>hwy</code> column with the <code>stat_bin</code> function. Binning data requires choosing a bin size and the choice of bin size can completely change our histogram (possibly resulting in misleading conclusions about how the values are distributed). We might want to change the <code>bins</code> argument in this case to something narrower:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">1e4</span>)</code></pre></div>
+<pre><code>## Warning: Removed 14 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<ul>
+<li><strong>Exercise:</strong> Find an aesthetic <code>geom_histogram</code> supports and try it out.</li>
+</ul>
+<p>I’m a big fan of box plots and ggplot2 can plot these too:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Gear, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>Another type of visualization I use a lot for seeing my distributions is the violin plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">permits_ci &lt;-<span class="st"> </span>permits <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Region <span class="op">==</span><span class="st"> &quot;Cook Inlet&quot;</span>)
+
+<span class="kw">ggplot</span>(permits_ci, <span class="kw">aes</span>(Gear, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_violin</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>So far we’ve made really simple plots: One geometry per plot. Let’s layer multiple geometries on top of one another to show the raw points on top of the violins:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_ci, <span class="kw">aes</span>(Gear, Value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_violin</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p>Some geoms can do even more than just show us our data. ggplot2 also helps us do some quick-and-dirty modeling:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>Notice the mesage in red text</p>
+<blockquote>
+<p><code>geom_smooth() using method = 'loess'</code></p>
+</blockquote>
+<p>geom_smooth defaulted here to using a LOESS smoother. But <code>geom_smooth()</code> is pretty configurable. Here we set the method to <code>lm</code> instead of the default <code>loess</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p>Sometimes we want to show more than one factor, say in a bar plot.</p>
+<p>First we summarize over years, calculating the mean permit value by Region and Gear.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">permits_sum &lt;-<span class="st"> </span>permits <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Gear, Region) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_value =</span> <span class="kw">mean</span>(Value, <span class="dt">na.rm =</span> T))</code></pre></div>
+<p>Now we show the mean value of permits by gear and region using <code>geom_bar</code> and the <code>fill</code> aesthetic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_sum, <span class="kw">aes</span>(<span class="dt">x =</span> Gear, <span class="dt">y =</span> mean_value, <span class="dt">fill =</span> Region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;stack&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p>The <code>position = &quot;stack&quot;</code> argument tells <code>geom_bar</code> to stack the regions in each gear bar, and the <code>stat = &quot;identity&quot;</code> argument tells it to map the y aesthetic (mean_value) to the y axis, as opposed to the count of rows calculated for unique values in the Gear and Region columns.</p>
+<p>For this dataset, the stack doesn’t make sense if we want to look at relative mean permit values. <code>position = &quot;dodge&quot;</code> makes more sense:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_sum, <span class="kw">aes</span>(<span class="dt">x =</span> Gear, <span class="dt">y =</span> mean_value, <span class="dt">fill =</span> Region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p>If you want to instead compare percentages (which doesn’t make much sense with this data, but we show the example anyway), you set <code>position = &quot;fill&quot;</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_sum, <span class="kw">aes</span>(<span class="dt">x =</span> Gear, <span class="dt">y =</span> mean_value, <span class="dt">fill =</span> Region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>More on geoms here: <a href="http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms" class="uri">http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms</a></p>
+</div>
+<div id="setting-plot-limits" class="section level2">
+<h2><span class="header-section-number">9.6</span> Setting plot limits</h2>
+<p>Plot limits can be controlled one of three ways:</p>
+<ul>
+<li>Filter the data (because limits are auto-calculated from the data ranges)</li>
+<li>Set the <code>limits</code> argument on one or both scales</li>
+<li>Set the <code>xlim</code> and <code>ylim</code> arguments in <code>coord_cartesian()</code></li>
+</ul>
+<p>Let’s show this with an example plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">permits_se_seine &lt;-<span class="st"> </span>permits <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Gear <span class="op">==</span><span class="st"> &quot;Purse Seine&quot;</span>, 
+         Region <span class="op">==</span><span class="st"> &quot;Southeast&quot;</span>)
+
+<span class="kw">ggplot</span>(permits_se_seine, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<p>Let’s make the Y axis start from 0:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_se_seine, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(permits_se_seine<span class="op">$</span>Value)))</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p>Let’s say, for some reason, we wanted to only show data from the year 2000 and onward:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_se_seine, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(permits_se_seine<span class="op">$</span>Value))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">2000</span>, <span class="kw">max</span>(permits_se_seine<span class="op">$</span>Year)))</code></pre></div>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 18 rows containing missing values (geom_path).</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<p>Note the warning message we received:</p>
+<blockquote>
+<p>Warning message: Removed 18 rows containing missing values (geom_point). Removed 18 rows containing missing values (geom_path).</p>
+</blockquote>
+<p>That’s normal when data in your input <code>data.frame</code> are outside the range we’re plotting.</p>
+<p>Let’s use <code>coord_cartesian</code> instead to change the x and y limits:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_se_seine, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">2000</span>, <span class="kw">max</span>(permits_se_seine<span class="op">$</span>Year)),
+                  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(permits_se_seine<span class="op">$</span>Value)))</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>Note the **slight* difference when using <code>coord_cartesian</code>: ggplot didn’t put a buffer around our values. Sometimes we want this and sometimes we don’t and it’s good to know this difference.</p>
+</div>
+<div id="scales" class="section level2">
+<h2><span class="header-section-number">9.7</span> Scales</h2>
+<p>The usual use case is to do things like changing scale limits or change the <strong>way</strong> our data are mapped onto our geom. We’ll use scales in ggplot2 very often!</p>
+<p>For example, how do we override the default colors ggplot2 uses here?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p>**<a href="Tip:**" class="uri">Tip:**</a> Most scales follow the format `scale_{aesthetic}_{method} where aesthetic are our aesthetic mappings such as color, fill, shape and method is how the colors, fill colors, and shapes are chosen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;violet&quot;</span>)) <span class="co"># ROYGBIV</span></code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>I’m sure that was a ton of fun to type out but we can make things easier on ourselves:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_color_hue</span>(<span class="dt">h =</span> <span class="kw">c</span>(<span class="dv">270</span>, <span class="dv">360</span>)) <span class="co"># blue to red</span></code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>Above we were using scales to scale the <code>color</code> aesthetic. We can also use scales to rescale our data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>Scales can also be used to change our axes. For example, we can override the labels:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<pre><code>## Warning: Removed 223 rows containing missing values (geom_point).</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">permits <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Gear) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">meanval =</span> <span class="kw">mean</span>(Value, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Gear, meanval)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">sort</span>(<span class="kw">unique</span>(permits<span class="op">$</span>Gear)))</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-91-2.png" width="672" /></p>
+<p>Or change the breaks:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_se_seine, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">1990</span>, <span class="dv">2010</span>))</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+</div>
+<div id="facets" class="section level2">
+<h2><span class="header-section-number">9.8</span> Facets</h2>
+<p>Facets allow us to create a powerful visualization called a small multiple:</p>
+<p><a href="http://www.latimes.com/local/lanow/la-me-g-california-drought-map-htmlstory.html" class="uri">http://www.latimes.com/local/lanow/la-me-g-california-drought-map-htmlstory.html</a></p>
+<p>I use small multiples all the time when I have a variable like a site or year and I want to quickly compare across years. Let’s create a graphical comparison of the permit prices in Cook Inlet over time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_ci, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Gear)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><code>facet_wrap()</code> chose a layout for us but, in this case, it aids comparison if we stack eachpanel on top of one another:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits_ci, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Gear, <span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p>Note that the X and Y limits are shared across panels which is often a good default to stick with. For example, if we plot permit value over time by gear type, we don’t get a very readable plot due to differences in permit values across gear types:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Year, Value, <span class="dt">group =</span> Region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Gear)</code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>Note that I also added <code>group = Region</code> to the <code>aes()</code> call, which tells <code>geom_line()</code> to draw one line per Region instead. Allowing the Y scales to differ across panels makes things much easier to see:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> Region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Gear, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+</div>
+<div id="plot-customization-w-themes" class="section level2">
+<h2><span class="header-section-number">9.9</span> Plot customization w/ themes</h2>
+<p>ggplot2 offers us a very highly level of customizability in, what I think, is a fairly easy to discover and remember way with the <code>theme</code> function and pre-set themes.</p>
+<p>ggplot2 comes with a set of themes which are a quick way to get a different look to your plots. Let’s use another theme than the default:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>()</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<ul>
+<li><strong>Exercise:</strong> Find another theme and use it instead. Hint: Built-in themes are functions that start with <code>theme_</code>.</li>
+</ul>
+<p>The legend in ggplot2 is a thematic element. Let’s change the way the legend displays:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,
+        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;#EEEEEE&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>),
+        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>))</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p>Let’s adjust our axis labels and title:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),
+        <span class="dt">legend.justification =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),
+        <span class="dt">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span>,
+        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>()) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Permit Value (unadjusted USD)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Permit Std. Dev. (unadjusted USD)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Permit Standard Deviation against Permit Value by Gear Type&quot;</span>,
+          <span class="st">&quot;or: I wish I owned a seine permit&quot;</span>)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p>In this case, we’ve put together a theme by adding it to our plot code with a <code>+</code> symbol. It turns out that we can save our theme to a variable and add it to any plot we want:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_theme &lt;-<span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="dv">4</span>),
+        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())
+  
+<span class="kw">ggplot</span>(permits, <span class="kw">aes</span>(Value, StdDev, <span class="dt">color =</span> Gear)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span>my_theme</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<ul>
+<li><strong>Exercise:</strong> Look at the help for ?theme and try changing something else about the above plot.</li>
+</ul>
+<p>More themes are available in a user-contributed package called <a href="https://github.com/jrnold/ggthemes">ggthemes</a>.</p>
+</div>
+<div id="saving-plots" class="section level2">
+<h2><span class="header-section-number">9.10</span> Saving plots</h2>
+<p>Let’s save that great plot we just made. Saving plots in ggplot is done with the <code>ggsave()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;permit_stddev_vs_value.png&quot;</span>)</code></pre></div>
+<p><code>ggsave</code> automatically chooses the format based on your file extension and guesses a default image size. We can customize the size with the <code>width</code> and <code>height</code> arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;permit_stddev_vs_value.png&quot;</span>, <span class="dt">width =</span> <span class="dv">6</span>, <span class="dt">height =</span> <span class="dv">6</span>)</code></pre></div>
+<p>You may notice if you often save plots that the scaling of various elements can get funky. This is because ggplot scales plot elements based on relative sizes. This most commonly manifests itself as too large/small axis labels. You can remedy this in a few ways:</p>
+<ul>
+<li>Change the plot dimensions</li>
+<li>Changing the base_size (<code>theme_classic(base_size = 16)</code>)</li>
+<li>Customize your theme (<code>theme()</code>)</li>
+</ul>
+</div>
+<div id="bonus-multi-panel-plots-beyond-facets" class="section level2">
+<h2><span class="header-section-number">9.11</span> Bonus: Multi-panel plots: Beyond facets</h2>
+<p>Often times, we outgrow the small multiples (facet) paradigm. For example, we might want a line plot and a box plot to appear in the same graphic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>({
+  <span class="kw">library</span>(gridExtra)
+})
+
+p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(permits_se_seine, <span class="kw">aes</span>(Year, Value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()
+
+p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(permits <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Gear <span class="op">==</span><span class="st"> &quot;Purse Seine&quot;</span>), <span class="kw">aes</span>(Region, Value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> <span class="cf">function</span>(x) { <span class="kw">format</span>(x, <span class="dt">scientific =</span> <span class="ot">FALSE</span>) })
+
+<span class="kw">grid.arrange</span>(p1, p2)</code></pre></div>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install package (run if needed)</span>
+<span class="co"># install.packages(&quot;cowplot&quot;)</span>
+
+<span class="kw">suppressPackageStartupMessages</span>({
+  <span class="kw">library</span>(cowplot)
+})
+
+<span class="kw">plot_grid</span>(p1, p2, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="reproducible-analysis-with-r_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+</div>
+<div id="bonus-round-two" class="section level2">
+<h2><span class="header-section-number">9.12</span> Bonus: Round two</h2>
+<p>If we have time, we’ll walk through some ways we can augment our ggplot2 knowledge with packages that build on top of ggplot.</p>
+<ul>
+<li><a href="http://www.ggplot2-exts.org/gallery/">ggplot extensions</a></li>
+<li><p><a href="https://github.com/dkahle/ggmap">ggmap</a> &gt; ggmap makes it easy to retrieve raster map tiles from popular online mapping services like Google Maps, OpenStreetMap, Stamen Maps, and plot them using the ggplot2 framework</p></li>
+<li><p><a href="https://ggsci.net">ggsci</a></p>
+<blockquote>
+<p>ggsci offers a collection of ggplot2 color palettes inspired by scientific journals, data visualization libraries, science fiction movies, and TV shows.</p>
+</blockquote></li>
+<li><a href="https://github.com/eclarke/ggbeeswarm">ggbeeswarm</a></li>
+<li><p><a href="https://github.com/hrbrmstr/waffle">waffle</a></p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hands-on-clean-and-integrate-datasets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-documentation-and-publishing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
